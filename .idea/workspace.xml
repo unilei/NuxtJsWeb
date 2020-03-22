@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="766938c3-115c-41b9-bf82-2962117f01e8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/spp.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/App.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/axios.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/client.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/components/nuxt-build-indicator.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/components/nuxt-child.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/components/nuxt-error.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/components/nuxt-link.client.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/components/nuxt-link.server.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/components/nuxt-loading.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/components/nuxt.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/06baed17d39544a53e65.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/09a70dad53ebd28954c8.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/09c744ad56900cda970d.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/1baaf2a643e02b862cad.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/1d187c56ee8061077f49.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/272252e8ee5dea24d702.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/313466643721116c05e1.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/32c6fe28a652ef5c7b8f.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/56691576630b5d19806f.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/6c0c5118db1b22b98eb9.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/72df2d103e91c823bb0c.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/97d9e124d2b85d3552b3.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/9ccc8181952b5f9a994c.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/9e57990f565b9f54c5ae.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/9fa3f2decdf20b5df2dd.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/LICENSES" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/b1d98141e18d3fe32dad.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/b44ca852ca643ca22d7e.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/b5feb4a2b9e4dba9097c.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/b8598c2316f772405733.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/c9824da7810a9c4b0ea3.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/cbf13c6ecb3dca4a5e26.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/d481f1bdf10d0a4eb22d.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/d5281b806c171d0ccc4a.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/da440eedc4c9a909da39.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/e43f69ead1533e875526.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/f8e81cbb2f0af9752d67.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/fd8b537745dc87399d6c.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/fonts/535877f.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/fonts/732389d.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/icons/icon_120.5f6a36.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/icons/icon_144.5f6a36.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/icons/icon_152.5f6a36.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/icons/icon_192.5f6a36.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/icons/icon_384.5f6a36.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/icons/icon_512.5f6a36.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/icons/icon_64.5f6a36.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/0020fde.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/095a79a.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/0da63d7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/133c5f0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/160635e.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/1c2569f.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/1f5f295.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/23a88fb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/300c9cf.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/367aa26.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/37009dc.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/4834ac2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/4edc9ef.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/577ff94.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/592eeda.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/5fcd56a.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/67f3fbf.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/686fa2c.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/69e1488.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/6a2d5c6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/6c953ee.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/77a5bb2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/77e14b2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/8a68aaa.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/8a82a44.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/8c02440.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/8e2ee7e.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/8f82aad.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/9330235.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/9c48bac.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/a1ca2d1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/a34154b.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/a82e9af.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/b465b54.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/b625f1e.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/bc9ecbf.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/bcc745b.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/bd11e97.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/c0d30a7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/c3d93c9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/ca50dd8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/d043fae.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/d42e8df.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/d6b8e38.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/d783e4b.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/eb6aeb4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/f0a18e2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/img/f471116.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/client/manifest.31cb0dba.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/server/1c599601bf655d452127.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/server/54fc9f89655e9f7ad55b.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/server/5d2f25a4e48e1fda1434.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/server/5e21612aabae678647c9.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/server/72c8f87f2cbf7b28e298.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/server/74e548fc8f43658aa897.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/server/952a65de171abb1fcb53.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/server/be85d8534282c207045c.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/server/client.manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/server/d2769cdc7e0898c62e47.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/server/eb9187e99c7240cc86df.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/server/fd9c08f4498998663b9d.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/server/index.spa.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/server/index.ssr.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/server/server.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/dist/server/server.manifest.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/empty.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/loading.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/middleware.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/nuxt-icons.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/router.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/router.scrollBehavior.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/server.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/store.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/utils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/views/app.template.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/views/error.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.nuxt/workbox.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/banner.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/base.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/bbs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/like.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/login.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/matchs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/news.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/newsReply.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/uploadFile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/comment.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/login.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/match.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/newsSlide.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/sliderx.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/wx-qrcode-box.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/youlike.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/android-QRcode.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/banner/icon-left.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/banner/icon-left1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/banner/icon-right.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/banner/icon-right1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/banner/laliga-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/banner/left_02.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/banner/right_02.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/bbs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/business/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/business/10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/business/11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/business/12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/business/13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/business/14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/business/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/business/3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/business/4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/business/5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/business/6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/business/7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/business/8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/business/9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/camera.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/default-header.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/footer-wx-football.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/footer-wx.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/header-logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/hot-t-bg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/laliga-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/login-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/nba-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/nba.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/news-comment.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/news-img-l.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/news-img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/news-like.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/p-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/p-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/p-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/p-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/p-5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/p-6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/p-banner.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/p-bg-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/p-bg-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/p-n-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/p-n-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/p-n-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/p-n-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/p-n-5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/pp-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/pp-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/pp-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/pp-5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/pp-6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/premier-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/serea-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/slide-left.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/slide-next.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/slider-arrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/star.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/wb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/wx.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/wx_qrcode.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/xuanzhuan.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/image/zhiding.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/Footer.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/Header.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/layouts/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/layouts/bbsLayout.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/layouts/default.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/layouts/newsLayout.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/middleware/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/nuxt.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/about.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/agreement.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/bbs/detail.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/bbs/list.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/companyProfile.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/complaint.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/index.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/news/detail.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/news/list.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/personalInformationService.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/wechat.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/element-ui.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/plugins/time.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/jquery-3.1.1.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/jquery.SuperSlide.2.1.3.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/sliderx.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/sw.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/wxLogin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store/newsList.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/systemTool.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/time.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="Vue Single File Component" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1Z7965u9iQKoldLOW0bsYZjkc4r" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/static" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static" />
+      <recent name="$PROJECT_DIR$/api" />
+      <recent name="$PROJECT_DIR$/components" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/assets" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static" />
+      <recent name="$PROJECT_DIR$/utils" />
+      <recent name="$PROJECT_DIR$/static/js" />
+      <recent name="$PROJECT_DIR$/plugins" />
+      <recent name="$PROJECT_DIR$/api" />
+    </key>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="766938c3-115c-41b9-bf82-2962117f01e8" name="Default Changelist" comment="" />
+      <created>1584179086704</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1584179086704</updated>
+      <workItem from="1584179088650" duration="41869000" />
+      <workItem from="1584369293678" duration="73000" />
+      <workItem from="1584369467772" duration="2000" />
+      <workItem from="1584672907281" duration="5542000" />
+      <workItem from="1584763849871" duration="14610000" />
+      <workItem from="1584843612534" duration="284000" />
+      <workItem from="1584844455624" duration="33000" />
+      <workItem from="1584844510860" duration="72000" />
+      <workItem from="1584844718906" duration="15000" />
+      <workItem from="1584844745787" duration="118000" />
+      <workItem from="1584845188679" duration="74000" />
+      <workItem from="1584845286084" duration="24000" />
+      <workItem from="1584845345591" duration="37000" />
+      <workItem from="1584845411397" duration="4835000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="init" />
+    <option name="LAST_COMMIT_MESSAGE" value="init" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="483" y="230" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1584793413047">
+      <screen x="0" y="23" width="1440" height="795" />
+    </state>
+    <state x="483" y="230" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.795@0.23.1440.795" timestamp="1584793413047" />
+    <state x="93" y="25" key="CommitChangelistDialog2" timestamp="1584859543384">
+      <screen x="0" y="23" width="1440" height="795" />
+    </state>
+    <state x="93" y="25" key="CommitChangelistDialog2/0.23.1440.795@0.23.1440.795" timestamp="1584859543384" />
+    <state x="325" y="156" width="790" height="528" key="find.popup" timestamp="1584779481896">
+      <screen x="0" y="23" width="1440" height="795" />
+    </state>
+    <state x="325" y="156" width="790" height="528" key="find.popup/0.23.1440.795@0.23.1440.795" timestamp="1584779481896" />
+    <state x="385" y="142" width="670" height="676" key="search.everywhere.popup" timestamp="1584764956561">
+      <screen x="0" y="23" width="1440" height="795" />
+    </state>
+    <state x="385" y="142" width="670" height="676" key="search.everywhere.popup/0.23.1440.795@0.23.1440.795" timestamp="1584764956561" />
+  </component>
+</project>

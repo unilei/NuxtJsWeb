@@ -1,0 +1,263 @@
+/* 必要布局样式css */
+.tempWrap{
+    width: 1300px !important;
+
+}
+.ato-content {
+    width: 100%;
+    margin: 0 auto;
+    height: 190px;
+    position: relative;
+
+}
+
+.ato-list ul {
+    width: 100%;
+    height: 200px;
+    padding-top: 10px;
+}
+
+.ato-list ul li {
+	margin-top:10px;
+    width: 250px;
+    height: 160px;
+    float: left;
+    margin-left: 10px;
+    text-align: center;
+    background-color: #fff;
+    -webkit-transition: height 300ms;
+    -moz-transition: height 300ms;
+    -ms-transition: height 300ms;
+    -o-transition: height 300ms;
+    transition: height 300ms;
+    position: relative;
+    /*box-shadow: 1px 0px 8px rgba(0,0,0,0.12);*/
+    top: 10px;
+    /*left: -10px;*/
+    border: 1px solid #D9D9D9;;
+}
+
+.ato-list ul li:before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-shadow: 0 0px 2px rgba(0,0,0,0.24);
+}
+
+.ato-list-fl {
+    /*float: left;*/
+}
+
+.prev{
+    left: 0;
+}
+.next{
+    right:0;
+}
+.ato-list-fl a {
+    width: 40px;
+    height: 160px;
+    position: absolute;
+    margin-top: 20px;
+    display: block;
+    background: #f2f2f2;
+    overflow: hidden;
+}
+
+.ato-list-fl a img {
+    width: 22px;
+    height: 22px;
+    display: block;
+    border: none;
+    margin: 0 auto;
+    margin-top: 70px;
+}
+
+.ato-list {
+    /*width:100%;*/
+    /*margin: 0 auto;*/
+    height: 164px;
+    margin-left: 40px;
+}
+.ato-list div:first-child{
+    /*width: 1220px;*/
+}
+.ato-list ul {
+}
+
+.ato-list ul li:hover {
+
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
+    border:1px solid #397AB8;
+}
+
+.prev:hover .ato-ope {
+    opacity: 0;
+}
+
+.ato-ope1 {
+    opacity: 0;
+}
+
+.prev:hover .ato-ope1 {
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    left: 11px;
+}
+
+.prev:hover .ato-ope {
+    opacity: 0;
+}
+
+.ato-ope1 {
+    opacity: 0;
+}
+
+.prev:hover .ato-ope1 {
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    left: 11px;
+}
+
+.next:hover .ato-ope {
+    opacity: 0;
+}
+
+.ato-ope1 {
+    opacity: 0;
+}
+
+.next:hover .ato-ope1 {
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    left: 11px;
+}
+
+.next:hover .ato-ope {
+    opacity: 0;
+}
+
+.ato-ope1 {
+    opacity: 0;
+}
+
+.next:hover .ato-ope1 {
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    right: 11px;
+}
+
+.ato-list-fl a:hover {
+    background: #108cee;
+    border: 1px solid #108cee;
+}
+.match-t-n{
+    font-family: ArialMT;
+    /*font-size: 18px;*/
+    font-size: 14px;
+    color: #333333;
+}
+.match-t-t{
+    margin-left: 28px;
+    font-family: ArialMT;
+    /*font-size: 18px;*/
+    font-size: 14px;
+    color: #333333;
+}
+.match-t-st{
+    margin-left: 40px;
+    font-family: PingFangSC-Regular;
+    /*font-size: 18px;*/
+    font-size: 12px;
+    color: #999999;
+    text-align: right;
+}
+
+.match-d-team{
+    font-family: PingFangSC-Regular;
+    /*font-size: 16px;*/
+    font-size: 14px;
+    color: #333333;
+    margin-left: 4px;
+}
+.match-d-sc{
+    /*text-align: right;*/
+    position: absolute;
+    right:40px;
+}
+.match-d-sc-s{
+    font-family: ArialMT;
+    font-size: 28px;
+    color: #E57A2B;
+    text-align: right;
+
+}
+.match-d-sc-f{
+    font-family: ArialMT;
+    font-size: 28px;
+    color: #333333;
+    text-align: right;
+}
+
+.match-t{
+    width: 100%;
+    height: 56px;
+    /*padding: 15px 20px  16px 18px;*/
+    line-height: 56px;
+    text-align: center;
+
+}
+.match-t-state-on{
+    background: #CCDCEC;
+}
+.match-t-state-off{
+    background: #EFEFEF;
+}
+.match-d{
+    width: 100%;
+    height: 30px;
+    padding-top: 10px;
+    background: #FFFFFF;
+}
+.match-d-i {
+    width: 9% !important;
+    float: left;
+    margin-left: 1%;
+}
+.match-d-i img{
+    width: 26px !important;
+    height: 26px !important;
+}
+
+.match-d-t-n{
+    width: 80% !important;
+    float: left;
+    text-align: left !important;
+}
+.match-d-t-s{
+    width: 10% !important;
+    float: left;
+    text-align: right;
+}
+.match-d-t-s-on{
+    font-family: PingFangSC-Regular;
+    font-size: 28px;
+    color: #E57A2B;
+}
+.match-d-t-s-off{
+    font-family: PingFangSC-Regular;
+    font-size: 28px;
+    color: #333333;
+}
