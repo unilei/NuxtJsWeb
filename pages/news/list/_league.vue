@@ -130,7 +130,7 @@
         ]
       }
     },
-    watchParams:['league'],
+    watchQuery:['league'],
     async asyncData(context){
 
       let offset = 0

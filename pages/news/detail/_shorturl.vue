@@ -292,7 +292,7 @@ line-height:30px;">换一换</span>
 
       }
     },
-    watchParams:['shorturl'],
+    watchQuery:['shorturl'],
     async asyncData(context){
       const shorturl = context.params.shorturl
       let newsDetail = await context.$axios.get(`${base.sq}/v2/GetArticleDetail`,{params:{

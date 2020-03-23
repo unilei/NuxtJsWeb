@@ -295,7 +295,7 @@ line-height:30px;cursor: pointer;">换一换</span>
 
       }
     },
-    watchParams: ['articleId'],
+    watchQuery: ['articleId'],
     async asyncData (context) {
 
       const article_id = context.params.articleId

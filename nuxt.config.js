@@ -47,7 +47,8 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    'element-ui/lib/theme-chalk/index.css'
+    'element-ui/lib/theme-chalk/index.css',
+    'assets/css/normailze.css'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -58,7 +59,7 @@ module.exports = {
       ssr: true
     },
     {
-      src: '~/plugins/filter',
+      src: '@/plugins/filter',
       ssr: false
     }
 
@@ -93,10 +94,6 @@ module.exports = {
   build: {
     transpile: [/^element-ui/],
     extractCSS: true,
-    analyze:false,
-    productionSourceMap: false,
-    productionGzip: true,
-    productionGzipExtensions: ['js', 'css', 'svg'],
     /*
     ** You can extend webpack config here
     */

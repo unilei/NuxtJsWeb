@@ -11,6 +11,8 @@ import NuxtLoading from './components/nuxt-loading.vue'
 
 import '..\\node_modules\\_element-ui@2.13.0@element-ui\\lib\\theme-chalk\\index.css'
 
+import '..\\assets\\css\\normailze.css'
+
 import _6f2aba07 from '..\\layouts\\bbsLayout.vue'
 import _6f6c098b from '..\\layouts\\default.vue'
 import _2fdf5853 from '..\\layouts\\newsLayout.vue'
