@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="766938c3-115c-41b9-bf82-2962117f01e8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/css/normailze.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/.nuxt/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nuxt.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/nuxt.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/filter.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/filter.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +96,7 @@
       <workItem from="1584845411397" duration="4835000" />
       <workItem from="1584881514164" duration="190000" />
       <workItem from="1584883268501" duration="653000" />
-      <workItem from="1584928524628" duration="24853000" />
+      <workItem from="1584928524628" duration="25869000" />
     </task>
     <task id="LOCAL-00001" summary="修改url">
       <created>1584958863749</created>
@@ -106,7 +105,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584958863749</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="修改url">
+      <created>1584960409455</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1584960409455</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -130,10 +136,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="530" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1600.860@0.0.1600.860" timestamp="1584948895177" />
-    <state x="103" y="2" key="CommitChangelistDialog2" timestamp="1584958862386">
+    <state x="103" y="2" key="CommitChangelistDialog2" timestamp="1584960408672">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="103" y="2" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1584958862386" />
+    <state x="103" y="2" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1584960408672" />
     <state x="93" y="25" key="CommitChangelistDialog2/0.23.1440.795@0.23.1440.795" timestamp="1584859543384" />
     <state x="580" y="188" key="FileChooserDialogImpl" timestamp="1584956101136">
       <screen x="0" y="0" width="1600" height="860" />
@@ -143,10 +149,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="301" y="72" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1584929098934" />
-    <state x="392" y="166" key="Vcs.Push.Dialog.v2" timestamp="1584958874719">
+    <state x="392" y="166" key="Vcs.Push.Dialog.v2" timestamp="1584960410765">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="392" y="166" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1584958874719" />
+    <state x="392" y="166" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1584960410765" />
     <state x="92" y="92" width="1416" height="676" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1584949529688">
       <screen x="0" y="0" width="1600" height="860" />
     </state>

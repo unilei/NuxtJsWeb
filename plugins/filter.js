@@ -51,15 +51,11 @@ export function dateForHour (timeStamp) {
   }
   return timeSpanStr
 }
-let filters = {}
-if (process.client){
-   filters = {
 
-    dateForHour,
-    dateFormat
-  }
+const filters = {
+  dateForHour,
+  dateFormat
 }
-
 export default filters
 
 Object.keys(filters).forEach(key => {
