@@ -58,10 +58,10 @@ module.exports = {
       src: '@/plugins/element-ui',
       ssr: true
     },
-    // {
-    //   src: '@/plugins/filter',
-    //   ssr: false
-    // }
+    {
+      src: '@/plugins/filter',
+      ssr: false
+    }
 
   ],
   /*
