@@ -9,8 +9,18 @@ import {
   getMatchedComponents,
   promisify
 } from './utils.js'
+import fetchMixin from './mixins/fetch.server'
 import { createApp, NuxtError } from './index.js'
 import NuxtLink from './components/nuxt-link.server.js' // should be included after ./index.js
+
+// Update serverPrefetch strategy
+Vue.config.optionMergeStrategies.serverPrefetch = Vue.config.optionMergeStrategies.created
+
+// Fetch mixin
+if (!Vue.__nuxt__fetch__mixin__) {
+  Vue.mixin(fetchMixin)
+  Vue.__nuxt__fetch__mixin__ = true
+}
 
 // Component: <NuxtLink>
 Vue.component(NuxtLink.name, NuxtLink)
@@ -60,10 +70,12 @@ export default async (ssrContext) => {
   // Used for beforeNuxtRender({ Components, nuxtState })
   ssrContext.beforeRenderFns = []
   // Nuxt object (window{{globals.context}}, defaults to window.__NUXT__)
-  ssrContext.nuxt = { layout: 'default', data: [], error: null, state: null, serverRendered: true }
+  ssrContext.nuxt = { layout: 'default', data: [], fetch: [], error: null, state: null, serverRendered: true, routePath: '' }
   // Create the app definition and the instance (created for each request)
   const { app, router, store } = await createApp(ssrContext)
   const _app = new Vue(app)
+  // Add ssr route path to nuxt context so we can account for page navigation between ssr and csr
+  ssrContext.nuxt.routePath = app.context.route.path
 
   // Add meta infos (used in renderer.js)
   ssrContext.meta = _app.$meta()
@@ -96,6 +108,8 @@ export default async (ssrContext) => {
     app.context.error({ statusCode: 404, path: ssrContext.url, message: 'This page could not be found' })
     return renderErrorPage()
   }
+
+  const s = Date.now()
 
   // Components are already resolved by setContext -> getRouteData (app/utils.js)
   const Components = getMatchedComponents(router.match(ssrContext.url))
@@ -246,7 +260,7 @@ export default async (ssrContext) => {
     }
 
     // Call fetch(context)
-    if (Component.options.fetch) {
+    if (Component.options.fetch && Component.options.fetch.length) {
       promises.push(Component.options.fetch(app.context))
     } else {
       promises.push(null)
@@ -254,6 +268,8 @@ export default async (ssrContext) => {
 
     return Promise.all(promises)
   }))
+
+  if (process.env.DEBUG && asyncDatas.length) console.debug('Data fetching ' + ssrContext.url + ': ' + (Date.now() - s) + 'ms')
 
   // datas are the first row of each
   ssrContext.nuxt.data = asyncDatas.map(r => r[0] || {})

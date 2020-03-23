@@ -55,10 +55,10 @@ module.exports = {
   plugins: [
     {
       src: '@/plugins/element-ui',
-      ssr: false
+      ssr: true
     },
     {
-      src: '@/plugins/time',
+      src: '~/plugins/filter',
       ssr: false
     }
 
@@ -78,7 +78,7 @@ module.exports = {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
   ],
   /*
   ** Axios module configuration
@@ -93,10 +93,15 @@ module.exports = {
   build: {
     transpile: [/^element-ui/],
     extractCSS: true,
+    analyze:false,
+    productionSourceMap: false,
+    productionGzip: true,
+    productionGzipExtensions: ['js', 'css', 'svg'],
     /*
     ** You can extend webpack config here
     */
     extend (config, ctx) {
+
     }
   }
 }

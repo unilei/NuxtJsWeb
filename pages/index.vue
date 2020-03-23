@@ -64,12 +64,14 @@
     <div class="hot-news-container">
       <div class="hot-news-left">
         <h3 v-if="hotNewsList.length > 0">
-          <nuxt-link :to="'/news/detail?shorturl='+hotNewsList[0].shorturl" target="_blank">{{hotNewsList[0].title}}
+          <nuxt-link :to="{name:'news-detail-shorturl',params:{shorturl:hotNewsList[0].shorturl}}"
+             target="_blank">{{hotNewsList[0].title}}
           </nuxt-link>
         </h3>
         <ul>
           <li v-for="hotNews in hotNewsList" :key="hotNews.article_id">
-            <nuxt-link :to="'/news/detail?shorturl='+hotNews.shorturl" target="_blank">{{hotNews.title}}</nuxt-link>
+            <nuxt-link :to="{name:'news-detail-shorturl',params:{shorturl:hotNews.shorturl}}"
+               target="_blank">{{hotNews.title}}</nuxt-link>
           </li>
         </ul>
       </div>
@@ -83,7 +85,7 @@
           <div class="bd">
             <ul>
               <li v-for="(item,index) in bannerArr" :key="index">
-                <nuxt-link :to="'/news/detail?shorturl='+item.content" target="_blank">
+                <nuxt-link :to="{name:'news-detail-shorturl',params:{shorturl:item.content}}"  target="_blank">
                   <img :src="item.image"/>
                 </nuxt-link>
               </li>
@@ -91,8 +93,8 @@
           </div>
 
           <!-- 下面是前/后按钮代码，如果不需要删除即可 -->
-          <a class="prev" href="javascript:void(0)"></a>
-          <a class="next" href="javascript:void(0)"></a>
+          <a class="news-prev" href="javascript:void(0)"></a>
+          <a class="news-next" href="javascript:void(0)"></a>
           <span class="pageState"></span>
 
         </div>
@@ -117,7 +119,7 @@
         <ul>
           <li>
             <h3 style="">
-              <nuxt-link :to="'/news/detail?shorturl='+hotNbaNewsFirst.shorturl" target="_blank">
+              <nuxt-link :to="{name:'news-detail-shorturl',params:{shorturl:hotNbaNewsFirst.shorturl}}" target="_blank">
                 {{hotNbaNewsFirst.title}}
               </nuxt-link>
             </h3>
@@ -134,7 +136,7 @@
           </li>
           <li style="padding-top: 10px;">
             <h3 style="">
-              <nuxt-link :to="'/news/detail?shorturl='+hotNbaNewsSecond.shorturl" target="_blank">
+              <nuxt-link :to="{name:'news-detail-shorturl',params:{shorturl:hotNbaNewsSecond.shorturl}}" target="_blank">
                 {{hotNbaNewsSecond.title}}
               </nuxt-link>
             </h3>
@@ -154,7 +156,7 @@
       <div class="news-right">
         <ul>
           <li v-for="newNbaNews in newNbaNewsList" :key="newNbaNews.article_id">
-            <nuxt-link :to="'/news/detail?shorturl='+newNbaNews.shorturl" target="_blank">{{newNbaNews.title}}
+            <nuxt-link :to="{name:'news-detail-shorturl',params:{shorturl:newNbaNews.shorturl}}"  target="_blank">{{newNbaNews.title}}
             </nuxt-link>
           </li>
         </ul>
@@ -180,8 +182,8 @@
         <ul>
           <li style="height: auto !important;line-height: 35px;" v-for="(hotBbs,index) in hotBbsList" :key="index">
             <h3>
-              <nuxt-link style="font-size: 16px !important;" target="_blank"
-                         :to="'/bbs/detail?article_id='+hotBbs.article_id">{{hotBbs.title}}
+              <nuxt-link style="font-size: 16px !important;" target="_blank" :to="{name:'bbs-detail-articleId',params:{'articleId':hotBbs.article_id}}">
+                {{hotBbs.title}}
               </nuxt-link>
             </h3>
             <!--                            <div class="news-left-l" style="width: 0 !important;;">-->
@@ -199,7 +201,7 @@
       <div class="news-right">
         <ul>
           <li v-for="(bbs,i) in bbsList" :key="i">
-            <nuxt-link :to="'/bbs/detail?article_id='+bbs.article_id" target="_blank">{{bbs.title}}</nuxt-link>
+            <nuxt-link :to="{name:'bbs-detail-articleId',params:{'articleId':bbs.article_id}}"  target="_blank">{{bbs.title}}</nuxt-link>
           </li>
         </ul>
       </div>
@@ -225,7 +227,7 @@
         <ul>
           <li>
             <h3 style="">
-              <nuxt-link :to="'/news/detail?shorturl='+hotLaLigaNewsFirst.shorturl" target="_blank">
+              <nuxt-link :to="{name:'news-detail-shorturl',params:{shorturl:hotLaLigaNewsFirst.shorturl}}"  target="_blank">
                 {{hotLaLigaNewsFirst.title}}
               </nuxt-link>
             </h3>
@@ -242,7 +244,7 @@
           </li>
           <li style="padding-top: 27px;">
             <h3 style="">
-              <nuxt-link :to="'/news/detail?shorturl='+hotLaLigaNewsSecond.shorturl" target="_blank">
+              <nuxt-link  :to="{name:'news-detail-shorturl',params:{shorturl:hotLaLigaNewsSecond.shorturl}}" target="_blank">
                 {{hotLaLigaNewsSecond.title}}
               </nuxt-link>
             </h3>
@@ -262,7 +264,7 @@
       <div class="news-right">
         <ul>
           <li v-for="newLaLigaNews in newLaLigaNewsList" :key="newLaLigaNews.article_id">
-            <nuxt-link :to="'/news/detail?shorturl='+newLaLigaNews.shorturl" target="_blank">{{newLaLigaNews.title}}
+            <nuxt-link :to="{name:'news-detail-shorturl',params:{shorturl:newLaLigaNews.shorturl}}"  target="_blank">{{newLaLigaNews.title}}
             </nuxt-link>
           </li>
         </ul>
@@ -287,7 +289,7 @@
         <ul>
           <li>
             <h3 style="">
-              <nuxt-link :to="'/news/detail?shorturl='+hotPremierNewsFirst.shorturl" target="_blank">
+              <nuxt-link :to="{name:'news-detail-shorturl',params:{shorturl:hotPremierNewsFirst.shorturl}}" target="_blank">
                 {{hotPremierNewsFirst.title}}
               </nuxt-link>
             </h3>
@@ -304,7 +306,7 @@
           </li>
           <li style="padding-top: 27px;">
             <h3 style="">
-              <nuxt-link :to="'/news/detail?shorturl='+hotPremierNewsSecond.shorturl" target="_blank">
+              <nuxt-link :to="{name:'news-detail-shorturl',params:{shorturl:hotPremierNewsSecond.shorturl}}"  target="_blank">
                 {{hotPremierNewsSecond.title}}
               </nuxt-link>
             </h3>
@@ -324,7 +326,7 @@
       <div class="news-right">
         <ul>
           <li v-for="newPremierNews in newPremierNewsList" :key="newPremierNews.article_id">
-            <nuxt-link :to="'/news/detail?shorturl='+newPremierNews.shorturl" target="_blank">
+            <nuxt-link  :to="{name:'news-detail-shorturl',params:{shorturl:newPremierNews.shorturl}}"  target="_blank">
               {{newPremierNews.title}}
             </nuxt-link>
           </li>
@@ -352,7 +354,7 @@
         <ul>
           <li>
             <h3 style="">
-              <nuxt-link :to="'/news/detail?shorturl='+hotSerieANewsFirst.shorturl" target="_blank">
+              <nuxt-link  :to="{name:'news-detail-shorturl',params:{shorturl:hotSerieANewsFirst.shorturl}}"  target="_blank">
                 {{hotSerieANewsFirst.title}}
               </nuxt-link>
             </h3>
@@ -369,7 +371,7 @@
           </li>
           <li style="padding-top: 27px;">
             <h3 style="">
-              <nuxt-link :to="'/news/detail?shorturl='+hotSerieANewsSecond.shorturl" target="_blank">
+              <nuxt-link  :to="{name:'news-detail-shorturl',params:{shorturl:hotSerieANewsSecond.shorturl}}"  target="_blank">
                 {{hotSerieANewsSecond.title}}
               </nuxt-link>
 
@@ -390,7 +392,7 @@
       <div class="news-right">
         <ul>
           <li v-for="newSerieANews in newSerieANewsList" :key="newSerieANews.article_id">
-            <nuxt-link :to="'/news/detail?shorturl='+newSerieANews.shorturl" target="_blank">{{newSerieANews.title}}
+            <nuxt-link :to="{name:'news-detail-shorturl',params:{shorturl:newSerieANews.shorturl}}"  target="_blank">{{newSerieANews.title}}
             </nuxt-link>
           </li>
         </ul>
@@ -692,10 +694,7 @@
         })
       },
       slideNewsShow () {
-        $('.slideBox').slide({
-          mainCell: '.bd ul',
-          autoPlay: true
-        })
+        $(".slideBox").slide({mainCell:".bd ul",autoPlay:true,prevCell:'.news-prev',nextCell:'.news-next'});
       },
 
     },

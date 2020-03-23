@@ -7,12 +7,12 @@
         <div class="left-aside">
           <ul>
             <li>
-              <nuxt-link :to="'/bbs/list?sportType=all'" exact>全部话题</nuxt-link>
+              <nuxt-link :to="{name:'bbs-list-sportType',params:{'sportType':'all'}}" exact>全部话题</nuxt-link>
             <li>
-              <nuxt-link :to="'/bbs/list?sportType=football'" exact>足球</nuxt-link>
+              <nuxt-link :to="{name:'bbs-list-sportType',params:{'sportType':'football'}}" exact>足球</nuxt-link>
             </li>
             <li>
-              <nuxt-link :to="'/bbs/list?sportType=basketball'" exact>篮球</nuxt-link>
+              <nuxt-link :to="{name:'bbs-list-sportType',params:{'sportType':'basketball'}}" exact>篮球</nuxt-link>
             </li>
           </ul>
 

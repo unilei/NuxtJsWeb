@@ -3,17 +3,17 @@ import Router from 'vue-router'
 import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
-const _2c91b46b = () => interopDefault(import('../pages/about.vue' /* webpackChunkName: "pages/about" */))
-const _5d208968 = () => interopDefault(import('../pages/agreement.vue' /* webpackChunkName: "pages/agreement" */))
-const _36f37cfe = () => interopDefault(import('../pages/companyProfile.vue' /* webpackChunkName: "pages/companyProfile" */))
-const _114dfb89 = () => interopDefault(import('../pages/complaint.vue' /* webpackChunkName: "pages/complaint" */))
-const _72f4a35b = () => interopDefault(import('../pages/personalInformationService.vue' /* webpackChunkName: "pages/personalInformationService" */))
-const _75d066b8 = () => interopDefault(import('../pages/wechat.vue' /* webpackChunkName: "pages/wechat" */))
-const _3f6abe82 = () => interopDefault(import('../pages/bbs/detail.vue' /* webpackChunkName: "pages/bbs/detail" */))
-const _6a942fe8 = () => interopDefault(import('../pages/bbs/list.vue' /* webpackChunkName: "pages/bbs/list" */))
-const _5f31cf6b = () => interopDefault(import('../pages/news/detail.vue' /* webpackChunkName: "pages/news/detail" */))
-const _469e5c90 = () => interopDefault(import('../pages/news/list.vue' /* webpackChunkName: "pages/news/list" */))
-const _4c498f30 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
+const _5c1fd3d0 = () => interopDefault(import('..\\pages\\about.vue' /* webpackChunkName: "pages_about" */))
+const _f82766d6 = () => interopDefault(import('..\\pages\\agreement.vue' /* webpackChunkName: "pages_agreement" */))
+const _b658a41e = () => interopDefault(import('..\\pages\\companyProfile.vue' /* webpackChunkName: "pages_companyProfile" */))
+const _3819beb6 = () => interopDefault(import('..\\pages\\complaint.vue' /* webpackChunkName: "pages_complaint" */))
+const _086bffce = () => interopDefault(import('..\\pages\\personalInformationService.vue' /* webpackChunkName: "pages_personalInformationService" */))
+const _7c3e3aab = () => interopDefault(import('..\\pages\\wechat.vue' /* webpackChunkName: "pages_wechat" */))
+const _1c5fed01 = () => interopDefault(import('..\\pages\\bbs\\detail\\_articleId.vue' /* webpackChunkName: "pages_bbs_detail__articleId" */))
+const _605e366b = () => interopDefault(import('..\\pages\\bbs\\list\\_sportType.vue' /* webpackChunkName: "pages_bbs_list__sportType" */))
+const _7d09430e = () => interopDefault(import('..\\pages\\news\\detail\\_shorturl.vue' /* webpackChunkName: "pages_news_detail__shorturl" */))
+const _32898388 = () => interopDefault(import('..\\pages\\news\\list\\_league.vue' /* webpackChunkName: "pages_news_list__league" */))
+const _1cb01e46 = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages_index" */))
 
 // TODO: remove in Nuxt 3
 const emptyFn = () => {}
@@ -33,47 +33,47 @@ export const routerOptions = {
 
   routes: [{
     path: "/about",
-    component: _2c91b46b,
+    component: _5c1fd3d0,
     name: "about"
   }, {
     path: "/agreement",
-    component: _5d208968,
+    component: _f82766d6,
     name: "agreement"
   }, {
     path: "/companyProfile",
-    component: _36f37cfe,
+    component: _b658a41e,
     name: "companyProfile"
   }, {
     path: "/complaint",
-    component: _114dfb89,
+    component: _3819beb6,
     name: "complaint"
   }, {
     path: "/personalInformationService",
-    component: _72f4a35b,
+    component: _086bffce,
     name: "personalInformationService"
   }, {
     path: "/wechat",
-    component: _75d066b8,
+    component: _7c3e3aab,
     name: "wechat"
   }, {
-    path: "/bbs/detail",
-    component: _3f6abe82,
-    name: "bbs-detail"
+    path: "/bbs/detail/:articleId?",
+    component: _1c5fed01,
+    name: "bbs-detail-articleId"
   }, {
-    path: "/bbs/list",
-    component: _6a942fe8,
-    name: "bbs-list"
+    path: "/bbs/list/:sportType?",
+    component: _605e366b,
+    name: "bbs-list-sportType"
   }, {
-    path: "/news/detail",
-    component: _5f31cf6b,
-    name: "news-detail"
+    path: "/news/detail/:shorturl?",
+    component: _7d09430e,
+    name: "news-detail-shorturl"
   }, {
-    path: "/news/list",
-    component: _469e5c90,
-    name: "news-list"
+    path: "/news/list/:league?",
+    component: _32898388,
+    name: "news-list-league"
   }, {
     path: "/",
-    component: _4c498f30,
+    component: _1cb01e46,
     name: "index"
   }],
 

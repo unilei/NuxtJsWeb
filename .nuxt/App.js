@@ -2,23 +2,22 @@ import Vue from 'vue'
 
 import {
   getMatchedComponentsInstances,
+  getChildrenComponentInstancesUsingFetch,
   promisify,
   globalHandleError
 } from './utils'
 
 import NuxtLoading from './components/nuxt-loading.vue'
 
-import '../node_modules/_element-ui@2.13.0@element-ui/lib/theme-chalk/index.css'
+import '..\\node_modules\\_element-ui@2.13.0@element-ui\\lib\\theme-chalk\\index.css'
 
-import _6f2aba07 from '../layouts/bbsLayout.vue'
-import _6f6c098b from '../layouts/default.vue'
-import _2fdf5853 from '../layouts/newsLayout.vue'
+import _6f2aba07 from '..\\layouts\\bbsLayout.vue'
+import _6f6c098b from '..\\layouts\\default.vue'
+import _2fdf5853 from '..\\layouts\\newsLayout.vue'
 
 const layouts = { "_bbsLayout": _6f2aba07,"_default": _6f6c098b,"_newsLayout": _2fdf5853 }
 
 export default {
-  head: {"title":"sports-v-2","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"for seo "},{"hid":"mobile-web-app-capable","name":"mobile-web-app-capable","content":"yes"},{"hid":"apple-mobile-web-app-title","name":"apple-mobile-web-app-title","content":"sports-v-2"},{"hid":"author","name":"author","content":"xll"},{"hid":"theme-color","name":"theme-color","content":"#fff"},{"hid":"og:type","name":"og:type","property":"og:type","content":"website"},{"hid":"og:title","name":"og:title","property":"og:title","content":"sports-v-2"},{"hid":"og:site_name","name":"og:site_name","property":"og:site_name","content":"sports-v-2"},{"hid":"og:description","name":"og:description","property":"og:description","content":"for seo "}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"manifest","href":"\u002F_nuxt\u002Fmanifest.31cb0dba.json"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64.5f6a36.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512.5f6a36.png","sizes":"512x512"}],"script":[{"src":"\u002Fjquery-3.1.1.min.js","ssr":false},{"src":"\u002Fjquery.SuperSlide.2.1.3.js","ssr":false},{"src":"\u002FwxLogin.js","ssr":false}],"style":[],"htmlAttrs":{"lang":"en"}},
-
   render (h, props) {
     const loadingEl = h('NuxtLoading', { ref: 'loading' })
 
@@ -60,8 +59,10 @@ export default {
     isOnline: true,
 
     layout: null,
-    layoutName: ''
-  }),
+    layoutName: '',
+
+    nbFetching: 0
+    }),
 
   beforeCreate () {
     Vue.util.defineReactive(this, 'nuxt', this.$options.nuxt)
@@ -94,6 +95,10 @@ export default {
   computed: {
     isOffline () {
       return !this.isOnline
+    },
+
+      isFetching() {
+      return this.nbFetching > 0
     }
   },
 
@@ -122,8 +127,17 @@ export default {
       const promises = pages.map((page) => {
         const p = []
 
-        if (page.$options.fetch) {
+        // Old fetch
+        if (page.$options.fetch && page.$options.fetch.length) {
           p.push(promisify(page.$options.fetch, this.context))
+        }
+        if (page.$fetch) {
+          p.push(page.$fetch())
+        } else {
+          // Get all component instance to call $fetch
+          for (const component of getChildrenComponentInstancesUsingFetch(page.$vnode.componentInstance)) {
+            p.push(component.$fetch())
+          }
         }
 
         if (page.$options.asyncData) {
@@ -142,7 +156,7 @@ export default {
       try {
         await Promise.all(promises)
       } catch (error) {
-        this.$loading.fail()
+        this.$loading.fail(error)
         globalHandleError(error)
         this.error(error)
       }
@@ -152,7 +166,7 @@ export default {
     errorChanged () {
       if (this.nuxt.err && this.$loading) {
         if (this.$loading.fail) {
-          this.$loading.fail()
+          this.$loading.fail(this.nuxt.err)
         }
         if (this.$loading.finish) {
           this.$loading.finish()
@@ -161,6 +175,10 @@ export default {
     },
 
     setLayout (layout) {
+      if(layout && typeof layout !== 'string') {
+        throw new Error('[nuxt] Avoid using non-string value as layout property.')
+      }
+
       if (!layout || !layouts['_' + layout]) {
         layout = 'default'
       }

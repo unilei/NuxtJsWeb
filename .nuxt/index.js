@@ -12,11 +12,11 @@ import { createStore } from './store.js'
 
 /* Plugins */
 
-import nuxt_plugin_workbox_7505600a from 'nuxt_plugin_workbox_7505600a' // Source: ./workbox.js (mode: 'client')
-import nuxt_plugin_nuxticons_9a5ba0cc from 'nuxt_plugin_nuxticons_9a5ba0cc' // Source: ./nuxt-icons.js (mode: 'all')
-import nuxt_plugin_axios_23aece6e from 'nuxt_plugin_axios_23aece6e' // Source: ./axios.js (mode: 'all')
-import nuxt_plugin_elementui_d905880e from 'nuxt_plugin_elementui_d905880e' // Source: ../plugins/element-ui (mode: 'client')
-import nuxt_plugin_time_9260227e from 'nuxt_plugin_time_9260227e' // Source: ../plugins/time (mode: 'client')
+import nuxt_plugin_workbox_fa56eabe from 'nuxt_plugin_workbox_fa56eabe' // Source: .\\workbox.js (mode: 'client')
+import nuxt_plugin_nuxticons_9c012cba from 'nuxt_plugin_nuxticons_9c012cba' // Source: .\\nuxt-icons.js (mode: 'all')
+import nuxt_plugin_axios_53a5b2c5 from 'nuxt_plugin_axios_53a5b2c5' // Source: .\\axios.js (mode: 'all')
+import nuxt_plugin_elementui_d905880e from 'nuxt_plugin_elementui_d905880e' // Source: ..\\plugins\\element-ui (mode: 'all')
+import nuxt_plugin_filter_68021324 from 'nuxt_plugin_filter_68021324' // Source: ..\\plugins\\filter (mode: 'client')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -63,6 +63,8 @@ async function createApp (ssrContext) {
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
+    head: {"title":"sports-v-2","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"for seo "},{"hid":"mobile-web-app-capable","name":"mobile-web-app-capable","content":"yes"},{"hid":"apple-mobile-web-app-title","name":"apple-mobile-web-app-title","content":"sports-v-2"},{"hid":"author","name":"author","content":"xll"},{"hid":"theme-color","name":"theme-color","content":"#fff"},{"hid":"og:type","name":"og:type","property":"og:type","content":"website"},{"hid":"og:title","name":"og:title","property":"og:title","content":"sports-v-2"},{"hid":"og:site_name","name":"og:site_name","property":"og:site_name","content":"sports-v-2"},{"hid":"og:description","name":"og:description","property":"og:description","content":"for seo "}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"manifest","href":"\u002F_nuxt\u002Fmanifest.31cb0dba.json"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64.5f6a36.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512.5f6a36.png","sizes":"512x512"}],"script":[{"src":"\u002Fjquery-3.1.1.min.js","ssr":false},{"src":"\u002Fjquery.SuperSlide.2.1.3.js","ssr":false},{"src":"\u002FwxLogin.js","ssr":false}],"style":[],"htmlAttrs":{"lang":"en"}},
+
     store,
     router,
     nuxt: {
@@ -92,7 +94,10 @@ async function createApp (ssrContext) {
         err = err || null
         app.context._errored = Boolean(err)
         err = err ? normalizeError(err) : null
-        const nuxt = this.nuxt || this.$options.nuxt
+        let nuxt = app.nuxt // to work with @vue/composition-api, see https://github.com/nuxt/nuxt.js/issues/6517#issuecomment-573280207
+        if (this) {
+          nuxt = this.nuxt || this.$options.nuxt
+        }
         nuxt.dateErr = Date.now()
         nuxt.err = err
         // Used in src/server.js
@@ -136,7 +141,7 @@ async function createApp (ssrContext) {
       throw new Error('inject(key, value) has no key provided')
     }
     if (value === undefined) {
-      throw new Error('inject(key, value) has no value provided')
+      throw new Error(`inject('${key}', value) has no value provided`)
     }
 
     key = '$' + key
@@ -173,24 +178,24 @@ async function createApp (ssrContext) {
 
   // Plugin execution
 
-  if (process.client && typeof nuxt_plugin_workbox_7505600a === 'function') {
-    await nuxt_plugin_workbox_7505600a(app.context, inject)
+  if (process.client && typeof nuxt_plugin_workbox_fa56eabe === 'function') {
+    await nuxt_plugin_workbox_fa56eabe(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_nuxticons_9a5ba0cc === 'function') {
-    await nuxt_plugin_nuxticons_9a5ba0cc(app.context, inject)
+  if (typeof nuxt_plugin_nuxticons_9c012cba === 'function') {
+    await nuxt_plugin_nuxticons_9c012cba(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_axios_23aece6e === 'function') {
-    await nuxt_plugin_axios_23aece6e(app.context, inject)
+  if (typeof nuxt_plugin_axios_53a5b2c5 === 'function') {
+    await nuxt_plugin_axios_53a5b2c5(app.context, inject)
   }
 
-  if (process.client && typeof nuxt_plugin_elementui_d905880e === 'function') {
+  if (typeof nuxt_plugin_elementui_d905880e === 'function') {
     await nuxt_plugin_elementui_d905880e(app.context, inject)
   }
 
-  if (process.client && typeof nuxt_plugin_time_9260227e === 'function') {
-    await nuxt_plugin_time_9260227e(app.context, inject)
+  if (process.client && typeof nuxt_plugin_filter_68021324 === 'function') {
+    await nuxt_plugin_filter_68021324(app.context, inject)
   }
 
   // If server-side, wait for async component to be resolved first
