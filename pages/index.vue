@@ -464,9 +464,9 @@
     },
     async asyncData (context) {
       const sportType = 'all'
-      const type = 'newest'
+      const type = 'toplike'
       const limit_type = 10
-      const type2 = 'toplike'
+      const type2 = 'newest'
       const limit_type2 = 9
       // 获取比赛赛程列表
       let matchList = await context.$axios.$get(`${base.sq}/v2/GetMatchList`, {})

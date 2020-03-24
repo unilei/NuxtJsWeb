@@ -11,12 +11,12 @@
             <nuxt-link :to="{name:'bbs-detail-articleId',params:{'articleId':bbs.article_id}}"   target="_blank" v-if="i !== 0 ">{{bbs.title}}
             </nuxt-link>
             <div v-for="(content,index) in bbs.content" :key="index">
-              <p v-if="content.type === 1">
-                {{content.content}}
-              </p>
-              <p v-if="content.type !== 1">
-
-              </p>
+              <div v-if="content.type === 1">
+                <p>{{content.content}}</p>
+              </div>
+              <div v-if="content.type !== 1">
+                <p></p>
+              </div>
             </div>
 
             <div class="bbs-list-l-d">
@@ -185,6 +185,7 @@
       }
       let hotBbsList = await context.$axios.get(`${base.sq}/v1/forum/`+sportType+`/0/`+type_hot+`/articles`,{params:params_hot})
 
+      console.log(bbsList.data.Data.list[0].content)
       return {
         bbsList:bbsList.data.Data.list,
         hotBbsList:hotBbsList.data.Data.list
@@ -229,7 +230,7 @@
 <style scoped>
   .bbs-list {
     float: left;
-    width: 60%;
+    width: 58%;
     padding: 0 2% 0 2%;
 
   }

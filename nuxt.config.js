@@ -60,9 +60,12 @@ module.exports = {
     },
     {
       src: '@/plugins/filter',
-      ssr: false
+      ssr: false,
+      mode:'client'
+    },
+    {
+      src: '@/plugins/tj.js', mode: 'client',ssr:false
     }
-
   ],
   /*
   ** Nuxt.js dev-modules
@@ -80,7 +83,29 @@ module.exports = {
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
+    '@nuxtjs/sitemap'
   ],
+  sitemap: {
+    hostname: 'https://www.171tiyu.com',
+    gzip: true,
+    exclude: [
+    ],
+    routes: [
+      '/about',
+      '/agreement',
+      '/companyProfile',
+      '/complaint',
+      '/index',
+      '/personalInformationService',
+      '/wechat',
+      {
+        url: '/page/3',
+        changefreq: 'daily',
+        priority: 1,
+        lastmod: '2017-06-30T13:30:00.000Z'
+      }
+    ]
+  },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options

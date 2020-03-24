@@ -96,7 +96,7 @@
     <div class="wx-qrcode-box">
       <div class="wx-qrcode-box-img">
         <a
-          href="https://mobile-download.171tiyu.com/android/national-sports-Production/291_1.9.2_0/general-national-sports.apk"
+          href="https://171tiyu.com/download/android?channelCode=Web_Landing_Page"
           v-if="this.os === 'Win'">
           <img src="../assets/image/android-QRcode.png" alt="">
         </a>

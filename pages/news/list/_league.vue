@@ -365,6 +365,7 @@
     margin: 0;
     padding: 0;
     text-align: left;
+    height: 50px;
   }
 
   .news-l-r h3 a {

@@ -17,7 +17,7 @@
                         <nuxt-link :to="'/complaint'">投诉侵权</nuxt-link>
                     </li>
                     <li>
-                        <a href="https://mobile-download.171tiyu.com/android/national-sports-Production/291_1.9.2_0/general-national-sports.apk"
+                        <a href="https://171tiyu.com/download/android?channelCode=Web_Landing_Page"
                            v-if="this.os === 'Win'">
                             立即下载全民体育
                         </a>

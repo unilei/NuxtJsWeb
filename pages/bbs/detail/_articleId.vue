@@ -228,37 +228,119 @@ line-height:30px;cursor: pointer;">换一换</span>
 
 
     <!--        昵称弹出框-->
-    <el-dialog title="修改用户信息" :visible.sync="dialogFormVisible">
+    <div>
+      <el-dialog  title="修改用户信息" :visible.sync="dialogFormVisible">
 
-      <el-form>
-        <el-form-item label="头像" :label-width="formLabelWidth">
-          <el-upload
-            class="avatar-uploader"
-            :action=uploadBaseUrl
-            :show-file-list="false"
-            :on-success="handleAvatarSuccess"
-            :before-upload="beforeAvatarUpload"
-          >
-            <img v-if="imageUrl" :src="imageUrl" class="avatar">
-            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-          </el-upload>
-        </el-form-item>
-        <el-form-item label="昵称" :label-width="formLabelWidth">
-          <el-input v-model="nickname" autocomplete="off"></el-input>
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="updateUserInfo">确 定</el-button>
-      </div>
-    </el-dialog>
+        <el-form>
+          <el-form-item label="头像" :label-width="formLabelWidth">
+            <el-upload
+              class="avatar-uploader"
+              :action=uploadBaseUrl
+              :show-file-list="false"
+              :on-success="handleAvatarSuccess"
+              :before-upload="beforeAvatarUpload"
+            >
+              <img v-if="imageUrl" :src="imageUrl" class="avatar">
+              <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+
+            </el-upload>
+            <div class="pic-span">
+              <span>图片尺寸50x50px 不能超过500kb</span>
+            </div>
+
+          </el-form-item>
+          <el-form-item>
+            <el-input v-model="nickname" autocomplete="off" placeholder="昵称不能超过16个字符"></el-input>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <!--          <el-button @click="dialogFormVisible = false">取 消</el-button>-->
+          <el-button type="primary" @click="updateUserInfo">确 定</el-button>
+        </div>
+      </el-dialog>
+    </div>
     <!--        昵称弹出框结束-->
+
+    <!--  手机      登陆弹出框-->
+    <div v-show="dialogFormVisibleLogin === true" class="login-modal-container">
+      <div class="login-modal">
+        <div class="login-modal-t-img" @click="closeDialog">
+          <img src="../../../assets/image/login-icon.png" alt="">
+        </div>
+        <div v-show="dialogMobileLogin === true">
+          <div class="login-modal-t">
+            <span>手机登录</span>
+          </div>
+
+          <div class="login-modal-t-p">
+            <!--                        <span>手机号码</span>-->
+            <input type="text" placeholder="手机号码" v-model="mobile">
+            <button v-if="this.mobile !== '' " @click="sendMobileLoginSms">验证</button>
+            <button v-if="this.mobile===''"  class="login-modal-t-p-b-disable">验证</button>
+          </div>
+          <div class="login-modal-t-c">
+            <!--                        <span>验证信息</span>-->
+            <input type="text" placeholder="请输入验证码" v-model="code">
+          </div>
+          <div class="login-modal-t-b">
+            <button @click="mobileLogin">登录</button>
+          </div>
+          <div class="login-modal-t-s">
+            <span>用其他方式登录</span>
+          </div>
+          <div class="login-modal-t-wx">
+            <div>
+              <img @click="wxDialog" style="cursor:pointer;"  src="../../../assets/image/wx.png" alt="">
+            </div>
+            <a href="#" @click="wxDialog">使用微信登录</a>
+            <!--                        <a href="#" >使用微信登录</a>-->
+          </div>
+
+          <div class="login-modal-t-xx">
+            <span>使用即为同意</span>
+            <span @click="turn_agreement">全民体育用户协议/隐私权政策</span>
+            <!--                        <a href="">全民体育用户协议/隐私权政策</a>-->
+          </div>
+        </div>
+
+        <div v-show="wxIsLoginShow === true">
+          <div class="login-modal-t">
+            <span>使用其他方式登录</span>
+          </div>
+          <div class="wx-login-modal-p">
+            <a href="#" @click="mobileDialog">
+              使用手机号登录
+            </a>
+          </div>
+          <div class="wx-login-modal-img" id="login_container_news">
+            <!--                        <img src="../../assets/image/wx_qrcode.png" alt="">-->
+          </div>
+          <!--                    <div class="wx-login-modal-sm" >-->
+          <!--                        <img src="../../assets/image/wx.png" alt="">-->
+          <!--                        <span>打开微信扫码登录</span>-->
+          <!--                    </div>-->
+          <div class="login-modal-t-xx" >
+            <span>使用即为同意</span>
+            <span @click="turn_agreement">全民体育用户协议/隐私权政策</span>
+            <!--                        <router-link :to="'/agreement'"></router-link>-->
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+    <!--登陆弹出框结束-->
+
   </div>
 </template>
 
 <script>
   import { getFormatTime } from '../../../utils/time'
   import base from '../../../api/base'
+  import qs from 'qs'
 
   export default {
     name: 'Detail',
@@ -285,14 +367,30 @@ line-height:30px;cursor: pointer;">换一换</span>
         fileObj: '',
         replyReplyContent: '',
         token: '',
-        avatar_url: null
+        avatar_url: null,
+
+        dialogTableVisibleLogin: false,
+        dialogFormVisibleLogin: false,
+        dialogMobileLogin: false,
+        wxIsLoginShow: false,
+        ip: '',
+        area: '',
+        brower: '',
+        os: '',
+        mobile: '',
+        code: '',
+        country_code: '+86',
+        device_id: 'website',
+        secret: '',
+        nickname: null,
+        phone: null,
+        uid: null,
+        redirect_uri: 'http://www.171tiyu.com/wechat'
       }
     },
     watch: {
       $route (to, from) {
-        // this.getBbsDetail(this.$route.query.article_id)
-        // this.getReplyList(this.$route.query.article_id, 0)
-
+        this.getReplyList(to.params.articleId,0)
       }
     },
     watchQuery: ['articleId'],
@@ -343,22 +441,166 @@ line-height:30px;cursor: pointer;">换一换</span>
     },
     mounted () {
       this.token = sessionStorage.getItem('token')
+      this.getReplyList(this.$route.params.articleId,0)
 
     },
     methods: {
+      turn_agreement(){
+        this.$router.push({path:'/agreement'})
+      },
+      turn_own () {
+        window.location.href = 'https://www.171tiyu.com'
+      },
+      closeDialog () {
+        this.dialogTableVisibleLogin = false
+        this.dialogFormVisibleLogin = false
+        this.dialogMobileLogin = false
+        this.wxIsLoginShow = false
+      },
+      dialogLogin () {
+        // console.log(1)
+        this.dialogFormVisibleLogin = true
+        this.dialogMobileLogin = true
+      },
+      wxDialog () {
+        this.dialogFormVisibleLogin = true
+        this.wxIsLoginShow = true
+        this.dialogMobileLogin = false
+
+        var obj = new WxLogin({
+          self_redirect: false,
+          id: 'login_container_news',
+          appid: 'wx31ded528641f2b4c',
+          scope: 'snsapi_login',
+          redirect_uri: encodeURIComponent(this.redirect_uri),
+          state: 'news',
+          style: 'black',
+          href: '',
+        })
+      },
+      mobileDialog () {
+        this.dialogFormVisibleLogin = true
+        this.wxIsLoginShow = false
+        this.dialogMobileLogin = true
+      },
+      sendMobileLoginSms () {
+        const mobile = this.mobile
+        const ns_device_id = this.ns_device_id
+        const country_code = this.country_code
+        this.$axios.get(`${base.sq}/SendLoginSms`, {
+          params: {},
+          headers: {
+            phone: mobile,
+            ns_device_id: ns_device_id,
+            country_code: country_code
+          }
+        }).then(
+          res => {
+            // console.log(res)
+            if (res.data.Status === 1) {
+              this.$message(
+                {
+                  message: '验证码发送成功',
+                  type: 'success',
+                  customClass: 'zZindex'
+                }
+              )
+            } else {
+              this.$message.error(res.data.ErrMsg)
+              // alert('验证码发送失败')
+            }
+          }
+        )
+
+      },
+      mobileLogin () {
+        const ns_device_id = this.ns_device_id
+        const mobile = this.mobile
+        const country_code = this.country_code
+        const code = this.code
+        const device_id = this.device_id
+
+        this.$axios.post(`${base.sq}/OTPLogin`, qs.stringify({
+          phone: mobile,
+          country_code: country_code,
+          code: code,
+          device_id: device_id,
+          platform: 'ios',
+        }), {
+          headers: {
+            ns_device_id: ns_device_id
+
+          }
+        }).then(
+          res => {
+
+            if (res.data.Status === 1) {
+              // console.log(res)
+              const account = res.data.Data.account
+              const password = res.data.Data.password
+              const type = res.data.Data.type
+              this.$axios.post(`${base.sq}/Login`, {
+                type: type,
+                account: account,
+                password: password,
+                secret: this.secret
+
+              }, {
+                headers: {
+                  ns_device_id: ns_device_id
+                }
+              }).then(
+                res => {
+                  // console.log(res)
+                  if (res.data.Status === 1) {
+                    const uid = res.data.Data.uid
+                    const guid = res.data.Data.guid
+                    const token = res.data.Data.token
+                    const is_activated = res.data.Data.is_activated
+                    const is_add_favorite = res.data.Data.is_add_favorite
+                    const iosDownloadUrl = res.data.Data.iosDownloadUrl
+                    const is_locked = res.data.Data.is_locked
+                    const nickname = res.data.Data.nickname
+                    const avatar_url = res.data.Data.avatar_url
+                    const phone = res.data.Data.phone
+
+                    sessionStorage.setItem('nickname', nickname)
+                    sessionStorage.setItem('token', token)
+                    sessionStorage.setItem('avatar_url', avatar_url)
+                    sessionStorage.setItem('phone', phone)
+                    sessionStorage.setItem('uid', uid)
+
+                    this.$router.go(0)
+
+                  } else {
+                    // alert('登录失败')
+                    this.$message.error(res.data.ErrMsg)
+                  }
+
+                }
+              )
+
+            } else {
+              // alert(res.data.ErrMsg)
+              this.$message.error(res.data.ErrMsg)
+            }
+          }
+        )
+
+      },
       handleAvatarSuccess (res, file) {
         this.imageUrl = URL.createObjectURL(file.raw)
         this.fileObj = file.raw
       },
       beforeAvatarUpload (file) {
         // const isJPG = file.type === 'image/jpeg';
-        const isLt2M = file.size / 1024 / 1024 < 2
+        const isLt2M = file.size / 500  < 1
 
         // if (!isJPG) {
         //     this.$message.error('上传头像图片只能是 JPG 格式!');
         // }
         if (!isLt2M) {
-          this.$message.error('上传头像图片大小不能超过 2MB!')
+          this.$message.error('上传头像图片大小不能超过 500kb!')
         }
         return isLt2M
       },
@@ -480,10 +722,13 @@ line-height:30px;cursor: pointer;">换一换</span>
         const nickname = sessionStorage.getItem('nickname')
 
         if (uid === null || token == null) {
-          this.$message({
-            message: '请先登录，再留言',
-            type: 'success'
-          })
+          // this.$message({
+          //   message: '请先登录，再留言',
+          //   type: 'success'
+          // })
+          this.dialogFormVisibleLogin = true
+          this.wxIsLoginShow = false
+          this.dialogMobileLogin = true
         } else {
 
           if (nickname === '' || nickname === null) {
@@ -538,10 +783,7 @@ line-height:30px;cursor: pointer;">换一换</span>
         const nickname = sessionStorage.getItem('nickname')
 
         if (uid === null || token == null) {
-          this.$message({
-            message: '请先登录，再留言',
-            type: 'success'
-          })
+          this.mobileDialog()
         } else {
 
           if (nickname === '' || nickname === null) {
@@ -578,6 +820,7 @@ line-height:30px;cursor: pointer;">换一换</span>
                     message: '恭喜你，留言成功',
                     type: 'success'
                   })
+                  // this.$forceUpdate()
                   this.$router.go(0)
                 } else {
                   this.$message.error(res.data.ErrMsg)
@@ -588,7 +831,35 @@ line-height:30px;cursor: pointer;">换一换</span>
           }
         }
       },
+      getReplyList(article_id, offset) {
+        let type = 'forum'
+        let sort = 'newest'
+        this.$axios.get(`${base.sq}/v2/`+type+`/`+article_id+`/`+sort+`/replys`,{params:{
+            offset: offset,
+            limit: 4
+          }}).then(
+          res => {
+            const newsReplyList = res.data.Data.list
+            newsReplyList.forEach(item => {
+              // console.log(item)
+              const reply_id = item.reply_id
+              let type = 'forum'
+              let sort = 'toplike'
+              this.$axios.get(`${base.sq}/v2/`+type+`/`+reply_id+`/`+sort+`/replys`,{params:{
+                  offset: 0
+                }}).then(res => {
+                // console.log(res)
+                const replyReplyArr = res.data.Data.list;
+                this.$forceUpdate(item.replyReply = replyReplyArr)
+              })
+            })
+            // console.log(newsReplyList)
+            this.newsReplyList = newsReplyList
 
+          }
+        )
+
+      },
       showMoreComment (i) {
         // const a = i+1
         const article_id = this.$route.params.articleId
@@ -632,6 +903,8 @@ line-height:30px;cursor: pointer;">换一换</span>
 
 <style scoped>
   @import "../../../assets/css/comment.css";
+  @import "../../../assets/css/userinfo.css";
+  @import "../../../assets/css/login.css";
 
   .avatar-uploader .el-upload {
     border: 1px dashed #d9d9d9 !important;

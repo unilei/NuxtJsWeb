@@ -159,6 +159,8 @@
 }
 .comment-item-reply p{
     font-size: 12px;
+    line-height: 20px;
+    padding-left: 10px !important;
 }
 .comment-item-c{
     height: 25px;
