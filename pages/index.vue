@@ -112,7 +112,8 @@
         <div style="float:left;margin-left: 9px;width:155px;height: 40px;margin-top: 18px;"
              :style="backgroundImg"
         >
-          <a href="#">NBA</a>
+          <h2>NBA</h2>
+<!--          <a href="#"></a>-->
         </div>
       </div>
       <div class="news-left">
@@ -175,7 +176,7 @@
         <div style="float:left;margin-left: 9px;width:155px;height: 40px;margin-top: 18px;"
              :style="backgroundImg"
         >
-          <a href="#">社区</a>
+          <h2>社区</h2>
         </div>
       </div>
       <div class="news-left">
@@ -219,7 +220,7 @@
         <div style="float:left;margin-left: 9px;width:155px;height: 40px;margin-top: 18px;"
              :style="backgroundImg"
         >
-          <a href="#">西甲</a>
+          <h2>西甲</h2>
         </div>
       </div>
 
@@ -282,7 +283,7 @@
         <div style="float:left;margin-left: 9px;width:155px;height: 40px;margin-top: 18px;"
              :style="backgroundImg"
         >
-          <a href="#">英超</a>
+          <h2>英超</h2>
         </div>
       </div>
       <div class="news-left">
@@ -347,7 +348,7 @@
         <div style="float:left;margin-left: 9px;width:155px;height: 40px;margin-top: 18px;"
              :style="backgroundImg"
         >
-          <a href="#">意甲</a>
+          <h2>意甲</h2>
         </div>
       </div>
       <div class="news-left">
@@ -802,7 +803,9 @@
     text-align: left;
   }
 
-  .news-header a {
+  .news-header h2 {
+    margin: 0;
+    padding: 0;
     font-family: Arial-BoldMT;
     font-size: 19px;
     color: #FFFFFF;
