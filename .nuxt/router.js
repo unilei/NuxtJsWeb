@@ -11,8 +11,8 @@ const _086bffce = () => interopDefault(import('..\\pages\\personalInformationSer
 const _7c3e3aab = () => interopDefault(import('..\\pages\\wechat.vue' /* webpackChunkName: "pages_wechat" */))
 const _1c5fed01 = () => interopDefault(import('..\\pages\\bbs\\detail\\_articleId.vue' /* webpackChunkName: "pages_bbs_detail__articleId" */))
 const _605e366b = () => interopDefault(import('..\\pages\\bbs\\list\\_sportType.vue' /* webpackChunkName: "pages_bbs_list__sportType" */))
-const _7d09430e = () => interopDefault(import('..\\pages\\news\\detail\\_shorturl.vue' /* webpackChunkName: "pages_news_detail__shorturl" */))
-const _32898388 = () => interopDefault(import('..\\pages\\news\\list\\_league.vue' /* webpackChunkName: "pages_news_list__league" */))
+const _09eb0242 = () => interopDefault(import('..\\pages\\sportNews\\detail\\_shorturl.vue' /* webpackChunkName: "pages_sportNews_detail__shorturl" */))
+const _53d4c6ee = () => interopDefault(import('..\\pages\\sportNews\\list\\_league.vue' /* webpackChunkName: "pages_sportNews_list__league" */))
 const _1cb01e46 = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages_index" */))
 
 // TODO: remove in Nuxt 3
@@ -64,13 +64,13 @@ export const routerOptions = {
     component: _605e366b,
     name: "bbs-list-sportType"
   }, {
-    path: "/news/detail/:shorturl?",
-    component: _7d09430e,
-    name: "news-detail-shorturl"
+    path: "/sportNews/detail/:shorturl?",
+    component: _09eb0242,
+    name: "sportNews-detail-shorturl"
   }, {
-    path: "/news/list/:league?",
-    component: _32898388,
-    name: "news-list-league"
+    path: "/sportNews/list/:league?",
+    component: _53d4c6ee,
+    name: "sportNews-list-league"
   }, {
     path: "/",
     component: _1cb01e46,

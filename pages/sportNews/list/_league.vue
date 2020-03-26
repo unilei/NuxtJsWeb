@@ -9,7 +9,7 @@
           </div>
           <div class="news-l-r">
             <h3>
-              <nuxt-link target="_blank" :to="{name:'news-detail-shorturl',params:{shorturl:news.shorturl}}">{{news.title}}</nuxt-link>
+              <nuxt-link target="_blank" :to="{name:'sportNews-detail-shorturl',params:{shorturl:news.shorturl}}">{{news.title}}</nuxt-link>
             </h3>
 
             <div class="news-l-r-content">
@@ -67,7 +67,7 @@
               <img :src="hotNews.image" alt="">
             </div>
             <div class="hot-news-list-d-r">
-              <nuxt-link  target="_blank" :to="{name:'news-detail-shorturl',params:{shorturl:hotNews.shorturl}}">
+              <nuxt-link  target="_blank" :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotNews.shorturl}}">
                 {{hotNews.title}}
               </nuxt-link>
             </div>

@@ -64,13 +64,13 @@
     <div class="hot-news-container">
       <div class="hot-news-left">
         <h3 v-if="hotNewsList.length > 0">
-          <nuxt-link :to="{name:'news-detail-shorturl',params:{shorturl:hotNewsList[0].shorturl}}"
+          <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotNewsList[0].shorturl}}"
              target="_blank">{{hotNewsList[0].title}}
           </nuxt-link>
         </h3>
         <ul>
           <li v-for="hotNews in hotNewsList" :key="hotNews.article_id">
-            <nuxt-link :to="{name:'news-detail-shorturl',params:{shorturl:hotNews.shorturl}}"
+            <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotNews.shorturl}}"
                target="_blank">{{hotNews.title}}</nuxt-link>
           </li>
         </ul>
@@ -85,7 +85,7 @@
           <div class="bd">
             <ul>
               <li v-for="(item,index) in bannerArr" :key="index">
-                <nuxt-link :to="{name:'news-detail-shorturl',params:{shorturl:item.content}}"  target="_blank">
+                <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:item.content}}"  target="_blank">
                   <img :src="item.image"/>
                 </nuxt-link>
               </li>
@@ -120,7 +120,7 @@
         <ul>
           <li>
             <h3 style="">
-              <nuxt-link :to="{name:'news-detail-shorturl',params:{shorturl:hotNbaNewsFirst.shorturl}}" target="_blank">
+              <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotNbaNewsFirst.shorturl}}" target="_blank">
                 {{hotNbaNewsFirst.title}}
               </nuxt-link>
             </h3>
@@ -137,7 +137,7 @@
           </li>
           <li style="padding-top: 10px;">
             <h3 style="">
-              <nuxt-link :to="{name:'news-detail-shorturl',params:{shorturl:hotNbaNewsSecond.shorturl}}" target="_blank">
+              <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotNbaNewsSecond.shorturl}}" target="_blank">
                 {{hotNbaNewsSecond.title}}
               </nuxt-link>
             </h3>
@@ -157,7 +157,7 @@
       <div class="news-right">
         <ul>
           <li v-for="newNbaNews in newNbaNewsList" :key="newNbaNews.article_id">
-            <nuxt-link :to="{name:'news-detail-shorturl',params:{shorturl:newNbaNews.shorturl}}"  target="_blank">{{newNbaNews.title}}
+            <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:newNbaNews.shorturl}}"  target="_blank">{{newNbaNews.title}}
             </nuxt-link>
           </li>
         </ul>
@@ -228,7 +228,7 @@
         <ul>
           <li>
             <h3 style="">
-              <nuxt-link :to="{name:'news-detail-shorturl',params:{shorturl:hotLaLigaNewsFirst.shorturl}}"  target="_blank">
+              <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotLaLigaNewsFirst.shorturl}}"  target="_blank">
                 {{hotLaLigaNewsFirst.title}}
               </nuxt-link>
             </h3>
@@ -245,7 +245,7 @@
           </li>
           <li style="padding-top: 27px;">
             <h3 style="">
-              <nuxt-link  :to="{name:'news-detail-shorturl',params:{shorturl:hotLaLigaNewsSecond.shorturl}}" target="_blank">
+              <nuxt-link  :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotLaLigaNewsSecond.shorturl}}" target="_blank">
                 {{hotLaLigaNewsSecond.title}}
               </nuxt-link>
             </h3>
@@ -265,7 +265,7 @@
       <div class="news-right">
         <ul>
           <li v-for="newLaLigaNews in newLaLigaNewsList" :key="newLaLigaNews.article_id">
-            <nuxt-link :to="{name:'news-detail-shorturl',params:{shorturl:newLaLigaNews.shorturl}}"  target="_blank">{{newLaLigaNews.title}}
+            <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:newLaLigaNews.shorturl}}"  target="_blank">{{newLaLigaNews.title}}
             </nuxt-link>
           </li>
         </ul>
@@ -290,7 +290,7 @@
         <ul>
           <li>
             <h3 style="">
-              <nuxt-link :to="{name:'news-detail-shorturl',params:{shorturl:hotPremierNewsFirst.shorturl}}" target="_blank">
+              <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotPremierNewsFirst.shorturl}}" target="_blank">
                 {{hotPremierNewsFirst.title}}
               </nuxt-link>
             </h3>
@@ -307,7 +307,7 @@
           </li>
           <li style="padding-top: 27px;">
             <h3 style="">
-              <nuxt-link :to="{name:'news-detail-shorturl',params:{shorturl:hotPremierNewsSecond.shorturl}}"  target="_blank">
+              <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotPremierNewsSecond.shorturl}}"  target="_blank">
                 {{hotPremierNewsSecond.title}}
               </nuxt-link>
             </h3>
@@ -327,7 +327,7 @@
       <div class="news-right">
         <ul>
           <li v-for="newPremierNews in newPremierNewsList" :key="newPremierNews.article_id">
-            <nuxt-link  :to="{name:'news-detail-shorturl',params:{shorturl:newPremierNews.shorturl}}"  target="_blank">
+            <nuxt-link  :to="{name:'sportNews-detail-shorturl',params:{shorturl:newPremierNews.shorturl}}"  target="_blank">
               {{newPremierNews.title}}
             </nuxt-link>
           </li>
@@ -355,7 +355,7 @@
         <ul>
           <li>
             <h3 style="">
-              <nuxt-link  :to="{name:'news-detail-shorturl',params:{shorturl:hotSerieANewsFirst.shorturl}}"  target="_blank">
+              <nuxt-link  :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotSerieANewsFirst.shorturl}}"  target="_blank">
                 {{hotSerieANewsFirst.title}}
               </nuxt-link>
             </h3>
@@ -372,7 +372,7 @@
           </li>
           <li style="padding-top: 27px;">
             <h3 style="">
-              <nuxt-link  :to="{name:'news-detail-shorturl',params:{shorturl:hotSerieANewsSecond.shorturl}}"  target="_blank">
+              <nuxt-link  :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotSerieANewsSecond.shorturl}}"  target="_blank">
                 {{hotSerieANewsSecond.title}}
               </nuxt-link>
 
@@ -393,7 +393,7 @@
       <div class="news-right">
         <ul>
           <li v-for="newSerieANews in newSerieANewsList" :key="newSerieANews.article_id">
-            <nuxt-link :to="{name:'news-detail-shorturl',params:{shorturl:newSerieANews.shorturl}}"  target="_blank">{{newSerieANews.title}}
+            <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:newSerieANews.shorturl}}"  target="_blank">{{newSerieANews.title}}
             </nuxt-link>
           </li>
         </ul>

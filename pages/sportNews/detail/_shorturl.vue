@@ -207,7 +207,7 @@ line-height:30px;">换一换</span>
                 <img :src="hotNews.image" alt="">
               </div>
               <div class="hot-news-list-d-r">
-                <nuxt-link :to="{name:'news-detail-shorturl',params:{shorturl:hotNews.shorturl}}">{{hotNews.title}}</nuxt-link>
+                <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotNews.shorturl}}">{{hotNews.title}}</nuxt-link>
               </div>
             </li>
           </ul>

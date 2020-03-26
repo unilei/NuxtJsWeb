@@ -114,21 +114,21 @@
         <nuxt-link :to="'/'" exact>首页</nuxt-link>
       </div>
       <div class="nav-menu-item">
-        <nuxt-link :to="{name:'news-list-league',params:{league:'all'}}"   exact>全部新闻</nuxt-link>
+        <nuxt-link :to="{name:'sportNews-list-league',params:{league:'all'}}"   exact>全部新闻</nuxt-link>
       </div>
       <div class="nav-menu-item">
         <ul>
           <li>
-            <nuxt-link :to="{name:'news-list-league',params:{league:'nba'}}"    exact>NBA</nuxt-link>
+            <nuxt-link :to="{name:'sportNews-list-league',params:{league:'nba'}}"    exact>NBA</nuxt-link>
           </li>
           <li>
-            <nuxt-link :to="{name:'news-list-league',params:{league:'premier'}}" exact>英超</nuxt-link>
+            <nuxt-link :to="{name:'sportNews-list-league',params:{league:'premier'}}" exact>英超</nuxt-link>
           </li>
           <li>
-            <nuxt-link :to="{name:'news-list-league',params:{league:'serie_a'}}" exact>意甲</nuxt-link>
+            <nuxt-link :to="{name:'sportNews-list-league',params:{league:'serie_a'}}" exact>意甲</nuxt-link>
           </li>
           <li>
-            <nuxt-link :to="{name:'news-list-league',params:{league:'la_liga'}}" exact>西甲</nuxt-link>
+            <nuxt-link :to="{name:'sportNews-list-league',params:{league:'la_liga'}}" exact>西甲</nuxt-link>
           </li>
         </ul>
       </div>
