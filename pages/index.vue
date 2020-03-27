@@ -182,11 +182,11 @@
       <div class="news-left">
         <ul>
           <li style="height: auto !important;line-height: 35px;" v-for="(hotBbs,index) in hotBbsList" :key="index">
-            <h3>
+            <h4>
               <nuxt-link style="font-size: 16px !important;" target="_blank" :to="{name:'bbs-detail-articleId',params:{'articleId':hotBbs.article_id}}">
                 {{hotBbs.title}}
               </nuxt-link>
-            </h3>
+            </h4>
             <!--                            <div class="news-left-l" style="width: 0 !important;;">-->
             <!--                            </div>-->
             <!--                            <div style="width:562px !important; padding-left: 0px;" class="news-left-r" v-if="hotBbs.content">-->
@@ -842,6 +842,24 @@
   }
 
   .news-left ul li h3 a {
+
+    font-family: PingFangSC-Medium;
+    /*font-size: 22px;*/
+    font-size: 19px;
+    color: #333333;
+
+  }
+
+  .news-left ul li h4 {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .news-left ul li h4 a {
 
     font-family: PingFangSC-Medium;
     /*font-size: 22px;*/

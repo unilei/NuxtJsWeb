@@ -161,10 +161,10 @@
     },
     head(){
       return {
-        title:'社区论坛-全名体育',
+        title:'社区论坛-全民体育',
         meta:[
           {hid:'keywords',name:'keywords',content:'社区论坛,体育社区,体育论坛,篮球社区,足球社区'},
-          {hid:'description',name:'description',content:'全名体育社区论坛拥有专业的互动参与平台，以篮球、足球话题为主，拥有热情而不失理性的良好讨论氛围,观看优质比赛，加入兴趣圈子，参与社区讨论！'}
+          {hid:'description',name:'description',content:'全民体育社区论坛拥有专业的互动参与平台，以篮球、足球话题为主，拥有热情而不失理性的良好讨论氛围,观看优质比赛，加入兴趣圈子，参与社区讨论！'}
         ]
       }
     },

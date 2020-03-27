@@ -36,6 +36,9 @@ module.exports = {
       {
         src: '/wxLogin.js',
         ssr: false
+      },
+      {
+        src:'https://js.users.51.la/20532775.js',ssr:false
       }
     ]
   },

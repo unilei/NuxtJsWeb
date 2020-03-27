@@ -135,7 +135,7 @@
     name: 'companyProfile',
     head () {
       return {
-        title: '公司介绍-全名体育',
+        title: '公司介绍-全民体育',
         meta: [
           {
             hid: 'keywords',

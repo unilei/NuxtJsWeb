@@ -18,7 +18,7 @@
     name: 'about',
     head () {
       return {
-        title: '关于全名体育',
+        title: '关于全民体育',
         meta: [
           {
             hid: 'keywords',
