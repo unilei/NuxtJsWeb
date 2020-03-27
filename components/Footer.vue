@@ -32,10 +32,12 @@
 
       <div class="footer-top-c-d">
         <ul>
-          <li><a href="http://huwai.jiameng.com">户外用品加盟</a></li>
-          <li><a href="http://www.ez25.com">今日娱乐头条 </a></li>
-          <li><a href="https://www.zuqiuvs.com/">足球比分网</a></li>
-          <li><a href="http://www.wustars.com">极限运动</a></li>
+<!--          <li><a href="#">友情链接</a></li>-->
+          <li><a href="javascript:;">友情链接</a></li>
+          <li><a href="http://huwai.jiameng.com" target="_blank">户外用品加盟</a></li>
+          <li><a href="http://www.ez25.com" target="_blank">今日娱乐头条 </a></li>
+          <li><a href="https://www.zuqiuvs.com/" target="_blank">足球比分网</a></li>
+          <li><a href="http://www.wustars.com" target="_blank">极限运动</a></li>
         </ul>
       </div>
 
@@ -203,7 +205,7 @@
 
   }
   .footer-top-c-d ul li{
-    float: right;
+    float: left;
     margin-right: 5%;
     padding-top: 10px;
   }
