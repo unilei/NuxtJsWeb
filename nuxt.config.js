@@ -1,3 +1,5 @@
+const axios = require('axios')
+
 module.exports = {
   mode: 'universal',
   /*
@@ -38,7 +40,8 @@ module.exports = {
         ssr: false
       },
       {
-        src:'https://js.users.51.la/20532775.js',ssr:false
+        src: 'https://js.users.51.la/20532775.js',
+        ssr: false
       }
     ]
   },
@@ -64,10 +67,12 @@ module.exports = {
     {
       src: '@/plugins/filter',
       ssr: false,
-      mode:'client'
+      mode: 'client'
     },
     {
-      src: '@/plugins/tj.js', mode: 'client',ssr:false
+      src: '@/plugins/auto-push.js',
+      mode: 'client',
+      ssr: true
     }
   ],
   /*
@@ -77,6 +82,7 @@ module.exports = {
     // Doc: https://github.com/nuxt-community/eslint-module
     // '@nuxtjs/eslint-module'
   ],
+  cache: true,
   /*
   ** Nuxt.js modules
   */
@@ -89,10 +95,27 @@ module.exports = {
     '@nuxtjs/sitemap'
   ],
   sitemap: {
-    hostname: 'https://www.171tiyu.com',
-    gzip: true,
-    exclude: [
-    ],
+    path: '/sitemap.xml',
+    cacheTime: 1000 * 60 * 60 * 24,
+    // generate:true,
+    // xslUrl:true,
+    defaults: {
+      changefreq: 'daily',
+      priority: 1,
+      lastmod: new Date(),
+      lastmodrealtime: true
+    },
+    exclude: [],
+    filter ({ routes }) {
+      return routes.map(route => {
+        route.url = `${route.url}/`
+        return route
+      })
+    },
+    trailingSlash: true,
+    xmlNs: 'xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
+    // hostname: 'https://www.171tiyu.com',
+    // hostname: 'http://localhost:3000',
     routes: [
       '/about',
       '/agreement',
@@ -101,20 +124,62 @@ module.exports = {
       '/index',
       '/personalInformationService',
       '/wechat',
+    ],
+    sitemaps: [
       {
-        url: '/page/3',
-        changefreq: 'daily',
-        priority: 1,
-        lastmod: '2017-06-30T13:30:00.000Z'
-      }
+        path: '/sitemap-bbs-list.xml',
+        routes: [
+          '/bbs/list/all',
+          '/bbs/list/football',
+          '/bbs/list/basketball',
+        ],
+        gzip: false,
+      },
+      {
+        path: '/sitemap-sportNews-list.xml',
+        routes: [
+          '/sportNews/list/all',
+          '/sportNews/list/nba',
+          '/sportNews/list/premier',
+          '/sportNews/list/serie_a',
+          '/sportNews/list/la_liga',
+        ],
+        gzip: false,
+      },
+      {
+        path: '/sitemap-bbs-detail.xml',
+        routes: async () => {
+          let sportType = 'all'
+          let type = 'newest'
+          let params = {
+            offset: 0
+          }
+          const res = await axios.get(`https://api.npse.com:8081/v1/forum/` + sportType + `/0/` + type + `/articles`, { params: params })
+          return res.data.Data.list.map(bbs => `/bbs/detail/${bbs.article_id}`)
+        },
+        gzip: false,
+      },
+      {
+        path: '/sitemap-sportNews-detail.xml',
+        routes: async () => {
+          let news_params = {
+            articleType: 2,
+            offset: 0
+          }
+          const res = axios.get(`https://api.npse.com:8081/v2/GetArticles`, { params: news_params })
+          return res.data.Data.articles.map(news => `/sportNews/detail/${news.shorturl}`)
+        },
+        gzip: false,
+      },
     ]
   },
+
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    proxy:true
+    proxy: true
   },
   /*
   ** Build configuration
