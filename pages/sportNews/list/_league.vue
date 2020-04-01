@@ -206,8 +206,9 @@
         //下面这个很重要 记住哟
         this.offset = i + 6
         const league_value = this.$route.params.league
+        // console.log(league_value)
 
-        if (league_value !== undefined) {
+        if (league_value !== 'all') {
           this.$axios.$get(`${base.sq}/v2/GetArticles`,{params:{
               articleType: 2,
               league: league_value,

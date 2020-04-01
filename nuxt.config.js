@@ -166,7 +166,8 @@ module.exports = {
             articleType: 2,
             offset: 0
           }
-          const res = axios.get(`https://api.npse.com:8081/v2/GetArticles`, { params: news_params })
+          const res = await axios.get(`https://api.npse.com:8081/v2/GetArticles`, { params: news_params })
+          // console.log(res)
           return res.data.Data.articles.map(news => `/sportNews/detail/${news.shorturl}`)
         },
         gzip: false,
