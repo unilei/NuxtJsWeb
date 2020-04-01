@@ -388,6 +388,11 @@ line-height:30px;cursor: pointer;">换一换</span>
         redirect_uri: 'http://www.171tiyu.com/wechat'
       }
     },
+    head(){
+      return {
+        title:this.bbsDetail.title
+      }
+    },
     watch: {
       $route (to, from) {
         this.getReplyList(to.params.articleId,0)
