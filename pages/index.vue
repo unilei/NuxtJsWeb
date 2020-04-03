@@ -497,7 +497,8 @@
         params: {
           articleType: 2,
           limit: 10,
-          offset: 0
+          offset: 0,
+          author_filter:['6','7', '8', '9']
         }
       })
       //获取nba热们新闻
@@ -506,7 +507,8 @@
           league: 'nba',
           articleType: 2,
           limit: 2,
-          offset: 0
+          offset: 0,
+          author_filter:['6','7', '8', '9']
         }
       })
       const nba_article_id_f = nbaHotNewsList.Data.articles[0].article_id
@@ -525,7 +527,8 @@
           league: 'nba',
           articleType: 2,
           limit: 10,
-          offset: 0
+          offset: 0,
+          author_filter:['6','7', '8', '9']
         }
       })
 
@@ -535,7 +538,8 @@
           league: 'fiba',
           articleType: 2,
           limit: 2,
-          offset: 0
+          offset: 0,
+          author_filter:['6','7', '8', '9']
         }
       })
 
@@ -555,7 +559,8 @@
           league: 'fiba',
           articleType: 2,
           limit: 10,
-          offset: 0
+          offset: 0,
+          author_filter:['6','7', '8', '9']
         }
       })
 
@@ -565,7 +570,8 @@
           league: 'premier',
           articleType: 2,
           limit: 2,
-          offset: 0
+          offset: 0,
+          author_filter:['6','7', '8', '9']
         }
       })
       const premier_article_id_f = premierHotNewsList.Data.articles[0].article_id
@@ -584,7 +590,8 @@
           league: 'premier',
           articleType: 2,
           limit: 10,
-          offset: 0
+          offset: 0,
+          author_filter:['6','7', '8', '9']
         }
       })
 
@@ -594,7 +601,8 @@
           league: 'la_liga',
           articleType: 2,
           limit: 2,
-          offset: 0
+          offset: 0,
+          author_filter:['6','7', '8', '9']
         }
       })
       const laLiga_article_id_f = laLigaHotNewsList.Data.articles[0].article_id
@@ -613,7 +621,8 @@
           league: 'la_liga',
           articleType: 2,
           limit: 10,
-          offset: 0
+          offset: 0,
+          author_filter:['6','7', '8', '9']
         }
       })
 
@@ -623,7 +632,8 @@
           league: 'serie_a',
           articleType: 2,
           limit: 2,
-          offset: 0
+          offset: 0,
+          author_filter:['6','7', '8', '9']
         }
       })
       const serieA_article_id_f = serieAHotNewsList.Data.articles[0].article_id
@@ -642,7 +652,8 @@
           league: 'serie_a',
           articleType: 2,
           limit: 10,
-          offset: 0
+          offset: 0,
+          author_filter:['6','7', '8', '9']
         }
       })
 

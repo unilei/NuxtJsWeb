@@ -164,7 +164,8 @@ module.exports = {
         routes: async () => {
           let news_params = {
             articleType: 2,
-            offset: 0
+            offset: 0,
+            author_filter:['6','7', '8', '9']
           }
           const res = await axios.get(`https://api.npse.com:8081/v2/GetArticles`, { params: news_params })
           // console.log(res)
