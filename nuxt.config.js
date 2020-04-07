@@ -42,6 +42,10 @@ module.exports = {
       {
         src: 'https://js.users.51.la/20532775.js',
         ssr: false
+      },
+      {
+        src:'/flexible.js',
+        ssr:false
       }
     ]
   },
@@ -54,26 +58,19 @@ module.exports = {
   */
   css: [
     'element-ui/lib/theme-chalk/index.css',
+    'vant/lib/index.css',
     'assets/css/normailze.css'
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
-    {
-      src: '@/plugins/element-ui',
-      ssr: true
-    },
-    {
-      src: '@/plugins/filter',
-      ssr: false,
-      mode: 'client'
-    },
-    {
-      src: '@/plugins/auto-push.js',
-      mode: 'client',
-      ssr: true
-    }
+    { src: '@/plugins/element-ui', ssr: true },
+    {src:'@/plugins/vant',ssr:false},
+    { src: '@/plugins/filter', ssr: false, mode: 'client' },
+    { src: '@/plugins/auto-push.js', mode: 'client', ssr: false },
+    {src:'@/plugins/loading', ssr:false },
+
   ],
   /*
   ** Nuxt.js dev-modules
@@ -92,7 +89,9 @@ module.exports = {
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
+    // With options
+    ['@nuxtjs/component-cache', { maxAge: 1000 * 60 * 60 }],
   ],
   sitemap: {
     path: '/sitemap.xml',
@@ -189,11 +188,31 @@ module.exports = {
   build: {
     transpile: [/^element-ui/],
     extractCSS: true,
+    postcss:{
+
+    },
+    // plugins: {
+    //         autoprefixer: {
+    //           overrideBrowserslist: ['Android >= 4.1', 'iOS >= 7.1'],
+    //         },
+    //         'postcss-pxtorem': {
+    //           rootValue: 37.5,
+    //           propList: ['*'],
+    //         },
+    //       },
     /*
     ** You can extend webpack config here
     */
     extend (config, ctx) {
+      if (ctx.isClient && !ctx.isDev) {
+
+        config.performance.hints = false
+        config.performance.maxEntrypointSize = 512000
+        config.performance.maxAssetSize = 512000
+        config.optimization.splitChunks.maxSize = 250000
+      }
 
     }
   }
+
 }

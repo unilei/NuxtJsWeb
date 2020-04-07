@@ -11,13 +11,16 @@ import NuxtLoading from './components/nuxt-loading.vue'
 
 import '..\\node_modules\\_element-ui@2.13.0@element-ui\\lib\\theme-chalk\\index.css'
 
+import '..\\node_modules\\_vant@2.5.9@vant\\lib\\index.css'
+
 import '..\\assets\\css\\normailze.css'
 
 import _6f2aba07 from '..\\layouts\\bbsLayout.vue'
 import _6f6c098b from '..\\layouts\\default.vue'
+import _209f5541 from '..\\layouts\\mLayout.vue'
 import _2fdf5853 from '..\\layouts\\newsLayout.vue'
 
-const layouts = { "_bbsLayout": _6f2aba07,"_default": _6f6c098b,"_newsLayout": _2fdf5853 }
+const layouts = { "_bbsLayout": _6f2aba07,"_default": _6f6c098b,"_mLayout": _209f5541,"_newsLayout": _2fdf5853 }
 
 export default {
   render (h, props) {

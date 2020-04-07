@@ -1,5 +1,7 @@
 <template>
+
   <el-header style="width:1440px;height: 120px;">
+    <client-only>
     <div class="header-top">
       <div class="header-top-left">
         <div class="header-top-l-logo">
@@ -108,7 +110,7 @@
     </div>
     <!--        悬浮二维码框结束-->
 
-
+  </client-only>
     <div class="nav-menu">
       <div class="nav-menu-item " style="border: none;">
         <nuxt-link :to="'/'" exact>首页</nuxt-link>

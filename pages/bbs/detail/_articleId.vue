@@ -62,7 +62,7 @@
                                 "
                    src="../../../assets/image/star.png" alt="">
               <a>{{newsReply.author.nickName}}</a>
-              <span class="comment-list-d-t-t">{{newsReply.create_time | dateForHour }}</span>
+              <client-only><span class="comment-list-d-t-t">{{newsReply.create_time | dateForHour }}</span></client-only>
             </div>
 
             <div class="comment-list-content" v-for="(content,i) in newsReply.content" :key="i">
@@ -91,7 +91,7 @@
                     <div class="comment-item-c-r">
                       <!--                                            <button v-if="reply.reply_id !== showCommentReply" @click="isShowCommentReply(reply.reply_id)">回复</button>-->
                       <!--                                            <button class="shouqi" v-if="reply.reply_id === showCommentReply" @click="isHideCommentReply(reply.reply_id)">收起</button>-->
-                      <span>{{reply.create_time | dateForHour}}</span>
+                     <client-only> <span>{{reply.create_time | dateForHour}}</span></client-only>
                     </div>
 
                   </div>
@@ -216,7 +216,7 @@ line-height:30px;cursor: pointer;">换一换</span>
                 </nuxt-link>
 
                 <div style="padding-top: 20px;">
-                  <span>{{hotBbs.create_time | dateForHour}}</span>
+                  <client-only> <span>{{hotBbs.create_time | dateForHour}}</span> </client-only>
                   <a>{{hotBbs.author.nickName}}</a>
                 </div>
               </li>
@@ -389,6 +389,30 @@ line-height:30px;cursor: pointer;">换一换</span>
       }
     },
     head(){
+      let description = ''
+      let bbsContent = this.bbsDetail.content
+      bbsContent.forEach((v, i) => {
+        // console.log(v)
+        if (v.type === 1) {
+          description = v.content
+        }
+      })
+
+      return {
+        title: this.bbsDetail.title,
+        meta: [
+          {
+            hid: 'keywords',
+            name: 'keywords',
+            content: this.bbsDetail.tags
+          },
+          {
+            hid: 'description',
+            name: 'description',
+            content: description
+          }
+        ]
+      }
       return {
         title:this.bbsDetail.title
       }
@@ -436,6 +460,7 @@ line-height:30px;cursor: pointer;">换一换</span>
           })
       })
 
+      console.log(bbsDetail.data.Data[0])
       return {
         bbsDetail: bbsDetail.data.Data[0],
         bbsPublishFormatTime: getFormatTime(bbsDetail.data.Data[0].create_time),

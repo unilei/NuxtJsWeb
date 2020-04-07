@@ -36,7 +36,8 @@
         <p>我有话说</p>
         <div class="publish-comment-d">
           <div class="publish-comment-d-i">
-            <img v-if="this.avatar_url === '' || this.avatar_url === null " src="../../../assets/image/default-header.png"
+            <img v-if="this.avatar_url === '' || this.avatar_url === null "
+                 src="../../../assets/image/default-header.png"
                  alt="">
             <img v-if="this.avatar_url !== '' & this.avatar_url !== null " :src="this.avatar_url" alt="">
           </div>
@@ -207,7 +208,9 @@ line-height:30px;">换一换</span>
                 <img :src="hotNews.image" alt="">
               </div>
               <div class="hot-news-list-d-r">
-                <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotNews.shorturl}}">{{hotNews.title}}</nuxt-link>
+                <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotNews.shorturl}}">
+                  {{hotNews.title}}
+                </nuxt-link>
               </div>
             </li>
           </ul>
@@ -221,7 +224,7 @@ line-height:30px;">换一换</span>
     </div>
     <!--        昵称弹出框-->
     <div>
-      <el-dialog  title="修改用户信息" :visible.sync="dialogFormVisible">
+      <el-dialog title="修改用户信息" :visible.sync="dialogFormVisible">
 
         <el-form>
           <el-form-item label="头像" :label-width="formLabelWidth">
@@ -246,7 +249,7 @@ line-height:30px;">换一换</span>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
-<!--          <el-button @click="dialogFormVisible = false">取 消</el-button>-->
+          <!--          <el-button @click="dialogFormVisible = false">取 消</el-button>-->
           <el-button type="primary" @click="updateUserInfo">确 定</el-button>
         </div>
       </el-dialog>
@@ -268,7 +271,7 @@ line-height:30px;">换一换</span>
             <!--                        <span>手机号码</span>-->
             <input type="text" placeholder="手机号码" v-model="mobile">
             <button v-if="this.mobile !== '' " @click="sendMobileLoginSms">验证</button>
-            <button v-if="this.mobile===''"  class="login-modal-t-p-b-disable">验证</button>
+            <button v-if="this.mobile===''" class="login-modal-t-p-b-disable">验证</button>
           </div>
           <div class="login-modal-t-c">
             <!--                        <span>验证信息</span>-->
@@ -282,7 +285,7 @@ line-height:30px;">换一换</span>
           </div>
           <div class="login-modal-t-wx">
             <div>
-              <img @click="wxDialog" style="cursor:pointer;"  src="../../../assets/image/wx.png" alt="">
+              <img @click="wxDialog" style="cursor:pointer;" src="../../../assets/image/wx.png" alt="">
             </div>
             <a href="#" @click="wxDialog">使用微信登录</a>
             <!--                        <a href="#" >使用微信登录</a>-->
@@ -311,7 +314,7 @@ line-height:30px;">换一换</span>
           <!--                        <img src="../../assets/image/wx.png" alt="">-->
           <!--                        <span>打开微信扫码登录</span>-->
           <!--                    </div>-->
-          <div class="login-modal-t-xx" >
+          <div class="login-modal-t-xx">
             <span>使用即为同意</span>
             <span @click="turn_agreement">全民体育用户协议/隐私权政策</span>
             <!--                        <router-link :to="'/agreement'"></router-link>-->
@@ -333,7 +336,7 @@ line-height:30px;">换一换</span>
 <script>
 
   import { getFormatTime } from '../../../utils/time'
-  import base from "../../../api/base"
+  import base from '../../../api/base'
   import qs from 'qs'
 
   export default {
@@ -380,9 +383,30 @@ line-height:30px;">换一换</span>
         redirect_uri: 'http://www.171tiyu.com/wechat'
       }
     },
-    head(){
+    head () {
+      let description = ''
+      let newsContent = this.newsDetail.content
+      newsContent.forEach((v, i) => {
+        // console.log(v)
+        if (v.type === 1) {
+          description = v.content
+        }
+      })
+
       return {
-        title:this.newsDetail.title
+        title: this.newsDetail.title,
+        meta: [
+          {
+            hid: 'keywords',
+            name: 'keywords',
+            content: this.newsDetail.league
+          },
+          {
+            hid: 'description',
+            name: 'description',
+            content: description
+          }
+        ]
       }
     },
     watch: {
@@ -392,28 +416,34 @@ line-height:30px;">换一换</span>
 
       }
     },
-    watchQuery:['shorturl'],
-    async asyncData(context){
+    watchQuery: ['shorturl'],
+    async asyncData (context) {
       const shorturl = context.params.shorturl
-      let newsDetail = await context.$axios.get(`${base.sq}/v2/GetArticleDetail`,{params:{
+      let newsDetail = await context.$axios.get(`${base.sq}/v2/GetArticleDetail`, {
+        params: {
           shorturl: shorturl
-        }})
+        }
+      })
 
-      let hotNewsList = await context.$axios.get(`${base.sq}/v2/GetArticles`,{params:{
+      let hotNewsList = await context.$axios.get(`${base.sq}/v2/GetArticles`, {
+        params: {
           articleType: 3,
           // league:league_value,
           limit: 4,
           offset: 0,
-          author_filter:['6','7', '8', '9']
-        }})
+          author_filter: ['6', '7', '8', '9']
+        }
+      })
 
       const type = 'news'
       const paraentId = newsDetail.data.Data.article_id
-      const sort  = 'newest'
-      let replyList = await  context.$axios.get(`${base.sq}/v2/`+type+`/`+paraentId+`/`+sort+`/replys`,{params:{
+      const sort = 'newest'
+      let replyList = await context.$axios.get(`${base.sq}/v2/` + type + `/` + paraentId + `/` + sort + `/replys`, {
+        params: {
           offset: 0,
           limit: 14
-        }})
+        }
+      })
       const newsReplyList = replyList.data.Data.list
 
       newsReplyList.forEach(item => {
@@ -422,53 +452,59 @@ line-height:30px;">换一换</span>
         const paraentId = item.reply_id
         const sort = 'toplike'
 
-        context.$axios.get(`${base.sq}/v2/`+type+`/`+paraentId+`/`+sort+`/replys`,{params:{
+        context.$axios.get(`${base.sq}/v2/` + type + `/` + paraentId + `/` + sort + `/replys`, {
+          params: {
             offset: 0
-          }}).then(
-            res=>{
-              item.replyReply = res.data.Data.list
-            }
+          }
+        }).then(
+          res => {
+            item.replyReply = res.data.Data.list
+          }
         )
         // item.replyReply = newsReplyReply.data.Data.list
       })
-
+      console.log(newsDetail.data.Data)
       return {
-        newsDetail:newsDetail.data.Data,
-        newsPublishFormatTime:getFormatTime(newsDetail.data.Data.timestamp),
-        hotNewsList:hotNewsList.data.Data.articles,
-        newsReplyList:newsReplyList,
-        article_id:newsDetail.data.Data.article_id
+        newsDetail: newsDetail.data.Data,
+        newsPublishFormatTime: getFormatTime(newsDetail.data.Data.timestamp),
+        hotNewsList: hotNewsList.data.Data.articles,
+        newsReplyList: newsReplyList,
+        article_id: newsDetail.data.Data.article_id
       }
     },
     mounted () {
       // console.log(this.$route.params.shorturl)
       this.shorturl = this.$route.params.shorturl
       this.avatar_url = sessionStorage.getItem('avatar_url')
-      this.getReplyList(this.article_id,0)
+      this.getReplyList(this.article_id, 0)
 
     },
     methods: {
-      getReplyList(article_id,offset){
+      getReplyList (article_id, offset) {
         let type = 'news'
         let sort = 'newest'
-        this.$axios.get(`${base.sq}/v2/`+type+`/`+article_id+`/`+sort+`/replys`,{params:{
-            offset:offset,
+        this.$axios.get(`${base.sq}/v2/` + type + `/` + article_id + `/` + sort + `/replys`, {
+          params: {
+            offset: offset,
             limit: 14
-          }}).then(
-          res=>{
+          }
+        }).then(
+          res => {
             // console.log(res)
             // this.newsReplyList = res.data.Data.list
             const newsReplyList = res.data.Data.list
-            newsReplyList.forEach(item=>{
+            newsReplyList.forEach(item => {
               // console.log(item)
               const reply_id = item.reply_id
               let type = 'news'
               let sort = 'toplike'
-              this.$axios.get(`${base.sq}/v2/`+type+`/`+reply_id+`/`+sort+`/replys`,{params:{
-                  offset:0
-                }}).then(res=>{
+              this.$axios.get(`${base.sq}/v2/` + type + `/` + reply_id + `/` + sort + `/replys`, {
+                params: {
+                  offset: 0
+                }
+              }).then(res => {
                 // console.log(res)
-                const replyReplyArr = res.data.Data.list;
+                const replyReplyArr = res.data.Data.list
                 this.$forceUpdate(item.replyReply = replyReplyArr)
               })
             })
@@ -479,8 +515,8 @@ line-height:30px;">换一换</span>
         )
 
       },
-      turn_agreement(){
-        this.$router.push({path:'/agreement'})
+      turn_agreement () {
+        this.$router.push({ path: '/agreement' })
       },
       turn_own () {
         window.location.href = 'https://www.171tiyu.com'
@@ -628,7 +664,7 @@ line-height:30px;">换一换</span>
       },
       beforeAvatarUpload (file) {
         // const isJPG = file.type === 'image/jpeg';
-        const isLt2M = file.size / 500  < 1
+        const isLt2M = file.size / 500 < 1
 
         // if (!isJPG) {
         //     this.$message.error('上传头像图片只能是 JPG 格式!');
@@ -649,7 +685,7 @@ line-height:30px;">换一换</span>
           }
           var form = new FormData()    // FormData 对象
           form.append('image', this.fileObj)
-          this.$axios.$post(`${base.sq}/UploadAvatar`,form,{headers:headers}).then(
+          this.$axios.$post(`${base.sq}/UploadAvatar`, form, { headers: headers }).then(
             res => {
               // console.log(res)
               if (res.Status === 1) {
@@ -669,13 +705,15 @@ line-height:30px;">换一换</span>
         }
 
         if (this.nickname !== '') {
-          this.$axios.put(`${base.sq}/UpdateNickName`,{
+          this.$axios.put(`${base.sq}/UpdateNickName`, {
             name: this.nickname
-          },{headers:{
+          }, {
+            headers: {
               ns_device_id: this.ns_device_id,
               uid: sessionStorage.getItem('uid'),
               token: sessionStorage.getItem('token')
-            }}).then(
+            }
+          }).then(
             res => {
               this.dialogFormVisible = false
               if (res.data.Status === 1) {
@@ -727,7 +765,7 @@ line-height:30px;">换一换</span>
             }
             const type = 'news'
             const parentId = this.article_id
-            const  params = {
+            const params = {
               content: [
                 {
                   content: this.replyContent,
@@ -741,7 +779,7 @@ line-height:30px;">换一换</span>
               uid: uid,
               token: token
             }
-            this.$axios.post(`${base.sq}/v2/`+type+`/`+parentId+`/reply`,params,{headers:headers}).then(
+            this.$axios.post(`${base.sq}/v2/` + type + `/` + parentId + `/reply`, params, { headers: headers }).then(
               res => {
 
                 if (res.data.Status === 1) {
@@ -799,7 +837,7 @@ line-height:30px;">换一换</span>
               uid: uid,
               token: token
             }
-            this.$axios.post(`${base.sq}/v2/`+type+`/`+parentId+`/reply`,params,{headers:headers}).then(
+            this.$axios.post(`${base.sq}/v2/` + type + `/` + parentId + `/reply`, params, { headers: headers }).then(
               res => {
                 if (res.data.Status === 1) {
                   this.$message({
@@ -841,10 +879,12 @@ line-height:30px;">换一换</span>
         const type = 'news'
         const sort = 'newest'
 
-        this.$axios.get(`${base.sq}/v2/`+type+`/`+article_id+`/`+sort+`/replys`,{params:{
+        this.$axios.get(`${base.sq}/v2/` + type + `/` + article_id + `/` + sort + `/replys`, {
+          params: {
             offset: this.offsetComment,
             limit: 4
-          }}).then(
+          }
+        }).then(
           res => {
 
             const newsReplyList = res.data.Data.list
@@ -853,9 +893,11 @@ line-height:30px;">换一换</span>
               const reply_id = item.reply_id
               const type = 'news'
               const sort = 'toplike'
-              this.$axios.get(`${base.sq}/v2/`+type+`/`+reply_id+`/`+sort+`/replys`,{params:{
+              this.$axios.get(`${base.sq}/v2/` + type + `/` + reply_id + `/` + sort + `/replys`, {
+                params: {
                   offset: 0
-                }}).then(res => {
+                }
+              }).then(res => {
                 // console.log(res)
                 const replyReplyArr = res.data.Data.list
                 this.$forceUpdate(item.replyReply = replyReplyArr)

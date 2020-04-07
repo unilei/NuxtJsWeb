@@ -13,14 +13,18 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/component-cache": "^1.1.5",
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/pwa": "^3.0.0-0",
     "@nuxtjs/sitemap": "^2.0.1",
+    "amfe-flexible": "^2.2.1",
     "axios": "^0.19.2",
     "cross-env": "^5.2.0",
     "element-ui": "^2.4.11",
     "express": "^4.16.4",
-    "nuxt": "^2.0.0"
+    "nprogress": "^0.2.0",
+    "nuxt": "^2.0.0",
+    "vant": "^2.5.9"
   },
   "devDependencies": {
     "@nuxtjs/component-cache": "^1.1.5",
@@ -30,6 +34,13 @@
     "eslint": "^6.1.0",
     "eslint-plugin-nuxt": ">=0.4.2",
     "nodemon": "^1.18.9",
+    "postcss-pxtorem": "^5.1.1",
     "webpack-bundle-analyzer": "^3.6.1"
-  }
+  },
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "not IE_Mob 11",
+    "maintained node versions"
+  ]
 }

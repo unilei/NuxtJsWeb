@@ -15,8 +15,10 @@ import nuxt_plugin_workbox_fa56eabe from 'nuxt_plugin_workbox_fa56eabe' // Sourc
 import nuxt_plugin_nuxticons_9c012cba from 'nuxt_plugin_nuxticons_9c012cba' // Source: .\\nuxt-icons.js (mode: 'all')
 import nuxt_plugin_axios_53a5b2c5 from 'nuxt_plugin_axios_53a5b2c5' // Source: .\\axios.js (mode: 'all')
 import nuxt_plugin_elementui_d905880e from 'nuxt_plugin_elementui_d905880e' // Source: ..\\plugins\\element-ui (mode: 'all')
+import nuxt_plugin_vant_925e8cb6 from 'nuxt_plugin_vant_925e8cb6' // Source: ..\\plugins\\vant (mode: 'client')
 import nuxt_plugin_filter_2aab3a6c from 'nuxt_plugin_filter_2aab3a6c' // Source: ..\\plugins\\filter (mode: 'client')
 import nuxt_plugin_autopush_1568f31a from 'nuxt_plugin_autopush_1568f31a' // Source: ..\\plugins\\auto-push.js (mode: 'client')
+import nuxt_plugin_loading_71bc50c8 from 'nuxt_plugin_loading_71bc50c8' // Source: ..\\plugins\\loading (mode: 'client')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -55,7 +57,7 @@ async function createApp (ssrContext) {
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
-    head: {"title":"sports-v-2","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"全民体育_懂球迷的聚集地"},{"hid":"mobile-web-app-capable","name":"mobile-web-app-capable","content":"yes"},{"hid":"apple-mobile-web-app-title","name":"apple-mobile-web-app-title","content":"sports-v-2"},{"hid":"author","name":"author","content":"xll"},{"hid":"theme-color","name":"theme-color","content":"#fff"},{"hid":"og:type","name":"og:type","property":"og:type","content":"website"},{"hid":"og:title","name":"og:title","property":"og:title","content":"sports-v-2"},{"hid":"og:site_name","name":"og:site_name","property":"og:site_name","content":"sports-v-2"},{"hid":"og:description","name":"og:description","property":"og:description","content":"全民体育_懂球迷的聚集地"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"manifest","href":"\u002F_nuxt\u002Fmanifest.55284235.json"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64.2eeb4d.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512.2eeb4d.png","sizes":"512x512"}],"script":[{"src":"\u002Fjquery-3.1.1.min.js","ssr":false},{"src":"\u002Fjquery.SuperSlide.2.1.3.js","ssr":false},{"src":"\u002FwxLogin.js","ssr":false},{"src":"https:\u002F\u002Fjs.users.51.la\u002F20532775.js","ssr":false}],"style":[],"htmlAttrs":{"lang":"en"}},
+    head: {"title":"sports-v-2","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"全民体育_懂球迷的聚集地"},{"hid":"mobile-web-app-capable","name":"mobile-web-app-capable","content":"yes"},{"hid":"apple-mobile-web-app-title","name":"apple-mobile-web-app-title","content":"sports-v-2"},{"hid":"author","name":"author","content":"xll"},{"hid":"theme-color","name":"theme-color","content":"#fff"},{"hid":"og:type","name":"og:type","property":"og:type","content":"website"},{"hid":"og:title","name":"og:title","property":"og:title","content":"sports-v-2"},{"hid":"og:site_name","name":"og:site_name","property":"og:site_name","content":"sports-v-2"},{"hid":"og:description","name":"og:description","property":"og:description","content":"全民体育_懂球迷的聚集地"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"manifest","href":"\u002F_nuxt\u002Fmanifest.55284235.json"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64.2eeb4d.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512.2eeb4d.png","sizes":"512x512"}],"script":[{"src":"\u002Fjquery-3.1.1.min.js","ssr":false},{"src":"\u002Fjquery.SuperSlide.2.1.3.js","ssr":false},{"src":"\u002FwxLogin.js","ssr":false},{"src":"https:\u002F\u002Fjs.users.51.la\u002F20532775.js","ssr":false},{"src":"\u002Fflexible.js","ssr":false}],"style":[],"htmlAttrs":{"lang":"en"}},
 
     router,
     nuxt: {
@@ -171,12 +173,20 @@ async function createApp (ssrContext) {
     await nuxt_plugin_elementui_d905880e(app.context, inject)
   }
 
+  if (process.client && typeof nuxt_plugin_vant_925e8cb6 === 'function') {
+    await nuxt_plugin_vant_925e8cb6(app.context, inject)
+  }
+
   if (process.client && typeof nuxt_plugin_filter_2aab3a6c === 'function') {
     await nuxt_plugin_filter_2aab3a6c(app.context, inject)
   }
 
   if (process.client && typeof nuxt_plugin_autopush_1568f31a === 'function') {
     await nuxt_plugin_autopush_1568f31a(app.context, inject)
+  }
+
+  if (process.client && typeof nuxt_plugin_loading_71bc50c8 === 'function') {
+    await nuxt_plugin_loading_71bc50c8(app.context, inject)
   }
 
   // If server-side, wait for async component to be resolved first

@@ -7,6 +7,7 @@ const _5c1fd3d0 = () => interopDefault(import('..\\pages\\about.vue' /* webpackC
 const _f82766d6 = () => interopDefault(import('..\\pages\\agreement.vue' /* webpackChunkName: "pages_agreement" */))
 const _b658a41e = () => interopDefault(import('..\\pages\\companyProfile.vue' /* webpackChunkName: "pages_companyProfile" */))
 const _3819beb6 = () => interopDefault(import('..\\pages\\complaint.vue' /* webpackChunkName: "pages_complaint" */))
+const _18c4290a = () => interopDefault(import('..\\pages\\m\\index.vue' /* webpackChunkName: "pages_m_index" */))
 const _086bffce = () => interopDefault(import('..\\pages\\personalInformationService.vue' /* webpackChunkName: "pages_personalInformationService" */))
 const _7c3e3aab = () => interopDefault(import('..\\pages\\wechat.vue' /* webpackChunkName: "pages_wechat" */))
 const _1c5fed01 = () => interopDefault(import('..\\pages\\bbs\\detail\\_articleId.vue' /* webpackChunkName: "pages_bbs_detail__articleId" */))
@@ -47,6 +48,10 @@ export const routerOptions = {
     path: "/complaint",
     component: _3819beb6,
     name: "complaint"
+  }, {
+    path: "/m",
+    component: _18c4290a,
+    name: "m"
   }, {
     path: "/personalInformationService",
     component: _086bffce,
