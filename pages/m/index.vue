@@ -42,8 +42,40 @@
       <van-swipe-item v-for="(image, index) in swiper_images" :key="index">
 <!--        <img v-lazy="image" />-->
         <img :src="image" alt="">
+        <div class="m-swiper-item-pop">
+          <span>
+             sssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+          </span>
+
+        </div>
       </van-swipe-item>
     </van-swipe>
+  </van-col>
+
+  <van-col span="24">
+    <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
+      <van-list
+        v-model="loading"
+        :finished="finished"
+        finished-text="没有更多了"
+        @load="onLoad"
+      >
+        <van-cell v-for="(item,k) in list" :key="k">
+<!--          {{item}}-->
+          <van-col span="8" class="news-list-l">
+            <img src="@/assets/image/m/news-1.png" alt="">
+          </van-col>
+
+          <van-col span="16" class="news-list-r">
+              <h3>【NBA】湖人大胜太阳 詹皇罚球命中数超乔丹湖人大胜太阳 詹皇罚球命 </h3>
+              <span>全民体育小勇士</span>
+              <span>4小时前</span>
+          </van-col>
+
+        </van-cell>
+
+      </van-list>
+    </van-pull-refresh>
   </van-col>
 
 
@@ -65,9 +97,42 @@
         swiper_images:[
           'https://img.yzcdn.cn/vant/apple-1.jpg',
           'https://img.yzcdn.cn/vant/apple-2.jpg'
-        ]
+        ],
+        list: [],
+        loading: false,
+        finished: false,
+        refreshing: false
+      }
+    },
+    methods:{
+      onLoad() {
+        setTimeout(() => {
+          if (this.refreshing) {
+            this.list = [];
+            this.refreshing = false;
+          }
+
+          for (let i = 0; i < 10; i++) {
+            this.list.push(this.list.length + 1);
+          }
+          this.loading = false;
+
+          if (this.list.length >= 40) {
+            this.finished = true;
+          }
+        }, 1000);
+      },
+      onRefresh() {
+        // 清空列表数据
+        this.finished = false;
+
+        // 重新加载数据
+        // 将 loading 设置为 true，表示处于加载状态
+        this.loading = true;
+        this.onLoad();
       }
     }
+
   }
 </script>
 
@@ -186,4 +251,37 @@
     width: 100%;
     height: 100%;
   }
+
+  /deep/ .van-swipe__indicators{
+    /*bottom: -0.27rem;*/
+  }
+
+  /deep/ .van-swipe__indicator{
+    background-color: #E1E1E1;
+  }
+  /deep/ .van-swipe__indicator--active{
+    background-color: red;
+  }
+  .m-swiper-item-pop {
+    width: 100%;
+    height: 0.8rem;
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.3);
+  }
+  .m-swiper-item-pop span{
+    font-size:0.28rem;
+    font-family:PingFangSC-Medium,PingFang SC;
+    font-weight:500;
+    color:rgba(255,255,255,1);
+    line-height:0.4rem;
+  }
+
+  .news-list-l img{
+    width: 2.7rem;
+    height: 1.5rem;
+  }
+
+
+
 </style>
