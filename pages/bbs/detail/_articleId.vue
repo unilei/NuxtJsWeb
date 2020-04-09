@@ -391,11 +391,13 @@ line-height:30px;cursor: pointer;">换一换</span>
     head(){
       let description = ''
       let bbsContent = this.bbsDetail.content
-      bbsContent.forEach((v, i) => {
+      bbsContent.every((v, i) => {
         // console.log(v)
         if (v.type === 1) {
           description = v.content
+          return false
         }
+        return true
       })
 
       return {
@@ -460,7 +462,7 @@ line-height:30px;cursor: pointer;">换一换</span>
           })
       })
 
-      console.log(bbsDetail.data.Data[0])
+      // console.log(bbsDetail.data.Data[0])
       return {
         bbsDetail: bbsDetail.data.Data[0],
         bbsPublishFormatTime: getFormatTime(bbsDetail.data.Data[0].create_time),

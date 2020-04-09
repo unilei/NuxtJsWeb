@@ -188,18 +188,6 @@ module.exports = {
   build: {
     transpile: [/^element-ui/],
     extractCSS: true,
-    postcss:{
-
-    },
-    // plugins: {
-    //         autoprefixer: {
-    //           overrideBrowserslist: ['Android >= 4.1', 'iOS >= 7.1'],
-    //         },
-    //         'postcss-pxtorem': {
-    //           rootValue: 37.5,
-    //           propList: ['*'],
-    //         },
-    //       },
     /*
     ** You can extend webpack config here
     */

@@ -41,6 +41,10 @@
           <li><a href="https://www.soulele.com" target="_blank">搜乐足球</a></li>
           <li><a href="http://www.jinq.com" target="_blank">进球网</a></li>
           <li><a href="http://www.tc108.com" target="_blank">畅说</a></li>
+          <li><a href="https://www.kanzutan.com" target="_blank">足球比分</a></li>
+          <li><a href="http://www.cctv-3.net" target="_blank">3直播吧</a></li>
+          <li><a href="http://www.qieerxi.net" target="_blank"> 切尔西吧</a></li>
+          <li><a href="http://www.qiuyouba.com" target="_blank">足球预测网</a></li>
 
         </ul>
       </div>

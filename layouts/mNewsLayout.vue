@@ -1,20 +1,20 @@
 <template>
   <div>
-  <van-row>
-    <mHeader></mHeader>
-    <nuxt />
-  </van-row>
+    <van-row>
+      <mNewsHeader></mNewsHeader>
+      <nuxt />
+    </van-row>
   </div>
 </template>
 
 <script>
   import mFooter from '../components/mFooter'
-  import mHeader from '../components/mHeader'
+  import mNewsHeader from '../components/mNewsHeader'
 
   export default {
-    name: 'mLayout',
+    name: 'mNewsLayout',
     components:{
-      mHeader,
+      mNewsHeader,
       mFooter
     }
   }

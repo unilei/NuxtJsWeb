@@ -1,0 +1,232 @@
+<template>
+  <div>
+    <!--  轮播图-->
+    <van-col span="24" class="m-swiper">
+      <van-swipe :autoplay="3000">
+        <van-swipe-item v-for="(value, index) in bannerArr" :key="index" :show-indicators=false
+                        @click="bannerTurn(value)">
+          <img :src="value.image" :alt="value.name">
+          <div class="m-swiper-item-pop">
+          <span>
+             {{value.name}}
+          </span>
+          </div>
+        </van-swipe-item>
+      </van-swipe>
+    </van-col>
+
+    <!--新闻列表-->
+    <van-col span="24">
+      <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
+        <van-list
+          v-model="loading"
+          :finished="finished"
+          finished-text="没有更多了"
+          @load="onLoad"
+        >
+          <van-cell v-for="(item,k) in newsList" :key="k">
+
+            <van-col span="8" class="news-list-l">
+              <img :src="item.image" :alt="item.title">
+            </van-col>
+
+            <van-col span="16" class="news-list-r">
+              <p>{{item.title}} </p>
+              <span>全民体育小勇士</span>
+              <span>{{item.timestamp | dateForHour}}</span>
+            </van-col>
+
+          </van-cell>
+
+        </van-list>
+      </van-pull-refresh>
+    </van-col>
+  </div>
+
+</template>
+
+<script>
+  import { Lazyload } from 'vant'
+  import base from '../../api/base'
+
+  export default {
+    name: 'index',
+    layout: 'mLayout',
+    data () {
+      return {
+        bannerArr: [], // 轮播图
+        newsCategory: 'all',
+        newsList: [],
+        loading: false,
+        finished: false,
+        refreshing: false,
+        offset:10
+      }
+    },
+    async asyncData (context) {
+
+      console.log(context.params.cate)
+      // 获取新闻轮播图
+      let newsBanner = await context.$axios.$get(`${base.sq}/GetBanner`, {
+        params: {
+          platform: 'APP'
+        }
+      })
+
+      // 获取全部新闻
+      let category = ''
+      let articleType = 2
+      let offset = 0
+      let limit = 10
+      let newsList = await context.$axios.$get(`${base.sq}/v2/GetArticles?articleType=` + articleType + `&offset=` + offset + `&limit=` + limit)
+      // console.log(newsList.Data.articles)
+      // console.log(newsList)
+
+      return {
+        bannerArr: newsBanner.Data,
+        newsList: newsList.Data.articles
+      }
+
+    },
+    mounted () {
+      console.log(this.$route.query.cate)
+    },
+    methods: {
+      bannerTurn (v) {
+        if (v.type == 1) {
+          this.$router.push({ path: '/m' })
+        }
+        if (v.type == 7) {
+          window.location.href = v.content
+        }
+      },
+
+      onLoad () {
+        setTimeout(() => {
+          if (this.refreshing) {
+            this.newsList = []
+            this.refreshing = false
+          }
+
+          // 获取全部新闻
+          let category = ''
+          let articleType = 2
+          let offset = this.offset
+          let limit = 10
+          this.$axios.$get(`${base.sq}/v2/GetArticles?articleType=` + articleType + `&offset=` + offset + `&limit=` + limit).then(
+            res => {
+              this.newsList = this.newsList.concat(res.Data.articles)
+              this.totalCount = res.Data.totalCount
+              this.offset = offset + 10
+            }
+          )
+
+          this.loading = false
+
+          if (this.newsList.length >= this.totalCount) {
+            this.finished = true
+          }
+        }, 1000)
+      },
+      onRefresh () {
+        // 清空列表数据
+        this.finished = false
+
+        // 重新加载数据
+        // 将 loading 设置为 true，表示处于加载状态
+        this.loading = true
+        this.onLoad()
+      },
+
+    }
+
+  }
+</script>
+
+<style scoped>
+
+
+  .m-swiper {
+    width: 100%;
+    /*height: 3.7rem;*/
+    padding: 0.3rem 0.35rem 0 0.35rem;
+    border-bottom: 0.02rem solid #8FB6DB;
+  }
+
+  /deep/ .van-swipe {
+    height: 5.5rem;
+  }
+
+  /deep/ .van-swipe-item {
+    width: 6.78rem;
+    /*height: 2.9rem;*/
+
+  }
+
+  /deep/ .van-swipe-item img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  /deep/ .van-swipe__indicator {
+    background-color: #E1E1E1;
+  }
+
+  /deep/ .van-swipe__indicator--active {
+    background-color: red;
+  }
+
+  .m-swiper-item-pop {
+    width: 100%;
+    height: 0.8rem;
+    position: absolute;
+    bottom: 0.9rem;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .m-swiper-item-pop span {
+    font-size: 0.28rem;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 1);
+    line-height: 0.4rem;
+  }
+
+
+  .news-list-l {
+    width: 2.7rem;
+
+  }
+
+  .news-list-l img {
+    width: 2.7rem;
+    /*height: 1.5rem;*/
+  }
+
+  .news-list-r {
+    padding-left: 0.2rem;
+  }
+
+  .news-list-r p {
+    padding: 0;
+    margin: 0;
+
+    height: 1.2rem;
+    font-size: 0.28rem;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
+    line-height: 0.4rem;
+    /*width: 4.12rem;*/
+  }
+
+  .news-list-r span {
+    font-size: 0.18rem;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(153, 153, 153, 1);
+    line-height: 0.3rem;
+  }
+
+
+</style>

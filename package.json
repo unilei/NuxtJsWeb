@@ -36,11 +36,6 @@
     "nodemon": "^1.18.9",
     "postcss-pxtorem": "^5.1.1",
     "webpack-bundle-analyzer": "^3.6.1"
-  },
-  "browserslist": [
-    "defaults",
-    "not IE 11",
-    "not IE_Mob 11",
-    "maintained node versions"
-  ]
+  }
+
 }

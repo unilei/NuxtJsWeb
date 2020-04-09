@@ -18,9 +18,10 @@ import '..\\assets\\css\\normailze.css'
 import _6f2aba07 from '..\\layouts\\bbsLayout.vue'
 import _6f6c098b from '..\\layouts\\default.vue'
 import _209f5541 from '..\\layouts\\mLayout.vue'
+import _61323e74 from '..\\layouts\\mNewsLayout.vue'
 import _2fdf5853 from '..\\layouts\\newsLayout.vue'
 
-const layouts = { "_bbsLayout": _6f2aba07,"_default": _6f6c098b,"_mLayout": _209f5541,"_newsLayout": _2fdf5853 }
+const layouts = { "_bbsLayout": _6f2aba07,"_default": _6f6c098b,"_mLayout": _209f5541,"_mNewsLayout": _61323e74,"_newsLayout": _2fdf5853 }
 
 export default {
   render (h, props) {

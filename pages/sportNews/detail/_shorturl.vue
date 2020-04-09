@@ -386,11 +386,12 @@ line-height:30px;">换一换</span>
     head () {
       let description = ''
       let newsContent = this.newsDetail.content
-      newsContent.forEach((v, i) => {
-        // console.log(v)
+      newsContent.every((v,i)=>{
         if (v.type === 1) {
           description = v.content
+          return false
         }
+        return true
       })
 
       return {
@@ -463,7 +464,7 @@ line-height:30px;">换一换</span>
         )
         // item.replyReply = newsReplyReply.data.Data.list
       })
-      console.log(newsDetail.data.Data)
+      // console.log(newsDetail.data.Data)
       return {
         newsDetail: newsDetail.data.Data,
         newsPublishFormatTime: getFormatTime(newsDetail.data.Data.timestamp),
