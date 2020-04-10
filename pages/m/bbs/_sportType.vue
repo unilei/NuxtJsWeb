@@ -15,9 +15,8 @@
               <div class="bbs-list-rm" v-show="k===0">
                 <img src="http://aloss.hotforest.cn/web/m/remen-icon.png" alt="">
               </div>
-              <p>
-                {{item.title}}
-              </p>
+              <nuxt-link :to="{name:'m-bbs-detail-articleId',params:{articleId:item.article_id}}">{{item.title}}</nuxt-link>
+
               <van-col span="8">
                 <span>{{item.author.nickName}}</span>
               </van-col>
@@ -135,7 +134,7 @@
     /*height: 2.16rem;*/
   }
 
-  .bbs-list p {
+  .bbs-list a {
     font-size:0.28rem;
     font-family:PingFangSC-Medium,PingFang SC;
     font-weight:500;

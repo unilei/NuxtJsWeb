@@ -1,0 +1,16 @@
+html {
+  text-align: center;
+}
+
+button, input, textarea {
+  font: 100% PingFangSC-Regular, PingFang SC;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}

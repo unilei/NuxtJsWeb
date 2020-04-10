@@ -44,8 +44,8 @@ module.exports = {
         ssr: false
       },
       {
-        src:'/flexible.js',
-        ssr:false
+        src: '/flexible.js',
+        ssr: false
       }
     ]
   },
@@ -64,11 +64,28 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: '@/plugins/element-ui', ssr: true },
-    {src:'@/plugins/vant',ssr:false},
-    { src: '@/plugins/filter', ssr: false, mode: 'client' },
-    { src: '@/plugins/auto-push.js', mode: 'client', ssr: false },
-    {src:'@/plugins/loading', ssr:false },
+    {
+      src: '@/plugins/element-ui',
+      ssr: true
+    },
+    {
+      src: '@/plugins/vant',
+      ssr: false
+    },
+    {
+      src: '@/plugins/filter',
+      ssr: false,
+      mode: 'client'
+    },
+    {
+      src: '@/plugins/auto-push.js',
+      mode: 'client',
+      ssr: false
+    },
+    {
+      src: '@/plugins/loading',
+      ssr: false
+    },
 
   ],
   /*
@@ -112,8 +129,6 @@ module.exports = {
     },
     trailingSlash: true,
     xmlNs: 'xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
-    // hostname: 'https://www.171tiyu.com',
-    // hostname: 'http://localhost:3000',
     routes: [
       '/about',
       '/agreement',
@@ -163,7 +178,7 @@ module.exports = {
           let news_params = {
             articleType: 2,
             offset: 0,
-            author_filter:['6','7', '8', '9']
+            author_filter: ['6', '7', '8', '9']
           }
           const res = await axios.get(`https://api.npse.com:8081/v2/GetArticles`, { params: news_params })
           // console.log(res)
