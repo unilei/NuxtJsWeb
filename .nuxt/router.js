@@ -9,6 +9,7 @@ const _b658a41e = () => interopDefault(import('..\\pages\\companyProfile.vue' /*
 const _3819beb6 = () => interopDefault(import('..\\pages\\complaint.vue' /* webpackChunkName: "pages_complaint" */))
 const _086bffce = () => interopDefault(import('..\\pages\\personalInformationService.vue' /* webpackChunkName: "pages_personalInformationService" */))
 const _7c3e3aab = () => interopDefault(import('..\\pages\\wechat.vue' /* webpackChunkName: "pages_wechat" */))
+const _3b9c0941 = () => interopDefault(import('..\\pages\\m\\nsport\\detail\\_articleId.vue' /* webpackChunkName: "pages_m_nsport_detail__articleId" */))
 const _c9ace9da = () => interopDefault(import('..\\pages\\m\\nsport\\detail\\_shorturl.vue' /* webpackChunkName: "pages_m_nsport_detail__shorturl" */))
 const _1c5fed01 = () => interopDefault(import('..\\pages\\bbs\\detail\\_articleId.vue' /* webpackChunkName: "pages_bbs_detail__articleId" */))
 const _605e366b = () => interopDefault(import('..\\pages\\bbs\\list\\_sportType.vue' /* webpackChunkName: "pages_bbs_list__sportType" */))
@@ -58,6 +59,10 @@ export const routerOptions = {
     path: "/wechat",
     component: _7c3e3aab,
     name: "wechat"
+  }, {
+    path: "/m/nsport/detail/:articleId?",
+    component: _3b9c0941,
+    name: "m-nsport-detail-articleId"
   }, {
     path: "/m/nsport/detail/:shorturl?",
     component: _c9ace9da,

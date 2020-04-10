@@ -17,7 +17,7 @@
             </van-col>
 
             <van-col span="15" offset="1" class="news-list-r">
-              <nuxt-link :to="{name:'m-nsport-detail-shorturl',params:{shorturl:item.shorturl}}">{{item.title}}</nuxt-link>
+              <nuxt-link :to="{name:'m-nsport-detail-articleId',params:{articleId:item.article_id}}">{{item.title}}</nuxt-link>
 
               <van-col span="14">
                 <span>全民体育小勇士</span>

@@ -40,7 +40,7 @@
       <van-swipe :autoplay="3000">
         <van-swipe-item v-for="(value, index) in bannerArr" :key="index" :show-indicators=false
                         @click="bannerTurn(value)">
-          <img :src="value.image" :alt="value.name">
+          <img :src="value.image" :alt="value.name" >
           <div class="m-swiper-item-pop">
           <span>
              {{value.name}}
@@ -81,6 +81,7 @@
         }
       }).then(
         res=>{
+          console.log(res)
           this.bannerArr = res.Data
         }
       )
@@ -104,7 +105,7 @@
       },
       bannerTurn (v) {
         if (v.type == 1) {
-          this.$router.push({ path: '/m' })
+          this.$router.push({ name: 'm-nsport-detail-articleId',params:{'articleId':v.content} })
         }
         if (v.type == 7) {
           window.location.href = v.content
