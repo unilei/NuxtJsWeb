@@ -11,7 +11,7 @@
 
     <van-col span="24" class="m-news-detail">
       <van-col span="2" class=" m-news-detail-avatar">
-        <img src="@/assets/image/star.png" alt="">
+        <img src="http://aloss.hotforest.cn/web/star.png" alt="">
       </van-col>
       <van-col span="6" class=" m-news-detail-name">
         <span>{{newsDetail.author.name}}</span>
@@ -104,19 +104,19 @@
           />
         </van-col>
         <van-col span="2" class="msg">
-          <img src="@/assets/image/m/comment-like.png" alt="">
+          <img src="http://aloss.hotforest.cn/web/m/comment-like.png" alt="">
         </van-col>
         <van-col span="3" class="msg">
           1111+
         </van-col>
         <van-col span="2" class="msg">
-          <img src="@/assets/image/m/comment-msg.png" alt="">
+          <img src="http://aloss.hotforest.cn/web/m/comment-msg.png" alt="">
         </van-col>
         <van-col span="3" class="msg">
           1111+
         </van-col>
         <van-col span="4" class="msg">
-          <img src="@/assets/image/m/share-icon.png" alt="">
+          <img src="http://aloss.hotforest.cn/web/m/share-icon.png" alt="">
         </van-col>
       </div>
 
@@ -126,7 +126,6 @@
 
 <script>
   import base from '../../../../api/base'
-  import news from '../../../../api/news'
 
   export default {
     name: 'shorturl',

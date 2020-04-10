@@ -71,7 +71,7 @@
 
   width: 76px;
   height: 187px;
-  background: url(../image/news-slide-l.png)  no-repeat center;
+  background: url(http://aloss.hotforest.cn/web/news-slide-l.png)  no-repeat center;
 
   filter: alpha(opacity=50);
   opacity: 1;
@@ -97,7 +97,7 @@
   display: block;
   width: 76px;
   height: 187px;
-  background: url(../image/news-slide-r.png)  no-repeat center;
+  background: url(http://aloss.hotforest.cn/web/news-slide-r.png)  no-repeat center;
 
   filter: alpha(opacity=50);
   opacity: 1;

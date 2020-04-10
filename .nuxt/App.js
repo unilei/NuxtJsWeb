@@ -13,8 +13,6 @@ import '..\\node_modules\\_element-ui@2.13.0@element-ui\\lib\\theme-chalk\\index
 
 import '..\\node_modules\\_vant@2.5.9@vant\\lib\\index.css'
 
-import '..\\assets\\css\\normailze.css'
-
 import _6f2aba07 from '..\\layouts\\bbsLayout.vue'
 import _6f6c098b from '..\\layouts\\default.vue'
 import _209f5541 from '..\\layouts\\mLayout.vue'

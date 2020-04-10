@@ -38,7 +38,7 @@
           <div class="publish-comment-d">
             <div class="publish-comment-d-i">
               <img v-if="this.avatar_url === '' || this.avatar_url === null "
-                   src="../../../assets/image/default-header.png" alt="">
+                   src="http://aloss.hotforest.cn/web/default-header.png" alt="">
               <img v-if="this.avatar_url !== '' & this.avatar_url !== null " :src="this.avatar_url" alt="">
             </div>
             <div class="publish-comment-d-tx">
@@ -60,7 +60,7 @@
               <img v-if="newsReply.author.avatar_url == null || newsReply.author.avatar_url == ''
                                 || newsReply.author.avatar_url ==  'https://nsports-entity.171tiyu.com/'
                                 "
-                   src="../../../assets/image/star.png" alt="">
+                   src="http://aloss.hotforest.cn/web/star.png" alt="">
               <a>{{newsReply.author.nickName}}</a>
               <client-only><span class="comment-list-d-t-t">{{newsReply.create_time | dateForHour }}</span></client-only>
             </div>
@@ -83,7 +83,7 @@
                   <div class="comment-item-c">
                     <div class="comment-item-c-l">
                       <a href="#">
-                        <img src="../../../assets/image/news-like.png" alt="">
+                        <img src="http://aloss.hotforest.cn/web/news-like.png" alt="">
                       </a>
                       <span>{{reply.likes_count}}</span>
                     </div>
@@ -107,7 +107,7 @@
             <div class="comment-list-dd">
               <div class="comment-list-dd-l">
                 <a href="#">
-                  <img src="../../../assets/image/news-like.png" alt="">
+                  <img src="http://aloss.hotforest.cn/web/news-like.png" alt="">
                 </a>
                 <span>{{newsReply.likes_count}}</span>
                 <button v-if="index !== showComment" @click="isShowComment(index)">回复</button>
@@ -140,7 +140,7 @@
               <div class="hot-news-list-t-icon"></div>
               <span>你可能感兴趣的</span>
               <a href="#">
-                <img style="width: 20px;height: 20px;margin-right: 12px;" src="../../../assets/image/xuanzhuan.png" alt="">
+                <img style="width: 20px;height: 20px;margin-right: 12px;" src="http://aloss.hotforest.cn/web/xuanzhuan.png" alt="">
                 <span style="font-size:12px;
 font-family:PingFangSC-Regular,PingFang SC;
 font-weight:400;
@@ -153,7 +153,7 @@ line-height:30px;cursor: pointer;">换一换</span>
               <ul>
                 <li>
                   <div class="news-detail-rec-l">
-                    <img src="../../../assets/image/star.png" alt="">
+                    <img src="http://aloss.hotforest.cn/web/star.png" alt="">
                   </div>
                   <div class="news-detail-rec-r">
                     <span>全民体育官方</span>
@@ -169,7 +169,7 @@ line-height:30px;cursor: pointer;">换一换</span>
                 </li>
                 <li>
                   <div class="news-detail-rec-l">
-                    <img src="../../../assets/image/star.png" alt="">
+                    <img src="http://aloss.hotforest.cn/web/star.png" alt="">
                   </div>
                   <div class="news-detail-rec-r">
                     <span>全民体育官方</span>
@@ -185,7 +185,7 @@ line-height:30px;cursor: pointer;">换一换</span>
                 </li>
                 <li>
                   <div class="news-detail-rec-l">
-                    <img src="../../../assets/image/star.png" alt="">
+                    <img src="http://aloss.hotforest.cn/web/star.png" alt="">
                   </div>
                   <div class="news-detail-rec-r">
                     <span>全民体育官方</span>
@@ -265,7 +265,7 @@ line-height:30px;cursor: pointer;">换一换</span>
     <div v-show="dialogFormVisibleLogin === true" class="login-modal-container">
       <div class="login-modal">
         <div class="login-modal-t-img" @click="closeDialog">
-          <img src="../../../assets/image/login-icon.png" alt="">
+          <img src="http://aloss.hotforest.cn/web/login-icon.png" alt="">
         </div>
         <div v-show="dialogMobileLogin === true">
           <div class="login-modal-t">
@@ -290,7 +290,7 @@ line-height:30px;cursor: pointer;">换一换</span>
           </div>
           <div class="login-modal-t-wx">
             <div>
-              <img @click="wxDialog" style="cursor:pointer;"  src="../../../assets/image/wx.png" alt="">
+              <img @click="wxDialog" style="cursor:pointer;"  src="http://aloss.hotforest.cn/web/wx.png" alt="">
             </div>
             <a href="#" @click="wxDialog">使用微信登录</a>
             <!--                        <a href="#" >使用微信登录</a>-->

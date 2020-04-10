@@ -5,7 +5,7 @@
     <div class="header-top">
       <div class="header-top-left">
         <div class="header-top-l-logo">
-          <img @click="turn_own" src="../assets/image/header-logo.png" alt="全民体育">
+          <img @click="turn_own" src="http://aloss.hotforest.cn/web/header-logo.png" alt="全民体育">
         </div>
         <!--                <span>全民体育 懂球迷的聚集体</span>-->
       </div>
@@ -14,7 +14,7 @@
       </div>
       <div class="header-top-right" v-if="this.uid !==  null">
         <img v-if="this.avatar_url != null & this.avatar_url != '' " :src="this.avatar_url" alt="">
-        <img v-if="this.avatar_url == null || this.avatar_url == ''" src="../assets/image/star.png" alt="">
+        <img v-if="this.avatar_url == null || this.avatar_url == ''" src="http://aloss.hotforest.cn/web/star.png" alt="">
         <a v-if="this.nickname != null & this.nickname != ''" href="#">{{this.nickname}}</a>
         <a v-if="this.nickname == null || this.nickname == ''" href="#">{{this.phone}}</a>
         <button @click="loginOut">退出</button>
@@ -25,7 +25,7 @@
     <div v-show="dialogFormVisible === true" class="login-modal-container">
       <div class="login-modal">
         <div class="login-modal-t-img" @click="closeDialog">
-          <img src="../assets/image/login-icon.png" alt="">
+          <img src="http://aloss.hotforest.cn/web/login-icon.png" alt="">
         </div>
         <div v-show="dialogMobileLogin === true">
           <div class="login-modal-t">
@@ -50,16 +50,14 @@
           </div>
           <div class="login-modal-t-wx">
             <div>
-              <img @click="wxDialog" style="cursor:pointer;"  src="../assets/image/wx.png" alt="">
+              <img @click="wxDialog" style="cursor:pointer;"  src="http://aloss.hotforest.cn/web/wx.png" alt="">
             </div>
             <a href="#" @click="wxDialog">使用微信登录</a>
-            <!--                        <a href="#" >使用微信登录</a>-->
           </div>
 
           <div class="login-modal-t-xx">
             <span>使用即为同意</span>
             <span @click="turn_agreement">全民体育用户协议/隐私权政策</span>
-            <!--                        <a href="">全民体育用户协议/隐私权政策</a>-->
           </div>
         </div>
 
@@ -73,16 +71,10 @@
             </a>
           </div>
           <div class="wx-login-modal-img" id="login_container">
-            <!--                        <img src="../../assets/image/wx_qrcode.png" alt="">-->
           </div>
-          <!--                    <div class="wx-login-modal-sm" >-->
-          <!--                        <img src="../../assets/image/wx.png" alt="">-->
-          <!--                        <span>打开微信扫码登录</span>-->
-          <!--                    </div>-->
           <div class="login-modal-t-xx" >
             <span>使用即为同意</span>
             <span @click="turn_agreement">全民体育用户协议/隐私权政策</span>
-            <!--                        <router-link :to="'/agreement'"></router-link>-->
           </div>
 
         </div>
@@ -100,10 +92,10 @@
         <a
           href="https://171tiyu.com/download/android?channelCode=Web_Landing_Page"
           v-if="this.os === 'Win'">
-          <img src="../assets/image/android-QRcode.png" alt="">
+          <img src="http://aloss.hotforest.cn/web/android-QRcode.png" alt="">
         </a>
         <a v-if="this.os==='Mac'" href="https://apps.apple.com/app/id1482371213">
-          <img src="../assets/image/android-QRcode.png" alt="">
+          <img src="http://aloss.hotforest.cn/web/android-QRcode.png" alt="">
         </a>
       </div>
       <span>扫码下载安卓/IOS APP</span>

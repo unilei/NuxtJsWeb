@@ -13,7 +13,7 @@
 
             <van-col span="24" class="bbs-list">
               <div class="bbs-list-rm" v-show="k===0">
-                <img src="@/assets/image/m/remen-icon.png" alt="">
+                <img src="http://aloss.hotforest.cn/web/m/remen-icon.png" alt="">
               </div>
               <p>
                 {{item.title}}
@@ -25,11 +25,11 @@
                 <span>{{item.create_time | dateForHour}}</span>
               </van-col>
               <van-col span="8" class="bbs-like">
-                <img src="@/assets/image/m/like-icon.png" alt="">
+                <img src="http://aloss.hotforest.cn/web/m/like-icon.png" alt="">
                 <span>{{item.likes_count}}</span>
               </van-col>
               <van-col span="4" class="bbs-comment">
-                <img src="@/assets/image/m/comment-icon.png" alt="">
+                <img src="http://aloss.hotforest.cn/web/m/comment-icon.png" alt="">
                 <span>{{item.comments_count}}</span>
               </van-col>
 

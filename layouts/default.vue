@@ -20,8 +20,6 @@ import Footer from '~/components/Footer.vue'
 
 <style>
 html {
-  /*font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',*/
-  /*  Roboto, 'Helvetica Neue', Arial, sans-serif;*/
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -29,7 +27,9 @@ html {
   padding: 0;
   margin: 0;
 }
-
+button, input, textarea{
+  font: 100% antialiased grayscale;
+}
 ul{
   padding: 0;
   list-style: none;

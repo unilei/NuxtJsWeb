@@ -4,7 +4,7 @@
     <van-col span="24">
       <van-nav-bar :left-arrow=false style="height: 1rem;">
         <template #left>
-          <img src="@/assets/image/m/icon.png" alt="">
+          <img src="http://aloss.hotforest.cn/web/m/icon.png" alt="">
         </template>
         <template #title>
           <p>全民体育</p>
@@ -19,10 +19,10 @@
 
     <!--logo-->
     <van-col span="12" class="m-header-logo">
-      <img src="@/assets/image/m/logo.png" alt="">
+      <img src="http://aloss.hotforest.cn/web/m/logo.png" alt="">
     </van-col>
     <van-col span="12" class="m-header-user">
-      <img src="@/assets/image/m/avatar.png" alt="">
+      <img src="http://aloss.hotforest.cn/web/m/avatar.png" alt="">
       <span>徐刘磊</span>
     </van-col>
 

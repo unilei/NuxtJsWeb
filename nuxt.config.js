@@ -59,7 +59,6 @@ module.exports = {
   css: [
     'element-ui/lib/theme-chalk/index.css',
     'vant/lib/index.css',
-    'assets/css/normailze.css'
   ],
   /*
   ** Plugins to load before mounting the App
