@@ -42,10 +42,6 @@ module.exports = {
       {
         src: 'https://js.users.51.la/20532775.js',
         ssr: false
-      },
-      {
-        src: '/flexible.js',
-        ssr: false
       }
     ]
   },
@@ -58,7 +54,6 @@ module.exports = {
   */
   css: [
     'element-ui/lib/theme-chalk/index.css',
-    'vant/lib/index.css',
   ],
   /*
   ** Plugins to load before mounting the App
@@ -67,10 +62,6 @@ module.exports = {
     {
       src: '@/plugins/element-ui',
       ssr: true
-    },
-    {
-      src: '@/plugins/vant',
-      ssr: false
     },
     {
       src: '@/plugins/filter',
