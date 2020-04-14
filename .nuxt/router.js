@@ -3,17 +3,17 @@ import Router from 'vue-router'
 import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
-const _c4d1efea = () => interopDefault(import('../pages/about.vue' /* webpackChunkName: "pages/about" */))
-const _5e130d08 = () => interopDefault(import('../pages/agreement.vue' /* webpackChunkName: "pages/agreement" */))
-const _cdbb8544 = () => interopDefault(import('../pages/companyProfile.vue' /* webpackChunkName: "pages/companyProfile" */))
-const _12407f29 = () => interopDefault(import('../pages/complaint.vue' /* webpackChunkName: "pages/complaint" */))
-const _93b4588a = () => interopDefault(import('../pages/personalInformationService.vue' /* webpackChunkName: "pages/personalInformationService" */))
-const _25758718 = () => interopDefault(import('../pages/wechat.vue' /* webpackChunkName: "pages/wechat" */))
-const _091b645c = () => interopDefault(import('../pages/bbs/detail/_articleId.vue' /* webpackChunkName: "pages/bbs/detail/_articleId" */))
-const _361b5602 = () => interopDefault(import('../pages/bbs/list/_sportType.vue' /* webpackChunkName: "pages/bbs/list/_sportType" */))
-const _63bc05a4 = () => interopDefault(import('../pages/sportNews/detail/_shorturl.vue' /* webpackChunkName: "pages/sportNews/detail/_shorturl" */))
-const _771503f7 = () => interopDefault(import('../pages/sportNews/list/_league.vue' /* webpackChunkName: "pages/sportNews/list/_league" */))
-const _85623a60 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
+const _5c1fd3d0 = () => interopDefault(import('..\\pages\\about.vue' /* webpackChunkName: "pages_about" */))
+const _f82766d6 = () => interopDefault(import('..\\pages\\agreement.vue' /* webpackChunkName: "pages_agreement" */))
+const _b658a41e = () => interopDefault(import('..\\pages\\companyProfile.vue' /* webpackChunkName: "pages_companyProfile" */))
+const _3819beb6 = () => interopDefault(import('..\\pages\\complaint.vue' /* webpackChunkName: "pages_complaint" */))
+const _086bffce = () => interopDefault(import('..\\pages\\personalInformationService.vue' /* webpackChunkName: "pages_personalInformationService" */))
+const _7c3e3aab = () => interopDefault(import('..\\pages\\wechat.vue' /* webpackChunkName: "pages_wechat" */))
+const _1c5fed01 = () => interopDefault(import('..\\pages\\bbs\\detail\\_articleId.vue' /* webpackChunkName: "pages_bbs_detail__articleId" */))
+const _605e366b = () => interopDefault(import('..\\pages\\bbs\\list\\_sportType.vue' /* webpackChunkName: "pages_bbs_list__sportType" */))
+const _09eb0242 = () => interopDefault(import('..\\pages\\sportNews\\detail\\_shorturl.vue' /* webpackChunkName: "pages_sportNews_detail__shorturl" */))
+const _53d4c6ee = () => interopDefault(import('..\\pages\\sportNews\\list\\_league.vue' /* webpackChunkName: "pages_sportNews_list__league" */))
+const _1cb01e46 = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages_index" */))
 
 // TODO: remove in Nuxt 3
 const emptyFn = () => {}
@@ -33,47 +33,47 @@ export const routerOptions = {
 
   routes: [{
     path: "/about",
-    component: _c4d1efea,
+    component: _5c1fd3d0,
     name: "about"
   }, {
     path: "/agreement",
-    component: _5e130d08,
+    component: _f82766d6,
     name: "agreement"
   }, {
     path: "/companyProfile",
-    component: _cdbb8544,
+    component: _b658a41e,
     name: "companyProfile"
   }, {
     path: "/complaint",
-    component: _12407f29,
+    component: _3819beb6,
     name: "complaint"
   }, {
     path: "/personalInformationService",
-    component: _93b4588a,
+    component: _086bffce,
     name: "personalInformationService"
   }, {
     path: "/wechat",
-    component: _25758718,
+    component: _7c3e3aab,
     name: "wechat"
   }, {
     path: "/bbs/detail/:articleId?",
-    component: _091b645c,
+    component: _1c5fed01,
     name: "bbs-detail-articleId"
   }, {
     path: "/bbs/list/:sportType?",
-    component: _361b5602,
+    component: _605e366b,
     name: "bbs-list-sportType"
   }, {
     path: "/sportNews/detail/:shorturl?",
-    component: _63bc05a4,
+    component: _09eb0242,
     name: "sportNews-detail-shorturl"
   }, {
     path: "/sportNews/list/:league?",
-    component: _771503f7,
+    component: _53d4c6ee,
     name: "sportNews-list-league"
   }, {
     path: "/",
-    component: _85623a60,
+    component: _1cb01e46,
     name: "index"
   }],
 
