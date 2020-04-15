@@ -200,6 +200,17 @@ module.exports = {
   build: {
     transpile: [/^element-ui/],
     extractCSS: true,
+    // // 按需引入element-ui
+    // babel: {
+    //   plugins: [
+    //     [ "component",
+    //       {
+    //         "libraryName": "element-ui",
+    //         "styleLibraryName": "theme-chalk"
+    //       }
+    //     ]
+    //   ]
+    // },
     /*
     ** You can extend webpack config here
     */
