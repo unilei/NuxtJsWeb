@@ -1,7 +1,7 @@
 export default function ({isServer,req,redirect,route}) {
 
-  let pcOrigin = 'http://localhost:3000'
-  let mobileOrigin = 'http://localhost:3001'
+  let pcOrigin = 'https://www.171tiyu.com'
+  let mobileOrigin = 'http://m.hotforest.cn'
 
   let isMobile = (ua) => {
     return !!ua.match(/AppleWebKit.*Mobile.*/)
