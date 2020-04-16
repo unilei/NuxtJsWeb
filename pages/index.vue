@@ -107,7 +107,7 @@
     <div class="news-container">
       <div class="news-header">
         <div style="width:40px;height:40px;float:left;">
-          <img style="width: 100%;" src="http://aloss.hotforest.cn/web/nba-icon.png" alt="">
+          <img style="width: 100%;" src="https://aloss.hotforest.cn/web/nba-icon.png" alt="">
         </div>
         <div style="float:left;margin-left: 9px;width:155px;height: 40px;margin-top: 18px;"
              :style="backgroundImg"
@@ -171,7 +171,7 @@
     <div class="news-container">
       <div class="news-header">
         <div style="width:40px;height:40px;float:left;">
-          <img style="width: 100%;" src="http://aloss.hotforest.cn/web/bbs.png" alt="">
+          <img style="width: 100%;" src="https://aloss.hotforest.cn/web/bbs.png" alt="">
         </div>
         <div style="float:left;margin-left: 9px;width:155px;height: 40px;margin-top: 18px;"
              :style="backgroundImg"
@@ -207,7 +207,7 @@
     <div class="news-container">
       <div class="news-header">
         <div style="width:40px;height:40px;float:left;">
-          <img style="width: 100%;" src="http://aloss.hotforest.cn/web/laliga-icon.png" alt="">
+          <img style="width: 100%;" src="https://aloss.hotforest.cn/web/laliga-icon.png" alt="">
         </div>
         <div style="float:left;margin-left: 9px;width:155px;height: 40px;margin-top: 18px;"
              :style="backgroundImg"
@@ -270,7 +270,7 @@
     <div class="news-container">
       <div class="news-header">
         <div style="width:40px;height:40px;float:left;">
-          <img style="width: 100%;" src="http://aloss.hotforest.cn/web/premier-icon.png" alt="">
+          <img style="width: 100%;" src="https://aloss.hotforest.cn/web/premier-icon.png" alt="">
         </div>
         <div style="float:left;margin-left: 9px;width:155px;height: 40px;margin-top: 18px;"
              :style="backgroundImg"
@@ -335,7 +335,7 @@
     <div class="news-container">
       <div class="news-header">
         <div style="width:40px;height:40px;float:left;">
-          <img style="width: 100%;" src="http://aloss.hotforest.cn/web/serea-icon.png" alt="">
+          <img style="width: 100%;" src="https://aloss.hotforest.cn/web/serea-icon.png" alt="">
         </div>
         <div style="float:left;margin-left: 9px;width:155px;height: 40px;margin-top: 18px;"
              :style="backgroundImg"
@@ -408,7 +408,7 @@
     data () {
       return {
         backgroundImg: {
-          backgroundImage: 'url(http://aloss.hotforest.cn/web/hot-t-bg.png)',
+          backgroundImage: 'url(https://aloss.hotforest.cn/web/hot-t-bg.png)',
           backgroundRepeat: 'no-repeat',
           backgroundSize: '100% 100%',
           marginTop: '5px',

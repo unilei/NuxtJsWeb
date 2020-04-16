@@ -4,7 +4,7 @@
       <ul>
         <li v-for="(bbs,i) in bbsList" :key="i">
           <div class="bbs-list-l">
-            <img v-if="i === 0" src="http://aloss.hotforest.cn/web/zhiding.png" alt="">
+            <img v-if="i === 0" src="https://aloss.hotforest.cn/web/zhiding.png" alt="">
             <nuxt-link :to="{name:'bbs-detail-articleId',params:{'articleId':bbs.article_id}}"  target="_blank" class="a-left" v-if="i=== 0 ">
               {{bbs.title}}
             </nuxt-link>
@@ -26,13 +26,13 @@
                   {{bbs.comments_count}}
                 </li>
                 <li>
-                  <img src="http://aloss.hotforest.cn/web/news-comment.png" alt="">
+                  <img src="https://aloss.hotforest.cn/web/news-comment.png" alt="">
                 </li>
                 <li>
                   {{bbs.likes_count}}
                 </li>
                 <li>
-                  <img src="http://aloss.hotforest.cn/web/news-like.png" alt="">
+                  <img src="https://aloss.hotforest.cn/web/news-like.png" alt="">
                 </li>
               </ul>
             </div>
@@ -59,7 +59,7 @@
           <div class="hot-news-list-t-icon"></div>
           <span>你可能感兴趣的</span>
           <a href="#">
-            <img style="width: 20px;height: 20px;margin-right: 12px;" src="http://aloss.hotforest.cn/web/xuanzhuan.png" alt="">
+            <img style="width: 20px;height: 20px;margin-right: 12px;" src="https://aloss.hotforest.cn/web/xuanzhuan.png" alt="">
             换一换
           </a>
 
@@ -68,7 +68,7 @@
           <ul>
             <li>
               <div class="news-detail-rec-l">
-                <img src="http://aloss.hotforest.cn/web/star.png" alt="">
+                <img src="https://aloss.hotforest.cn/web/star.png" alt="">
               </div>
               <div class="news-detail-rec-r">
                 <span>全民体育官方</span>
@@ -84,7 +84,7 @@
             </li>
             <li>
               <div class="news-detail-rec-l">
-                <img src="http://aloss.hotforest.cn/web/star.png" alt="">
+                <img src="https://aloss.hotforest.cn/web/star.png" alt="">
               </div>
               <div class="news-detail-rec-r">
                 <span>全民体育官方</span>
@@ -100,7 +100,7 @@
             </li>
             <li>
               <div class="news-detail-rec-l">
-                <img src="http://aloss.hotforest.cn/web/star.png" alt="">
+                <img src="https://aloss.hotforest.cn/web/star.png" alt="">
               </div>
               <div class="news-detail-rec-r">
                 <span>全民体育官方</span>

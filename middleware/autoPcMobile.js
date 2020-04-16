@@ -1,6 +1,6 @@
 export default function ({isServer,req,redirect,route}) {
 
-  let pcOrigin = 'https://www.171tiyu.com'
+  let pcOrigin = 'http://www.171tiyu.com'
   let mobileOrigin = 'http://m.hotforest.cn'
 
   let isMobile = (ua) => {
