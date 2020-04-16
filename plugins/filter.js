@@ -1,8 +1,25 @@
 import Vue from 'vue'
 
+export function host (url) {
+  const host = url.replace(/^https?:\/\//, '').replace(/\/.*$/, '').replace('?id=', '/')
+  const parts = host.split('.').slice(-3)
+  if (parts[0] === 'www') { parts.shift() }
+  return parts.join('.')
+}
+
+export function timeAgo (time) {
+  const between = Date.now() / 1000 - Number(time)
+  if (between < 3600) {
+    return pluralize(~~(between / 60), ' minute')
+  } else if (between < 86400) {
+    return pluralize(~~(between / 3600), ' hour')
+  } else {
+    return pluralize(~~(between / 86400), ' day')
+  }
+}
 export function dateFormat (dataStr) {
 
-  var time = new Date(dataStr * 1000)
+  let time = new Date(dataStr * 1000)
 
   function timeAdd0 (str) {
     if (str < 10) {
@@ -12,25 +29,25 @@ export function dateFormat (dataStr) {
   }
 
   // var y = time.getFullYear();
-  var m = time.getMonth() + 1
-  var d = time.getDate()
-  var h = time.getHours()
-  var mm = time.getMinutes()
+  let m = time.getMonth() + 1
+  let d = time.getDate()
+  let h = time.getHours()
+  let mm = time.getMinutes()
   // var s = time.getSeconds();
   return timeAdd0(m) + '-' + timeAdd0(d) + ' ' + timeAdd0(h) + ':' + timeAdd0(mm)
 
 }
 
 export function dateForHour (timeStamp) {
-  var dateTime = new Date(timeStamp * 1000)
-  var no1new = dateTime.valueOf()
-  var year = dateTime.getFullYear()
-  var month = dateTime.getMonth() + 1
-  var day = dateTime.getDate()
-  var now = new Date()
-  var now_new = now.valueOf()
-  var milliseconds = 0
-  var timeSpanStr
+  let dateTime = new Date(timeStamp * 1000)
+  let no1new = dateTime.valueOf()
+  let year = dateTime.getFullYear()
+  let month = dateTime.getMonth() + 1
+  let day = dateTime.getDate()
+  let now = new Date()
+  let now_new = now.valueOf()
+  let milliseconds = 0
+  let timeSpanStr
 
   milliseconds = now_new - no1new
 
@@ -52,12 +69,22 @@ export function dateForHour (timeStamp) {
   return timeSpanStr
 }
 
-const filters = {
-  dateForHour,
-  dateFormat
+function pluralize (time, label) {
+  if (time === 1) {
+    return time + label
+  }
+  return time + label + 's'
 }
+
+const filters = {
+  host,
+  timeAgo,
+  dateForHour,
+  dateFormat,
+}
+
 export default filters
 
-Object.keys(filters).forEach(key => {
+Object.keys(filters).forEach((key) => {
   Vue.filter(key, filters[key])
 })

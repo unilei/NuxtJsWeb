@@ -86,6 +86,19 @@ module.exports = {
     },
 
   ],
+  render: {
+    http2: {
+      push: true
+    },
+    static: {
+      maxAge: '1y',
+      setHeaders (res, path) {
+        if (path.includes('sw.js')) {
+          res.setHeader('Cache-Control', `public, max-age=${15 * 60}`)
+        }
+      }
+    }
+  },
   /*
   ** Nuxt.js dev-modules
   */
@@ -93,7 +106,6 @@ module.exports = {
     // Doc: https://github.com/nuxt-community/eslint-module
     // '@nuxtjs/eslint-module'
   ],
-  cache: true,
   /*
   ** Nuxt.js modules
   */
