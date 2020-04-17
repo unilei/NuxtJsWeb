@@ -185,7 +185,8 @@
       }
       let hotBbsList = await context.$axios.get(`${base.sq}/v1/forum/`+sportType+`/0/`+type_hot+`/articles`,{params:params_hot})
 
-      console.log(bbsList.data.Data.list[0].content)
+      // console.log(bbsList.data.Data.list[0].content)
+      console.log(bbsList)
       return {
         bbsList:bbsList.data.Data.list,
         hotBbsList:hotBbsList.data.Data.list
