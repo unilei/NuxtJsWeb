@@ -28,13 +28,13 @@
                   {{news.commentTotalCount}}
                 </a>
                 <a href="#">
-                  <img style="margin-left: 20px;" src="../../../assets/image/news-comment.png" alt="">
+                  <img style="margin-left: 20px;" src="https://aloss.hotforest.cn/web/news-comment.png" alt="">
                 </a>
                 <a href="#">
                   {{news.likes}}
                 </a>
                 <a href="#">
-                  <img src="../../../assets/image/news-like.png" alt="">
+                  <img src="https://aloss.hotforest.cn/web/news-like.png" alt="">
                 </a>
                 <!--                                <a href="#" @click="like(news.article_id,0)">-->
                 <!--                                    <img src="../../assets/image/news-like.png" alt="">-->

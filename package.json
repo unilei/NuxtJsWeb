@@ -17,25 +17,22 @@
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/pwa": "^3.0.0-0",
     "@nuxtjs/sitemap": "^2.0.1",
-    "amfe-flexible": "^2.2.1",
     "axios": "^0.19.2",
     "cross-env": "^5.2.0",
     "element-ui": "^2.4.11",
     "express": "^4.16.4",
     "nprogress": "^0.2.0",
-    "nuxt": "^2.0.0",
-    "vant": "^2.5.9"
+    "nuxt": "^2.0.0"
   },
   "devDependencies": {
     "@nuxtjs/component-cache": "^1.1.5",
     "@nuxtjs/eslint-config": "^2.0.0",
     "@nuxtjs/eslint-module": "^1.0.0",
     "babel-eslint": "^10.0.1",
+    "babel-plugin-component": "^1.1.1",
     "eslint": "^6.1.0",
     "eslint-plugin-nuxt": ">=0.4.2",
     "nodemon": "^1.18.9",
-    "postcss-pxtorem": "^5.1.1",
     "webpack-bundle-analyzer": "^3.6.1"
   }
-
 }

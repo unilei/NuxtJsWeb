@@ -43,7 +43,7 @@
   }
 </script>
 
-<style scoped no-ssr>
+<style scoped>
   .el-main{
     padding: 0 27px 0 27px;
 

@@ -7,7 +7,6 @@
   top: 0;
   left: 0;
 
-
 }
 
 .login-modal{
@@ -21,7 +20,7 @@
   border-radius: 8px;
   position: relative;
   padding: 20px;
-
+  text-align: center;
 }
 .login-modal-t-img{
   position: absolute;

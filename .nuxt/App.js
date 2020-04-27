@@ -14,11 +14,9 @@ import '..\\node_modules\\_element-ui@2.13.0@element-ui\\lib\\theme-chalk\\index
 
 import _6f2aba07 from '..\\layouts\\bbsLayout.vue'
 import _6f6c098b from '..\\layouts\\default.vue'
-import _209f5541 from '..\\layouts\\mLayout.vue'
-import _61323e74 from '..\\layouts\\mNewsLayout.vue'
 import _2fdf5853 from '..\\layouts\\newsLayout.vue'
 
-const layouts = { "_bbsLayout": sanitizeComponent(_6f2aba07),"_default": sanitizeComponent(_6f6c098b),"_mLayout": sanitizeComponent(_209f5541),"_mNewsLayout": sanitizeComponent(_61323e74),"_newsLayout": sanitizeComponent(_2fdf5853) }
+const layouts = { "_bbsLayout": sanitizeComponent(_6f2aba07),"_default": sanitizeComponent(_6f6c098b),"_newsLayout": sanitizeComponent(_2fdf5853) }
 
 export default {
   render (h, props) {

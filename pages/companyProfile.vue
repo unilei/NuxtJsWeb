@@ -2,7 +2,7 @@
   <el-main>
     <div class="p-big-bg">
       <div class="p-banner">
-        <img src="../assets/image/p-banner.png" alt="">
+        <img src="https://aloss.hotforest.cn/web/p-banner.png" alt="">
       </div>
 
       <div class="p-profile">
@@ -54,11 +54,11 @@
             </div>
             <div class="p-sports-news-c">
               <ul>
-                <li><a href="#"><img src="../assets/image/p-n-1.png" alt=""> <span>完整资讯</span></a></li>
-                <li><a href="#"><img src="../assets/image/p-n-2.png" alt=""> <span>深度专栏</span></a></li>
-                <li><a href="#"><img src="../assets/image/p-n-3.png" alt=""> <span>准确数据</span></a></li>
-                <li><a href="#"><img src="../assets/image/p-n-4.png" alt=""> <span>最新赛程</span></a></li>
-                <li><a href="#"><img src="../assets/image/p-n-5.png" alt=""> <span>无与伦比</span></a></li>
+                <li><a href="#"><img src="https://aloss.hotforest.cn/web/p-n-1.png" alt=""> <span>完整资讯</span></a></li>
+                <li><a href="#"><img src="https://aloss.hotforest.cn/web/p-n-2.png" alt=""> <span>深度专栏</span></a></li>
+                <li><a href="#"><img src="https://aloss.hotforest.cn/web/p-n-3.png" alt=""> <span>准确数据</span></a></li>
+                <li><a href="#"><img src="https://aloss.hotforest.cn/web/p-n-4.png" alt=""> <span>最新赛程</span></a></li>
+                <li><a href="#"><img src="https://aloss.hotforest.cn/web/p-n-5.png" alt=""> <span>无与伦比</span></a></li>
               </ul>
             </div>
           </div>
@@ -77,12 +77,12 @@
                 <span>篮球大咖</span>
               </div>
               <ul>
-                <li><a href="#"><img src="../assets/image/p-1.png" alt=""></a></li>
-                <li><a href="#"><img src="../assets/image/p-2.png" alt=""></a></li>
-                <li><a href="#"><img src="../assets/image/p-3.png" alt=""></a></li>
-                <li><a href="#"><img src="../assets/image/p-4.png" alt=""></a></li>
-                <li><a href="#"><img src="../assets/image/p-5.png" alt=""></a></li>
-                <li><a href="#"><img src="../assets/image/p-6.png" alt=""></a></li>
+                <li><a href="#"><img src="https://aloss.hotforest.cn/web/p-1.png" alt=""></a></li>
+                <li><a href="#"><img src="https://aloss.hotforest.cn/web/p-2.png" alt=""></a></li>
+                <li><a href="#"><img src="https://aloss.hotforest.cn/web/p-3.png" alt=""></a></li>
+                <li><a href="#"><img src="https://aloss.hotforest.cn/web/p-4.png" alt=""></a></li>
+                <li><a href="#"><img src="https://aloss.hotforest.cn/web/p-5.png" alt=""></a></li>
+                <li><a href="#"><img src="https://aloss.hotforest.cn/web/p-6.png" alt=""></a></li>
               </ul>
 
             </div>
@@ -91,12 +91,12 @@
                 <span>足球大咖</span>
               </div>
               <ul>
-                <li><a href="#"><img src="../assets/image/p-1.png" alt=""></a></li>
-                <li><a href="#"><img src="../assets/image/pp-2.png" alt=""></a></li>
-                <li><a href="#"><img src="../assets/image/pp-3.png" alt=""></a></li>
-                <li><a href="#"><img src="../assets/image/pp-4.png" alt=""></a></li>
-                <li><a href="#"><img src="../assets/image/pp-5.png" alt=""></a></li>
-                <li><a href="#"><img src="../assets/image/pp-6.png" alt=""></a></li>
+                <li><a href="#"><img src="https://aloss.hotforest.cn/web/p-1.png" alt=""></a></li>
+                <li><a href="#"><img src="https://aloss.hotforest.cn/web/pp-2.png" alt=""></a></li>
+                <li><a href="#"><img src="https://aloss.hotforest.cn/web/pp-3.png" alt=""></a></li>
+                <li><a href="#"><img src="https://aloss.hotforest.cn/web/pp-4.png" alt=""></a></li>
+                <li><a href="#"><img src="https://aloss.hotforest.cn/web/pp-5.png" alt=""></a></li>
+                <li><a href="#"><img src="https://aloss.hotforest.cn/web/pp-6.png" alt=""></a></li>
               </ul>
 
             </div>
@@ -109,20 +109,20 @@
       <div class="p-business">
         <h3>媒体合作伙伴</h3>
         <ul>
-          <li><a href="#"><img src="../assets/image/business/1.png" alt=""></a></li>
-          <li><a href="#"><img src="../assets/image/business/2.png" alt=""></a></li>
-          <li><a href="#"><img src="../assets/image/business/3.png" alt=""></a></li>
-          <li><a href="#"><img src="../assets/image/business/4.png" alt=""></a></li>
-          <li><a href="#"><img src="../assets/image/business/5.png" alt=""></a></li>
-          <li><a href="#"><img src="../assets/image/business/6.png" alt=""></a></li>
-          <li><a href="#"><img src="../assets/image/business/7.png" alt=""></a></li>
-          <li><a href="#"><img src="../assets/image/business/8.png" alt=""></a></li>
-          <li><a href="#"><img src="../assets/image/business/9.png" alt=""></a></li>
-          <li><a href="#"><img src="../assets/image/business/10.png" alt=""></a></li>
-          <li><a href="#"><img src="../assets/image/business/11.png" alt=""></a></li>
-          <li><a href="#"><img src="../assets/image/business/12.png" alt=""></a></li>
-          <li><a href="#"><img src="../assets/image/business/13.png" alt=""></a></li>
-          <li><a href="#"><img src="../assets/image/business/14.png" alt=""></a></li>
+          <li><a href="#"><img src="https://aloss.hotforest.cn/web/business/1.png" alt=""></a></li>
+          <li><a href="#"><img src="https://aloss.hotforest.cn/web/business/2.png" alt=""></a></li>
+          <li><a href="#"><img src="https://aloss.hotforest.cn/web/business/3.png" alt=""></a></li>
+          <li><a href="#"><img src="https://aloss.hotforest.cn/web/business/4.png" alt=""></a></li>
+          <li><a href="#"><img src="https://aloss.hotforest.cn/web/business/5.png" alt=""></a></li>
+          <li><a href="#"><img src="https://aloss.hotforest.cn/web/business/6.png" alt=""></a></li>
+          <li><a href="#"><img src="https://aloss.hotforest.cn/web/business/7.png" alt=""></a></li>
+          <li><a href="#"><img src="https://aloss.hotforest.cn/web/business/8.png" alt=""></a></li>
+          <li><a href="#"><img src="https://aloss.hotforest.cn/web/business/9.png" alt=""></a></li>
+          <li><a href="#"><img src="https://aloss.hotforest.cn/web/business/10.png" alt=""></a></li>
+          <li><a href="#"><img src="https://aloss.hotforest.cn/web/business/11.png" alt=""></a></li>
+          <li><a href="#"><img src="https://aloss.hotforest.cn/web/business/12.png" alt=""></a></li>
+          <li><a href="#"><img src="https://aloss.hotforest.cn/web/business/13.png" alt=""></a></li>
+          <li><a href="#"><img src="https://aloss.hotforest.cn/web/business/14.png" alt=""></a></li>
         </ul>
 
       </div>
@@ -174,7 +174,7 @@
 
   .p-profile {
     height: 500px;
-    background: url("../assets/image/p-bg-2.png") no-repeat center;
+    background: url("https://aloss.hotforest.cn/web/p-bg-2.png") no-repeat center;
     position: relative;
   }
 
@@ -338,7 +338,7 @@
 
   .p-sports-news-bg {
     height: 600px;
-    background: url("../assets/image/p-bg-3.png") no-repeat center;
+    background: url("https://aloss.hotforest.cn/web/p-bg-3.png") no-repeat center;
     background-size: 160%;
   }
 

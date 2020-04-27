@@ -107,7 +107,7 @@
     <div class="news-container">
       <div class="news-header">
         <div style="width:40px;height:40px;float:left;">
-          <img style="width: 100%;" src="../assets/image/nba-icon.png" alt="">
+          <img style="width: 100%;" src="https://aloss.hotforest.cn/web/nba-icon.png" alt="">
         </div>
         <div style="float:left;margin-left: 9px;width:155px;height: 40px;margin-top: 18px;"
              :style="backgroundImg"
@@ -171,7 +171,7 @@
     <div class="news-container">
       <div class="news-header">
         <div style="width:40px;height:40px;float:left;">
-          <img style="width: 100%;" src="../assets/image/bbs.png" alt="">
+          <img style="width: 100%;" src="https://aloss.hotforest.cn/web/bbs.png" alt="">
         </div>
         <div style="float:left;margin-left: 9px;width:155px;height: 40px;margin-top: 18px;"
              :style="backgroundImg"
@@ -187,14 +187,6 @@
                 {{hotBbs.title}}
               </nuxt-link>
             </h4>
-            <!--                            <div class="news-left-l" style="width: 0 !important;;">-->
-            <!--                            </div>-->
-            <!--                            <div style="width:562px !important; padding-left: 0px;" class="news-left-r" v-if="hotBbs.content">-->
-            <!--                                <p style="width: auto !important;height: auto !important;">-->
-            <!--                                    {{hotBbs.title}}-->
-            <!--                                </p>-->
-            <!--                                <span style="padding-left: 10px;margin-top: 0px !important;">{{hotBbs.create_time | dateForHour}}</span>-->
-            <!--                            </div>-->
           </li>
 
         </ul>
@@ -215,7 +207,7 @@
     <div class="news-container">
       <div class="news-header">
         <div style="width:40px;height:40px;float:left;">
-          <img style="width: 100%;" src="../assets/image/laliga-icon.png" alt="">
+          <img style="width: 100%;" src="https://aloss.hotforest.cn/web/laliga-icon.png" alt="">
         </div>
         <div style="float:left;margin-left: 9px;width:155px;height: 40px;margin-top: 18px;"
              :style="backgroundImg"
@@ -278,7 +270,7 @@
     <div class="news-container">
       <div class="news-header">
         <div style="width:40px;height:40px;float:left;">
-          <img style="width: 100%;" src="../assets/image/premier-icon.png" alt="">
+          <img style="width: 100%;" src="https://aloss.hotforest.cn/web/premier-icon.png" alt="">
         </div>
         <div style="float:left;margin-left: 9px;width:155px;height: 40px;margin-top: 18px;"
              :style="backgroundImg"
@@ -343,7 +335,7 @@
     <div class="news-container">
       <div class="news-header">
         <div style="width:40px;height:40px;float:left;">
-          <img style="width: 100%;" src="../assets/image/serea-icon.png" alt="">
+          <img style="width: 100%;" src="https://aloss.hotforest.cn/web/serea-icon.png" alt="">
         </div>
         <div style="float:left;margin-left: 9px;width:155px;height: 40px;margin-top: 18px;"
              :style="backgroundImg"
@@ -416,7 +408,7 @@
     data () {
       return {
         backgroundImg: {
-          backgroundImage: 'url(' + require('@/assets/image/hot-t-bg.png') + ')',
+          backgroundImage: 'url(https://aloss.hotforest.cn/web/hot-t-bg.png)',
           backgroundRepeat: 'no-repeat',
           backgroundSize: '100% 100%',
           marginTop: '5px',
