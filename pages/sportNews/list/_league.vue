@@ -9,7 +9,8 @@
           </div>
           <div class="news-l-r">
             <h3>
-              <nuxt-link target="_blank" :to="{name:'sportNews-detail-shorturl',params:{shorturl:news.shorturl}}">{{news.title}}</nuxt-link>
+              <nuxt-link target="_blank" :to="{name:'sportNews-detail-shorturl',params:{shorturl:news.shorturl,
+              key:121321}}">{{news.title}}</nuxt-link>
             </h3>
 
             <div class="news-l-r-content">
@@ -36,19 +37,12 @@
                 <a href="#">
                   <img src="https://aloss.hotforest.cn/web/news-like.png" alt="">
                 </a>
-                <!--                                <a href="#" @click="like(news.article_id,0)">-->
-                <!--                                    <img src="../../assets/image/news-like.png" alt="">-->
-                <!--                                </a>-->
-                <!--                            <a href="#" @click="like(news.article_id,0)">-->
-                <!--                                <img src="../../assets/image/news-like.png" alt="">-->
-                <!--                            </a>-->
               </div>
             </div>
           </div>
         </li>
       </ul>
       <div class="news-more">
-        <!--              <nuxt-link :to="'/news/list?league='+this.league_value+'&offset='+this.offset">查看更多</nuxt-link>-->
         <span @click="showMoreNews(offset)">查看更多</span>
       </div>
 

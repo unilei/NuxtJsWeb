@@ -73,11 +73,11 @@
                     const avatar_url = res.data.Data.avatar_url
                     const phone = res.data.Data.phone
 
-                    sessionStorage.setItem('nickname', nickname)
-                    sessionStorage.setItem('token', token)
-                    sessionStorage.setItem('avatar_url', avatar_url)
-                    sessionStorage.setItem('phone', phone)
-                    sessionStorage.setItem('uid', uid)
+                    localStorage.setItem('nickname', nickname)
+                    localStorage.setItem('token', token)
+                    localStorage.setItem('avatar_url', avatar_url)
+                    localStorage.setItem('phone', phone)
+                    localStorage.setItem('uid', uid)
                     window.location.href = '/'
 
                     // this.$router.push({name:'home'})

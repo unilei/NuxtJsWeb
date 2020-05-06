@@ -76,15 +76,16 @@ function pluralize (time, label) {
   return time + label + 's'
 }
 
-const filters = {
+let filters = {
   host,
   timeAgo,
   dateForHour,
   dateFormat,
 }
 
-export default filters
 
 Object.keys(filters).forEach((key) => {
   Vue.filter(key, filters[key])
 })
+
+export default filters

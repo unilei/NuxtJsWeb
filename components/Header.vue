@@ -1,5 +1,4 @@
 <template>
-
   <el-header style="width:1440px;height: 120px;">
     <client-only>
     <div class="header-top">
@@ -7,16 +6,15 @@
         <div class="header-top-l-logo">
           <img @click="turn_own" src="https://aloss.hotforest.cn/web/header-logo.png" alt="全民体育">
         </div>
-        <!--                <span>全民体育 懂球迷的聚集体</span>-->
       </div>
       <div class="header-top-right" v-if="this.uid == null">
         <button @click="dialogLogin">登录账号</button>
       </div>
       <div class="header-top-right" v-if="this.uid !==  null">
-        <img v-if="this.avatar_url != null & this.avatar_url != '' " :src="this.avatar_url" alt="">
-        <img v-if="this.avatar_url == null || this.avatar_url == ''" src="https://aloss.hotforest.cn/web/star.png" alt="">
-        <a v-if="this.nickname != null & this.nickname != ''" href="#">{{this.nickname}}</a>
-        <a v-if="this.nickname == null || this.nickname == ''" href="#">{{this.phone}}</a>
+        <img v-if="this.avatar_url != null && this.avatar_url != '' " :src="this.avatar_url" alt="">
+        <img v-if="this.avatar_url == null || this.avatar_url == ''" src="https://aloss.hotforest.cn/web/default-header.png" alt="">
+        <a v-if="this.nickname != null && this.nickname != ''" href="javascript:;">{{this.nickname}}</a>
+        <a v-if="this.nickname == null || this.nickname == ''" href="javascript:;">{{this.phone}}</a>
         <button @click="loginOut">退出</button>
       </div>
     </div>
@@ -33,13 +31,11 @@
           </div>
 
           <div class="login-modal-t-p">
-            <!--                        <span>手机号码</span>-->
             <input type="text" placeholder="手机号码" v-model="mobile">
             <button v-if="this.mobile !== '' " @click="sendMobileLoginSms">验证</button>
             <button v-if="this.mobile===''"  class="login-modal-t-p-b-disable">验证</button>
           </div>
           <div class="login-modal-t-c">
-            <!--                        <span>验证信息</span>-->
             <input type="text" placeholder="请输入验证码" v-model="code">
           </div>
           <div class="login-modal-t-b">
@@ -76,10 +72,7 @@
             <span>使用即为同意</span>
             <span @click="turn_agreement">全民体育用户协议/隐私权政策</span>
           </div>
-
         </div>
-
-
       </div>
 
 
@@ -227,8 +220,8 @@
         this.dialogMobileLogin = true
       },
       getNsDeviceId () {
-        this.ip = sessionStorage.getItem('ip')
-        this.area = sessionStorage.getItem('area')
+        this.ip = localStorage.getItem('ip')
+        this.area = localStorage.getItem('area')
         this.brower = GetCurrentBrowser()
         this.os = GetOs()
         // console.log('ip，地区，浏览器，操作系统，：', this.ip, this.area, this.brower, this.os)
@@ -315,11 +308,11 @@
                     const avatar_url = res.data.Data.avatar_url
                     const phone = res.data.Data.phone
 
-                    sessionStorage.setItem('nickname', nickname)
-                    sessionStorage.setItem('token', token)
-                    sessionStorage.setItem('avatar_url', avatar_url)
-                    sessionStorage.setItem('phone', phone)
-                    sessionStorage.setItem('uid', uid)
+                    localStorage.setItem('nickname', nickname)
+                    localStorage.setItem('token', token)
+                    localStorage.setItem('avatar_url', avatar_url)
+                    localStorage.setItem('phone', phone)
+                    localStorage.setItem('uid', uid)
 
                     this.$router.go(0)
 
@@ -340,25 +333,17 @@
 
       },
       loginOut () {
-        // sessionStorage.removeItem('nickname')
-        // sessionStorage.removeItem('token')
-        // sessionStorage.removeItem('avatar_url')
-        // sessionStorage.removeItem('phone')
-        // sessionStorage.removeItem('uid')
-        sessionStorage.clear()
+        localStorage.clear()
         this.$router.go(0)
       }
     },
     mounted () {
 
       this.getNsDeviceId()
-      this.nickname = sessionStorage.getItem('nickname')
-      this.avatar_url = sessionStorage.getItem('avatar_url')
-      this.phone = sessionStorage.getItem('phone')
-      this.uid = sessionStorage.getItem('uid')
-
-      // this.$api.login.wxGetCode('wxc476300d9f186ff1','www.171tiyu.com')
-
+      this.nickname = localStorage.getItem('nickname')
+      this.avatar_url = localStorage.getItem('avatar_url')
+      this.phone = localStorage.getItem('phone')
+      this.uid = localStorage.getItem('uid')
     }
   }
 </script>

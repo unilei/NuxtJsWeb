@@ -5,7 +5,7 @@
       <h3>{{newsDetail.title}}</h3>
       <div class="news-detail-t">
         <div class="news-detail-t-l">
-          <img src="https://aloss.hotforest.cn/web/star.png" alt="">
+          <img src="https://aloss.hotforest.cn/web/default-header.png" alt="">
         </div>
         <div class="news-detail-t-r">
           <div class="news-detail-t-r-t">
@@ -30,6 +30,19 @@
           </div>
         </div>
       </div>
+      <!--      标签-->
+      <el-row>
+        <el-col :span="24" class="news-detail-tag">
+          标签：{{newsDetail.league}}
+        </el-col>
+      </el-row>
+
+      <!--      上下篇-->
+      <el-row>
+        <el-col>
+
+        </el-col>
+      </el-row>
 
       <!--                留言评论-->
       <div class="publish-comment">
@@ -132,7 +145,8 @@
         <div class="hot-news-list-t">
           <div class="hot-news-list-t-icon"></div>
           <span>你可能感兴趣的</span>
-          <img style="width: 20px;height: 20px;margin-right: 5px;" src="https://aloss.hotforest.cn/web/xuanzhuan.png" alt="">
+          <img style="width: 20px;height: 20px;margin-right: 5px;" src="https://aloss.hotforest.cn/web/xuanzhuan.png"
+               alt="">
           <span style="font-size:12px;
 font-family:PingFangSC-Regular,PingFang SC;
 font-weight:400;
@@ -356,7 +370,6 @@ line-height:30px;">换一换</span>
         dialogTableVisible: false,
         dialogFormVisible: false,
         formLabelWidth: '60px',
-        nickname: '',
         ns_device_id: 'website',
         imageUrl: '',
         uploadBaseUrl: base.sq + '/UploadAvatar',
@@ -383,16 +396,25 @@ line-height:30px;">换一换</span>
         redirect_uri: 'http://www.171tiyu.com/wechat'
       }
     },
+    mounted () {
+      // console.log(this.$route.params.shorturl)
+      this.shorturl = this.$route.params.shorturl
+      this.avatar_url = localStorage.getItem('avatar_url')
+      this.getReplyList(this.article_id, 0)
+
+      console.log(this.$route.params)
+
+    },
     head () {
       let description = ''
       let newsContent = this.newsDetail.content
-      newsContent.every((v,i)=>{
-        if (v.type === 1) {
-          description = v.content
-          return false
-        }
-        return true
-      })
+      // newsContent.every((v, i) => {
+      //   if (v.type === 1) {
+      //     description = v.content
+      //     return false
+      //   }
+      //   return true
+      // })
 
       return {
         title: this.newsDetail.title,
@@ -419,12 +441,16 @@ line-height:30px;">换一换</span>
     },
     watchQuery: ['shorturl'],
     async asyncData (context) {
+
       const shorturl = context.params.shorturl
+      console.log(context.params)
       let newsDetail = await context.$axios.get(`${base.sq}/v2/GetArticleDetail`, {
         params: {
           shorturl: shorturl
         }
       })
+
+      // console.log(newsDetail)
 
       let hotNewsList = await context.$axios.get(`${base.sq}/v2/GetArticles`, {
         params: {
@@ -473,13 +499,7 @@ line-height:30px;">换一换</span>
         article_id: newsDetail.data.Data.article_id
       }
     },
-    mounted () {
-      // console.log(this.$route.params.shorturl)
-      this.shorturl = this.$route.params.shorturl
-      this.avatar_url = sessionStorage.getItem('avatar_url')
-      this.getReplyList(this.article_id, 0)
 
-    },
     methods: {
       getReplyList (article_id, offset) {
         let type = 'news'
@@ -635,11 +655,11 @@ line-height:30px;">换一换</span>
                     const avatar_url = res.data.Data.avatar_url
                     const phone = res.data.Data.phone
 
-                    sessionStorage.setItem('nickname', nickname)
-                    sessionStorage.setItem('token', token)
-                    sessionStorage.setItem('avatar_url', avatar_url)
-                    sessionStorage.setItem('phone', phone)
-                    sessionStorage.setItem('uid', uid)
+                    localStorage.setItem('nickname', nickname)
+                    localStorage.setItem('token', token)
+                    localStorage.setItem('avatar_url', avatar_url)
+                    localStorage.setItem('phone', phone)
+                    localStorage.setItem('uid', uid)
 
                     this.$router.go(0)
 
@@ -681,8 +701,8 @@ line-height:30px;">换一换</span>
           var headers = {
             'Content-Type': 'application/x-www-form-urlencoded',
             'ns_device_id': 'website',
-            'uid': sessionStorage.getItem('uid'),
-            'token': sessionStorage.getItem('token')
+            'uid': localStorage.getItem('uid'),
+            'token': localStorage.getItem('token')
           }
           var form = new FormData()    // FormData 对象
           form.append('image', this.fileObj)
@@ -690,8 +710,8 @@ line-height:30px;">换一换</span>
             res => {
               // console.log(res)
               if (res.Status === 1) {
-                sessionStorage.removeItem('avatar_url')
-                this.$forceUpdate(sessionStorage.setItem('avatar_url', res.Data.url))
+                localStorage.removeItem('avatar_url')
+                this.$forceUpdate(localStorage.setItem('avatar_url', res.Data.url))
               } else {
                 this.$message({
                     message: '头像更新失败',
@@ -711,15 +731,15 @@ line-height:30px;">换一换</span>
           }, {
             headers: {
               ns_device_id: this.ns_device_id,
-              uid: sessionStorage.getItem('uid'),
-              token: sessionStorage.getItem('token')
+              uid: localStorage.getItem('uid'),
+              token: localStorage.getItem('token')
             }
           }).then(
             res => {
               this.dialogFormVisible = false
               if (res.data.Status === 1) {
-                sessionStorage.removeItem('nickname')
-                sessionStorage.setItem('nickname', this.nickname)
+                localStorage.removeItem('nickname')
+                localStorage.setItem('nickname', this.nickname)
 
                 this.$message({
                   message: '修改成功',
@@ -741,9 +761,9 @@ line-height:30px;">换一换</span>
       },
       replyNews (level) {
         const ns_device_id = 'website'
-        const uid = sessionStorage.getItem('uid')
-        const token = sessionStorage.getItem('token')
-        const nickname = sessionStorage.getItem('nickname')
+        const uid = localStorage.getItem('uid')
+        const token = localStorage.getItem('token')
+        const nickname = localStorage.getItem('nickname')
 
         if (uid === null || token == null) {
           // this.$message({
@@ -800,9 +820,9 @@ line-height:30px;">换一换</span>
       },
       replyReplyNews (level, reply_id) {
         const ns_device_id = 'website'
-        const uid = sessionStorage.getItem('uid')
-        const token = sessionStorage.getItem('token')
-        const nickname = sessionStorage.getItem('nickname')
+        const uid = localStorage.getItem('uid')
+        const token = localStorage.getItem('token')
+        const nickname = localStorage.getItem('nickname')
 
         if (uid === null || token == null) {
           // this.$message({
@@ -1266,5 +1286,15 @@ line-height:30px;">换一换</span>
     font-weight: 400;
     color: rgba(131, 131, 131, 1);
     line-height: 30px;
+  }
+
+  .news-detail-tag {
+    margin-top: 25px;
+    text-align: left;
+    font-size: 18px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(102, 102, 102, 1);
+    line-height: 25px;
   }
 </style>

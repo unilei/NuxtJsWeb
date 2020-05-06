@@ -343,7 +343,7 @@ line-height:30px;cursor: pointer;">换一换</span>
   import qs from 'qs'
 
   export default {
-    name: 'Detail',
+    name: 'articleId',
     layout: 'bbsLayout',
     data () {
       return {
@@ -472,7 +472,7 @@ line-height:30px;cursor: pointer;">换一换</span>
 
     },
     mounted () {
-      this.token = sessionStorage.getItem('token')
+      this.token = localStorage.getItem('token')
       this.getReplyList(this.$route.params.articleId,0)
 
     },
@@ -596,11 +596,11 @@ line-height:30px;cursor: pointer;">换一换</span>
                     const avatar_url = res.data.Data.avatar_url
                     const phone = res.data.Data.phone
 
-                    sessionStorage.setItem('nickname', nickname)
-                    sessionStorage.setItem('token', token)
-                    sessionStorage.setItem('avatar_url', avatar_url)
-                    sessionStorage.setItem('phone', phone)
-                    sessionStorage.setItem('uid', uid)
+                    localStorage.setItem('nickname', nickname)
+                    localStorage.setItem('token', token)
+                    localStorage.setItem('avatar_url', avatar_url)
+                    localStorage.setItem('phone', phone)
+                    localStorage.setItem('uid', uid)
 
                     this.$router.go(0)
 
@@ -646,15 +646,15 @@ line-height:30px;cursor: pointer;">换一换</span>
             headers: {
               'Content-Type': 'application/x-www-form-urlencoded',
               'ns_device_id': 'website',
-              'uid': sessionStorage.getItem('uid'),
-              'token': sessionStorage.getItem('token')
+              'uid': localStorage.getItem('uid'),
+              'token': localStorage.getItem('token')
             }
           }).then(
             res => {
               // console.log(res)
               if (res.data.Status === 1) {
-                sessionStorage.removeItem('avatar_url')
-                this.$forceUpdate(sessionStorage.setItem('avatar_url', res.data.Data.url))
+                localStorage.removeItem('avatar_url')
+                this.$forceUpdate(localStorage.setItem('avatar_url', res.data.Data.url))
               } else {
                 this.$message({
                     message: '头像更新失败',
@@ -674,15 +674,15 @@ line-height:30px;cursor: pointer;">换一换</span>
           }, {
             headers: {
               ns_device_id: this.ns_device_id,
-              uid: sessionStorage.getItem('uid'),
-              token: sessionStorage.getItem('token')
+              uid: localStorage.getItem('uid'),
+              token: localStorage.getItem('token')
             }
           }).then(
             res => {
               this.dialogFormVisible = false
               if (res.data.Status === 1) {
-                sessionStorage.removeItem('nickname')
-                sessionStorage.setItem('nickname', this.nickname)
+                localStorage.removeItem('nickname')
+                localStorage.setItem('nickname', this.nickname)
 
                 this.$message({
                   message: '修改成功',
@@ -726,15 +726,15 @@ line-height:30px;cursor: pointer;">换一换</span>
         }, {
           headers: {
             ns_device_id: this.ns_device_id,
-            uid: sessionStorage.getItem('uid'),
-            token: sessionStorage.getItem('token')
+            uid: localStorage.getItem('uid'),
+            token: localStorage.getItem('token')
           }
         }).then(
           res => {
             this.dialogFormVisible = false
             if (res.data.Status === 1) {
-              sessionStorage.removeItem('nickname')
-              sessionStorage.setItem('nickname', this.nickname)
+              localStorage.removeItem('nickname')
+              localStorage.setItem('nickname', this.nickname)
 
               this.$message({
                 message: '昵称修改成功',
@@ -749,9 +749,9 @@ line-height:30px;cursor: pointer;">换一换</span>
       },
       replyNews (level) {
         const ns_device_id = 'website'
-        const uid = sessionStorage.getItem('uid')
-        const token = sessionStorage.getItem('token')
-        const nickname = sessionStorage.getItem('nickname')
+        const uid = localStorage.getItem('uid')
+        const token = localStorage.getItem('token')
+        const nickname = localStorage.getItem('nickname')
 
         if (uid === null || token == null) {
           // this.$message({
@@ -810,9 +810,9 @@ line-height:30px;cursor: pointer;">换一换</span>
       },
       replyReplyNews (level, reply_id) {
         const ns_device_id = 'website'
-        const uid = sessionStorage.getItem('uid')
-        const token = sessionStorage.getItem('token')
-        const nickname = sessionStorage.getItem('nickname')
+        const uid = localStorage.getItem('uid')
+        const token = localStorage.getItem('token')
+        const nickname = localStorage.getItem('nickname')
 
         if (uid === null || token == null) {
           this.mobileDialog()

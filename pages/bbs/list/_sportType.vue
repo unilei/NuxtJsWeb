@@ -37,12 +37,6 @@
               </ul>
             </div>
           </div>
-          <!--                    <div class="bbs-list-r">-->
-          <!--                        <a>-->
-          <!--                            {{bbs.author.nickName}}-->
-          <!--                        </a>-->
-          <!--                    </div>-->
-
 
         </li>
       </ul>
@@ -68,7 +62,7 @@
           <ul>
             <li>
               <div class="news-detail-rec-l">
-                <img src="https://aloss.hotforest.cn/web/star.png" alt="">
+                <img src="https://aloss.hotforest.cn/web/default-header.png" alt="">
               </div>
               <div class="news-detail-rec-r">
                 <span>全民体育官方</span>
@@ -84,7 +78,7 @@
             </li>
             <li>
               <div class="news-detail-rec-l">
-                <img src="https://aloss.hotforest.cn/web/star.png" alt="">
+                <img src="https://aloss.hotforest.cn/web/default-header.png" alt="">
               </div>
               <div class="news-detail-rec-r">
                 <span>全民体育官方</span>
@@ -100,7 +94,7 @@
             </li>
             <li>
               <div class="news-detail-rec-l">
-                <img src="https://aloss.hotforest.cn/web/star.png" alt="">
+                <img src="https://aloss.hotforest.cn/web/default-header.png" alt="">
               </div>
               <div class="news-detail-rec-r">
                 <span>全民体育官方</span>

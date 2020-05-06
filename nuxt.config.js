@@ -72,32 +72,20 @@ module.exports = {
     },
     {
       src: '@/plugins/filter',
-      ssr: false,
-      mode: 'client'
+      mode:'client'
     },
     {
       src: '@/plugins/auto-push.js',
-      mode: 'client',
-      ssr: false
+      mode: 'client'
     },
     {
       src: '@/plugins/loading',
-      ssr: false
+      mode: 'client'
     },
 
   ],
   render: {
-    http2: {
-      push: true
-    },
-    static: {
-      maxAge: '1y',
-      setHeaders (res, path) {
-        if (path.includes('sw.js')) {
-          res.setHeader('Cache-Control', `public, max-age=${15 * 60}`)
-        }
-      }
-    }
+    resourceHints:false,
   },
   /*
   ** Nuxt.js dev-modules
