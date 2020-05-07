@@ -1,112 +1,65 @@
 <template>
   <el-header style="width:1440px;height: 120px;">
     <client-only>
-    <div class="header-top">
-      <div class="header-top-left">
-        <div class="header-top-l-logo">
-          <img @click="turn_own" src="https://aloss.hotforest.cn/web/header-logo.png" alt="全民体育">
-        </div>
-      </div>
-      <div class="header-top-right" v-if="this.uid == null">
-        <button @click="dialogLogin">登录账号</button>
-      </div>
-      <div class="header-top-right" v-if="this.uid !==  null">
-        <img v-if="this.avatar_url != null && this.avatar_url != '' " :src="this.avatar_url" alt="">
-        <img v-if="this.avatar_url == null || this.avatar_url == ''" src="https://aloss.hotforest.cn/web/default-header.png" alt="">
-        <a v-if="this.nickname != null && this.nickname != ''" href="javascript:;">{{this.nickname}}</a>
-        <a v-if="this.nickname == null || this.nickname == ''" href="javascript:;">{{this.phone}}</a>
-        <button @click="loginOut">退出</button>
-      </div>
-    </div>
-
-    <!--  手机      登陆弹出框-->
-    <div v-show="dialogFormVisible === true" class="login-modal-container">
-      <div class="login-modal">
-        <div class="login-modal-t-img" @click="closeDialog">
-          <img src="https://aloss.hotforest.cn/web/login-icon.png" alt="">
-        </div>
-        <div v-show="dialogMobileLogin === true">
-          <div class="login-modal-t">
-            <span>手机登录</span>
-          </div>
-
-          <div class="login-modal-t-p">
-            <input type="text" placeholder="手机号码" v-model="mobile">
-            <button v-if="this.mobile !== '' " @click="sendMobileLoginSms">验证</button>
-            <button v-if="this.mobile===''"  class="login-modal-t-p-b-disable">验证</button>
-          </div>
-          <div class="login-modal-t-c">
-            <input type="text" placeholder="请输入验证码" v-model="code">
-          </div>
-          <div class="login-modal-t-b">
-            <button @click="mobileLogin">登录</button>
-          </div>
-          <div class="login-modal-t-s">
-            <span>用其他方式登录</span>
-          </div>
-          <div class="login-modal-t-wx">
-            <div>
-              <img @click="wxDialog" style="cursor:pointer;"  src="https://aloss.hotforest.cn/web/wx.png" alt="">
-            </div>
-            <a href="#" @click="wxDialog">使用微信登录</a>
-          </div>
-
-          <div class="login-modal-t-xx">
-            <span>使用即为同意</span>
-            <span @click="turn_agreement">全民体育用户协议/隐私权政策</span>
+      <div class="header-top">
+        <div class="header-top-left">
+          <div class="header-top-l-logo">
+            <img @click="turn_own" src="https://aloss.hotforest.cn/web/header-logo.png" alt="全民体育">
           </div>
         </div>
-
-        <div v-show="wxIsLoginShow === true">
-          <div class="login-modal-t">
-            <span>使用其他方式登录</span>
-          </div>
-          <div class="wx-login-modal-p">
-            <a href="#" @click="mobileDialog">
-              使用手机号登录
-            </a>
-          </div>
-          <div class="wx-login-modal-img" id="login_container">
-          </div>
-          <div class="login-modal-t-xx" >
-            <span>使用即为同意</span>
-            <span @click="turn_agreement">全民体育用户协议/隐私权政策</span>
-          </div>
+        <div class="header-top-right" v-if="this.uid == null">
+          <button @click="dialogLogin">登录账号</button>
+        </div>
+        <div class="header-top-right" v-if="this.uid !==  null">
+          <img v-if="this.avatar_url != null && this.avatar_url != '' " :src="this.avatar_url" alt="">
+          <img v-if="this.avatar_url == null || this.avatar_url == ''"
+               src="https://aloss.hotforest.cn/web/default-header.png" alt="">
+          <a v-if="this.nickname != null && this.nickname != ''" href="javascript:;">{{this.nickname}}</a>
+          <a v-if="this.nickname == null || this.nickname == ''" href="javascript:;">{{this.phone}}</a>
+          <button @click="loginOut">退出</button>
         </div>
       </div>
 
 
-    </div>
-    <!--登陆弹出框结束-->
+      <!-- 登陆弹框-->
+      <Login v-bind:dialogFormVisible="dialogFormVisible"
+             v-bind:dialogMobileLogin = "dialogMobileLogin"
+             v-bind:dialogTableVisible = "dialogTableVisible"
+             v-bind:wxIsLoginShow = "wxIsLoginShow"
+             @closeDialog = "closeDialog"
+             @wxDialog = "wxDialog"
+             @mobileDialog = "mobileDialog"
+      ></Login>
 
-    <!--        悬浮二维码框-->
-    <div class="wx-qrcode-box">
-      <div class="wx-qrcode-box-img">
-        <a
-          href="https://171tiyu.com/download/android?channelCode=Web_Landing_Page"
-          v-if="this.os === 'Win'">
-          <img src="https://aloss.hotforest.cn/web/android-QRcode.png" alt="">
-        </a>
-        <a v-if="this.os==='Mac'" href="https://apps.apple.com/app/id1482371213">
-          <img src="https://aloss.hotforest.cn/web/android-QRcode.png" alt="">
-        </a>
+
+      <!--        悬浮二维码框-->
+      <div class="wx-qrcode-box">
+        <div class="wx-qrcode-box-img">
+          <a
+            href="https://171tiyu.com/download/android?channelCode=Web_Landing_Page"
+            v-if="this.os === 'Win'">
+            <img src="https://aloss.hotforest.cn/web/android-QRcode.png" alt="">
+          </a>
+          <a v-if="this.os==='Mac'" href="https://apps.apple.com/app/id1482371213">
+            <img src="https://aloss.hotforest.cn/web/android-QRcode.png" alt="">
+          </a>
+        </div>
+        <span>扫码下载安卓/IOS APP</span>
       </div>
-      <span>扫码下载安卓/IOS APP</span>
-    </div>
-    <!--        悬浮二维码框结束-->
+      <!--        悬浮二维码框结束-->
 
-  </client-only>
+    </client-only>
     <div class="nav-menu">
       <div class="nav-menu-item " style="border: none;">
         <nuxt-link :to="'/'" exact>首页</nuxt-link>
       </div>
       <div class="nav-menu-item">
-        <nuxt-link :to="{name:'sportNews-list-league',params:{league:'all'}}"   exact>全部新闻</nuxt-link>
+        <nuxt-link :to="{name:'sportNews-list-league',params:{league:'all'}}" exact>全部新闻</nuxt-link>
       </div>
       <div class="nav-menu-item">
         <ul>
           <li>
-            <nuxt-link :to="{name:'sportNews-list-league',params:{league:'nba'}}"    exact>NBA</nuxt-link>
+            <nuxt-link :to="{name:'sportNews-list-league',params:{league:'nba'}}" exact>NBA</nuxt-link>
           </li>
           <li>
             <nuxt-link :to="{name:'sportNews-list-league',params:{league:'premier'}}" exact>英超</nuxt-link>
@@ -120,7 +73,7 @@
         </ul>
       </div>
       <div class="nav-menu-item">
-        <nuxt-link :to="{name:'bbs-list-sportType',params:{'sportType':'all'}}"  exact>社区论坛</nuxt-link>
+        <nuxt-link :to="{name:'bbs-list-sportType',params:{'sportType':'all'}}" exact>社区论坛</nuxt-link>
       </div>
       <!--            <div class="nav-menu-item">-->
       <!--                <ul>-->
@@ -142,9 +95,7 @@
 
 <script>
   import { GetCurrentBrowser, GetOs } from '~/utils/systemTool.js'
-  import base from '../api/base'
-  import qs from 'qs'
-
+  import Login from './Login'
 
   export default {
     name: 'Header',
@@ -158,65 +109,42 @@
         area: '',
         brower: '',
         os: '',
-        ns_device_id: 'website',
-        mobile: '',
-        code: '',
-        country_code: '+86',
-        device_id: 'website',
         secret: '',
         nickname: null,
         avatar_url: null,
         phone: null,
         uid: null,
-        redirect_uri: 'http://www.171tiyu.com/wechat'
-
       }
+    },
+    components: {
+      Login
     },
     watch: {
-      $route (to, from) {
-        // console.log(to)
-        // console.log(from)
-        // console.log(window.location.href)
-      }
-
+      $route (to, from) {}
     },
     methods: {
-      turn_agreement(){
-        this.$router.push({path:'/agreement'})
-      },
-      turn_own () {
-        window.location.href = 'https://www.171tiyu.com'
-      },
-      closeDialog () {
+      closeDialog(){
         this.dialogTableVisible = false
         this.dialogFormVisible = false
         this.dialogMobileLogin = false
         this.wxIsLoginShow = false
       },
-      dialogLogin () {
-        // console.log(1)
-        this.dialogFormVisible = true
-        this.dialogMobileLogin = true
-      },
-      wxDialog () {
+      wxDialog(){
         this.dialogFormVisible = true
         this.wxIsLoginShow = true
         this.dialogMobileLogin = false
-
-        var obj = new WxLogin({
-          self_redirect: false,
-          id: 'login_container',
-          appid: 'wx31ded528641f2b4c',
-          scope: 'snsapi_login',
-          redirect_uri: encodeURIComponent(this.redirect_uri),
-          state: '1211111',
-          style: 'black',
-          href: '',
-        })
       },
-      mobileDialog () {
+      mobileDialog(){
         this.dialogFormVisible = true
         this.wxIsLoginShow = false
+        this.dialogMobileLogin = true
+      },
+      turn_own () {
+        window.location.href = 'https://www.171tiyu.com'
+      },
+      dialogLogin () {
+        // console.log(1)
+        this.dialogFormVisible = true
         this.dialogMobileLogin = true
       },
       getNsDeviceId () {
@@ -225,112 +153,6 @@
         this.brower = GetCurrentBrowser()
         this.os = GetOs()
         // console.log('ip，地区，浏览器，操作系统，：', this.ip, this.area, this.brower, this.os)
-
-      },
-      sendMobileLoginSms () {
-        const mobile = this.mobile
-        const ns_device_id = this.ns_device_id
-        const country_code = this.country_code
-        this.$axios.get(`${base.sq}/SendLoginSms`, {
-          params: {},
-          headers: {
-            phone: mobile,
-            ns_device_id: ns_device_id,
-            country_code: country_code
-          }
-        }).then(
-          res => {
-            // console.log(res)
-            if (res.data.Status === 1) {
-              this.$message(
-                {
-                  message: '验证码发送成功',
-                  type: 'success',
-                  customClass: 'zZindex'
-                }
-              )
-            } else {
-              this.$message.error(res.data.ErrMsg)
-              // alert('验证码发送失败')
-            }
-          }
-        )
-
-      },
-      mobileLogin () {
-        const ns_device_id = this.ns_device_id
-        const mobile = this.mobile
-        const country_code = this.country_code
-        const code = this.code
-        const device_id = this.device_id
-
-        this.$axios.post(`${base.sq}/OTPLogin`, qs.stringify({
-          phone: mobile,
-          country_code: country_code,
-          code: code,
-          device_id: device_id,
-          platform: 'ios',
-        }), {
-          headers: {
-            ns_device_id: ns_device_id
-
-          }
-        }).then(
-          res => {
-
-            if (res.data.Status === 1) {
-              // console.log(res)
-              const account = res.data.Data.account
-              const password = res.data.Data.password
-              const type = res.data.Data.type
-              this.$axios.post(`${base.sq}/Login`, {
-                type: type,
-                account: account,
-                password: password,
-                secret: this.secret
-
-              }, {
-                headers: {
-                  ns_device_id: ns_device_id
-                }
-              }).then(
-                res => {
-                  // console.log(res)
-                  if (res.data.Status === 1) {
-                    const uid = res.data.Data.uid
-                    const guid = res.data.Data.guid
-                    const token = res.data.Data.token
-                    const is_activated = res.data.Data.is_activated
-                    const is_add_favorite = res.data.Data.is_add_favorite
-                    const iosDownloadUrl = res.data.Data.iosDownloadUrl
-                    const is_locked = res.data.Data.is_locked
-                    const nickname = res.data.Data.nickname
-                    const avatar_url = res.data.Data.avatar_url
-                    const phone = res.data.Data.phone
-
-                    localStorage.setItem('nickname', nickname)
-                    localStorage.setItem('token', token)
-                    localStorage.setItem('avatar_url', avatar_url)
-                    localStorage.setItem('phone', phone)
-                    localStorage.setItem('uid', uid)
-
-                    this.$router.go(0)
-
-                  } else {
-                    // alert('登录失败')
-                    this.$message.error(res.data.ErrMsg)
-                  }
-
-                }
-              )
-
-            } else {
-              // alert(res.data.ErrMsg)
-              this.$message.error(res.data.ErrMsg)
-            }
-          }
-        )
-
       },
       loginOut () {
         localStorage.clear()
@@ -338,7 +160,6 @@
       }
     },
     mounted () {
-
       this.getNsDeviceId()
       this.nickname = localStorage.getItem('nickname')
       this.avatar_url = localStorage.getItem('avatar_url')
@@ -355,12 +176,10 @@
 </style>
 
 <style scoped>
-  @import "../assets/css/login.css";
   @import "../assets/css/wx-qrcode-box.css";
 
   .el-header {
     width: 1440px;
-    /*height: 140px !important;*/
     padding: 0;
   }
 

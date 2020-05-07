@@ -30,21 +30,24 @@
           </div>
         </div>
       </div>
-      <!--      标签-->
+      <!--标签-->
       <el-row>
         <el-col :span="24" class="news-detail-tag">
           标签：{{newsDetail.league}}
         </el-col>
       </el-row>
 
-      <!--      上下篇-->
-      <el-row>
-        <el-col>
+      <!--上下篇-->
+<!--      <el-row>-->
+<!--        <el-col :span="24">-->
+<!--            <h4>上一篇:{{prevTitle}}</h4>-->
+<!--        </el-col>-->
+<!--        <el-col :span="24">-->
+<!--          <h4>下一篇:{{nextTitle}}</h4>-->
+<!--        </el-col>-->
+<!--      </el-row>-->
 
-        </el-col>
-      </el-row>
-
-      <!--                留言评论-->
+      <!--留言评论-->
       <div class="publish-comment">
         <p>我有话说</p>
         <div class="publish-comment-d">
@@ -158,7 +161,7 @@ line-height:30px;">换一换</span>
           <ul>
             <li>
               <div class="news-detail-rec-l">
-                <img src="https://aloss.hotforest.cn/web/star.png" alt="">
+                <img src="https://aloss.hotforest.cn/web/default-header.png" alt="">
               </div>
               <div class="news-detail-rec-r">
                 <span>全民体育官方</span>
@@ -174,7 +177,7 @@ line-height:30px;">换一换</span>
             </li>
             <li>
               <div class="news-detail-rec-l">
-                <img src="https://aloss.hotforest.cn/web/star.png" alt="">
+                <img src="https://aloss.hotforest.cn/web/default-header.png" alt="">
               </div>
               <div class="news-detail-rec-r">
                 <span>全民体育官方</span>
@@ -190,7 +193,7 @@ line-height:30px;">换一换</span>
             </li>
             <li>
               <div class="news-detail-rec-l">
-                <img src="https://aloss.hotforest.cn/web/star.png" alt="">
+                <img src="https://aloss.hotforest.cn/web/default-header.png" alt="">
               </div>
               <div class="news-detail-rec-r">
                 <span>全民体育官方</span>
@@ -202,11 +205,9 @@ line-height:30px;">换一换</span>
                   资深体育评论员，专业媒体供稿人
                 </p>
               </div>
-
             </li>
           </ul>
         </div>
-
       </div>
 
       <!--        hot-news -->
@@ -228,10 +229,7 @@ line-height:30px;">换一换</span>
               </div>
             </li>
           </ul>
-
         </div>
-
-
       </div>
       <!--        hot-news end -->
 
@@ -280,15 +278,12 @@ line-height:30px;">换一换</span>
           <div class="login-modal-t">
             <span>手机登录</span>
           </div>
-
           <div class="login-modal-t-p">
-            <!--                        <span>手机号码</span>-->
             <input type="text" placeholder="手机号码" v-model="mobile">
             <button v-if="this.mobile !== '' " @click="sendMobileLoginSms">验证</button>
             <button v-if="this.mobile===''" class="login-modal-t-p-b-disable">验证</button>
           </div>
           <div class="login-modal-t-c">
-            <!--                        <span>验证信息</span>-->
             <input type="text" placeholder="请输入验证码" v-model="code">
           </div>
           <div class="login-modal-t-b">
@@ -302,13 +297,11 @@ line-height:30px;">换一换</span>
               <img @click="wxDialog" style="cursor:pointer;" src="https://aloss.hotforest.cn/web/wx.png" alt="">
             </div>
             <a href="#" @click="wxDialog">使用微信登录</a>
-            <!--                        <a href="#" >使用微信登录</a>-->
           </div>
 
           <div class="login-modal-t-xx">
             <span>使用即为同意</span>
             <span @click="turn_agreement">全民体育用户协议/隐私权政策</span>
-            <!--                        <a href="">全民体育用户协议/隐私权政策</a>-->
           </div>
         </div>
 
@@ -322,16 +315,10 @@ line-height:30px;">换一换</span>
             </a>
           </div>
           <div class="wx-login-modal-img" id="login_container_news">
-            <!--                        <img src="../../assets/image/wx_qrcode.png" alt="">-->
           </div>
-          <!--                    <div class="wx-login-modal-sm" >-->
-          <!--                        <img src="../../assets/image/wx.png" alt="">-->
-          <!--                        <span>打开微信扫码登录</span>-->
-          <!--                    </div>-->
           <div class="login-modal-t-xx">
             <span>使用即为同意</span>
             <span @click="turn_agreement">全民体育用户协议/隐私权政策</span>
-            <!--                        <router-link :to="'/agreement'"></router-link>-->
           </div>
 
         </div>
@@ -376,7 +363,6 @@ line-height:30px;">换一换</span>
         fileObj: '',
         replyReplyContent: '',
         avatar_url: null,
-
         dialogTableVisibleLogin: false,
         dialogFormVisibleLogin: false,
         dialogMobileLogin: false,
@@ -393,7 +379,11 @@ line-height:30px;">换一换</span>
         nickname: null,
         phone: null,
         uid: null,
-        redirect_uri: 'http://www.171tiyu.com/wechat'
+        redirect_uri: 'http://www.171tiyu.com/wechat',
+        prevShorturl:'',
+        prevTitle:'',
+        nextShorturl:'',
+        nextTitle:'',
       }
     },
     mounted () {
@@ -402,19 +392,24 @@ line-height:30px;">换一换</span>
       this.avatar_url = localStorage.getItem('avatar_url')
       this.getReplyList(this.article_id, 0)
 
-      console.log(this.$route.params)
+      // console.log(this.$route.params)
+      this.prevShorturl = sessionStorage.getItem('prevShorturl')
+      this.prevTitle = sessionStorage.getItem('prevTitle')
+      this.nextShorturl = sessionStorage.getItem('nextShorturl')
+      this.nextTitle = sessionStorage.getItem('nextTitle')
+      console.log(this.prevShorturl)
 
     },
     head () {
       let description = ''
       let newsContent = this.newsDetail.content
-      // newsContent.every((v, i) => {
-      //   if (v.type === 1) {
-      //     description = v.content
-      //     return false
-      //   }
-      //   return true
-      // })
+      newsContent.every((v, i) => {
+        if (v.type === 1) {
+          description = v.content
+          return false
+        }
+        return true
+      })
 
       return {
         title: this.newsDetail.title,
@@ -436,7 +431,6 @@ line-height:30px;">换一换</span>
       $route (to, from) {
         // console.log(to)
         this.shorturl = to.params.shorturl
-
       }
     },
     watchQuery: ['shorturl'],
