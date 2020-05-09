@@ -28,13 +28,13 @@ export function dateFormat (dataStr) {
     return str
   }
 
-  // var y = time.getFullYear();
+  var y = time.getFullYear();
   let m = time.getMonth() + 1
   let d = time.getDate()
   let h = time.getHours()
   let mm = time.getMinutes()
-  // var s = time.getSeconds();
-  return timeAdd0(m) + '-' + timeAdd0(d) + ' ' + timeAdd0(h) + ':' + timeAdd0(mm)
+  var s = time.getSeconds();
+  return timeAdd0(y) +'-'+ timeAdd0(m) + '-' + timeAdd0(d) + ' ' + timeAdd0(h) + ':' + timeAdd0(mm) + ':' + timeAdd0(s)
 
 }
 

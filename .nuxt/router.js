@@ -13,6 +13,8 @@ const _1c5fed01 = () => interopDefault(import('..\\pages\\bbs\\detail\\_articleI
 const _605e366b = () => interopDefault(import('..\\pages\\bbs\\list\\_sportType.vue' /* webpackChunkName: "pages_bbs_list__sportType" */))
 const _09eb0242 = () => interopDefault(import('..\\pages\\sportNews\\detail\\_shorturl.vue' /* webpackChunkName: "pages_sportNews_detail__shorturl" */))
 const _53d4c6ee = () => interopDefault(import('..\\pages\\sportNews\\list\\_league.vue' /* webpackChunkName: "pages_sportNews_list__league" */))
+const _5ea71036 = () => interopDefault(import('..\\pages\\sportNews\\_league\\index.vue' /* webpackChunkName: "pages_sportNews__league_index" */))
+const _00611b94 = () => interopDefault(import('..\\pages\\sportNews\\_league\\_shorturl.vue' /* webpackChunkName: "pages_sportNews__league__shorturl" */))
 const _1cb01e46 = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages_index" */))
 
 // TODO: remove in Nuxt 3
@@ -71,6 +73,14 @@ export const routerOptions = {
     path: "/sportNews/list/:league?",
     component: _53d4c6ee,
     name: "sportNews-list-league"
+  }, {
+    path: "/sportNews/:league?",
+    component: _5ea71036,
+    name: "sportNews-league"
+  }, {
+    path: "/sportNews/:league?/:shorturl",
+    component: _00611b94,
+    name: "sportNews-league-shorturl"
   }, {
     path: "/",
     component: _1cb01e46,

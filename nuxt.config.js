@@ -166,6 +166,7 @@ module.exports = {
             offset: 0
           }
           const res = await axios.get(`https://api.npse.com:8081/v1/forum/` + sportType + `/0/` + type + `/articles`, { params: params })
+          // console.log(res)
           return res.data.Data.list.map(bbs => `/bbs/detail/${bbs.article_id}`)
         },
         gzip: false,

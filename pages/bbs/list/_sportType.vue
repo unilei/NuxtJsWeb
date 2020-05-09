@@ -20,7 +20,7 @@
             </div>
 
             <div class="bbs-list-l-d">
-              <span>{{bbs.create_time | dateForHour}}</span>
+              <span>{{bbs.create_time | dateFormat}}</span>
               <ul>
                 <li>
                   {{bbs.comments_count}}
@@ -126,7 +126,7 @@
             </nuxt-link>
 
             <div style="padding-top: 20px;">
-              <span>{{hotBbs.create_time | dateForHour}}</span>
+              <span>{{hotBbs.create_time | dateFormat}}</span>
               <a>{{hotBbs.author.nickName}}</a>
             </div>
           </li>

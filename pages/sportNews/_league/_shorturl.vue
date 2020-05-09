@@ -16,7 +16,7 @@
             <div class="news-detail-t-r-d-l">
               全民体育主编
             </div>
-            <span>{{newsDetail.published_at}}</span>
+            <span>{{newsPublishFormatTime}}</span>
           </div>
         </div>
       </div>
@@ -38,14 +38,14 @@
       </el-row>
 
       <!--上下篇-->
-<!--      <el-row>-->
-<!--        <el-col :span="24">-->
-<!--            <h4>上一篇:{{prevTitle}}</h4>-->
-<!--        </el-col>-->
-<!--        <el-col :span="24">-->
-<!--          <h4>下一篇:{{nextTitle}}</h4>-->
-<!--        </el-col>-->
-<!--      </el-row>-->
+      <!--      <el-row>-->
+      <!--        <el-col :span="24">-->
+      <!--            <h4>上一篇:{{prevTitle}}</h4>-->
+      <!--        </el-col>-->
+      <!--        <el-col :span="24">-->
+      <!--          <h4>下一篇:{{nextTitle}}</h4>-->
+      <!--        </el-col>-->
+      <!--      </el-row>-->
 
       <!--留言评论-->
       <div class="publish-comment">
@@ -484,7 +484,7 @@ line-height:30px;">换一换</span>
         )
         // item.replyReply = newsReplyReply.data.Data.list
       })
-      // console.log(newsDetail.data.Data)
+      console.log(newsDetail.data.Data)
       return {
         newsDetail: newsDetail.data.Data,
         newsPublishFormatTime: getFormatTime(newsDetail.data.Data.timestamp),

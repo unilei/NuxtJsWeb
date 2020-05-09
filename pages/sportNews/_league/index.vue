@@ -81,7 +81,7 @@
   import base from '../../../api/base'
 
   export default {
-    name: 'league',
+    name: 'index',
     layout: 'newsLayout',
     data () {
       return {
@@ -161,6 +161,7 @@
       let allNewsList = await context.$axios.$get(`${base.sq}/v2/GetArticles`, { params: news_params })
 
       const newsList = allNewsList.Data.articles
+      // console.log(newsList)
 
       if (newsList !== undefined && newsList !== []) {
         newsList.forEach(item => {
@@ -229,8 +230,8 @@
         }
 
         this.$router.push({
-          name: 'sportNews-detail-shorturl',
-          params: { shorturl: news.shorturl }
+          name: 'sportNews-league-shorturl',
+          params: { shorturl: news.shorturl,league:this.league_value }
         })
 
       },
