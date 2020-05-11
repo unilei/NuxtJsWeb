@@ -174,6 +174,19 @@ module.exports = {
       {
         path: '/sitemap-sportNews-detail.xml',
         routes: async () => {
+
+          //localhost:8000/web/api.news/getAllArticles
+          let req_url = 'https://admin.hotforest.cn/web/api.news/getAllArticles'
+          // let req_url = 'https://localhost:8000/web/api.news/getAllArticles'
+          let res = await axios.get(req_url)
+          // console.log(res)
+          return res.data.data.map(news => `/sportNews/detail/${news.shortUrlSuffix}`)
+        },
+        gzip: false,
+      },
+      {
+        path: '/sitemap-sportNews-detail-2.xml',
+        routes: async () => {
           let news_params = {
             articleType: 2,
             offset: 0,
