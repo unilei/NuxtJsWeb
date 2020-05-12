@@ -1,7 +1,8 @@
 <template>
   <el-footer>
     <div class="footer-top-container">
-        <FooterTop></FooterTop>
+      <FooterTop></FooterTop>
+      <FooterLink></FooterLink>
     </div>
     <div style="clear: both;"></div>
     <FooterBottom></FooterBottom>
@@ -16,7 +17,7 @@
   import FooterBottom from './FooterBottom'
 
   export default {
-    name: 'Footer',
+    name: 'FooterWithLink',
     components:{
       FooterLink,
       FooterTop,

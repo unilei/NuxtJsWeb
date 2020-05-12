@@ -405,6 +405,7 @@
 
   export default {
     name: 'index',
+    layout:'linkLayout',
     data () {
       return {
         backgroundImg: {

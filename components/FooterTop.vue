@@ -1,26 +1,42 @@
 <template>
-  <el-footer>
-    <div class="footer-top-container">
-        <FooterTop></FooterTop>
-    </div>
-    <div style="clear: both;"></div>
-    <FooterBottom></FooterBottom>
-  </el-footer>
+  <div class="footer-top-l">
+    <ul>
+      <li>
+        <nuxt-link :to="'/companyProfile'">公司介绍</nuxt-link>
+      </li>
+      <li>
+        <nuxt-link :to="'/about'">关于全民体育</nuxt-link>
+      </li>
+      <li>
+        <nuxt-link :to="'/agreement'">服务协议</nuxt-link>
+      </li>
+      <li>
+        <nuxt-link :to="'/personalInformationService'">隐私政策</nuxt-link>
+      </li>
+      <li>
+        <nuxt-link :to="'/complaint'">投诉侵权</nuxt-link>
+      </li>
+      <li>
+        <a href="https://171tiyu.com/download/android?channelCode=Web_Landing_Page"
+           v-if="this.os === 'Win'">
+          立即下载全民体育
+        </a>
+        <a v-if="this.os==='Mac'" href="https://apps.apple.com/app/id1482371213">
+          立即下载全民体育
+        </a>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
 
   import { GetCurrentBrowser, GetOs } from '~/utils/systemTool.js'
-  import FooterLink from './FooterLink'
-  import FooterTop from './FooterTop'
-  import FooterBottom from './FooterBottom'
 
   export default {
-    name: 'Footer',
+    name: 'FooterTop',
     components:{
-      FooterLink,
-      FooterTop,
-      FooterBottom
+
     },
     data () {
       return {

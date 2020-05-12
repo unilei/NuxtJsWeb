@@ -18,34 +18,54 @@
 
     </ul>
   </div>
+
+
 </template>
 
 <script>
   export default {
-    name: 'FooterLink'
+    name: 'FooterLink',
+    data () {
+      return {
+        isShowLink: false,
+      }
+    },
+    mounted () {
+
+      let url = this.$route.path
+      console.log(url)
+      if (url === '/') {
+        this.isShowLink = true
+      } else {
+        this.isShowLink = false
+      }
+    }
   }
 </script>
 
 <style scoped>
 
-  .footer-top-c-d{
+  .footer-top-c-d {
     width: 100%;
     height: 30px;
 
 
   }
+
   .footer-top-c-d ul {
     margin: 0;
     padding: 0;
     padding-left: 27px;
 
   }
-  .footer-top-c-d ul li{
+
+  .footer-top-c-d ul li {
     float: left;
     margin-right: 5%;
     padding-top: 10px;
   }
-  .footer-top-c-d ul li a{
+
+  .footer-top-c-d ul li a {
     font-family: PingFangSC-Regular;
     font-size: 12px;
     color: rgba(99, 99, 99, 0.93);
