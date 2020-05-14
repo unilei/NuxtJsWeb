@@ -4,7 +4,7 @@
     <el-main>
       <div class="news-container">
         <!--        left -aside -->
-        <div class="left-aside">
+        <div class="left-aside" v-if="pathStatus">
           <ul>
             <li>
               <nuxt-link :to="{name:'sportNews-list-league',params:{league:'all'}}" exact>全部新闻</nuxt-link>
@@ -19,6 +19,28 @@
             </li>
             <li>
               <nuxt-link :to="{name:'sportNews-list-league',params:{league:'la_liga'}}" exact>西甲</nuxt-link>
+            </li>
+          </ul>
+
+        </div>
+        <!--        left - aside end-->
+
+        <!--        left -aside -->
+        <div class="left-aside" v-if="pathStatus === false">
+          <ul>
+            <li>
+              <nuxt-link :to="{name:'nsnews-league',params:{league:'all'}}" exact>全部新闻</nuxt-link>
+            <li>
+              <nuxt-link :to="{name:'nsnews-league',params:{league:'nba'}}" exact>NBA</nuxt-link>
+            </li>
+            <li>
+              <nuxt-link :to="{name:'nsnews-league',params:{league:'premier'}}" exact>英超</nuxt-link>
+            </li>
+            <li>
+              <nuxt-link :to="{name:'nsnews-league',params:{league:'serie_a'}}" exact>意甲</nuxt-link>
+            </li>
+            <li>
+              <nuxt-link :to="{name:'nsnews-league',params:{league:'la_liga'}}" exact>西甲</nuxt-link>
             </li>
           </ul>
 
@@ -40,6 +62,30 @@
     components: {
       Header,
       Footer
+    },
+    data(){
+      return {
+       pathStatus:false
+      }
+    },
+    watch: {
+      $route (to, from) {
+        // console.log(to)
+
+      }
+    },
+    mounted () {
+      console.log(this.$route.fullPath)
+      let sportNewsPath = this.$route.fullPath;
+
+      if (sportNewsPath === '/sportNews/list/all' || sportNewsPath === '/sportNews/list/nba'
+        || sportNewsPath === '/sportNews/list/premier' || sportNewsPath === '/sportNews/list/serie_a'
+        || sportNewsPath === '/sportNews/list/la_liga'
+      ) {
+        this.pathStatus = true;
+      }
+
+
     }
   }
 </script>

@@ -49,7 +49,7 @@
       <!--        悬浮二维码框结束-->
 
     </client-only>
-    <div class="nav-menu">
+    <div class="nav-menu" v-if="pathStatus">
       <div class="nav-menu-item " style="border: none;">
         <nuxt-link :to="'/'" exact>首页</nuxt-link>
       </div>
@@ -90,6 +90,47 @@
       <!--&lt;!&ndash;                <nuxt-link :to="'/match'" exact></nuxt-link>&ndash;&gt;-->
       <!--            </div>-->
     </div>
+    <div class="nav-menu" v-if="pathStatus===false">
+      <div class="nav-menu-item " style="border: none;">
+        <nuxt-link :to="'/'" exact>首页</nuxt-link>
+      </div>
+      <div class="nav-menu-item">
+        <nuxt-link :to="{name:'nsnews-league',params:{league:'all'}}" exact>全部新闻</nuxt-link>
+      </div>
+      <div class="nav-menu-item">
+        <ul>
+          <li>
+            <nuxt-link :to="{name:'nsnews-league',params:{league:'nba'}}" exact>NBA</nuxt-link>
+          </li>
+          <li>
+            <nuxt-link :to="{name:'nsnews-league',params:{league:'premier'}}" exact>英超</nuxt-link>
+          </li>
+          <li>
+            <nuxt-link :to="{name:'nsnews-league',params:{league:'serie_a'}}" exact>意甲</nuxt-link>
+          </li>
+          <li>
+            <nuxt-link :to="{name:'nsnews-league',params:{league:'la_liga'}}" exact>西甲</nuxt-link>
+          </li>
+        </ul>
+      </div>
+      <div class="nav-menu-item">
+        <nuxt-link :to="{name:'nsforum-sportType',params:{'sportType':'all'}}" exact>社区论坛</nuxt-link>
+      </div>
+      <!--            <div class="nav-menu-item">-->
+      <!--                <ul>-->
+      <!--                    <li>-->
+      <!--                        <nuxt-link :to="'#'" exact>全部赛程</nuxt-link>-->
+      <!--                    </li>-->
+      <!--                    <li>-->
+      <!--                        <nuxt-link :to="'#1'" exact>足球赛程</nuxt-link>-->
+      <!--                    </li>-->
+      <!--                    <li>-->
+      <!--                        <nuxt-link :to="'#2'" exact>篮球赛程</nuxt-link>-->
+      <!--                    </li>-->
+      <!--                </ul>-->
+      <!--&lt;!&ndash;                <nuxt-link :to="'/match'" exact></nuxt-link>&ndash;&gt;-->
+      <!--            </div>-->
+    </div>
   </el-header>
 </template>
 
@@ -101,6 +142,7 @@
     name: 'Header',
     data () {
       return {
+        pathStatus:false,
         dialogTableVisible: false,
         dialogFormVisible: false,
         dialogMobileLogin: false,
@@ -160,6 +202,16 @@
       }
     },
     mounted () {
+
+      let sportNewsPath = this.$route.fullPath;
+
+      if (sportNewsPath === '/sportNews/list/all' || sportNewsPath === '/sportNews/list/nba'
+        || sportNewsPath === '/sportNews/list/premier' || sportNewsPath === '/sportNews/list/serie_a'
+        || sportNewsPath === '/sportNews/list/la_liga'
+      ) {
+        this.pathStatus = true;
+      }
+
       this.getNsDeviceId()
       this.nickname = localStorage.getItem('nickname')
       this.avatar_url = localStorage.getItem('avatar_url')

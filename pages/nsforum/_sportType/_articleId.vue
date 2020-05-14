@@ -91,7 +91,7 @@
                     <div class="comment-item-c-r">
                       <!--                                            <button v-if="reply.reply_id !== showCommentReply" @click="isShowCommentReply(reply.reply_id)">回复</button>-->
                       <!--                                            <button class="shouqi" v-if="reply.reply_id === showCommentReply" @click="isHideCommentReply(reply.reply_id)">收起</button>-->
-                     <client-only> <span>{{reply.create_time | dateForHour}}</span></client-only>
+                      <client-only> <span>{{reply.create_time | dateForHour}}</span></client-only>
                     </div>
 
                   </div>
@@ -360,7 +360,6 @@ line-height:30px;cursor: pointer;">换一换</span>
         dialogTableVisible: false,
         dialogFormVisible: false,
         formLabelWidth: '120px',
-        nickname: '',
         ns_device_id: 'website',
         imageUrl: '',
         uploadBaseUrl: base.sq + '/UploadAvatar',
@@ -415,9 +414,6 @@ line-height:30px;cursor: pointer;">换一换</span>
           }
         ]
       }
-      return {
-        title:this.bbsDetail.title
-      }
     },
     watch: {
       $route (to, from) {
@@ -439,7 +435,7 @@ line-height:30px;cursor: pointer;">换一换</span>
         }
       })
 
-      const reply_type = 'nsforum'
+      const reply_type = 'forum'
       const paraentId = article_id
       const reply_sort = 'newest'
       const reply_params = {
@@ -451,7 +447,7 @@ line-height:30px;cursor: pointer;">换一换</span>
       const _replyList = replyList.data.Data.list
       _replyList.forEach(item => {
 
-        const reply_type = 'nsforum'
+        const reply_type = 'forum'
         const paraentId = item.reply_id
         const reply_sort = 'toplike'
         const reply_params = { offset: 0 }
@@ -773,7 +769,7 @@ line-height:30px;cursor: pointer;">换一换</span>
               })
             }
 
-            const type = 'nsforum'
+            const type = 'forum'
             const parentId = this.$route.params.articleId
 
             this.$axios.post(`${base.sq}/v2/` + type + `/` + parentId + `/reply`, {
@@ -828,7 +824,7 @@ line-height:30px;cursor: pointer;">换一换</span>
               })
             }
 
-            const type = 'nsforum'
+            const type = 'forum'
 
             this.$axios.post(`${base.sq}/v2/` + type + `/` + reply_id + `/reply`, {
               content: [
@@ -864,7 +860,7 @@ line-height:30px;cursor: pointer;">换一换</span>
         }
       },
       getReplyList(article_id, offset) {
-        let type = 'nsforum'
+        let type = 'forum'
         let sort = 'newest'
         this.$axios.get(`${base.sq}/v2/`+type+`/`+article_id+`/`+sort+`/replys`,{params:{
             offset: offset,
@@ -875,7 +871,7 @@ line-height:30px;cursor: pointer;">换一换</span>
             newsReplyList.forEach(item => {
               // console.log(item)
               const reply_id = item.reply_id
-              let type = 'nsforum'
+              let type = 'forum'
               let sort = 'toplike'
               this.$axios.get(`${base.sq}/v2/`+type+`/`+reply_id+`/`+sort+`/replys`,{params:{
                   offset: 0
@@ -897,7 +893,7 @@ line-height:30px;cursor: pointer;">换一换</span>
         const article_id = this.$route.params.articleId
         this.offsetComment = i + 4
         // console.log(i+1)
-        const type = 'nsforum'
+        const type = 'forum'
         const sort = 'newest'
         this.$axios.get(`${base.sq}/v2/`+type+`/`+article_id+`/`+sort+`/replys`,{params:{
             offset: this.offsetComment,
@@ -911,7 +907,7 @@ line-height:30px;cursor: pointer;">换一换</span>
               // console.log(item)
               const reply_id = item.reply_id
 
-              const type = 'nsforum'
+              const type = 'forum'
               const sort = 'toplike'
               this.$axios.get(`${base.sq}/v2/`+type+`/`+reply_id+`/`+sort+`/replys`,{params:{
                   offset: 0

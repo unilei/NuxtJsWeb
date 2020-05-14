@@ -4,7 +4,7 @@
     <el-main>
       <div class="news-container">
         <!--        left -aside -->
-        <div class="left-aside">
+        <div class="left-aside" v-if="pathStatus">
           <ul>
             <li>
               <nuxt-link :to="{name:'bbs-list-sportType',params:{'sportType':'all'}}" exact>全部话题</nuxt-link>
@@ -13,6 +13,21 @@
             </li>
             <li>
               <nuxt-link :to="{name:'bbs-list-sportType',params:{'sportType':'basketball'}}" exact>篮球</nuxt-link>
+            </li>
+          </ul>
+
+        </div>
+        <!--        left - aside end-->
+        <!--        left -aside -->
+        <div class="left-aside" v-if="pathStatus===false">
+          <ul>
+            <li>
+              <nuxt-link :to="{name:'nsforum-sportType',params:{'sportType':'all'}}" exact>全部话题</nuxt-link>
+            <li>
+              <nuxt-link :to="{name:'nsforum-sportType',params:{'sportType':'football'}}" exact>足球</nuxt-link>
+            </li>
+            <li>
+              <nuxt-link :to="{name:'nsforum-sportType',params:{'sportType':'basketball'}}" exact>篮球</nuxt-link>
             </li>
           </ul>
 
@@ -34,6 +49,21 @@
     components:{
       Header,
       Footer
+    },
+    data(){
+      return {
+        pathStatus:false,
+      }
+    },
+    mounted () {
+      console.log(this.$route.fullPath)
+      let sportNewsPath = this.$route.fullPath;
+
+      if (sportNewsPath === '/bbs/list/all' || sportNewsPath === '/bbs/list/football'
+        || sportNewsPath === '/bbs/list/basketball'
+      ) {
+        this.pathStatus = true;
+      }
     }
   }
 </script>

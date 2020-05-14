@@ -13,7 +13,11 @@ const _1c5fed01 = () => interopDefault(import('..\\pages\\bbs\\detail\\_articleI
 const _605e366b = () => interopDefault(import('..\\pages\\bbs\\list\\_sportType.vue' /* webpackChunkName: "pages_bbs_list__sportType" */))
 const _09eb0242 = () => interopDefault(import('..\\pages\\sportNews\\detail\\_shorturl.vue' /* webpackChunkName: "pages_sportNews_detail__shorturl" */))
 const _53d4c6ee = () => interopDefault(import('..\\pages\\sportNews\\list\\_league.vue' /* webpackChunkName: "pages_sportNews_list__league" */))
+const _752d722c = () => interopDefault(import('..\\pages\\nsforum\\_sportType\\index.vue' /* webpackChunkName: "pages_nsforum__sportType_index" */))
+const _5e8b9e61 = () => interopDefault(import('..\\pages\\nsnews\\_league\\index.vue' /* webpackChunkName: "pages_nsnews__league_index" */))
 const _5ea71036 = () => interopDefault(import('..\\pages\\sportNews\\_league\\index.vue' /* webpackChunkName: "pages_sportNews__league_index" */))
+const _ba6d2370 = () => interopDefault(import('..\\pages\\nsforum\\_sportType\\_articleId.vue' /* webpackChunkName: "pages_nsforum__sportType__articleId" */))
+const _411af2e1 = () => interopDefault(import('..\\pages\\nsnews\\_league\\_shorturl.vue' /* webpackChunkName: "pages_nsnews__league__shorturl" */))
 const _00611b94 = () => interopDefault(import('..\\pages\\sportNews\\_league\\_shorturl.vue' /* webpackChunkName: "pages_sportNews__league__shorturl" */))
 const _1cb01e46 = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages_index" */))
 
@@ -74,9 +78,25 @@ export const routerOptions = {
     component: _53d4c6ee,
     name: "sportNews-list-league"
   }, {
+    path: "/nsforum/:sportType?",
+    component: _752d722c,
+    name: "nsforum-sportType"
+  }, {
+    path: "/nsnews/:league?",
+    component: _5e8b9e61,
+    name: "nsnews-league"
+  }, {
     path: "/sportNews/:league?",
     component: _5ea71036,
     name: "sportNews-league"
+  }, {
+    path: "/nsforum/:sportType?/:articleId",
+    component: _ba6d2370,
+    name: "nsforum-sportType-articleId"
+  }, {
+    path: "/nsnews/:league?/:shorturl",
+    component: _411af2e1,
+    name: "nsnews-league-shorturl"
   }, {
     path: "/sportNews/:league?/:shorturl",
     component: _00611b94,
