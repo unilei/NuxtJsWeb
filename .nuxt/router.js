@@ -8,6 +8,7 @@ const _f82766d6 = () => interopDefault(import('..\\pages\\agreement.vue' /* webp
 const _b658a41e = () => interopDefault(import('..\\pages\\companyProfile.vue' /* webpackChunkName: "pages_companyProfile" */))
 const _3819beb6 = () => interopDefault(import('..\\pages\\complaint.vue' /* webpackChunkName: "pages_complaint" */))
 const _086bffce = () => interopDefault(import('..\\pages\\personalInformationService.vue' /* webpackChunkName: "pages_personalInformationService" */))
+const _1944cc8e = () => interopDefault(import('..\\pages\\profile\\index.vue' /* webpackChunkName: "pages_profile_index" */))
 const _7c3e3aab = () => interopDefault(import('..\\pages\\wechat.vue' /* webpackChunkName: "pages_wechat" */))
 const _1c5fed01 = () => interopDefault(import('..\\pages\\bbs\\detail\\_articleId.vue' /* webpackChunkName: "pages_bbs_detail__articleId" */))
 const _605e366b = () => interopDefault(import('..\\pages\\bbs\\list\\_sportType.vue' /* webpackChunkName: "pages_bbs_list__sportType" */))
@@ -57,6 +58,10 @@ export const routerOptions = {
     path: "/personalInformationService",
     component: _086bffce,
     name: "personalInformationService"
+  }, {
+    path: "/profile",
+    component: _1944cc8e,
+    name: "profile"
   }, {
     path: "/wechat",
     component: _7c3e3aab,

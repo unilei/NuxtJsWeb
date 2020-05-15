@@ -22,12 +22,12 @@
         <div class="left-aside" v-if="pathStatus===false">
           <ul>
             <li>
-              <nuxt-link :to="{name:'nsforum-sportType',params:{'sportType':'all'}}" exact>全部话题</nuxt-link>
+              <nuxt-link :to="{name:'nsforum-sportType',params:{'sportType':'all'}}" >全部话题</nuxt-link>
             <li>
-              <nuxt-link :to="{name:'nsforum-sportType',params:{'sportType':'football'}}" exact>足球</nuxt-link>
+              <nuxt-link :to="{name:'nsforum-sportType',params:{'sportType':'football'}}" >足球</nuxt-link>
             </li>
             <li>
-              <nuxt-link :to="{name:'nsforum-sportType',params:{'sportType':'basketball'}}" exact>篮球</nuxt-link>
+              <nuxt-link :to="{name:'nsforum-sportType',params:{'sportType':'basketball'}}" >篮球</nuxt-link>
             </li>
           </ul>
 

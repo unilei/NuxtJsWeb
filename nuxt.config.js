@@ -1,3 +1,4 @@
+'use strict'
 const axios = require('axios')
 
 module.exports = {
@@ -9,8 +10,8 @@ module.exports = {
     host: '0.0.0.0',
     port: '3000'
   },
-  router:{
-    middleware:'autoPcMobile'
+  router: {
+    middleware: 'autoPcMobile'
   },
   head: {
     title: process.env.npm_package_name || '',
@@ -34,12 +35,20 @@ module.exports = {
       }
     ],
     script: [
+      // {
+      //   src: '/jquery-3.1.1.min.js',
+      //   ssr: false
+      // },
       {
-        src: '/jquery-3.1.1.min.js',
+        src: 'https://aloss.hotforest.cn/web/jquery-3.1.1.min.js',
         ssr: false
       },
+      // {
+      //   src: '/jquery.SuperSlide.2.1.3.js',
+      //   ssr: false
+      // },
       {
-        src: '/jquery.SuperSlide.2.1.3.js',
+        src: 'https://aloss.hotforest.cn/web/jquery.SuperSlide.2.1.3.js',
         ssr: false
       },
       {
@@ -72,10 +81,6 @@ module.exports = {
     },
     {
       src: '@/plugins/filter',
-      mode:'client'
-    },
-    {
-      src: '@/plugins/auto-push.js',
       mode: 'client'
     },
     {
@@ -85,7 +90,7 @@ module.exports = {
 
   ],
   render: {
-    resourceHints:false,
+    resourceHints: false,
   },
   /*
   ** Nuxt.js dev-modules

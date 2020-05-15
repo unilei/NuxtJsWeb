@@ -29,18 +29,18 @@
         <div class="left-aside" v-if="pathStatus === false">
           <ul>
             <li>
-              <nuxt-link :to="{name:'nsnews-league',params:{league:'all'}}" exact>全部新闻</nuxt-link>
+              <nuxt-link :to="{name:'nsnews-league',params:{league:'all'}}" >全部新闻</nuxt-link>
             <li>
-              <nuxt-link :to="{name:'nsnews-league',params:{league:'nba'}}" exact>NBA</nuxt-link>
+              <nuxt-link :to="{name:'nsnews-league',params:{league:'nba'}}" >NBA</nuxt-link>
             </li>
             <li>
-              <nuxt-link :to="{name:'nsnews-league',params:{league:'premier'}}" exact>英超</nuxt-link>
+              <nuxt-link :to="{name:'nsnews-league',params:{league:'premier'}}" >英超</nuxt-link>
             </li>
             <li>
-              <nuxt-link :to="{name:'nsnews-league',params:{league:'serie_a'}}" exact>意甲</nuxt-link>
+              <nuxt-link :to="{name:'nsnews-league',params:{league:'serie_a'}}" >意甲</nuxt-link>
             </li>
             <li>
-              <nuxt-link :to="{name:'nsnews-league',params:{league:'la_liga'}}" exact>西甲</nuxt-link>
+              <nuxt-link :to="{name:'nsnews-league',params:{league:'la_liga'}}" >西甲</nuxt-link>
             </li>
           </ul>
 
@@ -101,7 +101,6 @@
   }
 
   .left-aside {
-    /*width: 164px;*/
     float: left;
     width: 13%;
   }
@@ -123,7 +122,6 @@
     height: 60px;
     line-height: 60px;
     font-family: PingFangSC-Regular;
-    /*font-size: 26px;*/
     font-size: 18px;
     color: #333333;
     text-align: center;

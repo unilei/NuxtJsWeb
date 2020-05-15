@@ -22,14 +22,12 @@
 <style>
   html {
     text-align: center;
-  }
-
-  button, input, textarea {
     font: 100% PingFangSC-Regular, PingFang SC;
   }
 
   ul {
     padding: 0;
+    margin: 0;
     list-style: none;
   }
 

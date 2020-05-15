@@ -2,7 +2,14 @@
   <div>
     <!--            news-detail -->
     <div class="news-detail">
-      <div>{{league_value}}-{{newsDetail.title}}</div>
+      <div class="news-detail-bread-crumbs">
+        <nuxt-link :to="{path:'/'}">首页</nuxt-link>
+        -
+        <nuxt-link :to="{name:'nsnews-league',params:{'league':league}}">{{league_value}}</nuxt-link>
+        -
+        <span>{{newsDetail.title}}</span>
+      </div>
+
       <h3>{{newsDetail.title}}</h3>
       <div class="news-detail-t">
         <div class="news-detail-t-l">
@@ -386,25 +393,26 @@ line-height:30px;">换一换</span>
         nextShorturl: '',
         nextTitle: '',
 
+        league: '',
         league_value: '',
       }
     },
     mounted () {
       // console.log(this.$route.params.shorturl)
-      let league = this.$route.params.league
-      if (league === 'all') {
+      this.league = this.$route.params.league
+      if (this.league === 'all') {
         this.league_value = '全部新闻'
       }
-      if (league === 'nba') {
+      if (this.league === 'nba') {
         this.league_value = 'NBA'
       }
-      if (league === 'premier') {
+      if (this.league === 'premier') {
         this.league_value = '英超'
       }
-      if (league === 'serie_a') {
+      if (this.league === 'serie_a') {
         this.league_value = '意甲'
       }
-      if (league === 'la_liga') {
+      if (this.league === 'la_liga') {
         this.league_value = '西甲'
       }
       this.shorturl = this.$route.params.shorturl
@@ -449,7 +457,7 @@ line-height:30px;">换一换</span>
     watch: {
       $route (to, from) {
         // console.log(to)
-        this.league_value = to.params.league
+        this.league = to.params.league
         this.shorturl = to.params.shorturl
       }
     },
@@ -525,6 +533,7 @@ line-height:30px;">换一换</span>
       })
 
       return {
+        league: league,
         league_value: league_value,
         newsDetail: newsDetail.data.Data,
         newsPublishFormatTime: getFormatTime(newsDetail.data.Data.timestamp),
@@ -546,7 +555,6 @@ line-height:30px;">换一换</span>
         }).then(
           res => {
             // console.log(res)
-            // this.newsReplyList = res.data.Data.list
             const newsReplyList = res.data.Data.list
             newsReplyList.forEach(item => {
               // console.log(item)
@@ -984,7 +992,6 @@ line-height:30px;">换一换</span>
   }
 
   .left-aside {
-    /*width: 164px;*/
     float: left;
     width: 10%;
   }
@@ -1014,7 +1021,6 @@ line-height:30px;">换一换</span>
   .left-aside ul li a:hover {
     background: #58A4ED;
     border-radius: 8px;
-    border-radius: 8px;
     color: #FFFFFF;
   }
 
@@ -1025,12 +1031,10 @@ line-height:30px;">换一换</span>
   }
 
   .news-detail h3 {
-
     color: #333333;
     text-align: left;
     margin: 20px 0 0 0;
     padding: 0;
-
     font-size: 28px;
     font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
@@ -1062,10 +1066,8 @@ line-height:30px;">换一换</span>
   }
 
   .news-detail-t-r-t span {
-
     color: #333333;
     line-height: 30px;
-
     font-size: 16px;
     font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
@@ -1075,12 +1077,10 @@ line-height:30px;">换一换</span>
   .news-detail-t-r-t button {
     background: #76BCFF;
     border-radius: 2px;
-
     border: 1px solid transparent;
     outline: none;
     color: #ffffff;
     margin-left: 27px;
-
     font-size: 12px;
     font-family: PingFangSC-Medium, PingFang SC;
     font-weight: 500;
@@ -1090,21 +1090,17 @@ line-height:30px;">换一换</span>
 
   .news-detail-t-r-d {
     height: 30px;
-    /*padding-top: 10px;*/
   }
 
   .news-detail-t-r-d span {
     display: block;
     float: right;
-
     color: #666666;
     line-height: 30px;
-
     font-size: 12px;
     font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
     color: rgba(102, 102, 102, 1);
-    line-height: 30px;
   }
 
   .news-detail-t-r-d-l {
@@ -1118,11 +1114,8 @@ line-height:30px;">换一换</span>
   }
 
   .news-detail-c p {
-
     color: #333333;
-
     text-align: left;
-
     font-size: 16px;
     font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
@@ -1131,8 +1124,6 @@ line-height:30px;">换一换</span>
   }
 
   .news-detail-c img {
-    /*width: 720px;*/
-    /*height: 400px;*/
     width: 100%;
   }
 
@@ -1224,9 +1215,7 @@ line-height:30px;">换一换</span>
   .hot-news-list-d-l img {
     width: auto;
     height: auto;
-    /*max-width:100%;*/
     max-height: 100%;
-
   }
 
   .hot-news-list-d-r {
@@ -1239,11 +1228,9 @@ line-height:30px;">换一换</span>
 
   .hot-news-list-d-r a {
     display: block;
-    /*height: 98px;*/
     font-family: PingFangSC-Regular;
     font-size: 16px;
     color: #333333;
-
     padding: 0 0 0 10px;
     text-align: left;
     overflow: hidden;
@@ -1281,7 +1268,7 @@ line-height:30px;">换一换</span>
     font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
     color: rgba(51, 51, 51, 1);
-    line-height: 30px;
+
   }
 
   .news-detail-rec-r button {
@@ -1319,7 +1306,6 @@ line-height:30px;">换一换</span>
     font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
     color: rgba(131, 131, 131, 1);
-    line-height: 30px;
   }
 
   .news-detail-tag {
@@ -1331,4 +1317,17 @@ line-height:30px;">换一换</span>
     color: rgba(102, 102, 102, 1);
     line-height: 25px;
   }
+
+  .news-detail-bread-crumbs{
+    text-align: left;
+    margin-top: 25px;
+  }
+  .news-detail-bread-crumbs a{
+    font-size:16px;
+    font-family:PingFangSC-Regular,PingFang SC;
+    font-weight:400;
+    color:rgba(153,153,153,1);
+    line-height:30px;
+  }
+
 </style>

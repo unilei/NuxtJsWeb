@@ -1,81 +1,22 @@
 <template>
   <el-main>
-    <!--            轮播图-->
-    <!--            <div class="ato-content">-->
-    <!--                <div class="ato-list-fl">-->
-    <!--                    <a href="javascript:;" class="prev">-->
-    <!--                        <img src="../assets/image/banner/icon-left.png" alt="" class="ato-ope">-->
-    <!--                        <img src="../assets/image/banner/icon-left1.png" alt="" class="ato-ope1">-->
-    <!--                    </a>-->
-    <!--                    <a href="javascript:;" class="next">-->
-    <!--                        <img src="../assets/image/banner/icon-right.png" alt="" class="ato-ope">-->
-    <!--                        <img src="../assets/image/banner/icon-right1.png" alt="" class="ato-ope1 ato-ope2">-->
-    <!--                    </a>-->
-    <!--                </div>-->
-    <!--                <div class="ato-list" v-if="matchArr.length>0">-->
-    <!--                    <ul>-->
-    <!--                        <li  v-for="match in matchArr" :key="match.id"  >-->
-    <!--                            <div v-if="match.live_state == 0" class="match-t match-t-state-off">-->
-    <!--                                <span class="match-t-n">{{match.league.name}}</span>-->
-    <!--                                <span class="match-t-t">{{match.start_at | dateFormat}} </span>-->
-    <!--                                <span class="match-t-st">{{match.status}}</span>-->
-    <!--                            </div>-->
-    <!--                            <div v-if="match.live_state == 1" class="match-t match-t-state-on">-->
-    <!--                                <span class="match-t-n">{{match.league.name}}</span>-->
-    <!--                                <span class="match-t-t">{{match.start_at | dateFormat}} </span>-->
-    <!--                                <span class="match-t-st">-->
-    <!--                                    <img src="../assets/image/camera.png" alt="">-->
-    <!--                                </span>-->
-    <!--                            </div>-->
-
-    <!--                            <div class="match-d">-->
-    <!--                                <div class="match-d-i">-->
-    <!--                                    <img :src="match.home.logo" alt="">-->
-    <!--                                </div>-->
-    <!--                                <div class="match-d-t-n">-->
-    <!--                                    <span class="match-d-team">{{match.home.name}}</span>-->
-    <!--                                </div>-->
-    <!--                                <div class="match-d-t-s">-->
-    <!--                                    <span v-if="match.home_goal > match.away_goal" class="match-d-sc match-d-t-s-on">{{match.home_goal}}</span>-->
-    <!--                                    <span v-if="match.home_goal < match.away_goal || match.home_goal == match.away_goal" class="match-d-sc match-d-t-s-off">{{match.home_goal}}</span>-->
-    <!--                                </div>-->
-    <!--                            </div>-->
-    <!--                            <div class="match-d">-->
-    <!--                                <div class="match-d-i">-->
-    <!--                                    <img :src="match.away.logo" alt="">-->
-    <!--                                </div>-->
-    <!--                                <div class="match-d-t-n">-->
-    <!--                                    <span  class="match-d-team">{{match.away.name}}</span>-->
-    <!--                                </div>-->
-    <!--                                <div class="match-d-t-s">-->
-    <!--                                    <span v-if="match.home_goal > match.away_goal" class="match-d-sc match-d-t-s-on">{{match.away_goal}}</span>-->
-    <!--                                    <span v-if="match.home_goal < match.away_goal || match.home_goal == match.away_goal" class="match-d-sc match-d-t-s-off">{{match.away_goal}}</span>-->
-    <!--                                </div>-->
-    <!--                            </div>-->
-    <!--                        </li>-->
-    <!--                    </ul>-->
-
-    <!--                </div>-->
-    <!--            </div>-->
-
-    <!--            轮播图结束-->
-
     <!--            热门新闻-->
-    <div class="hot-news-container">
-      <div class="hot-news-left">
-        <h3 v-if="hotNewsList.length > 0">
-          <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotNewsList[0].shorturl}}"
-             target="_blank">{{hotNewsList[0].title}}
+    <el-row class="hot-news-container">
+      <el-col :span="10"   class="hot-news">
+        <el-col :span="24" class="hot-news-first">
+          <nuxt-link v-if="hotNewsList.length > 0"
+                     :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotNewsList[0].shorturl}}"
+                     target="_blank">{{hotNewsList[0].title}}
           </nuxt-link>
-        </h3>
-        <ul>
-          <li v-for="hotNews in hotNewsList" :key="hotNews.article_id">
-            <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotNews.shorturl}}"
-               target="_blank">{{hotNews.title}}</nuxt-link>
-          </li>
-        </ul>
-      </div>
-      <div class="hot-news-right">
+        </el-col>
+        <el-col :span="24" v-for="(hotNews,k) in hotNewsList" :key="k" class="hot-news-item">
+          <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotNews.shorturl}}"
+                     target="_blank">{{hotNews.title}}
+          </nuxt-link>
+        </el-col>
+
+      </el-col>
+      <el-col :span="13"  offset="1"  class="news-slider">
         <div id="slideBox" class="slideBox">
           <div class="hd">
             <ul>
@@ -85,7 +26,7 @@
           <div class="bd">
             <ul>
               <li v-for="(item,index) in bannerArr" :key="index">
-                <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:item.content}}"  target="_blank">
+                <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:item.content}}" target="_blank">
                   <img :src="item.image"/>
                 </nuxt-link>
               </li>
@@ -98,10 +39,9 @@
           <span class="pageState"></span>
 
         </div>
-      </div>
-    </div>
+      </el-col>
+    </el-row>
     <!--          热门新闻结束  -->
-
 
     <!--            nba-->
     <div class="news-container">
@@ -113,14 +53,15 @@
              :style="backgroundImg"
         >
           <h2>NBA</h2>
-<!--          <a href="#"></a>-->
+          <!--          <a href="#"></a>-->
         </div>
       </div>
       <div class="news-left">
         <ul>
           <li>
             <h3 style="">
-              <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotNbaNewsFirst.shorturl}}" target="_blank">
+              <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotNbaNewsFirst.shorturl}}"
+                         target="_blank">
                 {{hotNbaNewsFirst.title}}
               </nuxt-link>
             </h3>
@@ -137,7 +78,8 @@
           </li>
           <li style="padding-top: 10px;">
             <h3 style="">
-              <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotNbaNewsSecond.shorturl}}" target="_blank">
+              <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotNbaNewsSecond.shorturl}}"
+                         target="_blank">
                 {{hotNbaNewsSecond.title}}
               </nuxt-link>
             </h3>
@@ -157,7 +99,8 @@
       <div class="news-right">
         <ul>
           <li v-for="newNbaNews in newNbaNewsList" :key="newNbaNews.article_id">
-            <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:newNbaNews.shorturl}}"  target="_blank">{{newNbaNews.title}}
+            <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:newNbaNews.shorturl}}" target="_blank">
+              {{newNbaNews.title}}
             </nuxt-link>
           </li>
         </ul>
@@ -183,7 +126,8 @@
         <ul>
           <li style="height: auto !important;line-height: 35px;" v-for="(hotBbs,index) in hotBbsList" :key="index">
             <h4>
-              <nuxt-link style="font-size: 16px !important;" target="_blank" :to="{name:'bbs-detail-articleId',params:{'articleId':hotBbs.article_id}}">
+              <nuxt-link style="font-size: 16px !important;" target="_blank"
+                         :to="{name:'bbs-detail-articleId',params:{'articleId':hotBbs.article_id}}">
                 {{hotBbs.title}}
               </nuxt-link>
             </h4>
@@ -194,7 +138,9 @@
       <div class="news-right">
         <ul>
           <li v-for="(bbs,i) in bbsList" :key="i">
-            <nuxt-link :to="{name:'bbs-detail-articleId',params:{'articleId':bbs.article_id}}"  target="_blank">{{bbs.title}}</nuxt-link>
+            <nuxt-link :to="{name:'bbs-detail-articleId',params:{'articleId':bbs.article_id}}" target="_blank">
+              {{bbs.title}}
+            </nuxt-link>
           </li>
         </ul>
       </div>
@@ -220,7 +166,8 @@
         <ul>
           <li>
             <h3 style="">
-              <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotLaLigaNewsFirst.shorturl}}"  target="_blank">
+              <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotLaLigaNewsFirst.shorturl}}"
+                         target="_blank">
                 {{hotLaLigaNewsFirst.title}}
               </nuxt-link>
             </h3>
@@ -237,7 +184,8 @@
           </li>
           <li style="padding-top: 27px;">
             <h3 style="">
-              <nuxt-link  :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotLaLigaNewsSecond.shorturl}}" target="_blank">
+              <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotLaLigaNewsSecond.shorturl}}"
+                         target="_blank">
                 {{hotLaLigaNewsSecond.title}}
               </nuxt-link>
             </h3>
@@ -257,7 +205,8 @@
       <div class="news-right">
         <ul>
           <li v-for="newLaLigaNews in newLaLigaNewsList" :key="newLaLigaNews.article_id">
-            <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:newLaLigaNews.shorturl}}"  target="_blank">{{newLaLigaNews.title}}
+            <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:newLaLigaNews.shorturl}}"
+                       target="_blank">{{newLaLigaNews.title}}
             </nuxt-link>
           </li>
         </ul>
@@ -282,7 +231,8 @@
         <ul>
           <li>
             <h3 style="">
-              <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotPremierNewsFirst.shorturl}}" target="_blank">
+              <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotPremierNewsFirst.shorturl}}"
+                         target="_blank">
                 {{hotPremierNewsFirst.title}}
               </nuxt-link>
             </h3>
@@ -299,7 +249,8 @@
           </li>
           <li style="padding-top: 27px;">
             <h3 style="">
-              <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotPremierNewsSecond.shorturl}}"  target="_blank">
+              <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotPremierNewsSecond.shorturl}}"
+                         target="_blank">
                 {{hotPremierNewsSecond.title}}
               </nuxt-link>
             </h3>
@@ -319,7 +270,8 @@
       <div class="news-right">
         <ul>
           <li v-for="newPremierNews in newPremierNewsList" :key="newPremierNews.article_id">
-            <nuxt-link  :to="{name:'sportNews-detail-shorturl',params:{shorturl:newPremierNews.shorturl}}"  target="_blank">
+            <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:newPremierNews.shorturl}}"
+                       target="_blank">
               {{newPremierNews.title}}
             </nuxt-link>
           </li>
@@ -347,7 +299,8 @@
         <ul>
           <li>
             <h3 style="">
-              <nuxt-link  :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotSerieANewsFirst.shorturl}}"  target="_blank">
+              <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotSerieANewsFirst.shorturl}}"
+                         target="_blank">
                 {{hotSerieANewsFirst.title}}
               </nuxt-link>
             </h3>
@@ -364,7 +317,8 @@
           </li>
           <li style="padding-top: 27px;">
             <h3 style="">
-              <nuxt-link  :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotSerieANewsSecond.shorturl}}"  target="_blank">
+              <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotSerieANewsSecond.shorturl}}"
+                         target="_blank">
                 {{hotSerieANewsSecond.title}}
               </nuxt-link>
 
@@ -385,7 +339,8 @@
       <div class="news-right">
         <ul>
           <li v-for="newSerieANews in newSerieANewsList" :key="newSerieANews.article_id">
-            <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:newSerieANews.shorturl}}"  target="_blank">{{newSerieANews.title}}
+            <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:newSerieANews.shorturl}}"
+                       target="_blank">{{newSerieANews.title}}
             </nuxt-link>
           </li>
         </ul>
@@ -405,7 +360,7 @@
 
   export default {
     name: 'index',
-    layout:'linkLayout',
+    layout: 'linkLayout',
     data () {
       return {
         backgroundImg: {
@@ -447,12 +402,20 @@
 
       }
     },
-    head(){
+    head () {
       return {
-        title:'全民体育_懂球迷的聚集地',
-        meta:[
-          {hid:'keywords',name:'keywords',content:'全民体育,体育,新闻,直播,足球,篮球,资讯,比分,社区,数据,比赛'},
-          {hid:'description',name:'description',content:'全民体育为您带来足球，篮球比赛，即时比分，数据库等一系列数据，包括：英超，西甲，意甲，德甲，欧冠，中超，NBA，CBA，世界杯等各种比赛，让球迷及时准确的了解赛事进展和结果'},
+        title: '全民体育_懂球迷的聚集地',
+        meta: [
+          {
+            hid: 'keywords',
+            name: 'keywords',
+            content: '全民体育,体育,新闻,直播,足球,篮球,资讯,比分,社区,数据,比赛'
+          },
+          {
+            hid: 'description',
+            name: 'description',
+            content: '全民体育为您带来足球，篮球比赛，即时比分，数据库等一系列数据，包括：英超，西甲，意甲，德甲，欧冠，中超，NBA，CBA，世界杯等各种比赛，让球迷及时准确的了解赛事进展和结果'
+          },
         ]
       }
     },
@@ -491,7 +454,7 @@
           articleType: 2,
           limit: 10,
           offset: 0,
-          author_filter:['6','7', '8', '9']
+          author_filter: ['6', '7', '8', '9']
         }
       })
 
@@ -550,7 +513,12 @@
         })
       },
       slideNewsShow () {
-        $(".slideBox").slide({mainCell:".bd ul",autoPlay:true,prevCell:'.news-prev',nextCell:'.news-next'});
+        $('.slideBox').slide({
+          mainCell: '.bd ul',
+          autoPlay: true,
+          prevCell: '.news-prev',
+          nextCell: '.news-next'
+        })
       },
 
     },
@@ -571,28 +539,16 @@
     padding: 10px 27px 37px 27px;
 
   }
+  .hot-news-container{
 
-  .hot-news-container {
-    width: 100%;
-    height: 380px;
-    margin-top: 24px;
   }
 
-  .hot-news-left {
-    width: 40%;
-    float: left;
+  .hot-news {
     text-align: left;
-    text-indent: 22px;
+    margin-top: 20px;
   }
 
-  .hot-news-left h3 {
-    margin: 0;
-    padding: 0;
-    font-family: PingFangSC-Medium;
-  }
-
-  .hot-news-left h3 a {
-    /*font-size: 22px;*/
+  .hot-news-first a{
     font-size: 19px;
     color: #CB2C40;
     line-height: 50px;
@@ -601,50 +557,37 @@
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
+    font-weight: bolder;
   }
 
-  .hot-news-left h3 a:hover {
-    line-height: 50px !important;
+  .hot-news-first a:hover{
     border-bottom: 1px solid #CB2C41;
   }
 
-  .hot-news-left ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .hot-news-left ul li {
-    /*max-width: 110px;*/
+  .hot-news-item {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
 
-  .hot-news-left ul li a {
+  .hot-news-item a {
     text-decoration: none;
-    font-family: PingFangSC-Regular;
     font-size: 15px;
     color: #151515;
-    /*line-height: 28px;*/
     line-height: 32px;
-
   }
 
-  .hot-news-left ul li a:hover {
-    font-family: PingFangSC-Medium;
+  .hot-news-item a:hover {
     font-size: 15px;
     color: #333333;
     line-height: 32px;
     border-bottom: 1px solid #CB2C41;
   }
 
-  .hot-news-right {
-    float: right;
-    /*width: 50%;*/
-    width: 750px;
-    height: 380px;
+  .news-slider{
+    margin-top: 22px;
   }
+
 
   .news-container {
     border-top: 3px solid #8FB6DB;

@@ -1,137 +1,130 @@
 <template>
-  <el-header style="width:1440px;height: 120px;">
-    <client-only>
-      <div class="header-top">
-        <div class="header-top-left">
-          <div class="header-top-l-logo">
+    <el-header style="width:1440px;height: 120px;">
+      <client-only>
+        <el-row class="header-top">
+          <el-col :span="8" class="header-top-left">
             <img @click="turn_own" src="https://aloss.hotforest.cn/web/header-logo.png" alt="全民体育">
+          </el-col>
+
+          <el-col :span="16" class="header-top-right" v-if="this.uid !==  null">
+            <img v-if="this.avatar_url != null && this.avatar_url !== '' " :src="this.avatar_url" alt="">
+            <img v-if="this.avatar_url == null || this.avatar_url === ''"
+                 src="https://aloss.hotforest.cn/web/default-header.png" alt="">
+            <a v-if="this.nickname != null && this.nickname !== ''" href="javascript:;">{{this.nickname}}</a>
+            <a v-if="this.nickname == null || this.nickname === ''" href="javascript:;">{{this.phone}}</a>
+            <button @click="loginOut">退出</button>
+          </el-col>
+
+          <el-col :span="16" class="header-top-right" v-if="this.uid == null">
+            <button @click="dialogLogin">登录账号</button>
+          </el-col>
+
+        </el-row>
+        <!--导航栏-->
+        <el-row>
+          <el-col :span="24" class="nav-menu" v-if="pathStatus">
+            <div class="nav-menu-item " style="border: none;">
+              <nuxt-link :to="'/'" exact>首页</nuxt-link>
+            </div>
+            <div class="nav-menu-item">
+              <nuxt-link :to="{name:'sportNews-list-league',params:{league:'all'}}" exact>全部新闻</nuxt-link>
+            </div>
+            <div class="nav-menu-item">
+              <ul>
+                <li>
+                  <nuxt-link :to="{name:'sportNews-list-league',params:{league:'nba'}}" exact>NBA</nuxt-link>
+                </li>
+                <li>
+                  <nuxt-link :to="{name:'sportNews-list-league',params:{league:'premier'}}" exact>英超</nuxt-link>
+                </li>
+                <li>
+                  <nuxt-link :to="{name:'sportNews-list-league',params:{league:'serie_a'}}" exact>意甲</nuxt-link>
+                </li>
+                <li>
+                  <nuxt-link :to="{name:'sportNews-list-league',params:{league:'la_liga'}}" exact>西甲</nuxt-link>
+                </li>
+              </ul>
+            </div>
+            <div class="nav-menu-item">
+              <nuxt-link :to="{name:'bbs-list-sportType',params:{'sportType':'all'}}" exact>社区论坛</nuxt-link>
+            </div>
+          </el-col>
+
+          <el-col :span="24" class="nav-menu" v-if="pathStatus===false">
+            <div class="nav-menu-item " style="border: none;">
+              <nuxt-link :to="'/'" exact>首页</nuxt-link>
+            </div>
+            <div class="nav-menu-item">
+              <nuxt-link :to="{name:'nsnews-league',params:{league:'all'}}" >全部新闻</nuxt-link>
+            </div>
+            <div class="nav-menu-item">
+              <ul>
+                <li>
+                  <nuxt-link :to="{name:'nsnews-league',params:{league:'nba'}}" >NBA</nuxt-link>
+                </li>
+                <li>
+                  <nuxt-link :to="{name:'nsnews-league',params:{league:'premier'}}" >英超</nuxt-link>
+                </li>
+                <li>
+                  <nuxt-link :to="{name:'nsnews-league',params:{league:'serie_a'}}" >意甲</nuxt-link>
+                </li>
+                <li>
+                  <nuxt-link :to="{name:'nsnews-league',params:{league:'la_liga'}}" >西甲</nuxt-link>
+                </li>
+              </ul>
+            </div>
+            <div class="nav-menu-item">
+              <nuxt-link :to="{name:'nsforum-sportType',params:{'sportType':'all'}}" exact>社区论坛</nuxt-link>
+            </div>
+            <!--            <div class="nav-menu-item">-->
+            <!--                <ul>-->
+            <!--                    <li>-->
+            <!--                        <nuxt-link :to="'#'" exact>全部赛程</nuxt-link>-->
+            <!--                    </li>-->
+            <!--                    <li>-->
+            <!--                        <nuxt-link :to="'#1'" exact>足球赛程</nuxt-link>-->
+            <!--                    </li>-->
+            <!--                    <li>-->
+            <!--                        <nuxt-link :to="'#2'" exact>篮球赛程</nuxt-link>-->
+            <!--                    </li>-->
+            <!--                </ul>-->
+            <!--&lt;!&ndash;                <nuxt-link :to="'/match'" exact></nuxt-link>&ndash;&gt;-->
+            <!--            </div>-->
+          </el-col>
+
+        </el-row>
+
+
+        <!-- 登陆弹框-->
+        <Login v-bind:dialogFormVisible="dialogFormVisible"
+               v-bind:dialogMobileLogin = "dialogMobileLogin"
+               v-bind:dialogTableVisible = "dialogTableVisible"
+               v-bind:wxIsLoginShow = "wxIsLoginShow"
+               @closeDialog = "closeDialog"
+               @wxDialog = "wxDialog"
+               @mobileDialog = "mobileDialog"
+        ></Login>
+
+
+        <!--        悬浮二维码框-->
+        <div class="wx-qrcode-box">
+          <div class="wx-qrcode-box-img">
+            <a
+              href="https://171tiyu.com/download/android?channelCode=Web_Landing_Page"
+              v-if="this.os === 'Win'">
+              <img src="https://aloss.hotforest.cn/web/android-QRcode.png" alt="">
+            </a>
+            <a v-if="this.os==='Mac'" href="https://apps.apple.com/app/id1482371213">
+              <img src="https://aloss.hotforest.cn/web/android-QRcode.png" alt="">
+            </a>
           </div>
+          <span>扫码下载安卓/IOS APP</span>
         </div>
-        <div class="header-top-right" v-if="this.uid == null">
-          <button @click="dialogLogin">登录账号</button>
-        </div>
-        <div class="header-top-right" v-if="this.uid !==  null">
-          <img v-if="this.avatar_url != null && this.avatar_url != '' " :src="this.avatar_url" alt="">
-          <img v-if="this.avatar_url == null || this.avatar_url == ''"
-               src="https://aloss.hotforest.cn/web/default-header.png" alt="">
-          <a v-if="this.nickname != null && this.nickname != ''" href="javascript:;">{{this.nickname}}</a>
-          <a v-if="this.nickname == null || this.nickname == ''" href="javascript:;">{{this.phone}}</a>
-          <button @click="loginOut">退出</button>
-        </div>
-      </div>
+        <!--        悬浮二维码框结束-->
 
+      </client-only>
 
-      <!-- 登陆弹框-->
-      <Login v-bind:dialogFormVisible="dialogFormVisible"
-             v-bind:dialogMobileLogin = "dialogMobileLogin"
-             v-bind:dialogTableVisible = "dialogTableVisible"
-             v-bind:wxIsLoginShow = "wxIsLoginShow"
-             @closeDialog = "closeDialog"
-             @wxDialog = "wxDialog"
-             @mobileDialog = "mobileDialog"
-      ></Login>
-
-
-      <!--        悬浮二维码框-->
-      <div class="wx-qrcode-box">
-        <div class="wx-qrcode-box-img">
-          <a
-            href="https://171tiyu.com/download/android?channelCode=Web_Landing_Page"
-            v-if="this.os === 'Win'">
-            <img src="https://aloss.hotforest.cn/web/android-QRcode.png" alt="">
-          </a>
-          <a v-if="this.os==='Mac'" href="https://apps.apple.com/app/id1482371213">
-            <img src="https://aloss.hotforest.cn/web/android-QRcode.png" alt="">
-          </a>
-        </div>
-        <span>扫码下载安卓/IOS APP</span>
-      </div>
-      <!--        悬浮二维码框结束-->
-
-    </client-only>
-    <div class="nav-menu" v-if="pathStatus">
-      <div class="nav-menu-item " style="border: none;">
-        <nuxt-link :to="'/'" exact>首页</nuxt-link>
-      </div>
-      <div class="nav-menu-item">
-        <nuxt-link :to="{name:'sportNews-list-league',params:{league:'all'}}" exact>全部新闻</nuxt-link>
-      </div>
-      <div class="nav-menu-item">
-        <ul>
-          <li>
-            <nuxt-link :to="{name:'sportNews-list-league',params:{league:'nba'}}" exact>NBA</nuxt-link>
-          </li>
-          <li>
-            <nuxt-link :to="{name:'sportNews-list-league',params:{league:'premier'}}" exact>英超</nuxt-link>
-          </li>
-          <li>
-            <nuxt-link :to="{name:'sportNews-list-league',params:{league:'serie_a'}}" exact>意甲</nuxt-link>
-          </li>
-          <li>
-            <nuxt-link :to="{name:'sportNews-list-league',params:{league:'la_liga'}}" exact>西甲</nuxt-link>
-          </li>
-        </ul>
-      </div>
-      <div class="nav-menu-item">
-        <nuxt-link :to="{name:'bbs-list-sportType',params:{'sportType':'all'}}" exact>社区论坛</nuxt-link>
-      </div>
-      <!--            <div class="nav-menu-item">-->
-      <!--                <ul>-->
-      <!--                    <li>-->
-      <!--                        <nuxt-link :to="'#'" exact>全部赛程</nuxt-link>-->
-      <!--                    </li>-->
-      <!--                    <li>-->
-      <!--                        <nuxt-link :to="'#1'" exact>足球赛程</nuxt-link>-->
-      <!--                    </li>-->
-      <!--                    <li>-->
-      <!--                        <nuxt-link :to="'#2'" exact>篮球赛程</nuxt-link>-->
-      <!--                    </li>-->
-      <!--                </ul>-->
-      <!--&lt;!&ndash;                <nuxt-link :to="'/match'" exact></nuxt-link>&ndash;&gt;-->
-      <!--            </div>-->
-    </div>
-    <div class="nav-menu" v-if="pathStatus===false">
-      <div class="nav-menu-item " style="border: none;">
-        <nuxt-link :to="'/'" exact>首页</nuxt-link>
-      </div>
-      <div class="nav-menu-item">
-        <nuxt-link :to="{name:'nsnews-league',params:{league:'all'}}" exact>全部新闻</nuxt-link>
-      </div>
-      <div class="nav-menu-item">
-        <ul>
-          <li>
-            <nuxt-link :to="{name:'nsnews-league',params:{league:'nba'}}" exact>NBA</nuxt-link>
-          </li>
-          <li>
-            <nuxt-link :to="{name:'nsnews-league',params:{league:'premier'}}" exact>英超</nuxt-link>
-          </li>
-          <li>
-            <nuxt-link :to="{name:'nsnews-league',params:{league:'serie_a'}}" exact>意甲</nuxt-link>
-          </li>
-          <li>
-            <nuxt-link :to="{name:'nsnews-league',params:{league:'la_liga'}}" exact>西甲</nuxt-link>
-          </li>
-        </ul>
-      </div>
-      <div class="nav-menu-item">
-        <nuxt-link :to="{name:'nsforum-sportType',params:{'sportType':'all'}}" exact>社区论坛</nuxt-link>
-      </div>
-      <!--            <div class="nav-menu-item">-->
-      <!--                <ul>-->
-      <!--                    <li>-->
-      <!--                        <nuxt-link :to="'#'" exact>全部赛程</nuxt-link>-->
-      <!--                    </li>-->
-      <!--                    <li>-->
-      <!--                        <nuxt-link :to="'#1'" exact>足球赛程</nuxt-link>-->
-      <!--                    </li>-->
-      <!--                    <li>-->
-      <!--                        <nuxt-link :to="'#2'" exact>篮球赛程</nuxt-link>-->
-      <!--                    </li>-->
-      <!--                </ul>-->
-      <!--&lt;!&ndash;                <nuxt-link :to="'/match'" exact></nuxt-link>&ndash;&gt;-->
-      <!--            </div>-->
-    </div>
-  </el-header>
+    </el-header>
 </template>
 
 <script>
@@ -142,7 +135,7 @@
     name: 'Header',
     data () {
       return {
-        pathStatus:false,
+        pathStatus: false,
         dialogTableVisible: false,
         dialogFormVisible: false,
         dialogMobileLogin: false,
@@ -162,21 +155,22 @@
       Login
     },
     watch: {
-      $route (to, from) {}
+      $route (to, from) {
+      }
     },
     methods: {
-      closeDialog(){
+      closeDialog () {
         this.dialogTableVisible = false
         this.dialogFormVisible = false
         this.dialogMobileLogin = false
         this.wxIsLoginShow = false
       },
-      wxDialog(){
+      wxDialog () {
         this.dialogFormVisible = true
         this.wxIsLoginShow = true
         this.dialogMobileLogin = false
       },
-      mobileDialog(){
+      mobileDialog () {
         this.dialogFormVisible = true
         this.wxIsLoginShow = false
         this.dialogMobileLogin = true
@@ -203,13 +197,13 @@
     },
     mounted () {
 
-      let sportNewsPath = this.$route.fullPath;
+      let sportNewsPath = this.$route.fullPath
 
       if (sportNewsPath === '/sportNews/list/all' || sportNewsPath === '/sportNews/list/nba'
         || sportNewsPath === '/sportNews/list/premier' || sportNewsPath === '/sportNews/list/serie_a'
         || sportNewsPath === '/sportNews/list/la_liga'
       ) {
-        this.pathStatus = true;
+        this.pathStatus = true
       }
 
       this.getNsDeviceId()
@@ -230,51 +224,26 @@
 <style scoped>
   @import "../assets/css/wx-qrcode-box.css";
 
-  .el-header {
-    width: 1440px;
-    padding: 0;
-  }
-
   .header-top {
     height: 50px;
-    margin: auto 0;
-    padding: 0 25px;
   }
 
   .header-top-left {
-    float: left;
-    width: 80%;
+    text-align: left;
+
   }
 
-  .header-top-l-logo {
-    height: 20px;
+  .header-top-left img {
     width: 328px;
-    float: left;
-    padding-top: 12px;
-
-  }
-
-  .header-top-l-logo img {
+    height: 20px;
     cursor: pointer;
-  }
-
-
-  .header-top-left span {
-    display: block;
-    float: left;
-    color: #000000;
-    margin-left: 20px;;
-    font-size: 18px;
-    font-family: HanziPenSC-W3, HanziPenSC;
-    font-weight: normal;
-    line-height: 25px;
+    padding-top: 12px;
   }
 
   .header-top-right {
-    float: right;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     vertical-align: middle;
   }
 
@@ -285,7 +254,6 @@
   }
 
   .header-top-right a {
-    font-family: PingFangSC-Regular;
     font-size: 18px;
     color: #333333;
     margin-left: 15px;
@@ -293,7 +261,6 @@
 
   .header-top-right button {
     outline: none;
-    font-family: PingFangSC-Regular;
     font-size: 18px;
     color: #2C2C2C;
     border: 1px solid transparent;
@@ -307,7 +274,6 @@
   .nav-menu {
     height: 70px;
     background: #397AB8;
-    font-family: PingFangSC-Regular;
     font-size: 18px;
     color: #FFFFFF;
     text-align: center;
@@ -318,7 +284,6 @@
     margin-left: 25px;
     margin-top: 20px;
     height: 30px;
-    /*margin-top: 14px;*/
     border-left: 1px solid white;
     padding-left: 25px;
   }
