@@ -1,247 +1,116 @@
 <template>
   <div>
-    <!--            news-detail -->
-    <div class="news-detail">
-      <div class="news-detail-bread-crumbs">
+    <el-col :span="13" :offset="1">
+      <el-col :span="24" class="news-detail-bread-crumbs">
         <nuxt-link :to="{path:'/'}">首页</nuxt-link>
         -
         <nuxt-link :to="{name:'nsnews-league',params:{'league':league}}">{{league_value}}</nuxt-link>
         -
         <span>{{newsDetail.title}}</span>
-      </div>
+      </el-col>
 
-      <h3>{{newsDetail.title}}</h3>
-      <div class="news-detail-t">
-        <div class="news-detail-t-l">
+      <el-col :span="24" class="news-detail-title">
+        {{newsDetail.title}}
+      </el-col>
+
+      <el-col :span="24" class="news-detail-author">
+        <el-col :span="2" class="news-detail-author-l">
           <img src="https://aloss.hotforest.cn/web/default-header.png" alt="">
-        </div>
-        <div class="news-detail-t-r">
-          <div class="news-detail-t-r-t">
-            <span v-if="newsDetail.author">{{newsDetail.author.name}}</span>
-            <button>关注</button>
-          </div>
-          <div class="news-detail-t-r-d">
-            <div class="news-detail-t-r-d-l">
+        </el-col>
+        <el-col :span="22" class="news-detail-author-r">
+          <el-col :span="24">
+            <el-col :span="3" class="news-detail-author-name">
+              {{newsDetail.author.name}}
+            </el-col>
+            <el-col :span="3" class="news-detail-author-button">
+              <button>关注</button>
+            </el-col>
+            <el-col :span="4" :offset="13">
+
+            </el-col>
+          </el-col>
+          <el-col :span="24" class="news-detail-author-r">
+            <el-col :span="4" class="news-detail-author-honor">
               全民体育主编
-            </div>
-            <span>{{newsPublishFormatTime}}</span>
-          </div>
-        </div>
-      </div>
-      <div class="news-detail-c">
-        <div v-for="(content,index) in newsDetail.content" :key="index">
-          <div v-if="content.type == 1">
-            <p>{{content.content}}</p>
-          </div>
-          <div v-if="content.type == 2">
-            <img :src="content.content" alt="">
-          </div>
-        </div>
-      </div>
+            </el-col>
+            <el-col :span="8" :offset="12" class="news-detail-author-time">
+              {{newsPublishFormatTime}}
+            </el-col>
+
+          </el-col>
+        </el-col>
+
+      </el-col>
+
+      <el-col :span="24" class="news-detail-content" v-for="(content,index) in newsDetail.content" :key="index">
+          <p v-if="content.type == 1">{{content.content}}</p>
+          <img v-if="content.type == 2" :src="content.content" alt="">
+      </el-col>
       <!--标签-->
-      <el-row>
-        <el-col :span="24" class="news-detail-tag">
-          标签：{{newsDetail.league}}
+      <el-col :span="24" class="news-detail-tag">
+        标签：{{newsDetail.league}}
+      </el-col>
+    </el-col>
+
+    <el-col :span="6" :offset="1">
+      <el-row class="news-you-like">
+        <el-col :span="24" class="news-you-like-t">
+          <el-col :span="1"><div class="news-you-like-icon"></div></el-col>
+          <el-col :span="9">你可能感兴趣的</el-col>
+          <el-col :span="2" :offset="6" class="news-you-like-change-img">
+            <img style="width: 20px;height: 20px;margin-right: 5px;" src="https://aloss.hotforest.cn/web/xuanzhuan.png" alt="img">
+          </el-col>
+          <el-col :span="6" class="news-you-like-change-text">换一换</el-col>
+        </el-col>
+
+        <el-col :span="24" class="news-you-like-item">
+          <el-col :span="6" class="news-you-like-item-img"><img src="https://aloss.hotforest.cn/web/default-header.png" alt=""></el-col>
+          <el-col :span="18">
+            <el-col :span="12" class="news-you-like-item-1">全民体育官方</el-col>
+            <el-col :span="12" class="news-you-like-item-2"><button>关注</button></el-col>
+            <el-col :span="24" class="news-you-like-item-3">全民体育主编</el-col>
+            <el-col :span="24" class="news-you-like-item-4">资深体育评论员，专业媒体供稿人</el-col>
+          </el-col>
+        </el-col>
+        <el-col :span="24" class="news-you-like-item">
+          <el-col :span="6" class="news-you-like-item-img"><img src="https://aloss.hotforest.cn/web/default-header.png" alt=""></el-col>
+          <el-col :span="18">
+            <el-col :span="12" class="news-you-like-item-1">全民体育官方</el-col>
+            <el-col :span="12" class="news-you-like-item-2"><button>关注</button></el-col>
+            <el-col :span="24" class="news-you-like-item-3">全民体育主编</el-col>
+            <el-col :span="24" class="news-you-like-item-4">资深体育评论员，专业媒体供稿人</el-col>
+          </el-col>
+        </el-col>
+        <el-col :span="24" class="news-you-like-item">
+          <el-col :span="6" class="news-you-like-item-img"><img src="https://aloss.hotforest.cn/web/default-header.png" alt=""></el-col>
+          <el-col :span="18">
+            <el-col :span="12" class="news-you-like-item-1">全民体育官方</el-col>
+            <el-col :span="12" class="news-you-like-item-2"><button>关注</button></el-col>
+            <el-col :span="24" class="news-you-like-item-3">全民体育主编</el-col>
+            <el-col :span="24" class="news-you-like-item-4">资深体育评论员，专业媒体供稿人</el-col>
+          </el-col>
         </el-col>
       </el-row>
 
-      <!--上下篇-->
-      <!--      <el-row>-->
-      <!--        <el-col :span="24">-->
-      <!--            <h4>上一篇:{{prevTitle}}</h4>-->
-      <!--        </el-col>-->
-      <!--        <el-col :span="24">-->
-      <!--          <h4>下一篇:{{nextTitle}}</h4>-->
-      <!--        </el-col>-->
-      <!--      </el-row>-->
-
-      <!--留言评论-->
-      <div class="publish-comment">
-        <p>我有话说</p>
-        <div class="publish-comment-d">
-          <div class="publish-comment-d-i">
-            <img v-if="this.avatar_url === '' || this.avatar_url === null "
-                 src="https://aloss.hotforest.cn/web/default-header.png"
-                 alt="">
-            <img v-if="this.avatar_url !== '' & this.avatar_url !== null " :src="this.avatar_url" alt="">
-          </div>
-          <div class="publish-comment-d-tx">
-            <textarea name="" id="" cols="30" rows="10" placeholder="说两句呗" v-model="replyContent"></textarea>
-            <button @click="replyNews(1)">发表<br>评论</button>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="comment-list">
-        <div class="comment-list-t">全部评论</div>
-        <div class="comment-list-d" v-for="(newsReply,index) in newsReplyList" :key="index">
-          <div class="comment-list-d-t">
-            <img v-if="newsReply.author.avatar_url != null & newsReply.author.avatar_url != ''"
-                 :src="newsReply.author.avatar_url" alt="">
-            <img v-if="newsReply.author.avatar_url == null || newsReply.author.avatar_url == ''"
-                 src="https://aloss.hotforest.cn/web/star.png" alt="">
-            <a>{{newsReply.author.nickName}}</a>
-            <span class="comment-list-d-t-t">{{newsReply.create_time | dateForHour }}</span>
-          </div>
-
-          <div class="comment-list-content" v-for="(content,i) in newsReply.content" :key="i">
-            <p v-if="content.type == 1">
-              {{content.content}}
-            </p>
-          </div>
-
-          <ul>
-            <li v-for="reply in newsReply.replyReply" :key="reply.reply_id">
-              <div class="comment-item">
-                <div class="comment-item-reply">
-                  <span>{{reply.author.nickName}} :</span>
-                  <p v-for="(c,ii) in reply.content" :key="ii"> {{c.content}} </p>
-                </div>
-                <div style="clear: both;"></div>
-
-                <div class="comment-item-c">
-                  <div class="comment-item-c-l">
-                    <a href="#">
-                      <img src="https://aloss.hotforest.cn/web/news-like.png" alt="">
-                    </a>
-                    <span>{{reply.likes_count}}</span>
-                  </div>
-
-                  <div class="comment-item-c-r">
-                    <!--                                    <button v-if="reply.reply_id !== showCommentReply" @click="isShowCommentReply(reply.reply_id)">回复</button>-->
-                    <!--                                    <button class="shouqi" v-if="reply.reply_id === showCommentReply" @click="isHideCommentReply(reply.reply_id)">收起</button>-->
-                    <span>{{reply.create_time | dateForHour}}</span>
-                  </div>
-
-                </div>
-                <div class="comment-item-i-b" v-if="reply.reply_id === showCommentReply">
-                  <input type="text" v-model="replyReplyContent">
-                  <button @click="replyReplyNews(2,newsReply.reply_id)">发表</button>
-                </div>
-              </div>
-            </li>
-          </ul>
-
-
-          <div class="comment-list-dd">
-            <div class="comment-list-dd-l">
-              <a href="#">
-                <img src="https://aloss.hotforest.cn/web/news-like.png" alt="">
-              </a>
-              <span>{{newsReply.likes_count}}</span>
-              <button v-if="index !== showComment" @click="isShowComment(index)">回复</button>
-              <button class="shouqi" v-if="index === showComment" @click="isHideComment(index)">收起</button>
-            </div>
-            <div style="clear: both;"></div>
-          </div>
-          <div class="comment-item-i-b" v-if="index === showComment">
-            <input type="text" v-model="replyReplyContent">
-            <button @click="replyReplyNews(2,newsReply.reply_id)">发表</button>
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="comment-more">
-        <span @click="showMoreComment(offsetComment)">查看更多</span>
-      </div>
-
-    </div>
-
-    <!--            news-detail end-->
-    <div class="news-detail-r">
-      <div class="news-detail-rec">
-        <div class="hot-news-list-t">
-          <div class="hot-news-list-t-icon"></div>
-          <span>你可能感兴趣的</span>
-          <img style="width: 20px;height: 20px;margin-right: 5px;" src="https://aloss.hotforest.cn/web/xuanzhuan.png"
-               alt="">
-          <span style="font-size:12px;
-font-family:PingFangSC-Regular,PingFang SC;
-font-weight:400;
-color:rgba(118,188,255,1);
-line-height:30px;">换一换</span>
-
-        </div>
-        <div class="hot-news-list-d">
-          <ul>
-            <li>
-              <div class="news-detail-rec-l">
-                <img src="https://aloss.hotforest.cn/web/default-header.png" alt="">
-              </div>
-              <div class="news-detail-rec-r">
-                <span>全民体育官方</span>
-                <button>关注</button>
-                <div class="news-detail-rec-j">
-                  全民体育主编
-                </div>
-                <p>
-                  资深体育评论员，专业媒体供稿人
-                </p>
-              </div>
-
-            </li>
-            <li>
-              <div class="news-detail-rec-l">
-                <img src="https://aloss.hotforest.cn/web/default-header.png" alt="">
-              </div>
-              <div class="news-detail-rec-r">
-                <span>全民体育官方</span>
-                <button>关注</button>
-                <div class="news-detail-rec-j">
-                  全民体育主编
-                </div>
-                <p>
-                  资深体育评论员，专业媒体供稿人
-                </p>
-              </div>
-
-            </li>
-            <li>
-              <div class="news-detail-rec-l">
-                <img src="https://aloss.hotforest.cn/web/default-header.png" alt="">
-              </div>
-              <div class="news-detail-rec-r">
-                <span>全民体育官方</span>
-                <button>关注</button>
-                <div class="news-detail-rec-j">
-                  全民体育主编
-                </div>
-                <p>
-                  资深体育评论员，专业媒体供稿人
-                </p>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <!--        hot-news -->
-      <div class="hot-news-list">
-        <div class="hot-news-list-t">
+      <el-row class="hot-news-list">
+        <el-col :span="24" class="hot-news-list-t">
           <div class="hot-news-list-t-icon"></div>
           <span>热门新闻</span>
-        </div>
-        <div class="hot-news-list-d">
-          <ul>
-            <li v-for="(hotNews,index) in hotNewsList" :key="index">
-              <div class="hot-news-list-d-l">
-                <img :src="hotNews.image" alt="">
-              </div>
-              <div class="hot-news-list-d-r">
-                <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotNews.shorturl}}">
-                  {{hotNews.title}}
-                </nuxt-link>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <!--        hot-news end -->
+        </el-col>
+        <el-col :span="24" v-for="(hotNews,index) in hotNewsList" :key="index" class="hot-news-list-item">
+          <el-col :span="10" class="hot-news-list-img">
+            <img :src="hotNews.image" alt="image">
+          </el-col>
+          <el-col :span="14" class="hot-news-list-title">
+            <nuxt-link target="_blank" :to="{name:'nsnews-league-shorturl',params:{shorturl:hotNews.shorturl,league:league}}">
+              {{hotNews.title}}
+            </nuxt-link>
+          </el-col>
+        </el-col>
+      </el-row>
+    </el-col>
 
-    </div>
+
     <!--        昵称弹出框-->
     <div>
       <el-dialog title="修改用户信息" :visible.sync="dialogFormVisible">
@@ -492,16 +361,25 @@ line-height:30px;">换一换</span>
       })
 
       // console.log(newsDetail)
-
-      let hotNewsList = await context.$axios.get(`${base.sq}/v2/GetArticles`, {
-        params: {
+      let hot_params = {}
+      if (league === 'all') {
+        hot_params = {
           articleType: 3,
-          // league:league_value,
           limit: 4,
           offset: 0,
           author_filter: ['6', '7', '8', '9']
         }
-      })
+      } else {
+        hot_params = {
+          articleType: 3,
+          league: league,
+          limit: 4,
+          offset: 0,
+          author_filter: ['6', '7', '8', '9']
+        }
+      }
+
+      let hotNewsList = await context.$axios.get(`${base.sq}/v2/GetArticles`, { params: hot_params })
 
       const type = 'news'
       const paraentId = newsDetail.data.Data.article_id
@@ -987,259 +865,6 @@ line-height:30px;">换一换</span>
 
   }
 
-  .news-container {
-    width: 100%;
-  }
-
-  .left-aside {
-    float: left;
-    width: 10%;
-  }
-
-  .left-aside ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .left-aside ul li {
-    height: 80px;
-    padding-top: 20px;
-    border-bottom: 1px solid #979797;;
-  }
-
-  .left-aside ul li a {
-    display: block;
-    height: 60px;
-    line-height: 60px;
-    font-family: PingFangSC-Regular;
-    font-size: 26px;
-    color: #333333;
-    text-align: center;
-  }
-
-  .left-aside ul li a:hover {
-    background: #58A4ED;
-    border-radius: 8px;
-    color: #FFFFFF;
-  }
-
-  .news-detail {
-    width: 58%;
-    float: left;
-    margin-left: 2%;
-  }
-
-  .news-detail h3 {
-    color: #333333;
-    text-align: left;
-    margin: 20px 0 0 0;
-    padding: 0;
-    font-size: 28px;
-    font-family: PingFangSC-Regular, PingFang SC;
-    font-weight: 400;
-    line-height: 40px;
-  }
-
-  .news-detail-t {
-    height: 60px;
-    padding-top: 14px;
-  }
-
-  .news-detail-t-l {
-    float: left;
-    width: 10%;
-    height: 60px;
-    padding-top: 10px;
-  }
-
-  .news-detail-t-l img {
-    width: 40px;
-    height: 40px;
-  }
-
-  .news-detail-t-r {
-    float: left;
-    width: 89%;
-    text-align: left;
-    height: 60px;
-  }
-
-  .news-detail-t-r-t span {
-    color: #333333;
-    line-height: 30px;
-    font-size: 16px;
-    font-family: PingFangSC-Regular, PingFang SC;
-    font-weight: 400;
-
-  }
-
-  .news-detail-t-r-t button {
-    background: #76BCFF;
-    border-radius: 2px;
-    border: 1px solid transparent;
-    outline: none;
-    color: #ffffff;
-    margin-left: 27px;
-    font-size: 12px;
-    font-family: PingFangSC-Medium, PingFang SC;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 1);
-    line-height: 17px;
-  }
-
-  .news-detail-t-r-d {
-    height: 30px;
-  }
-
-  .news-detail-t-r-d span {
-    display: block;
-    float: right;
-    color: #666666;
-    line-height: 30px;
-    font-size: 12px;
-    font-family: PingFangSC-Regular, PingFang SC;
-    font-weight: 400;
-    color: rgba(102, 102, 102, 1);
-  }
-
-  .news-detail-t-r-d-l {
-    width: 50%;
-    float: left;
-    font-size: 12px;
-    font-family: PingFangSC-Regular, PingFang SC;
-    font-weight: 400;
-    color: rgba(131, 131, 131, 1);
-    line-height: 30px;
-  }
-
-  .news-detail-c p {
-    color: #333333;
-    text-align: left;
-    font-size: 16px;
-    font-family: PingFangSC-Regular, PingFang SC;
-    font-weight: 400;
-    color: rgba(51, 51, 51, 1);
-    line-height: 30px;
-  }
-
-  .news-detail-c img {
-    width: 100%;
-  }
-
-  .news-detail-r {
-    width: 24%;
-    float: left;
-    margin-left: 3%;
-
-  }
-
-  .hot-news-list {
-    border: 1px solid #D0D0D0;;
-    margin-top: 30px;
-    padding: 12px 14px 12px 14px;
-
-  }
-
-  .hot-news-list-t {
-    text-align: left;
-    display: flex;
-    align-items: center;
-    justify-content: left;
-    vertical-align: middle;
-
-  }
-
-  .hot-news-list-t-icon {
-    width: 8px;
-    height: 34px;
-    background-color: #EBB031;
-    float: left;
-    margin-right: 14px;
-  }
-
-  .hot-news-list-t span {
-
-    color: #000000;
-    font-size: 18px;
-    font-family: PingFangSC-Regular, PingFang SC;
-    font-weight: 400;
-    color: rgba(0, 0, 0, 1);
-    line-height: 25px;
-  }
-
-  .hot-news-list-t img {
-    width: 30px;
-    height: 30px;
-    margin-left: 50px;
-  }
-
-
-  .hot-news-list-d {
-    /*margin-top: 17px;*/
-
-  }
-
-  .hot-news-list-d ul {
-    margin: 0;
-    padding: 0;
-  }
-
-  .hot-news-list-d ul li {
-    height: 90px;
-    padding: 12px 0 12px 0;
-    border-bottom: 1px solid #DDDDDD;
-  }
-
-  .hot-news-list-d ul li:last-child {
-    border-bottom: transparent !important;
-  }
-
-  .hot-news-list-d-l {
-    width: 40%;
-    height: 84px;
-    float: left;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    text-align: center;
-    overflow: hidden;
-  }
-
-  .hot-news-list-d-l img {
-    width: auto;
-    height: auto;
-    max-height: 100%;
-  }
-
-  .hot-news-list-d-r {
-    width: 60%;
-    height: 99px;
-    float: right;
-    text-align: left;
-
-  }
-
-  .hot-news-list-d-r a {
-    display: block;
-    font-family: PingFangSC-Regular;
-    font-size: 16px;
-    color: #333333;
-    padding: 0 0 0 10px;
-    text-align: left;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-  }
-
   .news-detail-rec {
     /*height: 520px;*/
     border: 1px solid #D0D0D0;;
@@ -1318,16 +943,229 @@ line-height:30px;">换一换</span>
     line-height: 25px;
   }
 
-  .news-detail-bread-crumbs{
+  .news-detail-bread-crumbs {
     text-align: left;
     margin-top: 25px;
   }
-  .news-detail-bread-crumbs a{
-    font-size:16px;
-    font-family:PingFangSC-Regular,PingFang SC;
-    font-weight:400;
-    color:rgba(153,153,153,1);
-    line-height:30px;
+
+  .news-detail-bread-crumbs a {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(153, 153, 153, 1);
+    line-height: 30px;
+  }
+
+
+  .news-detail-title {
+    text-align: left;
+    color: #333333;
+    margin: 20px 0 0 0;
+    padding: 0;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 40px;
+  }
+
+  .news-detail-author-l{
+
+  }
+  .news-detail-author {
+    margin-top: 14px;
+    margin-bottom: 14px;
+    text-align: left;
+  }
+
+  .news-detail-author-name{
+
+  }
+  .news-detail-author-l img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .news-detail-author-r {
+
+  }
+
+  .news-detail-author-name {
+    color: #333333;
+    line-height: 30px;
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .news-detail-author-button {
+    text-align: left;
+  }
+
+  .news-detail-author-button button {
+    background: #76BCFF;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    outline: none;
+    color: #ffffff;
+    margin-left: 27px;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 1);
+    line-height: 17px;
+  }
+
+  .news-detail-author-honor {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(131, 131, 131, 1);
+    line-height: 30px;
+  }
+
+  .news-detail-author-time {
+    text-align: right;
+    color: #666666;
+    line-height: 30px;
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  .news-detail-content p {
+    margin: 0;
+    padding: 0;
+    color: #333333;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 30px;
+  }
+
+  .news-detail-content img {
+    width: 100%;
+  }
+
+  .news-you-like{
+    border: 1px solid #D0D0D0;;
+    padding: 12px 14px 12px 14px;
+    margin-top: 20px;
+  }
+  .news-you-like-t {
+    height: 34px;
+    line-height: 34px;
+  }
+  .news-you-like-icon {
+    width: 8px;
+    height: 34px;
+    background-color: #EBB031;
+    float: left;
+    margin-right: 14px;
+  }
+  .news-you-like-change-img{
+    margin-top: 4px;
+  }
+  .news-you-like-change-text{
+    text-align: left;
+    color: #76BCFF;
+  }
+  .news-you-like-item{
+    text-align: left;
+    padding: 12px 0 12px 0;
+    border-bottom: 1px solid #DDDDDD;
+  }
+  .news-you-like-item:last-child{
+    border-bottom: 1px solid transparent;
+  }
+
+  .news-you-like-item-1{
+    color: #333333;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  .news-you-like-item-2 button{
+    /*height: 17px;*/
+    line-height: 17px;
+    background: #76BCFF;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    outline: none;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 500;
+
+  }
+  .news-you-like-item-3{
+    color: #838383;
+    line-height: 30px;
+    font-size: 12px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+
+  }
+  .news-you-like-item-4{
+    color: #838383;
+    line-height: 30px;
+    font-size: 12px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+  }
+
+  .hot-news-list {
+    border: 1px solid #D0D0D0;;
+    margin-top: 30px;
+    padding: 12px 14px 12px 14px;
+  }
+
+
+  .hot-news-list-t {
+    text-align: left;
+    position: relative;
+    height: 44px;
+
+  }
+
+  .hot-news-list-t-icon {
+    width: 8px;
+    height: 34px;
+    background-color: #EBB031;
+    /*float: left;margin-right: 14px;*/
+    position: absolute;
+    left: 0px;
+    top: 5px;
+
+  }
+
+  .hot-news-list-t span {
+
+    color: #000000;
+    font-size: 18px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    line-height: 25px;
+    position: absolute;
+    left: 20px;
+    top: 10px;
+  }
+  .hot-news-list-item{
+    padding: 12px 0 12px 0;
+    border-bottom: 1px solid #DDDDDD;
+  }
+  .hot-news-list-item:last-child {
+    border-bottom: transparent !important;
+  }
+
+  .hot-news-list-img img{
+    width: 100%;
+  }
+  .hot-news-list-title{
+    text-align: left;
+    padding-left: 10px;
+  }
+  .hot-news-list-title a {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+    line-height: 25px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
   }
 
 </style>

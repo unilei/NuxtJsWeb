@@ -1,80 +1,62 @@
 <template>
-  <div>
-    <!--        news-list -->
-    <div class="news-list">
-      <ul>
-        <li v-for="(news,index) in newsList" :key="index">
-          <div class="news-l-l">
-            <img :src="news.image" alt="新闻配图">
-          </div>
-          <div class="news-l-r">
-            <h3 @click="turnNewsDetail(news,index,newsList)">
-              {{news.title}}
-              <!--              <nuxt-link-->
-              <!--                target="_blank"-->
-              <!--                :to="{name:'sportNews-detail-shorturl',params:{shorturl:news.shorturl,key:news.shorturl}}">-->
-              <!--                {{news.title}}-->
-              <!--              </nuxt-link>-->
-            </h3>
+<div>
+    <el-col :span="13" :offset="1" class="news-list-container">
+      <el-col :span="24" v-for="(news,k) in newsList" :key="k" class="news-list-item">
+        <el-col :span="8" class="news-list-img">
+          <img :src="news.image" alt="新闻配图">
+        </el-col>
+        <el-col :span="16" class="news-list-news">
+          <el-col :span="24" class="news-list-title">
+            <nuxt-link :to="{
+          name: 'nsnews-league-shorturl',
+          params: { shorturl: news.shorturl,league:league_value }
+        }">{{news.title}}</nuxt-link>
 
-            <div class="news-l-r-content">
-              <div v-for="(c,i) in news.content" :key="i">
-                <p style="padding: 0;" v-if="c.type === 1">
-                  {{c.content}}
-                </p>
-              </div>
-            </div>
+          </el-col>
+          <el-col :span="24" class="news-list-content" v-if="news.content">
+              <p v-for="(c,i) in news.content" :key="i"  v-if="c.type ===1"  class="news-list-content-item" >
+                {{c.content}}
+              </p>
+          </el-col>
+          <el-col :span="8" class="news-list-time">{{news.published_at}}</el-col>
 
-            <div class="news-list-d">
-              <span>{{news.published_at}}</span>
-              <div class="news-list-d-r">
+          <el-col :span="1" :offset="4" class="news-list-like-img"><img src="https://aloss.hotforest.cn/web/news-like.png" alt="like"></el-col>
+          <el-col :span="2" :offset="1" class="news-list-like">{{news.likes}}</el-col>
+          <el-col :span="1" :offset="4" class="news-list-comment-img"><img src="https://aloss.hotforest.cn/web/news-comment.png" alt="comment"></el-col>
+          <el-col :span="2" :offset="1" class="news-list-comment">{{news.commentTotalCount}}</el-col>
 
-                <a href="#">
-                  {{news.commentTotalCount}}
-                </a>
-                <a href="#">
-                  <img style="margin-left: 20px;" src="https://aloss.hotforest.cn/web/news-comment.png" alt="">
-                </a>
-                <a href="#">
-                  {{news.likes}}
-                </a>
-                <a href="#">
-                  <img src="https://aloss.hotforest.cn/web/news-like.png" alt="">
-                </a>
-              </div>
-            </div>
-          </div>
-        </li>
-      </ul>
-      <div class="news-more">
+
+        </el-col>
+      </el-col>
+      <el-col :span="24" class="news-list-showmore">
         <span @click="showMoreNews(offset)">查看更多</span>
-      </div>
+      </el-col>
+    </el-col>
+    <!--        news-list -->
 
-    </div>
-    <!--        news-list end -->
-    <!--        hot-news -->
-    <div class="hot-news-list">
-      <div class="hot-news-list-t">
-        <div class="hot-news-list-t-icon"></div>
-        <span>热门新闻</span>
-      </div>
-      <div class="hot-news-list-d">
-        <ul>
-          <li v-for="(hotNews,index) in hotNewsList" :key="index">
-            <div class="hot-news-list-d-l">
-              <img :src="hotNews.image" alt="">
-            </div>
-            <div class="hot-news-list-d-r">
-              <nuxt-link target="_blank" :to="{name:'nsnews-league-shorturl',params:{shorturl:hotNews.shorturl,league:hotNews.league_value}}">
-                {{hotNews.title}}
-              </nuxt-link>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <!--        hot-news end -->
-  </div>
+    <!--  热门新闻列表 -->
+    <el-col :span="6" :offset="1" >
+      <el-row class="hot-news-list">
+        <el-col :span="24" class="hot-news-list-t">
+          <div class="hot-news-list-t-icon"></div>
+          <span>热门新闻</span>
+        </el-col>
+        <el-col :span="24" v-for="(hotNews,index) in hotNewsList" :key="index" class="hot-news-list-item">
+          <el-col :span="10" class="hot-news-list-img">
+            <img :src="hotNews.image" alt="image">
+          </el-col>
+          <el-col :span="14" class="hot-news-list-title">
+            <nuxt-link target="_blank" :to="{name:'nsnews-league-shorturl',params:{shorturl:hotNews.shorturl,league:league_value}}">
+              {{hotNews.title}}
+            </nuxt-link>
+          </el-col>
+
+        </el-col>
+      </el-row>
+    </el-col>
+
+
+</div>
 </template>
 
 <script>
@@ -180,7 +162,7 @@
       }
 
       let hot_params = {}
-      if (league_value === 'all') {
+      if (league_value == 'all') {
         hot_params = {
           articleType: 3,
           limit: 4,
@@ -196,6 +178,7 @@
           author_filter: ['6', '7', '8', '9']
         }
       }
+      console.log(hot_params)
       //根据新闻类型 获取热门列表
       let hotNewsList = await context.$axios.$get(`${base.sq}/v2/GetArticles`, { params: hot_params })
       return {
@@ -206,35 +189,6 @@
 
     },
     methods: {
-
-      turnNewsDetail (news, index, newsList) {
-        if (index === 0) {
-          sessionStorage.setItem('prevShorturl', 'javascript:;')
-          sessionStorage.setItem('prevTitle', '没有了')
-        }
-        if (index === newsList.length - 1) {
-          sessionStorage.setItem('nextShorturl', 'javascript:;')
-          sessionStorage.setItem('nextTitle', '没有了')
-        }
-
-        if (index !== 0 && index !== newsList.length - 1) {
-
-          let prevShorturl = newsList[index - 1].shorturl
-          let prevTitle = newsList[index - 1].title
-          let nextShorturl = newsList[index + 1].shorturl
-          let nextTitle = newsList[index + 1].title
-          sessionStorage.setItem('prevShorturl', prevShorturl)
-          sessionStorage.setItem('prevTitle', prevTitle)
-          sessionStorage.setItem('nextShorturl', nextShorturl)
-          sessionStorage.setItem('nextTitle', nextTitle)
-        }
-
-        this.$router.push({
-          name: 'nsnews-league-shorturl',
-          params: { shorturl: news.shorturl,league:this.league_value }
-        })
-
-      },
       showMoreNews (i) {
         //下面这个很重要 记住哟
         this.offset = i + 6
@@ -331,120 +285,59 @@
 </script>
 
 <style scoped>
-  .news-l-r-content {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    height: 60px;
+  .news-list-container{
+    margin-top: 30px;
   }
-
-  .news-list {
-    /*width: 740px;*/
-    float: left;
-    margin-left: 1%;
-    width: 58%;
+  .news-list-item{
+    padding: 12px 0 12px 0;
+    border-bottom: 1px solid #DDDDDD;
   }
-
-  .news-list ul {
-    margin: 0;
-    padding: 0;
-  }
-
-  .news-list ul li {
-    height: 180px;
-    padding-top: 30px;
-    border-bottom: 1px solid #D5D5D5;
-  }
-
-  .news-l-l {
-    float: left;
-    width: 260px;
+  .news-list-img{
     height: 170px;
-    /*border: 1px solid red;*/
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    text-align: center;
     overflow: hidden;
-
   }
-
-  .news-l-l img {
-    width: auto;
-    height: auto;
-    /*max-width: 100%;*/
+  .news-list-img img{
     max-height: 100%;
-
-
   }
-
-  .news-l-r {
-    width: 457px;
-    float: left;
-    margin-left: 20px;
-
-  }
-
-  .news-l-r h3 {
+  .news-list-title a{
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    margin: 0;
-    padding: 0;
     text-align: left;
 
     height: 50px;
     color: #333333;
     font-size: 18px;
-    font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
     line-height: 25px;
     cursor: pointer;
   }
-
-  .news-l-r h3 a {
-    color: #333333;
-    font-size: 18px;
-    font-family: PingFangSC-Regular, PingFang SC;
-    font-weight: 400;
-    line-height: 25px;
-  }
-
-  .news-l-r p {
-
-    color: #666666;
+  .news-list-content{
     text-align: left;
-    margin: 0;
-    padding: 20px 0 10px 0;
+    height: 90px;
     overflow: hidden;
+    -webkit-line-clamp: 3;
     text-overflow: ellipsis;
-    white-space: nowrap;
-    /*height: 90px;*/
+
+  }
+  .news-list-content p{
+    margin: 0;
+    padding: 0;
+    color: #666666;
     font-size: 12px;
-    font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
-    color: rgba(102, 102, 102, 1);
     line-height: 30px;
   }
 
-  .news-list-d {
-    margin-top: 30px;
+  .news-list-news{
+    padding-left: 14px;
   }
 
-  .news-list-d span {
-    display: block;
-    float: left;
-
+  .news-list-time{
+    margin-top: 10px;
+    text-align: left;
     color: #BBBBBB;
     line-height: 30px;
     font-size: 12px;
@@ -452,62 +345,32 @@
     font-weight: 400;
     color: rgba(187, 187, 187, 1);
   }
-
-  .news-list-d-r {
-    float: right;
-    font-size: 12px;
-    font-family: PingFangSC-Regular, PingFang SC;
-    font-weight: 400;
-    color: rgba(0, 0, 0, 1);
-    line-height: 17px;
-  }
-
-  .news-list-d-r span {
-    font-family: PingFangSC-Regular;
-    font-size: 18px;
-    color: #000000;
+  .news-list-like {
+    margin-top: 10px;
     text-align: right;
   }
-
-  .news-list-d-r a {
-    display: block;
-    float: right;
-    width: 50px;
-    height: 20px;
-    /*border: 1px solid red;*/
-    color: rgba(0, 0, 0, 1);
-
+  .news-list-like-img{
+    margin-top: 10px;
   }
-
-  .news-list-d-r img {
-    width: 20px;
-    height: 20px;
-    /*margin-right: 17px;*/
-    /*border: 1px solid red;*/
+  .news-list-comment{
+    margin-top: 10px;
+    text-align: right;
   }
-
-  .news-more {
-    margin-top: 30px;
+  .news-list-comment-img{
+    margin-top: 10px;
   }
-
-  .news-more span {
+  .news-list-showmore{
     cursor: pointer;
-    font-family: PingFangSC-Regular;
     font-size: 18px;
     color: #666666;
-    text-align: right;
+    margin-top: 30px;
   }
-
   .hot-news-list {
-    /*width: 420px;*/
-    width: 24%;
-    /*height: 550px;*/
-    float: left;
     border: 1px solid #D0D0D0;;
     margin-top: 30px;
-    margin-left: 1%;
     padding: 12px 14px 12px 14px;
   }
+
 
   .hot-news-list-t {
     text-align: left;
@@ -538,65 +401,23 @@
     left: 20px;
     top: 10px;
   }
-
-  .hot-news-list-d {
-    /*margin-top: 17px;*/
-
-  }
-
-  .hot-news-list-d ul {
-    margin: 0;
-    padding: 0;
-  }
-
-  .hot-news-list-d ul li {
-    height: 86px;
-    /*padding: 22px 0 22px 0;*/
+  .hot-news-list-item{
     padding: 12px 0 12px 0;
     border-bottom: 1px solid #DDDDDD;
   }
-
-  .hot-news-list-d ul li:last-child {
+  .hot-news-list-item:last-child {
     border-bottom: transparent !important;
   }
 
-  .hot-news-list-d-l {
-    width: 40%;
-    height: 84px;
-    float: left;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    text-align: center;
-    overflow: hidden;
+  .hot-news-list-img img{
+    width: 100%;
   }
-
-  .hot-news-list-d-l img {
-    /*width: 134px;*/
-    width: auto;
-    height: auto;
-    /*max-width:100%;*/
-    max-height: 100%;
-  }
-
-  .hot-news-list-d-r {
-    width: 50%;
-    height: 99px;
-    float: right;
+  .hot-news-list-title{
     text-align: left;
+    padding-left: 10px;
   }
-
-  .hot-news-list-d-r a {
-
-    /*font-size:18px;*/
-    font-size: 16px;
-    font-family: PingFangSC-Regular, PingFang SC;
+  .hot-news-list-title a {
+    font-size: 14px;
     font-weight: 400;
     color: rgba(51, 51, 51, 1);
     line-height: 25px;
@@ -605,7 +426,6 @@
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-
   }
 
   .nuxt-link-active {

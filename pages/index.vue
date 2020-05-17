@@ -16,7 +16,7 @@
         </el-col>
 
       </el-col>
-      <el-col :span="13"  offset="1"  class="news-slider">
+      <el-col :span="13"  :offset="1"  class="news-slider">
         <div id="slideBox" class="slideBox">
           <div class="hd">
             <ul>
@@ -43,313 +43,272 @@
     </el-row>
     <!--          热门新闻结束  -->
 
-    <!--            nba-->
-    <div class="news-container">
-      <div class="news-header">
-        <div style="width:40px;height:40px;float:left;">
-          <img style="width: 100%;" src="https://aloss.hotforest.cn/web/nba-icon.png" alt="">
+<!--    nba-->
+    <el-divider></el-divider>
+    <el-row>
+      <el-col :span="24" >
+        <div class="news-news-icon">
+          <img  src="https://aloss.hotforest.cn/web/nba-icon.png" alt="nba">
         </div>
-        <div style="float:left;margin-left: 9px;width:155px;height: 40px;margin-top: 18px;"
-             :style="backgroundImg"
-        >
-          <h2>NBA</h2>
-          <!--          <a href="#"></a>-->
+        <div class="news-news-text">
+          NBA
         </div>
-      </div>
-      <div class="news-left">
-        <ul>
-          <li>
-            <h3 style="">
-              <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotNbaNewsFirst.shorturl}}"
-                         target="_blank">
-                {{hotNbaNewsFirst.title}}
-              </nuxt-link>
-            </h3>
-            <div class="news-left-l">
-              <img :src="hotNbaNewsFirst.image" alt="">
-            </div>
-            <div class="news-left-r" v-if="hotNbaNewsFirst.content">
-              <p>
-                {{hotNbaNewsFirst.content[0].content}}
-              </p>
-              <span>{{nbaTimestamp1}}</span>
-            </div>
-            <div style="clear:both;"></div>
-          </li>
-          <li style="padding-top: 10px;">
-            <h3 style="">
-              <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotNbaNewsSecond.shorturl}}"
-                         target="_blank">
-                {{hotNbaNewsSecond.title}}
-              </nuxt-link>
-            </h3>
-            <div class="news-left-l">
-              <img :src="hotNbaNewsSecond.image" alt="">
-            </div>
-            <div class="news-left-r" v-if="hotNbaNewsSecond.content">
-              <p>
-                {{hotNbaNewsSecond.content[0].content}}
-              </p>
-              <span>{{nbaTimestamp2}}</span>
-            </div>
-            <div style="clear:both;"></div>
-          </li>
-        </ul>
-      </div>
-      <div class="news-right">
-        <ul>
-          <li v-for="newNbaNews in newNbaNewsList" :key="newNbaNews.article_id">
+      </el-col>
+
+      <el-col :span="11">
+        <el-col :span="24" class="news-news-title">
+          <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotNbaNewsFirst.shorturl}}"
+                     target="_blank">
+            {{hotNbaNewsFirst.title}}
+          </nuxt-link>
+        </el-col>
+        <el-col :span="7" class="news-news-img">
+          <img :src="hotNbaNewsFirst.image" alt="nba">
+        </el-col>
+        <el-col :span="16" :offset="1">
+          <el-col :span="24" v-if="hotNbaNewsFirst.content" class="news-news-content">
+            {{hotNbaNewsFirst.content[0].content}}
+          </el-col>
+          <el-col :span="24" class="news-news-time">
+            {{nbaTimestamp1}}
+          </el-col>
+        </el-col>
+
+        <el-col :span="24" class="news-news-title">
+          <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotNbaNewsSecond.shorturl}}"
+                     target="_blank">
+            {{hotNbaNewsSecond.title}}
+          </nuxt-link>
+        </el-col>
+        <el-col :span="7" class="news-news-img">
+          <img :src="hotNbaNewsSecond.image" alt="nba">
+        </el-col>
+        <el-col :span="16" :offset="1">
+          <el-col :span="24" v-if="hotNbaNewsSecond.content" class="news-news-content">
+            {{hotNbaNewsSecond.content[0].content}}
+          </el-col>
+          <el-col :span="24" class="news-news-time">
+            {{nbaTimestamp2}}
+          </el-col>
+        </el-col>
+      </el-col>
+      <el-col :span="12" :offset="1" class="news-news-item-container">
+        <el-col :span="23" :offset="1" v-for="newNbaNews in newNbaNewsList" :key="newNbaNews.article_id" class="news-news-item">
             <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:newNbaNews.shorturl}}" target="_blank">
               {{newNbaNews.title}}
             </nuxt-link>
-          </li>
-        </ul>
-      </div>
-      <div style="clear:both;"></div>
-    </div>
-    <!--            nba end-->
+        </el-col>
+      </el-col>
+    </el-row>
+    <!--nba end-->
 
-    <!--            社区-->
-
-    <div class="news-container">
-      <div class="news-header">
-        <div style="width:40px;height:40px;float:left;">
-          <img style="width: 100%;" src="https://aloss.hotforest.cn/web/bbs.png" alt="">
+    <!--    forum-->
+    <el-divider></el-divider>
+    <el-row>
+      <el-col :span="24" >
+        <div class="news-news-icon">
+          <img  src="https://aloss.hotforest.cn/web/bbs.png" alt="nba">
         </div>
-        <div style="float:left;margin-left: 9px;width:155px;height: 40px;margin-top: 18px;"
-             :style="backgroundImg"
-        >
-          <h2>社区</h2>
+        <div class="news-news-text">
+          社区
         </div>
-      </div>
-      <div class="news-left">
-        <ul>
-          <li style="height: auto !important;line-height: 35px;" v-for="(hotBbs,index) in hotBbsList" :key="index">
-            <h4>
-              <nuxt-link style="font-size: 16px !important;" target="_blank"
-                         :to="{name:'bbs-detail-articleId',params:{'articleId':hotBbs.article_id}}">
-                {{hotBbs.title}}
-              </nuxt-link>
-            </h4>
-          </li>
+      </el-col>
 
-        </ul>
-      </div>
-      <div class="news-right">
-        <ul>
-          <li v-for="(bbs,i) in bbsList" :key="i">
-            <nuxt-link :to="{name:'bbs-detail-articleId',params:{'articleId':bbs.article_id}}" target="_blank">
-              {{bbs.title}}
-            </nuxt-link>
-          </li>
-        </ul>
-      </div>
-      <div style="clear:both;"></div>
-    </div>
-    <!--            社区结束-->
+      <el-col :span="11">
+        <el-col :span="24" class="news-news-hot-forum" v-for="(hotBbs,index) in hotBbsList" :key="index">
+          <nuxt-link  target="_blank"
+                     :to="{name:'bbs-detail-articleId',params:{'articleId':hotBbs.article_id}}">
+            {{hotBbs.title}}
+          </nuxt-link>
+        </el-col>
+      </el-col>
+      <el-col :span="12" :offset="1" class="news-news-item-container">
+        <el-col :span="23" :offset="1" v-for="(bbs,i) in bbsList" :key="i" class="news-news-item">
+          <nuxt-link :to="{name:'bbs-detail-articleId',params:{'articleId':bbs.article_id}}" target="_blank">
+            {{bbs.title}}
+          </nuxt-link>
+        </el-col>
+      </el-col>
+    </el-row>
+    <!--            forum end-->
 
     <!--            西甲 -->
-
-    <div class="news-container">
-      <div class="news-header">
-        <div style="width:40px;height:40px;float:left;">
-          <img style="width: 100%;" src="https://aloss.hotforest.cn/web/laliga-icon.png" alt="">
+    <el-divider></el-divider>
+    <el-row>
+      <el-col :span="24" >
+        <div class="news-news-icon">
+          <img  src="https://aloss.hotforest.cn/web/laliga-icon.png" alt="la_liga">
         </div>
-        <div style="float:left;margin-left: 9px;width:155px;height: 40px;margin-top: 18px;"
-             :style="backgroundImg"
-        >
-          <h2>西甲</h2>
+        <div class="news-news-text">
+          西甲
         </div>
-      </div>
+      </el-col>
 
-      <div class="news-left">
-        <ul>
-          <li>
-            <h3 style="">
-              <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotLaLigaNewsFirst.shorturl}}"
-                         target="_blank">
-                {{hotLaLigaNewsFirst.title}}
-              </nuxt-link>
-            </h3>
-            <div class="news-left-l">
-              <img :src="hotLaLigaNewsFirst.image" alt="">
-            </div>
-            <div class="news-left-r" v-if="hotLaLigaNewsFirst.content">
-              <p>
-                {{hotLaLigaNewsFirst.content[0].content}}
-              </p>
-              <span>{{laLigaTimestamp1}}</span>
-            </div>
-            <div style="clear:both;"></div>
-          </li>
-          <li style="padding-top: 27px;">
-            <h3 style="">
-              <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotLaLigaNewsSecond.shorturl}}"
-                         target="_blank">
-                {{hotLaLigaNewsSecond.title}}
-              </nuxt-link>
-            </h3>
-            <div class="news-left-l">
-              <img :src="hotLaLigaNewsSecond.image" alt="">
-            </div>
-            <div class="news-left-r" v-if="hotLaLigaNewsSecond.content">
-              <p>
-                {{hotLaLigaNewsSecond.content[0].content}}
-              </p>
-              <span>{{laLigaTimestamp2}}</span>
-            </div>
-            <div style="clear:both;"></div>
-          </li>
-        </ul>
-      </div>
-      <div class="news-right">
-        <ul>
-          <li v-for="newLaLigaNews in newLaLigaNewsList" :key="newLaLigaNews.article_id">
-            <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:newLaLigaNews.shorturl}}"
-                       target="_blank">{{newLaLigaNews.title}}
-            </nuxt-link>
-          </li>
-        </ul>
-      </div>
-      <div style="clear:both;"></div>
-    </div>
-    <!--            nba end-->
-    <!--            英超-->
+      <el-col :span="11">
+        <el-col :span="24" class="news-news-title">
+          <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotLaLigaNewsFirst.shorturl}}"
+                     target="_blank">
+            {{hotLaLigaNewsFirst.title}}
+          </nuxt-link>
+        </el-col>
+        <el-col :span="7" class="news-news-img">
+          <img :src="hotLaLigaNewsFirst.image" alt="nba">
+        </el-col>
+        <el-col :span="16" :offset="1">
+          <el-col :span="24" v-if="hotLaLigaNewsFirst.content" class="news-news-content">
+            {{hotLaLigaNewsFirst.content[0].content}}
+          </el-col>
+          <el-col :span="24" class="news-news-time">
+            {{laLigaTimestamp1}}
+          </el-col>
+        </el-col>
 
-    <div class="news-container">
-      <div class="news-header">
-        <div style="width:40px;height:40px;float:left;">
-          <img style="width: 100%;" src="https://aloss.hotforest.cn/web/premier-icon.png" alt="">
+        <el-col :span="24" class="news-news-title">
+          <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotLaLigaNewsSecond.shorturl}}"
+                     target="_blank">
+            {{hotLaLigaNewsSecond.title}}
+          </nuxt-link>
+        </el-col>
+        <el-col :span="7" class="news-news-img">
+          <img :src="hotLaLigaNewsSecond.image" alt="nba">
+        </el-col>
+        <el-col :span="16" :offset="1">
+          <el-col :span="24" v-if="hotLaLigaNewsSecond.content" class="news-news-content">
+            {{hotLaLigaNewsSecond.content[0].content}}
+          </el-col>
+          <el-col :span="24" class="news-news-time">
+            {{laLigaTimestamp2}}
+          </el-col>
+        </el-col>
+      </el-col>
+      <el-col :span="12" :offset="1" class="news-news-item-container">
+        <el-col :span="23" :offset="1" v-for="newLaLigaNews in newLaLigaNewsList" :key="newLaLigaNews.article_id" class="news-news-item">
+          <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:newLaLigaNews.shorturl}}" target="_blank">
+            {{newLaLigaNews.title}}
+          </nuxt-link>
+        </el-col>
+      </el-col>
+    </el-row>
+<!--    西甲结束-->
+
+    <!--            英超 -->
+    <el-divider></el-divider>
+    <el-row>
+      <el-col :span="24" >
+        <div class="news-news-icon">
+          <img  src="https://aloss.hotforest.cn/web/premier-icon.png" alt="la_liga">
         </div>
-        <div style="float:left;margin-left: 9px;width:155px;height: 40px;margin-top: 18px;"
-             :style="backgroundImg"
-        >
-          <h2>英超</h2>
+        <div class="news-news-text">
+          英超
         </div>
-      </div>
-      <div class="news-left">
-        <ul>
-          <li>
-            <h3 style="">
-              <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotPremierNewsFirst.shorturl}}"
-                         target="_blank">
-                {{hotPremierNewsFirst.title}}
-              </nuxt-link>
-            </h3>
-            <div class="news-left-l">
-              <img :src="hotPremierNewsFirst.image" alt="">
-            </div>
-            <div class="news-left-r" v-if="hotPremierNewsFirst.content">
-              <p>
-                {{hotPremierNewsFirst.content[0].content}}
-              </p>
-              <span>{{premierTimestamp1}}</span>
-            </div>
-            <div style="clear:both;"></div>
-          </li>
-          <li style="padding-top: 27px;">
-            <h3 style="">
-              <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotPremierNewsSecond.shorturl}}"
-                         target="_blank">
-                {{hotPremierNewsSecond.title}}
-              </nuxt-link>
-            </h3>
-            <div class="news-left-l">
-              <img :src="hotPremierNewsSecond.image" alt="">
-            </div>
-            <div class="news-left-r" v-if="hotPremierNewsSecond.content">
-              <p>
-                {{hotPremierNewsSecond.content[0].content}}
-              </p>
-              <span>{{premierTimestamp2}}</span>
-            </div>
-            <div style="clear:both;"></div>
-          </li>
-        </ul>
-      </div>
-      <div class="news-right">
-        <ul>
-          <li v-for="newPremierNews in newPremierNewsList" :key="newPremierNews.article_id">
-            <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:newPremierNews.shorturl}}"
-                       target="_blank">
-              {{newPremierNews.title}}
-            </nuxt-link>
-          </li>
-        </ul>
-      </div>
-      <div style="clear:both;"></div>
-    </div>
-    <!--            nba end-->
+      </el-col>
 
+      <el-col :span="11">
+        <el-col :span="24" class="news-news-title">
+          <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotPremierNewsFirst.shorturl}}"
+                     target="_blank">
+            {{hotPremierNewsFirst.title}}
+          </nuxt-link>
+        </el-col>
+        <el-col :span="7" class="news-news-img">
+          <img :src="hotPremierNewsFirst.image" alt="nba">
+        </el-col>
+        <el-col :span="16" :offset="1">
+          <el-col :span="24" v-if="hotPremierNewsFirst.content" class="news-news-content">
+            {{hotPremierNewsFirst.content[0].content}}
+          </el-col>
+          <el-col :span="24" class="news-news-time">
+            {{premierTimestamp1}}
+          </el-col>
+        </el-col>
 
-    <!--            意甲-->
+        <el-col :span="24" class="news-news-title">
+          <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotPremierNewsSecond.shorturl}}"
+                     target="_blank">
+            {{hotPremierNewsSecond.title}}
+          </nuxt-link>
+        </el-col>
+        <el-col :span="7" class="news-news-img">
+          <img :src="hotPremierNewsSecond.image" alt="nba">
+        </el-col>
+        <el-col :span="16" :offset="1">
+          <el-col :span="24" v-if="hotPremierNewsSecond.content" class="news-news-content">
+            {{hotPremierNewsSecond.content[0].content}}
+          </el-col>
+          <el-col :span="24" class="news-news-time">
+            {{premierTimestamp2}}
+          </el-col>
+        </el-col>
+      </el-col>
+      <el-col :span="12" :offset="1" class="news-news-item-container">
+        <el-col :span="23" :offset="1" v-for="newPremierNews in newPremierNewsList" :key="newPremierNews.article_id" class="news-news-item">
+          <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:newPremierNews.shorturl}}"
+                     target="_blank">
+            {{newPremierNews.title}}
+          </nuxt-link>
+        </el-col>
+      </el-col>
+    </el-row>
+    <!--    英超结束-->
 
-    <div class="news-container">
-      <div class="news-header">
-        <div style="width:40px;height:40px;float:left;">
-          <img style="width: 100%;" src="https://aloss.hotforest.cn/web/serea-icon.png" alt="">
+    <!--            意甲 -->
+    <el-divider></el-divider>
+    <el-row>
+      <el-col :span="24" >
+        <div class="news-news-icon">
+          <img  src="https://aloss.hotforest.cn/web/serea-icon.png" alt="la_liga">
         </div>
-        <div style="float:left;margin-left: 9px;width:155px;height: 40px;margin-top: 18px;"
-             :style="backgroundImg"
-        >
-          <h2>意甲</h2>
+        <div class="news-news-text">
+          意甲
         </div>
-      </div>
-      <div class="news-left">
-        <ul>
-          <li>
-            <h3 style="">
-              <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotSerieANewsFirst.shorturl}}"
-                         target="_blank">
-                {{hotSerieANewsFirst.title}}
-              </nuxt-link>
-            </h3>
-            <div class="news-left-l">
-              <img :src="hotSerieANewsFirst.image" alt="">
-            </div>
-            <div class="news-left-r" v-if="hotSerieANewsFirst.content">
-              <p>
-                {{hotSerieANewsFirst.content[0].content}}
-              </p>
-              <span>{{serieATimestamp1}}</span>
-            </div>
-            <div style="clear:both;"></div>
-          </li>
-          <li style="padding-top: 27px;">
-            <h3 style="">
-              <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotSerieANewsSecond.shorturl}}"
-                         target="_blank">
-                {{hotSerieANewsSecond.title}}
-              </nuxt-link>
+      </el-col>
 
-            </h3>
-            <div class="news-left-l">
-              <img :src="hotSerieANewsSecond.image" alt="">
-            </div>
-            <div class="news-left-r" v-if="hotSerieANewsSecond.content">
-              <p>
-                {{hotSerieANewsSecond.content[0].content}}
-              </p>
-              <span>{{serieATimestamp2}}</span>
-            </div>
-            <div style="clear:both;"></div>
-          </li>
-        </ul>
-      </div>
-      <div class="news-right">
-        <ul>
-          <li v-for="newSerieANews in newSerieANewsList" :key="newSerieANews.article_id">
-            <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:newSerieANews.shorturl}}"
-                       target="_blank">{{newSerieANews.title}}
-            </nuxt-link>
-          </li>
-        </ul>
-      </div>
-      <div style="clear:both;"></div>
-    </div>
-    <!--            nba end-->
+      <el-col :span="11">
+        <el-col :span="24" class="news-news-title">
+          <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotSerieANewsFirst.shorturl}}"
+                     target="_blank">
+            {{hotSerieANewsFirst.title}}
+          </nuxt-link>
+        </el-col>
+        <el-col :span="7" class="news-news-img">
+          <img :src="hotSerieANewsFirst.image" alt="nba">
+        </el-col>
+        <el-col :span="16" :offset="1">
+          <el-col :span="24" v-if="hotSerieANewsFirst.content" class="news-news-content">
+            {{hotSerieANewsFirst.content[0].content}}
+          </el-col>
+          <el-col :span="24" class="news-news-time">
+            {{serieATimestamp1}}
+          </el-col>
+        </el-col>
 
-
+        <el-col :span="24" class="news-news-title">
+          <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotSerieANewsSecond.shorturl}}"
+                     target="_blank">
+            {{hotSerieANewsSecond.title}}
+          </nuxt-link>
+        </el-col>
+        <el-col :span="7" class="news-news-img">
+          <img :src="hotSerieANewsSecond.image" alt="nba">
+        </el-col>
+        <el-col :span="16" :offset="1">
+          <el-col :span="24" v-if="hotSerieANewsSecond.content" class="news-news-content">
+            {{hotSerieANewsSecond.content[0].content}}
+          </el-col>
+          <el-col :span="24" class="news-news-time">
+            {{serieATimestamp2}}
+          </el-col>
+        </el-col>
+      </el-col>
+      <el-col :span="12" :offset="1" class="news-news-item-container">
+        <el-col :span="23" :offset="1" v-for="newSerieANews in newSerieANewsList" :key="newSerieANews.article_id" class="news-news-item">
+          <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:newSerieANews.shorturl}}"
+                     target="_blank">{{newSerieANews.title}}
+          </nuxt-link>
+        </el-col>
+      </el-col>
+    </el-row>
+    <!-- 意甲结束-->
   </el-main>
 </template>
 
@@ -588,107 +547,53 @@
     margin-top: 22px;
   }
 
-
-  .news-container {
-    border-top: 3px solid #8FB6DB;
-    margin-top: 25px;
-  }
-
-  .news-header {
-    height: 60px;
-    padding-top: 20px;
-    clear: both;
+  .news-news-icon{
+    float: left;
     text-align: left;
   }
+  .news-news-icon img{
+    width: 40px;
+    height: 40px;
+  }
+  .news-news-text{
+    float: left;
+    text-align: left;
+    width:155px;
+    height: 40px;
+    background: url("https://aloss.hotforest.cn/web/hot-t-bg.png") no-repeat center;
+    background-size: 100% 100%;
+    line-height: 40px;
+    text-indent: 10px;
 
-  .news-header h2 {
-    margin: 0;
-    padding: 0;
     font-family: Arial-BoldMT;
     font-size: 19px;
     color: #FFFFFF;
-    margin-left: 16px;
+    margin-left: 14px;
     display: block;
-    line-height: 42px;
-    height: 42px;
   }
-
-  .news-left {
-    float: left;
-    width: 49%;
-    border-right: 1px dashed #C2C2C2;
-    clear: both;
-  }
-
-  .news-left ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .news-left ul li {
-
-  }
-
-  .news-left ul li h3 {
-    margin: 0;
-    padding: 0;
+  .news-news-title{
+    margin-top: 16px;
     text-align: left;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+
   }
-
-  .news-left ul li h3 a {
-
-    font-family: PingFangSC-Medium;
-    /*font-size: 22px;*/
+  .news-news-title a{
+    font-weight: bolder;
     font-size: 19px;
     color: #333333;
-
   }
-
-  .news-left ul li h4 {
-    margin: 0;
-    padding: 0;
+  .news-news-img{
     text-align: left;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    margin-top: 14px;
   }
-
-  .news-left ul li h4 a {
-
-    font-family: PingFangSC-Medium;
-    /*font-size: 22px;*/
-    font-size: 19px;
-    color: #333333;
-
-  }
-
-  .news-left-l {
-    float: left;
-    width: 180px;
-    height: 110px;
-    padding-top: 10px;
-  }
-
-  .news-left-l img {
+  .news-news-img img{
     width: 180px;
     height: 110px;
   }
-
-  .news-left-r {
-    float: left;
-    width: 382px;
-    height: 90px;
-    padding: 10px 0 0 15px;
-
-  }
-
-  .news-left-r p {
-    margin: 0;
-    padding: 0;
+  .news-news-content{
+    margin-top: 14px;
     font-family: PingFangSC-Regular;
     color: #666666;
     line-height: 28px;
@@ -702,9 +607,7 @@
     -webkit-line-clamp: 3;
     overflow: hidden;
   }
-
-  .news-left-r span {
-    font-family: PingFangSC-Regular;
+  .news-news-time{
     font-size: 12px;
     color: #999999;
     line-height: 30px;
@@ -713,33 +616,44 @@
     display: block;
   }
 
-  .news-right {
-    float: left;
-    width: 48%;
-    padding-left: 25px;
+  .news-news-item-container{
+    border-left: 1px dashed #C2C2C2;
   }
-
-  .news-right ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-
-  }
-
-  .news-right ul li {
+  .news-news-item{
+    margin-top: 2px;
+    text-indent: 20px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     text-align: left;
   }
 
-  .news-right ul li a {
+  .news-news-item a{
     text-decoration: none;
     font-family: PingFangSC-Regular;
     font-size: 15px;
     color: #333333;
     line-height: 32px;
+  }
+  .news-news-hot-forum {
+    margin-top: 14px;
 
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .news-news-hot-forum a{
+    font-size: 16px;
+    color: #333333;
+    font-weight: bolder;
+  }
+
+  .el-divider{
+    background-color: #8FB6DB;
+  }
+  .el-divider--horizontal{
+    height: 3px;
   }
 
 </style>
