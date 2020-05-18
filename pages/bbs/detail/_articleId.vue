@@ -864,7 +864,7 @@ line-height:30px;cursor: pointer;">换一换</span>
         }
       },
       getReplyList(article_id, offset) {
-        let type = 'nsforum'
+        let type = 'forum'
         let sort = 'newest'
         this.$axios.get(`${base.sq}/v2/`+type+`/`+article_id+`/`+sort+`/replys`,{params:{
             offset: offset,
@@ -875,7 +875,7 @@ line-height:30px;cursor: pointer;">换一换</span>
             newsReplyList.forEach(item => {
               // console.log(item)
               const reply_id = item.reply_id
-              let type = 'nsforum'
+              let type = 'forum'
               let sort = 'toplike'
               this.$axios.get(`${base.sq}/v2/`+type+`/`+reply_id+`/`+sort+`/replys`,{params:{
                   offset: 0
@@ -897,7 +897,7 @@ line-height:30px;cursor: pointer;">换一换</span>
         const article_id = this.$route.params.articleId
         this.offsetComment = i + 4
         // console.log(i+1)
-        const type = 'nsforum'
+        const type = 'forum'
         const sort = 'newest'
         this.$axios.get(`${base.sq}/v2/`+type+`/`+article_id+`/`+sort+`/replys`,{params:{
             offset: this.offsetComment,
@@ -911,7 +911,7 @@ line-height:30px;cursor: pointer;">换一换</span>
               // console.log(item)
               const reply_id = item.reply_id
 
-              const type = 'nsforum'
+              const type = 'forum'
               const sort = 'toplike'
               this.$axios.get(`${base.sq}/v2/`+type+`/`+reply_id+`/`+sort+`/replys`,{params:{
                   offset: 0

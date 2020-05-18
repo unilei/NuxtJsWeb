@@ -47,6 +47,10 @@
   line-height: 60px;
 
 }
+/deep/ .el-upload img{
+  width: 100%;
+
+}
 
 /deep/ .pic-span {
   margin-left: 84px;

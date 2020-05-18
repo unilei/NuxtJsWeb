@@ -2,7 +2,7 @@
   width: 100%;
   height: 100%;
   position: fixed;
-  z-index: 10000;
+  z-index: 100;
   background: rgba(0,0,0,0.50);
   top: 0;
   left: 0;
@@ -12,8 +12,6 @@
 .login-modal{
   width: 384px;
   height: 506px;
-  /*margin-left: 520px;*/
-
   margin: 100px auto;
   background: #FFFFFF;
   box-shadow: 0 4px 7px 0 rgba(0,0,0,0.20);
@@ -26,7 +24,6 @@
   position: absolute;
   width: 30px;
   height: 30px;
-  /*border:1px solid red;*/
   top: -37px;
   right: 0;
   cursor: pointer;
@@ -50,11 +47,6 @@
   border-radius: 2px;
   text-align: left;
 }
-/*.login-modal-t-p span{*/
-/*    font-family: PingFangSC-Regular;*/
-/*    font-size: 16px;*/
-/*    color: #999999;*/
-/*}*/
 
 .login-modal-t-p input{
   outline: none;
@@ -93,12 +85,7 @@
   border-radius: 2px;
   text-align: left;
 }
-/*.login-modal-t-c span{*/
-/*    font-family: PingFangSC-Regular;*/
-/*    font-size: 16px;*/
-/*    color: #999999;*/
-/*    margin-left: 22px;*/
-/*}*/
+
 .login-modal-t-c input{
   outline: none;
   border: 1px solid transparent;

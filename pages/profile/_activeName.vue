@@ -1,6 +1,15 @@
 <template>
-  <div style="width: 90%;margin: 0 auto;">
-    <pre>
+  <el-main>
+    <el-row class="profile">
+      <el-col :span="24" >
+        <img src="@/assets/image/profile-banner.png" alt="profile">
+      </el-col>
+    </el-row>
+    <el-row class="profile-content">
+      <el-col :span="24" class="profile-tags">
+        <el-tabs v-model="activeName" @tab-click="handleClick">
+          <el-tab-pane label="服务协议" name="first">
+               <pre>
         全民体育（以下称“我们”）尊重并保护您的隐私，当您使用我们的服务时，我们可能会收集、使用、储存和分享您的相关信息。
         我们希望通过本《隐私政策》（ 以下称 “本政策”）向您说明，我们如何收集、使用、储存和分享这些信息，我们如何为您提供访问、更新、控制和保护您信息的服务。
         本政策与您使用我们的服务紧密相关，我们希望您仔细阅读本政策的全部内容，作出您认为适当的选择。我们努力用简明扼要的文字表达，并对本政策中与您的权益存在重大关系的条款，在此提示您特别注意。
@@ -95,25 +104,152 @@
         （2）过在我们服务中进行广告服务的其他公司或机构所收集的信息。
         为给您提供更好的服务以及随着我们业务的发展，我们可能会适时对本政策进行修订，如本政策发生变更，我们将以推送通知或发送邮件或站内信通知您，若您在本政策修订后继续使用我们的服务，即表示您已充分阅读、理解并同意接受经修订后的本政策的约束。
     </pre>
-  </div>
+          </el-tab-pane>
+          <el-tab-pane label="隐私政策" name="second">
+                <pre>
+    1. 我们会遵循《隐私政策》收集使用信息，但不会仅因同意本《隐私政策》而采用强制捆绑的方式收集信息; 
+    2. 为了向您提供服务所必需，需要您开启以下权限，以便您使用相应功能;若您不使用相应功能，可以不开启以下权限，不开启权限不影响您使用其他功能，我们将依法保障您的信息安全; 电话/设备信息权限 开启电话/设备信息权限，用于读取设备信息、日志信息和帮助您诊断问题,以便我们向您推送资讯以及安全风控。即使您授予我们此项权限，目前我们也不会因此获取您的电话号码或通讯簿。 存储权限 开启存储权限，用于存储应用资源文件，以便您使用保存图片、音视频文件功能，上传您存储的图片、音视频文件。 相机 开启相机权限，以便您拍摄并上传照片、视频。 麦克风 开启麦克风权限，以便您拍摄并上传音、视频。 地理位置 当您设置/编辑“个人资料”中的“所在地”、设置收件地址时，为了定位手机 位置，我们需要申请位置权限。 
+    3. 未经您的同意，我们不会从第三方获取、共享或对外提供您的个人信息。 
+    4. 您可以查询、访问、修改、删除您的 个人信息，我们也提供注销账号、投诉举报的渠道。
+      </pre>
+          </el-tab-pane>
+          <el-tab-pane label="关于全民体育" name="third">
+               <pre>
+        全民体育是一款懂球迷的体育App，满足球迷对体育赛事的需求，就是全民体育对App最大的要求！
+        全民体育提供完整的体坛内容，包括即时新闻、最新赛程、深度专栏、准确数据，搭配人性化又时尚的操作接口，让球迷在接收资讯之馀还享有尊绝不凡的使用体验。
+        懂球迷不是随便说说！全民体育打造了有温度的人工智能系统，将根据每位球迷的兴趣、爱好、使用习惯推荐独一无二的内容，「宾至如归」是团队唯一的目标。
+        【完整资讯】体坛最新消息报导，伤病、交易、访谈、球员表现、花边，所有资讯一手掌握。 
+        【深度专栏】全民体育不接受粗制滥造的内容，以最高规格要求带给球迷最专业的赛事解析。 
+        【最新赛程】不错过任何一场比赛！文字直播搭配比赛聊天室，所有球迷一起热血享受比赛。 
+        【准确数据】力求所有数据的准确性与即时性，并提供数据比较功能，让球迷能更深入解析。 
+        【独一无二】提供最个人化的使用体验，让每个球迷都能感受自己是独一无二的！
+    </pre>
+          </el-tab-pane>
+          <el-tab-pane label="投诉侵权" name="fourth">
+                  <pre>
+作为中立的网络服务提供者，收到符合要求的投诉通知后，将按照相关法律法规的规定及时受理，请务必完整、准确、真实填写以下信息，以提高投诉被受理的成功率。
+投诉邮箱：customer@nsnni.com
+投诉分类：
+1.内容涉嫌抄袭
+2.内容设计侵犯知识产权
+3.内容涉嫌侵犯名誉/商誉/隐私权
+4.其他
+侵权/违法内容链接
+投诉描述
+联系人姓名、身份证号码、身份证照片、手机号、联系邮箱
+</pre>
+          </el-tab-pane>
+        </el-tabs>
+      </el-col>
+    </el-row>
+  </el-main>
 </template>
 
 <script>
+
   export default {
-    name: "Agreement"
+    name: 'activeName',
+    components: {
+
+    },
+    data () {
+      return {
+        activeName: 'first'
+      }
+    },
+    mounted () {
+      this.activeName = this.$route.params.activeName;
+    },
+    methods: {
+      handleClick (tab, event) {
+        console.log(tab)
+        // console.log(tab, event)
+      }
+    }
   }
 </script>
 
 <style scoped>
-  pre{
-    font-size:24px;
-    font-family:PingFangSC-Regular,PingFang SC;
+  .el-main{
+    padding:0 20px ;
+    width: 1440px;
+  }
+  .profile{
+    margin-top: 4px;
+  }
+  .profile img {
+    width: 100%;
+    height: 340px;
+  }
+  .profile-content{
+
+  }
+
+  .profile-tags {
+    text-align: center;
+    height: 100%;
+    margin-top: -6px;
+  }
+
+  /deep/ .el-tabs__nav {
+    float: none !important;
+  }
+
+  /deep/ .el-tabs__header {
+    height: 70px;
+    background: rgba(248, 248, 248, 1);
+    border: 1px solid rgba(221, 221, 221, 1);
+  }
+
+  /deep/ .el-tabs__nav {
+    height: 70px;
+    line-height: 70px;
+  }
+
+  /deep/ .el-tabs__active-bar {
+    left: 512px;
+    bottom: 15px;
+  }
+
+  #pane-first{
+    width: 90%;
+    margin: 0 auto;
+    text-align: left;
+    font-size:18px;
     font-weight:400;
     color:rgba(51,51,51,1);
     line-height:40px;
+  }
+  #pane-second{
+    width: 90%;
+    margin: 0 auto;
+    text-align: left;
+    font-size:18px;
+    font-weight:400;
+    color:rgba(51,51,51,1);
+    line-height:40px;
+  }
+  #pane-third{
+    width: 90%;
+    margin: 0 auto;
+    text-align: left;
+    font-size:18px;
+    font-weight:400;
+    color:rgba(51,51,51,1);
+    line-height:40px;
+  }
+  #pane-fourth{
+    width: 90%;
+    margin: 0 auto;
+    text-align: left;
+    font-size:18px;
+    font-weight:400;
+    color:rgba(51,51,51,1);
+    line-height:40px;
+  }
+  pre {
     text-align: left;
     white-space: pre-wrap;
     word-wrap: break-word;
-
   }
 </style>

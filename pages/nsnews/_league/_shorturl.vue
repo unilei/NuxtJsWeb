@@ -43,56 +43,151 @@
       </el-col>
 
       <el-col :span="24" class="news-detail-content" v-for="(content,index) in newsDetail.content" :key="index">
-          <p v-if="content.type == 1">{{content.content}}</p>
-          <img v-if="content.type == 2" :src="content.content" alt="">
+        <p v-if="content.type == 1">{{content.content}}</p>
+        <img v-if="content.type == 2" :src="content.content" alt="">
       </el-col>
       <!--标签-->
       <el-col :span="24" class="news-detail-tag">
         标签：{{newsDetail.league}}
       </el-col>
+
+
+      <el-col :span="24">
+        <el-col :span="24" class="publish-comment-title">
+          我有话说
+        </el-col>
+        <el-col :span="3" class="publish-comment-header">
+          <img v-if="avatar_url === '' || avatar_url === null "
+               src="https://aloss.hotforest.cn/web/default-header.png"
+               alt="avatar">
+          <img v-if="avatar_url !== '' && avatar_url !== null " :src="avatar_url" alt="avatar">
+        </el-col>
+        <el-col :span="21" class="publish-comment-c">
+          <textarea name="reply_content" cols="30" rows="10" placeholder="说两句呗" v-model="replyContent"></textarea>
+          <button @click="replyNews(1)">发表<br>评论</button>
+        </el-col>
+      </el-col>
+
+      <!--评论列表滚动加载-->
+      <el-col :span="24">
+        <el-col :span="24" class="comment-all-title">全部评论</el-col>
+        <el-col :span="24" class="infinite-list-wrapper" style="overflow:auto">
+
+          <ul
+            class="list"
+            v-infinite-scroll="load"
+            infinite-scroll-disabled="disabled">
+            <!--              <li v-for="i in count" class="list-item">{{ i }}</li>-->
+            <li v-for="(newsReply,index) in newsReplyList" :key="index" class="list-item">
+              <el-col :span="2" class="comment-avatar">
+                <img
+                  v-if="newsReply.author.avatar_url != null && newsReply.author.avatar_url !== '' && newsReply.author.avatar_url !== 'https://nsports-entity.171tiyu.com/'"
+                  :src="newsReply.author.avatar_url" alt="avatar">
+                <img v-if="newsReply.author.avatar_url == null || newsReply.author.avatar_url === ''
+                      || newsReply.author.avatar_url==='https://nsports-entity.171tiyu.com/'"
+                     src="https://aloss.hotforest.cn/web/default-header.png" alt="avatar">
+              </el-col>
+              <el-col :span="6" class="comment-nickname">
+                {{newsReply.author.nickName}}
+              </el-col>
+              <el-col :span="6" :offset="10" class="comment-time">{{newsReply.create_time | dateForHour }}</el-col>
+
+              <el-col :span="22" :offset="2" class="comment-content" v-for="(content,i) in newsReply.content" :key="i">
+                <p v-if="content.type == 1">
+                  {{content.content}}
+                </p>
+              </el-col>
+
+              <el-col :span="22" :offset="2" class="comment-reply-container" v-show="newsReply.replyReply">
+                <el-col :span="24" v-for="reply in newsReply.replyReply" :key="reply.reply_id">
+                  <el-col :span="23" :offset="1" class="comment-reply-t">
+                    {{reply.author.nickName}} : <span v-for="(c,ii) in reply.content" :key="ii"> {{c.content}} </span>
+                  </el-col>
+                  <el-col :span="23" :offset="1" class="comment-reply-d">
+                    <el-col :span="2" class="comment-reply-like-img"><img src="https://aloss.hotforest.cn/web/news-like.png" alt="like"></el-col>
+                    <el-col :span="2" class="comment-reply-like">{{reply.likes_count}}</el-col>
+                    <el-col :span="20" class="comment-reply-time">{{reply.create_time | dateForHour}}</el-col>
+                  </el-col>
+                </el-col>
+              </el-col>
+
+              <el-col :span="24" class="comment-like-container">
+                <el-col :span="2" :offset="18" class="comment-like-img"><img
+                  src="https://aloss.hotforest.cn/web/news-like.png" alt=""></el-col>
+                <el-col :span="2" class="comment-like">{{newsReply.likes_count}}</el-col>
+                <el-col :span="2" class="comment-button">
+                  <button v-if="index !== showComment" @click="isShowComment(index)">回复</button>
+                  <button class="shouqi" v-if="index === showComment" @click="isHideComment(index)">收起</button>
+                </el-col>
+
+                <el-col :span="24" v-if="index === showComment" class="comment-input">
+                  <input type="text" v-model="replyReplyContent">
+                  <button @click="replyReplyNews(2,newsReply.reply_id)">发表</button>
+                </el-col>
+              </el-col>
+            </li>
+          </ul>
+          <p class="loading" v-if="loading">加载中...</p>
+          <p class="no-more" v-if="noMore">没有更多了</p>
+
+        </el-col>
+      </el-col>
+
     </el-col>
 
     <el-col :span="6" :offset="1">
-      <el-row class="news-you-like">
+      <el-col :span="24" class="news-you-like">
         <el-col :span="24" class="news-you-like-t">
-          <el-col :span="1"><div class="news-you-like-icon"></div></el-col>
+          <el-col :span="1">
+            <div class="news-you-like-icon"></div>
+          </el-col>
           <el-col :span="9">你可能感兴趣的</el-col>
           <el-col :span="2" :offset="6" class="news-you-like-change-img">
-            <img style="width: 20px;height: 20px;margin-right: 5px;" src="https://aloss.hotforest.cn/web/xuanzhuan.png" alt="img">
+            <img style="width: 20px;height: 20px;" src="https://aloss.hotforest.cn/web/xuanzhuan.png"
+                 alt="img">
           </el-col>
           <el-col :span="6" class="news-you-like-change-text">换一换</el-col>
         </el-col>
 
         <el-col :span="24" class="news-you-like-item">
-          <el-col :span="6" class="news-you-like-item-img"><img src="https://aloss.hotforest.cn/web/default-header.png" alt=""></el-col>
+          <el-col :span="6" class="news-you-like-item-img"><img src="https://aloss.hotforest.cn/web/default-header.png"
+                                                                alt=""></el-col>
           <el-col :span="18">
             <el-col :span="12" class="news-you-like-item-1">全民体育官方</el-col>
-            <el-col :span="12" class="news-you-like-item-2"><button>关注</button></el-col>
+            <el-col :span="12" class="news-you-like-item-2">
+              <button>关注</button>
+            </el-col>
             <el-col :span="24" class="news-you-like-item-3">全民体育主编</el-col>
             <el-col :span="24" class="news-you-like-item-4">资深体育评论员，专业媒体供稿人</el-col>
           </el-col>
         </el-col>
         <el-col :span="24" class="news-you-like-item">
-          <el-col :span="6" class="news-you-like-item-img"><img src="https://aloss.hotforest.cn/web/default-header.png" alt=""></el-col>
+          <el-col :span="6" class="news-you-like-item-img"><img src="https://aloss.hotforest.cn/web/default-header.png"
+                                                                alt=""></el-col>
           <el-col :span="18">
             <el-col :span="12" class="news-you-like-item-1">全民体育官方</el-col>
-            <el-col :span="12" class="news-you-like-item-2"><button>关注</button></el-col>
+            <el-col :span="12" class="news-you-like-item-2">
+              <button>关注</button>
+            </el-col>
             <el-col :span="24" class="news-you-like-item-3">全民体育主编</el-col>
             <el-col :span="24" class="news-you-like-item-4">资深体育评论员，专业媒体供稿人</el-col>
           </el-col>
         </el-col>
         <el-col :span="24" class="news-you-like-item">
-          <el-col :span="6" class="news-you-like-item-img"><img src="https://aloss.hotforest.cn/web/default-header.png" alt=""></el-col>
+          <el-col :span="6" class="news-you-like-item-img"><img src="https://aloss.hotforest.cn/web/default-header.png"
+                                                                alt=""></el-col>
           <el-col :span="18">
             <el-col :span="12" class="news-you-like-item-1">全民体育官方</el-col>
-            <el-col :span="12" class="news-you-like-item-2"><button>关注</button></el-col>
+            <el-col :span="12" class="news-you-like-item-2">
+              <button>关注</button>
+            </el-col>
             <el-col :span="24" class="news-you-like-item-3">全民体育主编</el-col>
             <el-col :span="24" class="news-you-like-item-4">资深体育评论员，专业媒体供稿人</el-col>
           </el-col>
         </el-col>
-      </el-row>
+      </el-col>
 
-      <el-row class="hot-news-list">
+      <el-col :span="24" class="hot-news-list">
         <el-col :span="24" class="hot-news-list-t">
           <div class="hot-news-list-t-icon"></div>
           <span>热门新闻</span>
@@ -102,111 +197,24 @@
             <img :src="hotNews.image" alt="image">
           </el-col>
           <el-col :span="14" class="hot-news-list-title">
-            <nuxt-link target="_blank" :to="{name:'nsnews-league-shorturl',params:{shorturl:hotNews.shorturl,league:league}}">
+            <nuxt-link target="_blank"
+                       :to="{name:'nsnews-league-shorturl',params:{shorturl:hotNews.shorturl,league:league}}">
               {{hotNews.title}}
             </nuxt-link>
           </el-col>
         </el-col>
-      </el-row>
+      </el-col>
     </el-col>
 
 
-    <!--        昵称弹出框-->
-    <div>
-      <el-dialog title="修改用户信息" :visible.sync="dialogFormVisible">
-
-        <el-form>
-          <el-form-item label="头像" :label-width="formLabelWidth">
-            <el-upload
-              class="avatar-uploader"
-              :action=uploadBaseUrl
-              :show-file-list="false"
-              :on-success="handleAvatarSuccess"
-              :before-upload="beforeAvatarUpload"
-            >
-              <img v-if="imageUrl" :src="imageUrl" class="avatar">
-              <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-
-            </el-upload>
-            <div class="pic-span">
-              <span>图片尺寸50x50px 不能超过500kb</span>
-            </div>
-
-          </el-form-item>
-          <el-form-item>
-            <el-input v-model="nickname" autocomplete="off" placeholder="昵称不能超过16个字符"></el-input>
-          </el-form-item>
-        </el-form>
-        <div slot="footer" class="dialog-footer">
-          <!--          <el-button @click="dialogFormVisible = false">取 消</el-button>-->
-          <el-button type="primary" @click="updateUserInfo">确 定</el-button>
-        </div>
-      </el-dialog>
-    </div>
-    <!--        昵称弹出框结束-->
-
-    <!--  手机      登陆弹出框-->
-    <div v-show="dialogFormVisibleLogin === true" class="login-modal-container">
-      <div class="login-modal">
-        <div class="login-modal-t-img" @click="closeDialog">
-          <img src="https://aloss.hotforest.cn/web/login-icon.png" alt="">
-        </div>
-        <div v-show="dialogMobileLogin === true">
-          <div class="login-modal-t">
-            <span>手机登录</span>
-          </div>
-          <div class="login-modal-t-p">
-            <input type="text" placeholder="手机号码" v-model="mobile">
-            <button v-if="this.mobile !== '' " @click="sendMobileLoginSms">验证</button>
-            <button v-if="this.mobile===''" class="login-modal-t-p-b-disable">验证</button>
-          </div>
-          <div class="login-modal-t-c">
-            <input type="text" placeholder="请输入验证码" v-model="code">
-          </div>
-          <div class="login-modal-t-b">
-            <button @click="mobileLogin">登录</button>
-          </div>
-          <div class="login-modal-t-s">
-            <span>用其他方式登录</span>
-          </div>
-          <div class="login-modal-t-wx">
-            <div>
-              <img @click="wxDialog" style="cursor:pointer;" src="https://aloss.hotforest.cn/web/wx.png" alt="">
-            </div>
-            <a href="#" @click="wxDialog">使用微信登录</a>
-          </div>
-
-          <div class="login-modal-t-xx">
-            <span>使用即为同意</span>
-            <span @click="turn_agreement">全民体育用户协议/隐私权政策</span>
-          </div>
-        </div>
-
-        <div v-show="wxIsLoginShow === true">
-          <div class="login-modal-t">
-            <span>使用其他方式登录</span>
-          </div>
-          <div class="wx-login-modal-p">
-            <a href="#" @click="mobileDialog">
-              使用手机号登录
-            </a>
-          </div>
-          <div class="wx-login-modal-img" id="login_container_news">
-          </div>
-          <div class="login-modal-t-xx">
-            <span>使用即为同意</span>
-            <span @click="turn_agreement">全民体育用户协议/隐私权政策</span>
-          </div>
-
-        </div>
-
-
-      </div>
-
-
-    </div>
-    <!--登陆弹出框结束-->
-
+    <!-- 登陆弹框-->
+    <Login v-bind:dialogFormVisible="dialogFormVisible"
+           v-bind:dialogMobileLogin = "dialogMobileLogin"
+           v-bind:wxIsLoginShow = "wxIsLoginShow"
+           @closeDialog = "closeDialog"
+           @wxDialog = "wxDialog"
+           @mobileDialog = "mobileDialog"
+    ></Login>
 
   </div>
 </template>
@@ -216,10 +224,14 @@
   import { getFormatTime } from '../../../utils/time'
   import base from '../../../api/base'
   import qs from 'qs'
+  import Login from '../../../components/Login'
 
   export default {
     name: 'shorturl',
     layout: 'newsLayout',
+    components:{
+      Login
+    },
     data () {
       return {
         article_id: '',
@@ -257,13 +269,23 @@
         phone: null,
         uid: null,
         redirect_uri: 'http://www.171tiyu.com/wechat',
-        prevShorturl: '',
-        prevTitle: '',
-        nextShorturl: '',
-        nextTitle: '',
 
         league: '',
         league_value: '',
+
+        reply_total_count: 0,
+        reply_count:0,
+        loading: false,
+        no_more:false,
+
+      }
+    },
+    computed: {
+      noMore () {
+        return this.reply_count>=this.reply_total_count;
+      },
+      disabled () {
+        return this.loading || this.noMore
       }
     },
     mounted () {
@@ -288,12 +310,6 @@
       this.avatar_url = localStorage.getItem('avatar_url')
       this.getReplyList(this.article_id, 0)
 
-      // console.log(this.$route.params)
-      this.prevShorturl = sessionStorage.getItem('prevShorturl')
-      this.prevTitle = sessionStorage.getItem('prevTitle')
-      this.nextShorturl = sessionStorage.getItem('nextShorturl')
-      this.nextTitle = sessionStorage.getItem('nextTitle')
-      console.log(this.prevShorturl)
 
     },
     head () {
@@ -381,59 +397,93 @@
 
       let hotNewsList = await context.$axios.get(`${base.sq}/v2/GetArticles`, { params: hot_params })
 
-      const type = 'news'
-      const paraentId = newsDetail.data.Data.article_id
-      const sort = 'newest'
-      let replyList = await context.$axios.get(`${base.sq}/v2/` + type + `/` + paraentId + `/` + sort + `/replys`, {
-        params: {
-          offset: 0,
-          limit: 14
-        }
-      })
-      const newsReplyList = replyList.data.Data.list
-
-      newsReplyList.forEach(item => {
-        // console.log(item)
-        const type = 'news'
-        const paraentId = item.reply_id
-        const sort = 'toplike'
-
-        context.$axios.get(`${base.sq}/v2/` + type + `/` + paraentId + `/` + sort + `/replys`, {
-          params: {
-            offset: 0
-          }
-        }).then(
-          res => {
-            item.replyReply = res.data.Data.list
-          }
-        )
-
-      })
-
       return {
         league: league,
         league_value: league_value,
         newsDetail: newsDetail.data.Data,
         newsPublishFormatTime: getFormatTime(newsDetail.data.Data.timestamp),
         hotNewsList: hotNewsList.data.Data.articles,
-        newsReplyList: newsReplyList,
         article_id: newsDetail.data.Data.article_id
       }
     },
 
     methods: {
+      closeDialog () {
+        this.dialogTableVisible = false
+        this.dialogFormVisible = false
+        this.dialogMobileLogin = false
+        this.wxIsLoginShow = false
+      },
+      wxDialog () {
+        this.dialogFormVisible = true
+        this.wxIsLoginShow = true
+        this.dialogMobileLogin = false
+      },
+      mobileDialog () {
+        this.dialogFormVisible = true
+        this.wxIsLoginShow = false
+        this.dialogMobileLogin = true
+      },
+      load () {
+        this.loading = true
+        setTimeout(() => {
+          this.showMoreComment(this.offsetComment)
+          this.loading = false
+        }, 2000)
+      },
+      showMoreComment (i) {
+
+        const article_id = this.article_id
+        const type = 'news'
+        const sort = 'newest'
+
+        this.$axios.get(`${base.sq}/v2/` + type + `/` + article_id + `/` + sort + `/replys`, {
+          params: {
+            offset: i,
+            limit: 2
+          }
+        }).then(
+          res => {
+            const newsReplyList = res.data.Data.list
+            newsReplyList.forEach(item => {
+              // console.log(item)
+              const reply_id = item.reply_id
+              const type = 'news'
+              const sort = 'toplike'
+              this.$axios.get(`${base.sq}/v2/` + type + `/` + reply_id + `/` + sort + `/replys`, {
+                params: {
+                  offset: 0
+                }
+              }).then(res => {
+                // console.log(res)
+                const replyReplyArr = res.data.Data.list
+                this.$forceUpdate(item.replyReply = replyReplyArr)
+              })
+            })
+
+            this.newsReplyList = this.newsReplyList.concat(newsReplyList)
+            this.offsetComment = i + 4
+
+            this.reply_count += this.newsReplyList.length;
+
+            console.log(this.offsetComment)
+            console.log(this.newsReplyList)
+          }
+        )
+      },
       getReplyList (article_id, offset) {
         let type = 'news'
         let sort = 'newest'
         this.$axios.get(`${base.sq}/v2/` + type + `/` + article_id + `/` + sort + `/replys`, {
           params: {
             offset: offset,
-            limit: 14
+            limit: 2
           }
         }).then(
           res => {
-            // console.log(res)
+            console.log(res)
             const newsReplyList = res.data.Data.list
+
             newsReplyList.forEach(item => {
               // console.log(item)
               const reply_id = item.reply_id
@@ -451,233 +501,16 @@
             })
             // console.log(newsReplyList)
             this.newsReplyList = newsReplyList
-
+            this.reply_total_count = res.data.Data.totalCount;
+            this.reply_count += res.data.Data.list.length;
+            this.offsetComment = offset+1
+            console.log(this.offsetComment)
           }
         )
 
-      },
-      turn_agreement () {
-        this.$router.push({ path: '/agreement' })
       },
       turn_own () {
         window.location.href = 'https://www.171tiyu.com'
-      },
-      closeDialog () {
-        this.dialogTableVisibleLogin = false
-        this.dialogFormVisibleLogin = false
-        this.dialogMobileLogin = false
-        this.wxIsLoginShow = false
-      },
-      dialogLogin () {
-        // console.log(1)
-        this.dialogFormVisibleLogin = true
-        this.dialogMobileLogin = true
-      },
-      wxDialog () {
-        this.dialogFormVisibleLogin = true
-        this.wxIsLoginShow = true
-        this.dialogMobileLogin = false
-
-        var obj = new WxLogin({
-          self_redirect: false,
-          id: 'login_container_news',
-          appid: 'wx31ded528641f2b4c',
-          scope: 'snsapi_login',
-          redirect_uri: encodeURIComponent(this.redirect_uri),
-          state: 'news',
-          style: 'black',
-          href: '',
-        })
-      },
-      mobileDialog () {
-        this.dialogFormVisibleLogin = true
-        this.wxIsLoginShow = false
-        this.dialogMobileLogin = true
-      },
-      sendMobileLoginSms () {
-        const mobile = this.mobile
-        const ns_device_id = this.ns_device_id
-        const country_code = this.country_code
-        this.$axios.get(`${base.sq}/SendLoginSms`, {
-          params: {},
-          headers: {
-            phone: mobile,
-            ns_device_id: ns_device_id,
-            country_code: country_code
-          }
-        }).then(
-          res => {
-            // console.log(res)
-            if (res.data.Status === 1) {
-              this.$message(
-                {
-                  message: '验证码发送成功',
-                  type: 'success',
-                  customClass: 'zZindex'
-                }
-              )
-            } else {
-              this.$message.error(res.data.ErrMsg)
-              // alert('验证码发送失败')
-            }
-          }
-        )
-
-      },
-      mobileLogin () {
-        const ns_device_id = this.ns_device_id
-        const mobile = this.mobile
-        const country_code = this.country_code
-        const code = this.code
-        const device_id = this.device_id
-
-        this.$axios.post(`${base.sq}/OTPLogin`, qs.stringify({
-          phone: mobile,
-          country_code: country_code,
-          code: code,
-          device_id: device_id,
-          platform: 'ios',
-        }), {
-          headers: {
-            ns_device_id: ns_device_id
-
-          }
-        }).then(
-          res => {
-
-            if (res.data.Status === 1) {
-              // console.log(res)
-              const account = res.data.Data.account
-              const password = res.data.Data.password
-              const type = res.data.Data.type
-              this.$axios.post(`${base.sq}/Login`, {
-                type: type,
-                account: account,
-                password: password,
-                secret: this.secret
-
-              }, {
-                headers: {
-                  ns_device_id: ns_device_id
-                }
-              }).then(
-                res => {
-                  // console.log(res)
-                  if (res.data.Status === 1) {
-                    const uid = res.data.Data.uid
-                    const guid = res.data.Data.guid
-                    const token = res.data.Data.token
-                    const is_activated = res.data.Data.is_activated
-                    const is_add_favorite = res.data.Data.is_add_favorite
-                    const iosDownloadUrl = res.data.Data.iosDownloadUrl
-                    const is_locked = res.data.Data.is_locked
-                    const nickname = res.data.Data.nickname
-                    const avatar_url = res.data.Data.avatar_url
-                    const phone = res.data.Data.phone
-
-                    localStorage.setItem('nickname', nickname)
-                    localStorage.setItem('token', token)
-                    localStorage.setItem('avatar_url', avatar_url)
-                    localStorage.setItem('phone', phone)
-                    localStorage.setItem('uid', uid)
-
-                    this.$router.go(0)
-
-                  } else {
-                    // alert('登录失败')
-                    this.$message.error(res.data.ErrMsg)
-                  }
-
-                }
-              )
-
-            } else {
-              // alert(res.data.ErrMsg)
-              this.$message.error(res.data.ErrMsg)
-            }
-          }
-        )
-
-      },
-      handleAvatarSuccess (res, file) {
-        this.imageUrl = URL.createObjectURL(file.raw)
-        this.fileObj = file.raw
-      },
-      beforeAvatarUpload (file) {
-        // const isJPG = file.type === 'image/jpeg';
-        const isLt2M = file.size / 500 < 1
-
-        // if (!isJPG) {
-        //     this.$message.error('上传头像图片只能是 JPG 格式!');
-        // }
-        if (!isLt2M) {
-          this.$message.error('上传头像图片大小不能超过 500kb!')
-        }
-        return isLt2M
-      },
-      updateUserInfo () {
-        // console.log(this.fileObj)
-        if (this.fileObj !== '') {
-          var headers = {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'ns_device_id': 'website',
-            'uid': localStorage.getItem('uid'),
-            'token': localStorage.getItem('token')
-          }
-          var form = new FormData()    // FormData 对象
-          form.append('image', this.fileObj)
-          this.$axios.$post(`${base.sq}/UploadAvatar`, form, { headers: headers }).then(
-            res => {
-              // console.log(res)
-              if (res.Status === 1) {
-                localStorage.removeItem('avatar_url')
-                this.$forceUpdate(localStorage.setItem('avatar_url', res.Data.url))
-              } else {
-                this.$message({
-                    message: '头像更新失败',
-                    type: 'warning'
-                  }
-                )
-                this.$router.go(0)
-              }
-
-            }
-          )
-        }
-
-        if (this.nickname !== '') {
-          this.$axios.put(`${base.sq}/UpdateNickName`, {
-            name: this.nickname
-          }, {
-            headers: {
-              ns_device_id: this.ns_device_id,
-              uid: localStorage.getItem('uid'),
-              token: localStorage.getItem('token')
-            }
-          }).then(
-            res => {
-              this.dialogFormVisible = false
-              if (res.data.Status === 1) {
-                localStorage.removeItem('nickname')
-                localStorage.setItem('nickname', this.nickname)
-
-                this.$message({
-                  message: '修改成功',
-                  type: 'success'
-                })
-                this.$router.go(0)
-              } else {
-                this.$message.error(res.data.ErrMsg)
-                this.$router.go(0)
-              }
-            }
-          )
-        } else {
-          this.$message({
-            message: '昵称不能为空',
-            type: 'warning'
-          })
-        }
       },
       replyNews (level) {
         const ns_device_id = 'website'
@@ -696,7 +529,7 @@
         } else {
 
           if (nickname === '' || nickname === null) {
-            this.dialogFormVisible = true
+            this.mobileDialog();
           } else {
             if (this.replyContent === '') {
               return this.$message({
@@ -753,7 +586,7 @@
         } else {
 
           if (nickname === '' || nickname === null) {
-            this.dialogFormVisible = true
+            this.mobileDialog();
           } else {
             if (this.replyReplyContent === '') {
               return this.$message({
@@ -812,51 +645,14 @@
         this.showCommentReply = -1
       },
 
-      showMoreComment (i) {
-        // const a = i+1
-        const article_id = this.article_id
-        this.offsetComment = i + 4
-        // console.log(i+1)
-        const type = 'news'
-        const sort = 'newest'
 
-        this.$axios.get(`${base.sq}/v2/` + type + `/` + article_id + `/` + sort + `/replys`, {
-          params: {
-            offset: this.offsetComment,
-            limit: 4
-          }
-        }).then(
-          res => {
-
-            const newsReplyList = res.data.Data.list
-            newsReplyList.forEach(item => {
-              // console.log(item)
-              const reply_id = item.reply_id
-              const type = 'news'
-              const sort = 'toplike'
-              this.$axios.get(`${base.sq}/v2/` + type + `/` + reply_id + `/` + sort + `/replys`, {
-                params: {
-                  offset: 0
-                }
-              }).then(res => {
-                // console.log(res)
-                const replyReplyArr = res.data.Data.list
-                this.$forceUpdate(item.replyReply = replyReplyArr)
-              })
-            })
-
-            this.newsReplyList = this.newsReplyList.concat(newsReplyList)
-
-          }
-        )
-      }
     }
 
   }
 </script>
 
 <style scoped>
-  @import "../../../assets/css/comment.css";
+  @import "../../../assets/css/reply.css";
   @import "../../../assets/css/userinfo.css";
   @import "../../../assets/css/login.css";
 
@@ -865,79 +661,11 @@
 
   }
 
-  .news-detail-rec {
-    /*height: 520px;*/
-    border: 1px solid #D0D0D0;;
-    padding: 12px 14px 12px 14px;
-    margin-top: 20px;
-  }
-
-  .news-detail-rec-l {
-    float: left;
-    width: 20%;
-
-  }
-
-  .news-detail-rec-r {
-    width: 69%;
-    float: left;
-    text-align: left;
-    padding-left: 10px;
-  }
-
-  .news-detail-rec-r span {
-
-    color: #333333;
-    line-height: 30px;
-    font-size: 16px;
-    font-family: PingFangSC-Regular, PingFang SC;
-    font-weight: 400;
-    color: rgba(51, 51, 51, 1);
-
-  }
-
-  .news-detail-rec-r button {
-    background: #76BCFF;
-    border-radius: 2px;
-
-    border: 1px solid transparent;
-    outline: none;
-    color: #ffffff;
-    margin-left: 27px;
-    font-size: 12px;
-    font-family: PingFangSC-Medium, PingFang SC;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 1);
-    line-height: 17px;
-  }
-
-  .news-detail-rec-r p {
-
-    color: #838383;
-
-    margin: 0;
-    font-size: 14px;
-    font-family: PingFangSC-Regular, PingFang SC;
-    font-weight: 400;
-    color: rgba(131, 131, 131, 1);
-    line-height: 20px;
-  }
-
-  .news-detail-rec-j {
-
-    color: #838383;
-    line-height: 30px;
-    font-size: 12px;
-    font-family: PingFangSC-Regular, PingFang SC;
-    font-weight: 400;
-    color: rgba(131, 131, 131, 1);
-  }
 
   .news-detail-tag {
     margin-top: 25px;
     text-align: left;
     font-size: 18px;
-    font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
     color: rgba(102, 102, 102, 1);
     line-height: 25px;
@@ -966,18 +694,25 @@
     line-height: 40px;
   }
 
-  .news-detail-author-l{
-
+  .news-detail-author-l {
+    text-align: left;
+    padding-top: 8px;
   }
+  .news-detail-author-l img{
+    width: 40px;
+    height: 40px;
+  }
+
   .news-detail-author {
     margin-top: 14px;
     margin-bottom: 14px;
     text-align: left;
   }
 
-  .news-detail-author-name{
+  .news-detail-author-name {
 
   }
+
   .news-detail-author-l img {
     width: 40px;
     height: 40px;
@@ -1040,15 +775,17 @@
     width: 100%;
   }
 
-  .news-you-like{
+  .news-you-like {
     border: 1px solid #D0D0D0;;
     padding: 12px 14px 12px 14px;
-    margin-top: 20px;
+    margin-top: 30px;
   }
+
   .news-you-like-t {
     height: 34px;
     line-height: 34px;
   }
+
   .news-you-like-icon {
     width: 8px;
     height: 34px;
@@ -1056,28 +793,33 @@
     float: left;
     margin-right: 14px;
   }
-  .news-you-like-change-img{
+
+  .news-you-like-change-img {
     margin-top: 4px;
   }
-  .news-you-like-change-text{
+
+  .news-you-like-change-text {
     text-align: left;
     color: #76BCFF;
   }
-  .news-you-like-item{
+
+  .news-you-like-item {
     text-align: left;
     padding: 12px 0 12px 0;
     border-bottom: 1px solid #DDDDDD;
   }
-  .news-you-like-item:last-child{
+
+  .news-you-like-item:last-child {
     border-bottom: 1px solid transparent;
   }
 
-  .news-you-like-item-1{
+  .news-you-like-item-1 {
     color: #333333;
     font-size: 16px;
     font-weight: 400;
   }
-  .news-you-like-item-2 button{
+
+  .news-you-like-item-2 button {
     /*height: 17px;*/
     line-height: 17px;
     background: #76BCFF;
@@ -1089,19 +831,19 @@
     font-weight: 500;
 
   }
-  .news-you-like-item-3{
+
+  .news-you-like-item-3 {
     color: #838383;
     line-height: 30px;
     font-size: 12px;
-    font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
 
   }
-  .news-you-like-item-4{
+
+  .news-you-like-item-4 {
     color: #838383;
     line-height: 30px;
     font-size: 12px;
-    font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
   }
 
@@ -1134,28 +876,31 @@
 
     color: #000000;
     font-size: 18px;
-    font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
     line-height: 25px;
     position: absolute;
     left: 20px;
     top: 10px;
   }
-  .hot-news-list-item{
+
+  .hot-news-list-item {
     padding: 12px 0 12px 0;
     border-bottom: 1px solid #DDDDDD;
   }
+
   .hot-news-list-item:last-child {
     border-bottom: transparent !important;
   }
 
-  .hot-news-list-img img{
+  .hot-news-list-img img {
     width: 100%;
   }
-  .hot-news-list-title{
+
+  .hot-news-list-title {
     text-align: left;
     padding-left: 10px;
   }
+
   .hot-news-list-title a {
     font-size: 14px;
     font-weight: 400;
@@ -1167,5 +912,6 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
   }
+
 
 </style>

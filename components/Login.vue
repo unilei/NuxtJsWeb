@@ -1,19 +1,21 @@
 <template>
+  <div>
+
+
   <!--  手机      登陆弹出框-->
-  <div v-show="dialogFormVisible === true" class="login-modal-container">
-    <div class="login-modal">
+  <div v-show="dialogFormVisible" class="login-modal-container">
+    <div class="login-modal" v-show="dialogLoginModal">
       <div class="login-modal-t-img" @click="closeDialog">
         <img src="https://aloss.hotforest.cn/web/login-icon.png" alt="">
       </div>
-      <div v-show="dialogMobileLogin === true">
+      <div v-show="dialogMobileLogin">
         <div class="login-modal-t">
           <span>手机登录</span>
         </div>
-
         <div class="login-modal-t-p">
           <input type="text" placeholder="手机号码" v-model="mobile">
-          <button v-if="this.mobile !== '' " @click="sendMobileLoginSms">验证</button>
-          <button v-if="this.mobile===''" class="login-modal-t-p-b-disable">验证</button>
+          <button v-if="mobile !== '' " @click="sendMobileLoginSms">验证</button>
+          <button v-if="mobile===''" class="login-modal-t-p-b-disable">验证</button>
         </div>
         <div class="login-modal-t-c">
           <input type="text" placeholder="请输入验证码" v-model="code">
@@ -37,7 +39,7 @@
         </div>
       </div>
 
-      <div v-show="wxIsLoginShow === true">
+      <div v-show="wxIsLoginShow">
         <div class="login-modal-t">
           <span>使用其他方式登录</span>
         </div>
@@ -55,9 +57,44 @@
       </div>
     </div>
 
+    <!--        昵称弹出框-->
+    <el-dialog title="修改用户信息" :visible.sync="dialogFormUserInfoVisible"
+               :modal="false"
+               :show-close="false"
+               :close-on-click-modal="false"
+               :close-on-press-escape="false"
+    >
+      <el-form>
+        <el-form-item label="头像" :label-width="formLabelWidth">
+          <el-upload
+            class="avatar-uploader"
+            :action=uploadBaseUrl
+            :show-file-list="false"
+            :on-success="handleAvatarSuccess"
+            :before-upload="beforeAvatarUpload"
+          >
+            <img v-if="imageUrl" :src="imageUrl" class="avatar">
+            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+
+          </el-upload>
+          <div class="pic-span">
+            <span>图片尺寸50x50px 不能超过500kb</span>
+          </div>
+
+        </el-form-item>
+        <el-form-item>
+          <el-input v-model="nickname" autocomplete="off" placeholder="昵称不能超过16个字符"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="updateUserInfo()">确 定</el-button>
+      </div>
+    </el-dialog>
+    <!--        昵称弹出框结束-->
+  </div>
 
   </div>
-  <!--登陆弹出框结束-->
+
 </template>
 
 <script>
@@ -82,11 +119,16 @@
         avatar_url: null,
         phone: null,
         uid: null,
-        redirect_uri: 'http://www.171tiyu.com/wechat'
+        redirect_uri: 'http://www.171tiyu.com/wechat',
+        uploadBaseUrl: base.sq + '/UploadAvatar',
+        formLabelWidth: '60px',
+        imageUrl: '',
+        dialogLoginModal:true,
+        dialogFormUserInfoVisible:false,
       }
     },
     props: [
-      'dialogTableVisible', 'dialogFormVisible', 'dialogMobileLogin', 'wxIsLoginShow'
+      'dialogFormVisible', 'dialogMobileLogin', 'wxIsLoginShow'
     ],
     methods: {
       turn_agreement () {
@@ -105,7 +147,6 @@
       },
       wxDialog () {
         this.$emit('wxDialog')
-
         var obj = new WxLogin({
           self_redirect: false,
           id: 'login_container',
@@ -151,6 +192,7 @@
 
       },
       mobileLogin () {
+
         const ns_device_id = this.ns_device_id
         const mobile = this.mobile
         const country_code = this.country_code
@@ -193,21 +235,23 @@
                     const uid = res.data.Data.uid
                     const guid = res.data.Data.guid
                     const token = res.data.Data.token
-                    const is_activated = res.data.Data.is_activated
-                    const is_add_favorite = res.data.Data.is_add_favorite
-                    const iosDownloadUrl = res.data.Data.iosDownloadUrl
-                    const is_locked = res.data.Data.is_locked
+
                     const nickname = res.data.Data.nickname
                     const avatar_url = res.data.Data.avatar_url
                     const phone = res.data.Data.phone
-
-                    localStorage.setItem('nickname', nickname)
+                    // console.log(nickname)
                     localStorage.setItem('token', token)
                     localStorage.setItem('avatar_url', avatar_url)
-                    localStorage.setItem('phone', phone)
                     localStorage.setItem('uid', uid)
+                    localStorage.setItem('phone', phone)
 
-                    this.$router.go(0)
+                    if (nickname === '' || nickname === 'jackson' || nickname == null){
+                      this.dialogLoginModal = false;
+                      this.dialogFormUserInfoVisible = true;
+                    }else{
+                      localStorage.setItem('nickname', nickname)
+                      this.$router.go(0)
+                    }
 
                   } else {
                     // alert('登录失败')
@@ -224,7 +268,86 @@
           }
         )
 
-      }
+      },
+      handleAvatarSuccess (res, file) {
+        this.imageUrl = URL.createObjectURL(file.raw)
+        this.fileObj = file.raw
+      },
+      beforeAvatarUpload (file) {
+        // console.log(file)
+        // const isJPG = file.type === 'image/jpeg';
+        const isLt2M = file.size / 1024 / 500 < 1
+
+        if (!isLt2M) {
+          this.$message.error('上传头像图片大小不能超过 500kb!')
+        }
+        return isLt2M
+      },
+      updateUserInfo () {
+        // console.log(this.fileObj)
+        if (this.fileObj !== '') {
+          var headers = {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'ns_device_id': 'website',
+            'uid': localStorage.getItem('uid'),
+            'token': localStorage.getItem('token')
+          }
+          var form = new FormData()    // FormData 对象
+          form.append('image', this.fileObj)
+          this.$axios.$post(`${base.sq}/UploadAvatar`, form, { headers: headers }).then(
+            res => {
+              // console.log(res)
+              if (res.Status === 1) {
+                localStorage.removeItem('avatar_url')
+                this.$forceUpdate(localStorage.setItem('avatar_url', res.Data.url))
+              } else {
+                this.$message({
+                    message: '头像更新失败',
+                    type: 'warning'
+                  }
+                )
+                this.$router.go(0)
+              }
+
+            }
+          )
+        }
+
+        if (this.nickname !== '') {
+          this.$axios.put(`${base.sq}/UpdateNickName`, {
+            name: this.nickname
+          }, {
+            headers: {
+              ns_device_id: this.ns_device_id,
+              uid: localStorage.getItem('uid'),
+              token: localStorage.getItem('token')
+            }
+          }).then(
+            res => {
+              this.dialogFormVisible = false
+              if (res.data.Status === 1) {
+                localStorage.removeItem('nickname')
+                localStorage.setItem('nickname', this.nickname)
+
+                this.$message({
+                  message: '修改成功',
+                  type: 'success'
+                })
+                this.$router.go(0)
+              } else {
+                this.$message.error(res.data.ErrMsg)
+                this.$router.go(0)
+              }
+            }
+          )
+        } else {
+          this.$message({
+            message: '昵称不能为空',
+            type: 'warning'
+          })
+        }
+
+      },
 
     }
   }
@@ -232,4 +355,5 @@
 
 <style scoped>
   @import "../assets/css/login.css";
+  @import "../assets/css/userinfo.css";
 </style>

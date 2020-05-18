@@ -1,140 +1,118 @@
 <template>
   <div>
-    <div class="bbs-list">
-      <ul>
-        <li v-for="(bbs,i) in bbsList" :key="i">
-          <div class="bbs-list-l">
-            <img v-if="i === 0" src="https://aloss.hotforest.cn/web/zhiding.png" alt="">
-            <nuxt-link :to="{name:'nsforum-sportType-articleId',params:{'sportType':sportType,'articleId':bbs.article_id}}"  target="_blank" class="a-left" v-if="i=== 0 ">
-              {{bbs.title}}
+    <el-col :span="13" :offset="1" class="forum-list">
+      <el-col :span="24" v-for="(bbs,i) in bbsList" :key="i" class="forum-list-item">
+        <el-col :span="24" class="forum-list-item-title">
+          <el-col :span="2"><img v-if="i === 0" src="https://aloss.hotforest.cn/web/zhiding.png" alt="zd"></el-col>
+          <el-col :span="22">
+            <nuxt-link :to="{name:'nsforum-sportType-articleId',params:{'sportType':sportType,'articleId':bbs.article_id}}"  target="_blank">
+            {{bbs.title}}
             </nuxt-link>
-            <nuxt-link :to="{name:'nsforum-sportType-articleId',params:{'sportType':sportType,'articleId':bbs.article_id}}"   target="_blank" v-if="i !== 0 ">{{bbs.title}}
-            </nuxt-link>
-            <div v-for="(content,index) in bbs.content" :key="index">
-              <div v-if="content.type === 1">
-                <p>{{content.content}}</p>
-              </div>
-              <div v-if="content.type !== 1">
-                <p></p>
-              </div>
-            </div>
+          </el-col>
+        </el-col>
 
-            <div class="bbs-list-l-d">
-              <span>{{bbs.create_time | dateFormat}}</span>
-              <ul>
-                <li>
-                  {{bbs.comments_count}}
-                </li>
-                <li>
-                  <img src="https://aloss.hotforest.cn/web/news-comment.png" alt="">
-                </li>
-                <li>
-                  {{bbs.likes_count}}
-                </li>
-                <li>
-                  <img src="https://aloss.hotforest.cn/web/news-like.png" alt="">
-                </li>
-              </ul>
-            </div>
-          </div>
+        <el-col :span="24" class="forum-list-item-content" >
+          <p v-for="(content,index) in bbs.content" :key="index"  v-if="content.type === 1">{{content.content}}</p>
+        </el-col>
 
-        </li>
-      </ul>
+        <el-col :span="6" class="forum-list-item-time">
+          {{bbs.create_time | dateFormat}}
+        </el-col>
+        <el-col :span="2"  :offset="10" class="forum-list-item-like-img">
+          <img src="https://aloss.hotforest.cn/web/news-like.png" alt="like">
+        </el-col>
+        <el-col :span="2"  class="forum-list-item-like">
+          {{bbs.likes_count}}
+        </el-col>
+        <el-col :span="2" class="forum-list-item-comment-img">
+          <img src="https://aloss.hotforest.cn/web/news-comment.png" alt="comment">
+        </el-col>
+        <el-col :span="2" class="forum-list-item-comment">
+          {{bbs.comments_count}}
+        </el-col>
 
-      <div class="bbs-list-more">
+      </el-col>
+
+      <el-col :span="24" class="forum-list-more">
         <span @click="showMoreBbs(offset)">查看更多</span>
-      </div>
+      </el-col>
 
-    </div>
 
-    <div class="news-detail-rec">
-      <div class="news-detail-rec-container">
-        <div class="hot-news-list-t">
+    </el-col>
+
+    <el-col :span="6" :offset="1">
+      <el-col :span="24" class="news-you-like">
+        <el-col :span="24" class="news-you-like-t">
+          <el-col :span="1">
+            <div class="news-you-like-icon"></div>
+          </el-col>
+          <el-col :span="9">你可能感兴趣的</el-col>
+          <el-col :span="2" :offset="6" class="news-you-like-change-img">
+            <img style="width: 20px;height: 20px;margin-right: 5px;" src="https://aloss.hotforest.cn/web/xuanzhuan.png"
+                 alt="img">
+          </el-col>
+          <el-col :span="6" class="news-you-like-change-text">换一换</el-col>
+        </el-col>
+
+        <el-col :span="24" class="news-you-like-item">
+          <el-col :span="6" class="news-you-like-item-img"><img src="https://aloss.hotforest.cn/web/default-header.png"
+                                                                alt=""></el-col>
+          <el-col :span="18">
+            <el-col :span="12" class="news-you-like-item-1">全民体育官方</el-col>
+            <el-col :span="12" class="news-you-like-item-2">
+              <button>关注</button>
+            </el-col>
+            <el-col :span="24" class="news-you-like-item-3">全民体育主编</el-col>
+            <el-col :span="24" class="news-you-like-item-4">资深体育评论员，专业媒体供稿人</el-col>
+          </el-col>
+        </el-col>
+        <el-col :span="24" class="news-you-like-item">
+          <el-col :span="6" class="news-you-like-item-img"><img src="https://aloss.hotforest.cn/web/default-header.png"
+                                                                alt=""></el-col>
+          <el-col :span="18">
+            <el-col :span="12" class="news-you-like-item-1">全民体育官方</el-col>
+            <el-col :span="12" class="news-you-like-item-2">
+              <button>关注</button>
+            </el-col>
+            <el-col :span="24" class="news-you-like-item-3">全民体育主编</el-col>
+            <el-col :span="24" class="news-you-like-item-4">资深体育评论员，专业媒体供稿人</el-col>
+          </el-col>
+        </el-col>
+        <el-col :span="24" class="news-you-like-item">
+          <el-col :span="6" class="news-you-like-item-img"><img src="https://aloss.hotforest.cn/web/default-header.png"
+                                                                alt=""></el-col>
+          <el-col :span="18">
+            <el-col :span="12" class="news-you-like-item-1">全民体育官方</el-col>
+            <el-col :span="12" class="news-you-like-item-2">
+              <button>关注</button>
+            </el-col>
+            <el-col :span="24" class="news-you-like-item-3">全民体育主编</el-col>
+            <el-col :span="24" class="news-you-like-item-4">资深体育评论员，专业媒体供稿人</el-col>
+          </el-col>
+        </el-col>
+      </el-col>
+
+      <el-col :span="24" class="hot-news-list">
+        <el-col :span="24" class="hot-news-list-t">
           <div class="hot-news-list-t-icon"></div>
-          <span>你可能感兴趣的</span>
-          <a href="#">
-            <img style="width: 20px;height: 20px;margin-right: 12px;" src="https://aloss.hotforest.cn/web/xuanzhuan.png" alt="">
-            换一换
-          </a>
-
-        </div>
-        <div class="hot-news-list-d">
-          <ul>
-            <li>
-              <div class="news-detail-rec-l">
-                <img src="https://aloss.hotforest.cn/web/default-header.png" alt="">
-              </div>
-              <div class="news-detail-rec-r">
-                <span>全民体育官方</span>
-                <button>关注</button>
-                <div class="news-detail-rec-j">
-                  全民体育主编
-                </div>
-                <p>
-                  资深体育评论员，专业媒体供稿人
-                </p>
-              </div>
-
-            </li>
-            <li>
-              <div class="news-detail-rec-l">
-                <img src="https://aloss.hotforest.cn/web/default-header.png" alt="">
-              </div>
-              <div class="news-detail-rec-r">
-                <span>全民体育官方</span>
-                <button>关注</button>
-                <div class="news-detail-rec-j">
-                  全民体育主编
-                </div>
-                <p>
-                  资深体育评论员，专业媒体供稿人
-                </p>
-              </div>
-
-            </li>
-            <li>
-              <div class="news-detail-rec-l">
-                <img src="https://aloss.hotforest.cn/web/default-header.png" alt="">
-              </div>
-              <div class="news-detail-rec-r">
-                <span>全民体育官方</span>
-                <button>关注</button>
-                <div class="news-detail-rec-j">
-                  全民体育主编
-                </div>
-                <p>
-                  资深体育评论员，专业媒体供稿人
-                </p>
-              </div>
-
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!--        热门帖子-->
-    <div class="bbs-r">
-      <div class="bbs-r-container">
-        <div class="bbs-r-c-t">
-          <div class="bbs-r-c-t-icon"></div>
           <span>热门帖子</span>
-        </div>
-        <ul>
-          <li v-for="(hotBbs,i) in hotBbsList" :key="i">
+        </el-col>
+        <el-col :span="24" v-for="(hotBbs,i) in hotBbsList" :key="i" class="hot-news-list-item">
+          <el-col :span="24" class="hot-forum-list-title">
             <nuxt-link  :to="{name:'nsforum-sportType-articleId',params:{'sportType':sportType,'articleId':hotBbs.article_id}}"  target="_blank">{{hotBbs.title}}
             </nuxt-link>
-
-            <div style="padding-top: 20px;">
-              <span>{{hotBbs.create_time | dateFormat}}</span>
-              <a>{{hotBbs.author.nickName}}</a>
-            </div>
-          </li>
-        </ul>
-
-      </div>
-
-    </div>
+          </el-col>
+          <el-col :span="24" style="margin-top: 14px;">
+            <el-col :span="10" class="hot-forum-list-time">
+              {{hotBbs.create_time | dateFormat}}
+            </el-col>
+            <el-col :span="10" :offset="4" class="hot-forum-list-nickname">
+              {{hotBbs.author.nickName}}
+            </el-col>
+          </el-col>
+        </el-col>
+      </el-col>
+    </el-col>
   </div>
 </template>
 
@@ -223,351 +201,139 @@
 </script>
 
 <style scoped>
-  .bbs-list {
-    float: left;
-    width: 58%;
-    padding: 0 2% 0 2%;
-
+  .forum-list{
+    margin-top: 30px;
   }
-
-  .bbs-list ul {
-    margin: 0;
-    padding: 0;
-
-  }
-
-  .bbs-list ul li {
-    height: 140px;
-    border-bottom: 1px solid #D5D5D5;;
-    padding-top: 30px;
-  }
-
-  .bbs-list-l {
-    width: 100%;
-    float: left;
+  .forum-list-item{
+    padding: 10px 0px;
+    border-bottom: 1px solid #D5D5D5;
     text-align: left;
-    position: relative;
-
   }
-
-  .bbs-list-l img {
-    width: 56px;
-    height: 26px;
-    position: absolute;
-    top: 2px;
-
-
-  }
-
-  .bbs-list-l a {
-    color: #333333;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-
-    font-size: 18px;
-    font-family: PingFangSC-Regular, PingFang SC;
-    font-weight: 400;
-    color: rgba(51, 51, 51, 1);
-    line-height: 25px;
-    padding-top: 5px;
-  }
-
-  .a-left {
-    margin-left: 74px;
-  }
-
-  .bbs-list-l p {
-
-    color: #666666;
+  .forum-list-item-title{
     text-align: left;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-
-    font-size: 12px;
-    font-family: PingFangSC-Regular, PingFang SC;
-    font-weight: 400;
-    line-height: 25px;
-    height: 50px;
+    height: 28px;
+  }
+  .forum-list-item-title img{
+    height: 28px;
+  }
+  .forum-list-item-title a{
+    font-size:18px;
+    font-weight:400;
+    color:rgba(51,51,51,1);
+    line-height: 28px;
+  }
+  .forum-list-item-content{
+    height: 90px;
+    margin-top: 14px;
   }
 
-  .bbs-list-l-d {
-
+  .forum-list-item-content p{
+    font-size:12px;
+    font-weight:400;
+    color:rgba(102,102,102,1);
+    line-height:30px;
+  }
+  .forum-list-item-time{
+    font-size:12px;
+    font-weight:400;
+    color:rgba(187,187,187,1);
+    line-height:30px;
+  }
+  .forum-list-item-like{
+    font-size:12px;
+    font-weight:400;
+    color:rgba(0,0,0,1);
+    line-height:17px;
+  }
+  .forum-list-item-comment{
+    font-size:12px;
+    font-weight:400;
+    color:rgba(0,0,0,1);
+    line-height:17px;
   }
 
-  .bbs-list-l-d span {
-    display: block;
-    float: left;
-    color: #BBBBBB;
-    font-size: 12px;
-    font-family: PingFangSC-Regular, PingFang SC;
-    font-weight: 400;
-    line-height: 30px;
-  }
-
-  .bbs-list-l-d ul {
-    margin: 0;
-    padding: 0;
-  }
-
-  .bbs-list-l-d ul li {
-    float: right;
-    width: 20px;
-    height: 20px;
-    /*border: 1px solid red;*/
-    padding: 0;
-    margin-right: 15px;
-    border-bottom: 1px solid transparent;
-
-  }
-
-  .bbs-list-l-d ul li img {
-    width: 20px;
-    height: 20px;
-    position: static;
-  }
-
-
-  .bbs-list-r {
-    width: 18%;
-    float: left;
-    text-align: center;
-
-  }
-
-  .bbs-list-r a {
-    color: #333333;
-    font-size: 12px;
-    font-family: PingFangSC-Regular, PingFang SC;
-    font-weight: 400;
-    line-height: 30px;
-
-  }
-
-  .bbs-r {
-    width: 22%;
-    float: left;
-    padding-top: 30px;
-  }
-
-  .bbs-r-container {
-    width: 100%;
-    margin: auto 0;
-    border: 1px solid #D0D0D0;
-    position: relative;
-    text-align: left;
-    padding: 10px 14px 10px 14px;
-  }
-
-  .bbs-r-c-t {
-    display: flex;
-    align-items: flex-start;
-    justify-content: left;
-    vertical-align: middle;
-
-  }
-
-  .bbs-r-c-t-icon {
-    width: 8px;
-    height: 34px;
-    background-color: #EBB031;
-    /*position: absolute;*/
-
-  }
-
-  .bbs-r-c-t span {
-
-    color: #000000;
-    margin-left: 20px;
-    margin-top: 10px;
-
-    font-size: 18px;
-    font-family: PingFangSC-Regular, PingFang SC;
-    font-weight: 400;
-    line-height: 25px;
-  }
-
-  .bbs-r-container ul {
-  }
-
-  .bbs-r-container ul li {
-    height: 110px;
-    border-bottom: 1px solid #DDDDDD;
-    padding-top: 20px;
-  }
-
-  .bbs-r-container ul li:last-child {
-    border-bottom: 1px solid transparent !important;
-  }
-
-  .bbs-r-container ul li a {
-
-    color: #333333;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-
-    font-size: 18px;
-    font-family: PingFangSC-Regular, PingFang SC;
-    font-weight: 400;
-    line-height: 25px;
-
-  }
-
-  .bbs-r-container ul li div span {
-    width: 40%;
-    display: block;
-    float: left;
-
-    color: #BBBBBB;
-
-
-    font-size: 12px;
-    font-family: PingFangSC-Regular, PingFang SC;
-    font-weight: 400;
-
-    line-height: 30px;
-  }
-
-  .bbs-r-container ul li div a {
-    width: 60%;
-    float: left;
-
-    color: #333333;
-    line-height: 30px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-
-    font-size: 12px;
-    font-family: PingFangSC-Regular, PingFang SC;
-    font-weight: 400;
-    text-align: right;
-
-  }
-
-  .bbs-list-more {
-    text-align: center;
+  .news-you-like {
+    border: 1px solid #D0D0D0;;
+    padding: 12px 14px 12px 14px;
     margin-top: 30px;
   }
 
-  .bbs-list-more span {
-    color: #666666;
-    cursor: pointer;
-
-    font-size: 14px;
-    font-family: PingFangSC-Regular, PingFang SC;
-    font-weight: 400;
-    line-height: 20px;
-
+  .news-you-like-t {
+    height: 34px;
+    line-height: 34px;
   }
 
-  .news-detail-rec {
-    width: 22%;
+  .news-you-like-icon {
+    width: 8px;
+    height: 34px;
+    background-color: #EBB031;
     float: left;
-    padding-top: 30px;
-    /*height: 720px;*/
-    /*margin-top: 20px;*/
+    margin-right: 14px;
   }
 
-  .news-detail-rec-container {
-    width: 100%;
-    margin: auto 0;
-    border: 1px solid #D0D0D0;
-    position: relative;
+  .news-you-like-change-img {
+    margin-top: 4px;
+  }
+
+  .news-you-like-change-text {
     text-align: left;
-    padding: 10px 14px 10px 14px;
+    color: #76BCFF;
   }
 
-  .hot-news-list-d ul li {
-    height: 80px;
-    padding-top: 20px;
+  .news-you-like-item {
+    text-align: left;
+    padding: 12px 0 12px 0;
     border-bottom: 1px solid #DDDDDD;
   }
 
-  .hot-news-list-d ul li:last-child {
-    border-bottom: 1px solid transparent !important;
+  .news-you-like-item:last-child {
+    border-bottom: 1px solid transparent;
   }
 
-  .news-detail-rec-l {
-    float: left;
-    width: 20%;
-
-  }
-
-  .news-detail-rec-l img {
-    width: 60px;
-    height: 60px;
-  }
-
-  .news-detail-rec-r {
-    width: 69%;
-    float: left;
-    text-align: left;
-    padding-left: 10px;
-  }
-
-  .news-detail-rec-r span {
-
+  .news-you-like-item-1 {
     color: #333333;
-
-
     font-size: 16px;
-    font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
-
-    line-height: 30px;
   }
 
-  .news-detail-rec-r button {
+  .news-you-like-item-2 button {
+    /*height: 17px;*/
+    line-height: 17px;
     background: #76BCFF;
-    border-radius: 2px;
     border-radius: 2px;
     border: 1px solid transparent;
     outline: none;
     color: #ffffff;
-    margin-left: 27px;
-    width: 70px;
-    height: 30px;
-  }
-
-  .news-detail-rec-r p {
-
-    color: #838383;
-
-    margin: 0;
-
-    font-size: 14px;
-    font-family: PingFangSC-Regular, PingFang SC;
-    font-weight: 400;
-    line-height: 20px;
-  }
-
-  .news-detail-rec-j {
-
-    color: #838383;
-
     font-size: 12px;
-    font-family: PingFangSC-Regular, PingFang SC;
-    font-weight: 400;
-    color: rgba(131, 131, 131, 1);
-    line-height: 30px;
+    font-weight: 500;
+
   }
+
+  .news-you-like-item-3 {
+    color: #838383;
+    line-height: 30px;
+    font-size: 12px;
+    font-weight: 400;
+
+  }
+
+  .news-you-like-item-4 {
+    color: #838383;
+    line-height: 30px;
+    font-size: 12px;
+    font-weight: 400;
+  }
+  .hot-news-list {
+    border: 1px solid #D0D0D0;;
+    margin-top: 30px;
+    padding: 12px 14px 12px 14px;
+  }
+
 
   .hot-news-list-t {
     text-align: left;
     position: relative;
-    height: 40px;
-
+    height: 44px;
 
   }
 
@@ -577,47 +343,71 @@
     background-color: #EBB031;
     /*float: left;margin-right: 14px;*/
     position: absolute;
-    left: 0;
+    left: 0px;
+    top: 5px;
 
   }
 
   .hot-news-list-t span {
 
     color: #000000;
-
     font-size: 18px;
-    font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
     line-height: 25px;
     position: absolute;
-    left: 25px;
-    top: 5px;
-
+    left: 20px;
+    top: 10px;
   }
 
-  .hot-news-list-t a {
-    font-size: 12px;
-    font-family: PingFangSC-Regular, PingFang SC;
-    font-weight: 400;
-    color: rgba(118, 188, 255, 1);
-    line-height: 30px;
-    position: absolute;
-    right: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    vertical-align: middle;
-
+  .hot-news-list-item {
+    padding: 12px 0 12px 0;
+    border-bottom: 1px solid #DDDDDD;
   }
 
-  .hot-news-list-t img {
-    width: 30px;
-    height: 30px;
+  .hot-news-list-item:last-child {
+    border-bottom: transparent !important;
   }
 
-  .hot-news-list-d ul li {
-    height: 110px;
+  .hot-news-list-img img {
+    width: 100%;
   }
 
+  .hot-forum-list-title {
+    text-align: left;
+    padding-left: 10px;
+  }
+
+  .hot-forum-list-title a {
+    font-size:18px;
+    font-weight:400;
+    color:rgba(51,51,51,1);
+    line-height:25px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .hot-forum-list-time{
+    font-size:12px;
+    font-weight:400;
+    color:rgba(187,187,187,1);
+    line-height:30px;
+  }
+
+  .hot-forum-list-nickname{
+    font-size:12px;
+    font-weight:400;
+    color:rgba(51,51,51,1);
+    line-height:30px;
+    text-align: right;
+  }
+
+  .forum-list-more{
+    margin-top: 30px;
+    cursor: pointer;
+  }
 
 </style>
