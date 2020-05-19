@@ -72,7 +72,6 @@
       <el-col :span="24">
         <el-col :span="24" class="comment-all-title">全部评论</el-col>
         <el-col :span="24" class="infinite-list-wrapper" style="overflow:auto">
-
           <ul
             class="list"
             v-infinite-scroll="load"
@@ -127,9 +126,10 @@
               </el-col>
             </li>
           </ul>
+        </el-col>
+        <el-col :span="24">
           <p class="loading" v-if="loading">加载中...</p>
           <p class="no-more" v-if="noMore">没有更多了</p>
-
         </el-col>
       </el-col>
 

@@ -113,6 +113,7 @@ module.exports = {
     ['@nuxtjs/component-cache', { maxAge: 1000 * 60 * 60 }],
   ],
   sitemap: {
+    hostname:'https://www.171tiyu.com',
     path: '/sitemap.xml',
     cacheTime: 1000 * 60 * 60 * 24,
     // generate:true,
