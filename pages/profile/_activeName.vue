@@ -8,7 +8,7 @@
     <el-row class="profile-content">
       <el-col :span="24" class="profile-tags">
         <el-tabs v-model="activeName" @tab-click="handleClick">
-          <el-tab-pane label="服务协议" name="first">
+          <el-tab-pane label="服务协议" name="agreement">
                <pre>
         全民体育（以下称“我们”）尊重并保护您的隐私，当您使用我们的服务时，我们可能会收集、使用、储存和分享您的相关信息。
         我们希望通过本《隐私政策》（ 以下称 “本政策”）向您说明，我们如何收集、使用、储存和分享这些信息，我们如何为您提供访问、更新、控制和保护您信息的服务。
@@ -105,7 +105,7 @@
         为给您提供更好的服务以及随着我们业务的发展，我们可能会适时对本政策进行修订，如本政策发生变更，我们将以推送通知或发送邮件或站内信通知您，若您在本政策修订后继续使用我们的服务，即表示您已充分阅读、理解并同意接受经修订后的本政策的约束。
     </pre>
           </el-tab-pane>
-          <el-tab-pane label="隐私政策" name="second">
+          <el-tab-pane label="隐私政策" name="privacy">
                 <pre>
     1. 我们会遵循《隐私政策》收集使用信息，但不会仅因同意本《隐私政策》而采用强制捆绑的方式收集信息; 
     2. 为了向您提供服务所必需，需要您开启以下权限，以便您使用相应功能;若您不使用相应功能，可以不开启以下权限，不开启权限不影响您使用其他功能，我们将依法保障您的信息安全; 电话/设备信息权限 开启电话/设备信息权限，用于读取设备信息、日志信息和帮助您诊断问题,以便我们向您推送资讯以及安全风控。即使您授予我们此项权限，目前我们也不会因此获取您的电话号码或通讯簿。 存储权限 开启存储权限，用于存储应用资源文件，以便您使用保存图片、音视频文件功能，上传您存储的图片、音视频文件。 相机 开启相机权限，以便您拍摄并上传照片、视频。 麦克风 开启麦克风权限，以便您拍摄并上传音、视频。 地理位置 当您设置/编辑“个人资料”中的“所在地”、设置收件地址时，为了定位手机 位置，我们需要申请位置权限。 
@@ -113,7 +113,7 @@
     4. 您可以查询、访问、修改、删除您的 个人信息，我们也提供注销账号、投诉举报的渠道。
       </pre>
           </el-tab-pane>
-          <el-tab-pane label="关于全民体育" name="third">
+          <el-tab-pane label="关于全民体育" name="about">
                <pre>
         全民体育是一款懂球迷的体育App，满足球迷对体育赛事的需求，就是全民体育对App最大的要求！
         全民体育提供完整的体坛内容，包括即时新闻、最新赛程、深度专栏、准确数据，搭配人性化又时尚的操作接口，让球迷在接收资讯之馀还享有尊绝不凡的使用体验。
@@ -125,7 +125,7 @@
         【独一无二】提供最个人化的使用体验，让每个球迷都能感受自己是独一无二的！
     </pre>
           </el-tab-pane>
-          <el-tab-pane label="投诉侵权" name="fourth">
+          <el-tab-pane label="投诉侵权" name="complaint">
                   <pre>
 作为中立的网络服务提供者，收到符合要求的投诉通知后，将按照相关法律法规的规定及时受理，请务必完整、准确、真实填写以下信息，以提高投诉被受理的成功率。
 投诉邮箱：customer@nsnni.com
@@ -152,9 +152,26 @@
     components: {
 
     },
+    head () {
+      return {
+        title: '用户协议_全民体育',
+        meta: [
+          {
+            hid: 'keywords',
+            name: 'keywords',
+            content: '全民体育,全民体育资讯,全民体育新闻,全民体育视频,全民体育篮球,全民体育足球,全民体育赛事,全民体育NationalSports,全民体育直播,全民体育app'
+          },
+          {
+            hid: 'description',
+            name: 'description',
+            content: '全民体育,一款为体育粉丝量身定做的APP。这里有最全面最专业的体育资讯，让体育迷们在家的氛围中获得完美的赛事体验，提供全方位、多样化的体育资讯。'
+          }
+        ]
+      }
+    },
     data () {
       return {
-        activeName: 'first'
+        activeName: 'agreement'
       }
     },
     mounted () {
@@ -211,7 +228,7 @@
     bottom: 15px;
   }
 
-  #pane-first{
+  #pane-agreement{
     width: 90%;
     margin: 0 auto;
     text-align: left;
@@ -220,7 +237,7 @@
     color:rgba(51,51,51,1);
     line-height:40px;
   }
-  #pane-second{
+  #pane-privacy{
     width: 90%;
     margin: 0 auto;
     text-align: left;
@@ -229,7 +246,7 @@
     color:rgba(51,51,51,1);
     line-height:40px;
   }
-  #pane-third{
+  #pane-about{
     width: 90%;
     margin: 0 auto;
     text-align: left;
@@ -238,7 +255,7 @@
     color:rgba(51,51,51,1);
     line-height:40px;
   }
-  #pane-fourth{
+  #pane-complaint{
     width: 90%;
     margin: 0 auto;
     text-align: left;

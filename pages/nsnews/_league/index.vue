@@ -13,7 +13,7 @@
         }">{{news.title}}</nuxt-link>
 
           </el-col>
-          <el-col :span="24" class="news-list-content" v-if="news.content">
+          <el-col :span="24" class="news-list-content" >
               <p v-for="(c,i) in news.content" :key="i"  v-if="c.type ===1"  class="news-list-content-item" >
                 {{c.content}}
               </p>
@@ -361,7 +361,7 @@
   }
   .news-list-showmore{
     cursor: pointer;
-    font-size: 18px;
+    font-size: 16px;
     color: #666666;
     margin-top: 30px;
   }

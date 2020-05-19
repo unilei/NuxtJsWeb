@@ -65,7 +65,9 @@
 
 <style scoped>
   .el-main {
-    padding: 0 27px 0 27px;
+    /*padding: 0 27px 0 27px;*/
+    padding-left: 40px;
+    padding-right: 40px;
 
   }
 

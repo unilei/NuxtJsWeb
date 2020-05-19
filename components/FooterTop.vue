@@ -2,19 +2,19 @@
   <div class="footer-top-l">
     <ul>
       <li>
-        <nuxt-link :to="'/companyProfile'">公司介绍</nuxt-link>
+        <nuxt-link :to="'/company'">公司介绍</nuxt-link>
       </li>
       <li>
-        <nuxt-link :to="{name:'profile-activeName',params:{'activeName':'third'}}" >关于全民体育</nuxt-link>
+        <nuxt-link :to="{name:'profile-activeName',params:{'activeName':'about'}}" >关于全民体育</nuxt-link>
       </li>
       <li>
-        <nuxt-link  :to="{name:'profile-activeName',params:{'activeName':'first'}}" >服务协议</nuxt-link>
+        <nuxt-link  :to="{name:'profile-activeName',params:{'activeName':'agreement'}}" >服务协议</nuxt-link>
       </li>
       <li>
-        <nuxt-link :to="{name:'profile-activeName',params:{'activeName':'second'}}" >隐私政策</nuxt-link>
+        <nuxt-link :to="{name:'profile-activeName',params:{'activeName':'privacy'}}" >隐私政策</nuxt-link>
       </li>
       <li>
-        <nuxt-link :to="{name:'profile-activeName',params:{'activeName':'fourth'}}" >投诉侵权</nuxt-link>
+        <nuxt-link :to="{name:'profile-activeName',params:{'activeName':'complaint'}}" >投诉侵权</nuxt-link>
       </li>
       <li>
         <a href="https://171tiyu.com/download/android?channelCode=Web_Landing_Page"

@@ -140,6 +140,8 @@ module.exports = {
       '/index',
       '/personalInformationService',
       '/wechat',
+      '/company',
+      '/profile'
     ],
     sitemaps: [
       {
@@ -190,16 +192,29 @@ module.exports = {
         gzip: false,
       },
       {
-        path: '/sitemap-sportNews-detail-2.xml',
+        path: '/sitemap-nsnews.xml',
         routes: async () => {
-          let news_params = {
-            articleType: 2,
-            offset: 0,
-            author_filter: ['6', '7', '8', '9']
-          }
-          const res = await axios.get(`https://api.npse.com:8081/v2/GetArticles`, { params: news_params })
+
+          //localhost:8000/web/api.news/getAllArticles
+          let req_url = 'https://admin.hotforest.cn/web/api.news/getAllArticles'
+          // let req_url = 'https://localhost:8000/web/api.news/getAllArticles'
+          let res = await axios.get(req_url)
           // console.log(res)
-          return res.data.Data.articles.map(news => `/sportNews/detail/${news.shorturl}`)
+          return res.data.data.map(news => `/nsnews/all/${news.shortUrlSuffix}`)
+        },
+        gzip: false,
+      },
+      {
+        path: '/sitemap-bbs.xml',
+        routes: async () => {
+          let sportType = 'all'
+          let type = 'newest'
+          let params = {
+            offset: 0
+          }
+          const res = await axios.get(`https://api.npse.com:8081/v1/forum/` + sportType + `/0/` + type + `/articles`, { params: params })
+          // console.log(res)
+          return res.data.Data.list.map(bbs => `/nsforum/all/${bbs.article_id}`)
         },
         gzip: false,
       },

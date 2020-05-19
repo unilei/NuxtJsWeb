@@ -147,7 +147,7 @@
             足球大咖
           </el-col>
           <el-col :span="3" class="zb-basket-item">
-            <img src="https://aloss.hotforest.cn/web/p-1.png" alt="basketball"> <br>
+            <img src="https://aloss.hotforest.cn/web/pp-1.png" alt="basketball"> <br>
             李彦
           </el-col>
           <el-col :span="3">
@@ -179,49 +179,56 @@
 
       <el-col :span="24" class="company-business">
         <el-col :span="24" class="company-business-title">媒体合作伙伴</el-col>
-        <el-col :span="24" class="company-business-img">
-          <el-col :span="2" class="company-business-img-item">
-            <img src="https://aloss.hotforest.cn/web/business/1.png" alt="img">
+        <el-col :span="20" :offset="2" class="company-business-img">
+          <el-col :span="24">
+            <el-col :span="3" :offset="1" class="company-business-img-item">
+              <img src="https://aloss.hotforest.cn/web/business/1.png" alt="img">
+            </el-col>
+            <el-col :span="2" :offset="1" class="company-business-img-item">
+              <img src="https://aloss.hotforest.cn/web/business/2.png" alt="img">
+            </el-col>
+            <el-col :span="3" :offset="1" class="company-business-img-item">
+              <img src="https://aloss.hotforest.cn/web/business/3.png" alt="img">
+            </el-col>
+            <el-col :span="2"  :offset="1" class="company-business-img-item">
+              <img src="https://aloss.hotforest.cn/web/business/4.png" alt="img">
+            </el-col>
+            <el-col :span="3" :offset="1" class="company-business-img-item">
+              <img src="https://aloss.hotforest.cn/web/business/5.png" alt="img">
+            </el-col>
+            <el-col :span="2" :offset="1" class="company-business-img-item">
+              <img src="https://aloss.hotforest.cn/web/business/6.png" alt="img">
+            </el-col>
+            <el-col :span="2" :offset="1" class="company-business-img-item">
+              <img src="https://aloss.hotforest.cn/web/business/7.png" alt="img">
+            </el-col>
           </el-col>
-          <el-col :span="2" class="company-business-img-item">
-            <img src="https://aloss.hotforest.cn/web/business/2.png" alt="img">
+
+          <el-col :span="24" style="margin-top: 20px;">
+            <el-col :span="3"  :offset="1" class="company-business-img-item">
+              <img src="https://aloss.hotforest.cn/web/business/8.png" alt="img">
+            </el-col>
+            <el-col :span="2" :offset="1" class="company-business-img-item">
+              <img src="https://aloss.hotforest.cn/web/business/9.png" alt="img">
+            </el-col>
+            <el-col :span="3" :offset="1" class="company-business-img-item">
+              <img src="https://aloss.hotforest.cn/web/business/10.png" alt="img">
+            </el-col>
+            <el-col :span="2" :offset="1" class="company-business-img-item">
+              <img src="https://aloss.hotforest.cn/web/business/11.png" alt="img">
+            </el-col>
+            <el-col :span="3" :offset="1" class="company-business-img-item">
+              <img src="https://aloss.hotforest.cn/web/business/12.png" alt="img">
+            </el-col>
+            <el-col :span="2" :offset="1" class="company-business-img-item">
+              <img src="https://aloss.hotforest.cn/web/business/13.png" alt="img">
+            </el-col>
+            <el-col :span="2" :offset="1" class="company-business-img-item">
+              <img src="https://aloss.hotforest.cn/web/business/14.png" alt="img">
+            </el-col>
           </el-col>
-          <el-col :span="2" class="company-business-img-item">
-            <img src="https://aloss.hotforest.cn/web/business/3.png" alt="img">
-          </el-col>
-          <el-col :span="2" class="company-business-img-item">
-            <img src="https://aloss.hotforest.cn/web/business/4.png" alt="img">
-          </el-col>
-          <el-col :span="2" class="company-business-img-item">
-            <img src="https://aloss.hotforest.cn/web/business/5.png" alt="img">
-          </el-col>
-          <el-col :span="2" class="company-business-img-item">
-            <img src="https://aloss.hotforest.cn/web/business/6.png" alt="img">
-          </el-col>
-          <el-col :span="2" class="company-business-img-item">
-            <img src="https://aloss.hotforest.cn/web/business/7.png" alt="img">
-          </el-col>
-          <el-col :span="2" class="company-business-img-item">
-            <img src="https://aloss.hotforest.cn/web/business/8.png" alt="img">
-          </el-col>
-          <el-col :span="2" class="company-business-img-item">
-            <img src="https://aloss.hotforest.cn/web/business/9.png" alt="img">
-          </el-col>
-          <el-col :span="2" class="company-business-img-item">
-            <img src="https://aloss.hotforest.cn/web/business/10.png" alt="img">
-          </el-col>
-          <el-col :span="2" class="company-business-img-item">
-            <img src="https://aloss.hotforest.cn/web/business/11.png" alt="img">
-          </el-col>
-          <el-col :span="2" class="company-business-img-item">
-            <img src="https://aloss.hotforest.cn/web/business/12.png" alt="img">
-          </el-col>
-          <el-col :span="2" class="company-business-img-item">
-            <img src="https://aloss.hotforest.cn/web/business/13.png" alt="img">
-          </el-col>
-          <el-col :span="2" class="company-business-img-item">
-            <img src="https://aloss.hotforest.cn/web/business/14.png" alt="img">
-          </el-col>
+
+
 
         </el-col>
       </el-col>
@@ -233,10 +240,10 @@
 
 <script>
   export default {
-    name: 'companyProfile',
+    name: 'company',
     head () {
       return {
-        title: '公司介绍-全民体育',
+        title: '公司介绍_全民体育',
         meta: [
           {
             hid: 'keywords',
@@ -401,6 +408,10 @@
     height: 200px;
   }
 
+  .company-business{
+    margin-top: 40px;
+  }
+
   .company-business-title{
     font-size:24px;
     font-weight:500;
@@ -409,24 +420,7 @@
   }
 
   .company-business-img {
-
-  }
-  .company-business-img ul {
-    margin: 0;
-    padding: 0;
+    margin-top: 30px;
   }
 
-  .company-business-img ul li {
-    width: 110px;
-    /*height: 30px;*/
-    /*border: 1px solid red;*/
-    float: left;
-    margin-left: 42px;
-    margin-top: 44px;
-  }
-
-  .company-business-img ul li a img {
-    max-width: 100%;
-    max-height: 100%;
-  }
 </style>

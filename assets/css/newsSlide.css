@@ -1,6 +1,6 @@
 /* 本例子css */
 .slideBox {
-  width: 750px;
+  /*width: 750px;*/
   height: 380px;
   overflow: hidden;
   position: relative;

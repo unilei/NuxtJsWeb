@@ -5,12 +5,12 @@
       <el-col :span="10"   class="hot-news">
         <el-col :span="24" class="hot-news-first">
           <nuxt-link v-if="hotNewsList.length > 0"
-                     :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotNewsList[0].shorturl}}"
+                     :to="{name:'nsnews-league-shorturl',params:{league:'all',shorturl:hotNewsList[0].shorturl}}"
                      target="_blank">{{hotNewsList[0].title}}
           </nuxt-link>
         </el-col>
         <el-col :span="24" v-for="(hotNews,k) in hotNewsList" :key="k" class="hot-news-item">
-          <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotNews.shorturl}}"
+          <nuxt-link :to="{name:'nsnews-league-shorturl',params:{league:'all',shorturl:hotNews.shorturl}}"
                      target="_blank">{{hotNews.title}}
           </nuxt-link>
         </el-col>
@@ -26,7 +26,7 @@
           <div class="bd">
             <ul>
               <li v-for="(item,index) in bannerArr" :key="index">
-                <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:item.content}}" target="_blank">
+                <nuxt-link :to="{name:'nsnews-league-shorturl',params:{league:'all',shorturl:item.content}}" target="_blank">
                   <img :src="item.image"/>
                 </nuxt-link>
               </li>
@@ -57,7 +57,7 @@
 
       <el-col :span="11">
         <el-col :span="24" class="news-news-title">
-          <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotNbaNewsFirst.shorturl}}"
+          <nuxt-link :to="{name:'nsnews-league-shorturl',params:{league:'nba',shorturl:hotNbaNewsFirst.shorturl}}"
                      target="_blank">
             {{hotNbaNewsFirst.title}}
           </nuxt-link>
@@ -75,7 +75,7 @@
         </el-col>
 
         <el-col :span="24" class="news-news-title">
-          <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotNbaNewsSecond.shorturl}}"
+          <nuxt-link :to="{name:'nsnews-league-shorturl',params:{league:'nba',shorturl:hotNbaNewsSecond.shorturl}}"
                      target="_blank">
             {{hotNbaNewsSecond.title}}
           </nuxt-link>
@@ -94,7 +94,7 @@
       </el-col>
       <el-col :span="12" :offset="1" class="news-news-item-container">
         <el-col :span="23" :offset="1" v-for="newNbaNews in newNbaNewsList" :key="newNbaNews.article_id" class="news-news-item">
-            <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:newNbaNews.shorturl}}" target="_blank">
+            <nuxt-link :to="{name:'nsnews-league-shorturl',params:{league:'nba',shorturl:newNbaNews.shorturl}}" target="_blank">
               {{newNbaNews.title}}
             </nuxt-link>
         </el-col>
@@ -107,7 +107,7 @@
     <el-row>
       <el-col :span="24" >
         <div class="news-news-icon">
-          <img  src="https://aloss.hotforest.cn/web/bbs.png" alt="nba">
+          <img  src="https://aloss.hotforest.cn/web/bbs.png" alt="forum">
         </div>
         <div class="news-news-text">
           社区
@@ -117,14 +117,14 @@
       <el-col :span="11">
         <el-col :span="24" class="news-news-hot-forum" v-for="(hotBbs,index) in hotBbsList" :key="index">
           <nuxt-link  target="_blank"
-                     :to="{name:'bbs-detail-articleId',params:{'articleId':hotBbs.article_id}}">
+                     :to="{name:'nsforum-sportType-articleId',params:{sportType:'all',articleId:hotBbs.article_id}}">
             {{hotBbs.title}}
           </nuxt-link>
         </el-col>
       </el-col>
       <el-col :span="12" :offset="1" class="news-news-item-container">
         <el-col :span="23" :offset="1" v-for="(bbs,i) in bbsList" :key="i" class="news-news-item">
-          <nuxt-link :to="{name:'bbs-detail-articleId',params:{'articleId':bbs.article_id}}" target="_blank">
+          <nuxt-link :to="{name:'nsforum-sportType-articleId',params:{sportType:'all',articleId:bbs.article_id}}" target="_blank">
             {{bbs.title}}
           </nuxt-link>
         </el-col>
@@ -146,13 +146,13 @@
 
       <el-col :span="11">
         <el-col :span="24" class="news-news-title">
-          <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotLaLigaNewsFirst.shorturl}}"
+          <nuxt-link :to="{name:'nsnews-league-shorturl',params:{league:'la_liga',shorturl:hotLaLigaNewsFirst.shorturl}}"
                      target="_blank">
             {{hotLaLigaNewsFirst.title}}
           </nuxt-link>
         </el-col>
         <el-col :span="7" class="news-news-img">
-          <img :src="hotLaLigaNewsFirst.image" alt="nba">
+          <img :src="hotLaLigaNewsFirst.image" alt="la_liga">
         </el-col>
         <el-col :span="16" :offset="1">
           <el-col :span="24" v-if="hotLaLigaNewsFirst.content" class="news-news-content">
@@ -164,13 +164,13 @@
         </el-col>
 
         <el-col :span="24" class="news-news-title">
-          <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotLaLigaNewsSecond.shorturl}}"
+          <nuxt-link :to="{name:'nsnews-league-shorturl',params:{league:'la_liga',shorturl:hotLaLigaNewsSecond.shorturl}}"
                      target="_blank">
             {{hotLaLigaNewsSecond.title}}
           </nuxt-link>
         </el-col>
         <el-col :span="7" class="news-news-img">
-          <img :src="hotLaLigaNewsSecond.image" alt="nba">
+          <img :src="hotLaLigaNewsSecond.image" alt="la_liga">
         </el-col>
         <el-col :span="16" :offset="1">
           <el-col :span="24" v-if="hotLaLigaNewsSecond.content" class="news-news-content">
@@ -183,7 +183,7 @@
       </el-col>
       <el-col :span="12" :offset="1" class="news-news-item-container">
         <el-col :span="23" :offset="1" v-for="newLaLigaNews in newLaLigaNewsList" :key="newLaLigaNews.article_id" class="news-news-item">
-          <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:newLaLigaNews.shorturl}}" target="_blank">
+          <nuxt-link :to="{name:'nsnews-league-shorturl',params:{league:'la_liga',shorturl:newLaLigaNews.shorturl}}" target="_blank">
             {{newLaLigaNews.title}}
           </nuxt-link>
         </el-col>
@@ -205,13 +205,13 @@
 
       <el-col :span="11">
         <el-col :span="24" class="news-news-title">
-          <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotPremierNewsFirst.shorturl}}"
+          <nuxt-link :to="{name:'nsnews-league-shorturl',params:{league:'premier',shorturl:hotPremierNewsFirst.shorturl}}"
                      target="_blank">
             {{hotPremierNewsFirst.title}}
           </nuxt-link>
         </el-col>
         <el-col :span="7" class="news-news-img">
-          <img :src="hotPremierNewsFirst.image" alt="nba">
+          <img :src="hotPremierNewsFirst.image" alt="premier">
         </el-col>
         <el-col :span="16" :offset="1">
           <el-col :span="24" v-if="hotPremierNewsFirst.content" class="news-news-content">
@@ -223,13 +223,13 @@
         </el-col>
 
         <el-col :span="24" class="news-news-title">
-          <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotPremierNewsSecond.shorturl}}"
+          <nuxt-link :to="{name:'nsnews-league-shorturl',params:{league:'premier',shorturl:hotPremierNewsSecond.shorturl}}"
                      target="_blank">
             {{hotPremierNewsSecond.title}}
           </nuxt-link>
         </el-col>
         <el-col :span="7" class="news-news-img">
-          <img :src="hotPremierNewsSecond.image" alt="nba">
+          <img :src="hotPremierNewsSecond.image" alt="premier">
         </el-col>
         <el-col :span="16" :offset="1">
           <el-col :span="24" v-if="hotPremierNewsSecond.content" class="news-news-content">
@@ -242,7 +242,7 @@
       </el-col>
       <el-col :span="12" :offset="1" class="news-news-item-container">
         <el-col :span="23" :offset="1" v-for="newPremierNews in newPremierNewsList" :key="newPremierNews.article_id" class="news-news-item">
-          <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:newPremierNews.shorturl}}"
+          <nuxt-link :to="{name:'nsnews-league-shorturl',params:{league:'premier',shorturl:newPremierNews.shorturl}}"
                      target="_blank">
             {{newPremierNews.title}}
           </nuxt-link>
@@ -256,7 +256,7 @@
     <el-row>
       <el-col :span="24" >
         <div class="news-news-icon">
-          <img  src="https://aloss.hotforest.cn/web/serea-icon.png" alt="la_liga">
+          <img  src="https://aloss.hotforest.cn/web/serea-icon.png" alt="serie_a">
         </div>
         <div class="news-news-text">
           意甲
@@ -265,13 +265,13 @@
 
       <el-col :span="11">
         <el-col :span="24" class="news-news-title">
-          <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotSerieANewsFirst.shorturl}}"
+          <nuxt-link :to="{name:'nsnews-league-shorturl',params:{league:'serie_a',shorturl:hotSerieANewsFirst.shorturl}}"
                      target="_blank">
             {{hotSerieANewsFirst.title}}
           </nuxt-link>
         </el-col>
         <el-col :span="7" class="news-news-img">
-          <img :src="hotSerieANewsFirst.image" alt="nba">
+          <img :src="hotSerieANewsFirst.image" alt="serie_a">
         </el-col>
         <el-col :span="16" :offset="1">
           <el-col :span="24" v-if="hotSerieANewsFirst.content" class="news-news-content">
@@ -283,13 +283,13 @@
         </el-col>
 
         <el-col :span="24" class="news-news-title">
-          <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:hotSerieANewsSecond.shorturl}}"
+          <nuxt-link :to="{name:'nsnews-league-shorturl',params:{league:'serie_a',shorturl:hotSerieANewsSecond.shorturl}}"
                      target="_blank">
             {{hotSerieANewsSecond.title}}
           </nuxt-link>
         </el-col>
         <el-col :span="7" class="news-news-img">
-          <img :src="hotSerieANewsSecond.image" alt="nba">
+          <img :src="hotSerieANewsSecond.image" alt="serie_a">
         </el-col>
         <el-col :span="16" :offset="1">
           <el-col :span="24" v-if="hotSerieANewsSecond.content" class="news-news-content">
@@ -302,7 +302,7 @@
       </el-col>
       <el-col :span="12" :offset="1" class="news-news-item-container">
         <el-col :span="23" :offset="1" v-for="newSerieANews in newSerieANewsList" :key="newSerieANews.article_id" class="news-news-item">
-          <nuxt-link :to="{name:'sportNews-detail-shorturl',params:{shorturl:newSerieANews.shorturl}}"
+          <nuxt-link :to="{name:'nsnews-league-shorturl',params:{league:'serie_a',shorturl:newSerieANews.shorturl}}"
                      target="_blank">{{newSerieANews.title}}
           </nuxt-link>
         </el-col>
@@ -495,7 +495,9 @@
   @import "../assets/css/newsSlide.css";
 
   .el-main {
-    padding: 10px 27px 37px 27px;
+    /*padding: 10px 27px 37px 27px;*/
+    padding-left: 40px;
+    padding-right: 40px;
 
   }
   .hot-news-container{
@@ -546,6 +548,9 @@
   .news-slider{
     margin-top: 22px;
   }
+  .news-slider img{
+    width: 100%;
+  }
 
   .news-news-icon{
     float: left;
@@ -594,7 +599,6 @@
   }
   .news-news-content{
     margin-top: 14px;
-    font-family: PingFangSC-Regular;
     color: #666666;
     line-height: 28px;
     font-size: 13px;

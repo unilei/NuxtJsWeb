@@ -406,8 +406,10 @@
   }
 
   .forum-list-more{
-    margin-top: 30px;
     cursor: pointer;
+    font-size: 16px;
+    color: #666666;
+    margin-top: 30px;
   }
 
 </style>
