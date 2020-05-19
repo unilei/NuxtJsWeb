@@ -17,7 +17,8 @@
 
 <script>
     export default {
-        name: "complaint"
+        name: "complaint",
+      layout:'oldDefault',
     }
 </script>
 

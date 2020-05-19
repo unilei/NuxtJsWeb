@@ -144,7 +144,7 @@
 
   export default {
     name: 'List',
-    layout: 'bbsLayout',
+    layout: 'oldBbsLayout',
     data () {
       return {
         sportType: 'all',

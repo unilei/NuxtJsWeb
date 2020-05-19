@@ -11,7 +11,8 @@
 
 <script>
     export default {
-        name: "PersonalInformationService"
+        name: "PersonalInformationService",
+      layout:'oldDefault',
     }
 </script>
 

@@ -82,7 +82,7 @@
 
   export default {
     name: 'league',
-    layout: 'newsLayout',
+    layout: 'oldNewsLayout',
     data () {
       return {
         offset: 0,

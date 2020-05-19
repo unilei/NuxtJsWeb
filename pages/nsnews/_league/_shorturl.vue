@@ -34,7 +34,7 @@
               全民体育主编
             </el-col>
             <el-col :span="8" :offset="12" class="news-detail-author-time">
-              {{newsPublishFormatTime}}
+              {{newsDetail.published_at}}
             </el-col>
 
           </el-col>
@@ -739,11 +739,9 @@
     border: 1px solid transparent;
     outline: none;
     color: #ffffff;
-    margin-left: 27px;
     font-size: 12px;
     font-weight: 500;
-    color: rgba(255, 255, 255, 1);
-    line-height: 17px;
+
   }
 
   .news-detail-author-honor {

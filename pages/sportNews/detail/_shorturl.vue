@@ -342,7 +342,7 @@ line-height:30px;">换一换</span>
 
   export default {
     name: 'shorturl',
-    layout: 'newsLayout',
+    layout: 'oldNewsLayout',
     data () {
       return {
         article_id: '',

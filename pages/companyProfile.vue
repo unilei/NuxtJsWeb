@@ -133,6 +133,7 @@
 <script>
   export default {
     name: 'companyProfile',
+    layout:'oldDefault',
     head () {
       return {
         title: '公司介绍-全民体育',

@@ -225,6 +225,7 @@
   import base from '../../../api/base'
   import qs from 'qs'
   import Login from '../../../components/Login'
+  import { dateFormat } from '../../../plugins/filter'
 
   export default {
     name: 'articleId',
@@ -350,7 +351,7 @@
         sportType:sportType,
         sportType_value:sportType_value,
         bbsDetail: bbsDetail.data.Data[0],
-        bbsPublishFormatTime: getFormatTime(bbsDetail.data.Data[0].create_time),
+        bbsPublishFormatTime: dateFormat(bbsDetail.data.Data[0].create_time),
         hotBbsList: hotBbsList.data.Data.list
       }
 
@@ -708,11 +709,8 @@
     border: 1px solid transparent;
     outline: none;
     color: #ffffff;
-    margin-left: 27px;
     font-size: 12px;
     font-weight: 500;
-    color: rgba(255, 255, 255, 1);
-    line-height: 17px;
   }
 
   .news-detail-author-honor {

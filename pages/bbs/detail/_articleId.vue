@@ -341,10 +341,11 @@ line-height:30px;cursor: pointer;">换一换</span>
   import { getFormatTime } from '../../../utils/time'
   import base from '../../../api/base'
   import qs from 'qs'
+  import { dateFormat } from '../../../plugins/filter'
 
   export default {
     name: 'articleId',
-    layout: 'bbsLayout',
+    layout: 'oldBbsLayout',
     data () {
       return {
         article_id: '',
@@ -360,7 +361,6 @@ line-height:30px;cursor: pointer;">换一换</span>
         dialogTableVisible: false,
         dialogFormVisible: false,
         formLabelWidth: '120px',
-        nickname: '',
         ns_device_id: 'website',
         imageUrl: '',
         uploadBaseUrl: base.sq + '/UploadAvatar',
@@ -368,7 +368,6 @@ line-height:30px;cursor: pointer;">换一换</span>
         replyReplyContent: '',
         token: '',
         avatar_url: null,
-
         dialogTableVisibleLogin: false,
         dialogFormVisibleLogin: false,
         dialogMobileLogin: false,
@@ -415,9 +414,6 @@ line-height:30px;cursor: pointer;">换一换</span>
           }
         ]
       }
-      return {
-        title:this.bbsDetail.title
-      }
     },
     watch: {
       $route (to, from) {
@@ -439,35 +435,11 @@ line-height:30px;cursor: pointer;">换一换</span>
         }
       })
 
-      const reply_type = 'nsforum'
-      const paraentId = article_id
-      const reply_sort = 'newest'
-      const reply_params = {
-        offset: 0,
-        limit: 4
-      }
-      let replyList = await context.$axios.get(`${base.sq}/v2/` + reply_type + `/` + paraentId + `/` + reply_sort + `/replys`, { params: reply_params })
-
-      const _replyList = replyList.data.Data.list
-      _replyList.forEach(item => {
-
-        const reply_type = 'nsforum'
-        const paraentId = item.reply_id
-        const reply_sort = 'toplike'
-        const reply_params = { offset: 0 }
-        context.$axios.get(`${base.sq}/v2/` + reply_type + `/` + paraentId + `/` + reply_sort + `/replys`, { params: reply_params }).then(
-          res => {
-            // console.log(res)
-            item.replyReply = res.data.Data.list
-          })
-      })
-
       // console.log(bbsDetail.data.Data[0])
       return {
         bbsDetail: bbsDetail.data.Data[0],
-        bbsPublishFormatTime: getFormatTime(bbsDetail.data.Data[0].create_time),
+        bbsPublishFormatTime: dateFormat(bbsDetail.data.Data[0].create_time),
         hotBbsList: hotBbsList.data.Data.list,
-        newsReplyList: _replyList
       }
 
     },

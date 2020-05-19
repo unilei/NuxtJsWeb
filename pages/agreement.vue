@@ -100,7 +100,8 @@
 
 <script>
     export default {
-        name: "agreement"
+        name: "agreement",
+      layout:'oldDefault',
     }
 </script>
 
