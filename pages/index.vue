@@ -5,12 +5,12 @@
       <el-col :span="10"   class="hot-news">
         <el-col :span="24" class="hot-news-first">
           <nuxt-link v-if="hotNewsList.length > 0"
-                     :to="{name:'nsnews-league-shorturl',params:{league:'all',shorturl:hotNewsList[0].shorturl}}"
+                     :to="{name:'nsnews-league-shorturl',params:{league:hotNewsList[0].league_value,shorturl:hotNewsList[0].shorturl}}"
                      target="_blank">{{hotNewsList[0].title}}
           </nuxt-link>
         </el-col>
         <el-col :span="24" v-for="(hotNews,k) in hotNewsList" :key="k" class="hot-news-item">
-          <nuxt-link :to="{name:'nsnews-league-shorturl',params:{league:'all',shorturl:hotNews.shorturl}}"
+          <nuxt-link :to="{name:'nsnews-league-shorturl',params:{league:hotNews.league_value,shorturl:hotNews.shorturl}}"
                      target="_blank">{{hotNews.title}}
           </nuxt-link>
         </el-col>
@@ -416,6 +416,16 @@
           author_filter: ['6', '7', '8', '9']
         }
       })
+      let hotNewsArticles = hotNewsList.Data.articles;
+      hotNewsArticles.forEach(
+        item=>{
+          // console.log(item)
+          let s = item.shorturl;
+          let sArr = s.split('-')
+          item.league_value = sArr[0];
+
+        }
+      )
 
       let indexList = await context.$axios.$get(`${base.bd}/web/api.news/indexList`)
 
@@ -426,7 +436,7 @@
         bbsList: bbsList.Data.list,
         hotBbsList: hotBbsList.Data.list,
         bannerArr: newsBanner.Data,
-        hotNewsList: hotNewsList.Data.articles,
+        hotNewsList:hotNewsArticles,
 
         hotNbaNewsFirst: indexList.data.nbaFirst.Data,
         nbaTimestamp1: indexList.data.nbaFirst.Data.published_at,

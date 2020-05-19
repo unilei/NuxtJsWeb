@@ -9,7 +9,7 @@
           <el-col :span="24" class="news-list-title">
             <nuxt-link :to="{
           name: 'nsnews-league-shorturl',
-          params: { shorturl: news.shorturl,league:league_value }
+          params: { shorturl: news.shorturl,league:news.league_value }
         }">{{news.title}}</nuxt-link>
 
           </el-col>
@@ -46,7 +46,7 @@
             <img :src="hotNews.image" alt="image">
           </el-col>
           <el-col :span="14" class="hot-news-list-title">
-            <nuxt-link target="_blank" :to="{name:'nsnews-league-shorturl',params:{shorturl:hotNews.shorturl,league:league_value}}">
+            <nuxt-link target="_blank" :to="{name:'nsnews-league-shorturl',params:{shorturl:hotNews.shorturl,league:hotNews.league_value}}">
               {{hotNews.title}}
             </nuxt-link>
           </el-col>
@@ -147,6 +147,11 @@
 
       if (newsList !== undefined && newsList !== []) {
         newsList.forEach(item => {
+          // console.log(item)
+          let s = item.shorturl;
+          let sArr = s.split('-')
+          item.league_value = sArr[0];
+
           const article_id = item.article_id
           context.$axios.$get(`${base.sq}/v2/GetArticleDetail`, {
             params: {
@@ -181,9 +186,20 @@
       console.log(hot_params)
       //根据新闻类型 获取热门列表
       let hotNewsList = await context.$axios.$get(`${base.sq}/v2/GetArticles`, { params: hot_params })
+      let hotNewsArticles = hotNewsList.Data.articles;
+      hotNewsArticles.forEach(
+        item=>{
+          let s = item.shorturl;
+          let sArr = s.split('-')
+          item.league_value = sArr[0];
+
+        }
+      )
+
+
       return {
         newsList: newsList,
-        hotNewsList: hotNewsList.Data.articles,
+        hotNewsList: hotNewsArticles,
         league_value: league_value
       }
 
@@ -211,6 +227,12 @@
                 const newsList = res.Data.articles
 
                 newsList.forEach(item => {
+
+                  let s = item.shorturl;
+                  let sArr = s.split('-')
+                  item.league_value = sArr[0];
+
+
                   const article_id = item.article_id
                   const params = {
                     article_id: article_id
@@ -243,6 +265,12 @@
               if (res.Status === 1) {
                 const newsList = res.Data.articles
                 newsList.forEach(item => {
+
+                  let s = item.shorturl;
+                  let sArr = s.split('-')
+                  item.league_value = sArr[0];
+
+
                   const article_id = item.article_id
                   const params = {
                     article_id: article_id
@@ -255,6 +283,7 @@
                     }
                   )
                 })
+                console.log(this.newsList)
                 this.newsList = this.newsList.concat(newsList)
 
               } else {

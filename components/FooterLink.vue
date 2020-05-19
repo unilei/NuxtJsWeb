@@ -5,7 +5,6 @@
       <!--          <li><a href="#">友情链接</a></li>-->
       <li><a href="javascript:;">友情链接</a></li>
 
-      <li><a href="https://www.jia.com/jinjiang/" target="_blank">晋江装修</a></li>
       <li><a href="https://www.zuqiuvs.com/" target="_blank">足球比分网</a></li>
       <li><a href="https://www.evfootball.com" target="_blank">一维足球</a></li>
       <li><a href="https://www.soulele.com" target="_blank">搜乐足球</a></li>

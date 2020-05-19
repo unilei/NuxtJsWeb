@@ -74,7 +74,7 @@
               </ul>
             </div>
             <div class="nav-menu-item">
-              <nuxt-link :to="{name:'nsforum-sportType',params:{'sportType':'all'}}" >社区论坛</nuxt-link>
+              <nuxt-link :to="{name:'nsforum-sportType',params:{'sportType':'football'}}" >社区论坛</nuxt-link>
             </div>
             <!--            <div class="nav-menu-item">-->
             <!--                <ul>-->

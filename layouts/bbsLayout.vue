@@ -15,9 +15,9 @@
           </el-col>
         </el-col>
         <el-col :span="3" v-if="pathStatus===false" class="left-aside">
-          <el-col class="left-aside-item" :span="24">
-            <nuxt-link :to="{name:'nsforum-sportType',params:{'sportType':'all'}}" >全部话题</nuxt-link>
-          </el-col>
+<!--          <el-col class="left-aside-item" :span="24">-->
+<!--            <nuxt-link :to="{name:'nsforum-sportType',params:{'sportType':'all'}}" >全部话题</nuxt-link>-->
+<!--          </el-col>-->
           <el-col class="left-aside-item" :span="24">
             <nuxt-link :to="{name:'nsforum-sportType',params:{'sportType':'football'}}" >足球</nuxt-link>
           </el-col>

@@ -19,13 +19,13 @@
         </el-col>
         <el-col :span="22" class="news-detail-author-r">
           <el-col :span="24">
-            <el-col :span="3" class="news-detail-author-name">
+            <el-col :span="6" class="news-detail-author-name">
               {{bbsDetail.author.nickName}}
             </el-col>
-            <el-col :span="3" class="news-detail-author-button">
+            <el-col :span="2" class="news-detail-author-button">
               <button>关注</button>
             </el-col>
-            <el-col :span="4" :offset="13">
+            <el-col :span="6" :offset="10">
 
             </el-col>
           </el-col>
