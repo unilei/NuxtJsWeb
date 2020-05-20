@@ -23,6 +23,22 @@ export default function ({isServer,req,redirect,route}) {
     // console.log(redirect_url)
     return redirect(301,redirect_url)
   }
+  //https://www.171tiyu.com/protocol
+  // https://www.171tiyu.com/privacy
+  // https://www.171tiyu.com/complaint
+  if (fullPathArr[1] === 'protocol' ){
+    let redirect_url = pcOrigin+'/profile/agreement'
+    return redirect(301,redirect_url)
+  }
+  if (fullPathArr[1] === 'privacy'){
+    let redirect_url = pcOrigin+'/profile/privacy'
+    return redirect(301,redirect_url)
+  }
+  if (fullPathArr[1] === 'complaint'){
+    let redirect_url = pcOrigin+'/profile/complaint'
+    return redirect(301,redirect_url)
+  }
+
   // 旧链接跳转
   let old_route_name = route.name;
 
@@ -63,7 +79,7 @@ export default function ({isServer,req,redirect,route}) {
   // console.log(isMobile(userAgent))
   // console.log(route)
 
-  return isMobile(userAgent) ? redirect(mobileOrigin+route.fullPath) : ''
+  return isMobile(userAgent) ? redirect(301,mobileOrigin+route.fullPath) : ''
   // 使用redirect 重定向到外链需要加上前缀:http / https
 
 }
