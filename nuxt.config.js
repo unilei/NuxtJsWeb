@@ -200,13 +200,22 @@ module.exports = {
           let req_url = 'https://admin.hotforest.cn/web/api.news/getAllArticles'
           // let req_url = 'https://localhost:8000/web/api.news/getAllArticles'
           let res = await axios.get(req_url)
+          let articles = res.data.data;
+          articles.forEach(
+            item=>{
+              let s = item.shortUrlSuffix;
+              let sArr = s.split('-');
+
+              item.league_value = sArr[0]
+            }
+          )
           // console.log(res)
-          return res.data.data.map(news => `/nsnews/all/${news.shortUrlSuffix}`)
+          return res.data.data.map(news => `/nsnews/${news.league_value}/${news.shortUrlSuffix}`)
         },
         gzip: false,
       },
       {
-        path: '/sitemap-bbs.xml',
+        path: '/sitemap-nsforum.xml',
         routes: async () => {
           let sportType = 'all'
           let type = 'newest'
@@ -214,8 +223,8 @@ module.exports = {
             offset: 0
           }
           const res = await axios.get(`https://api.npse.com:8081/v1/forum/` + sportType + `/0/` + type + `/articles`, { params: params })
-          // console.log(res)
-          return res.data.Data.list.map(bbs => `/nsforum/all/${bbs.article_id}`)
+          // console.log(res.data.Data)
+          return res.data.Data.list.map(bbs => `/nsforum/${bbs.category}/${bbs.article_id}`)
         },
         gzip: false,
       },

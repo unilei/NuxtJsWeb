@@ -117,14 +117,14 @@
       <el-col :span="11">
         <el-col :span="24" class="news-news-hot-forum" v-for="(hotBbs,index) in hotBbsList" :key="index">
           <nuxt-link  target="_blank"
-                     :to="{name:'nsforum-sportType-articleId',params:{sportType:'all',articleId:hotBbs.article_id}}">
+                     :to="{name:'nsforum-sportType-articleId',params:{sportType:hotBbs.category,articleId:hotBbs.article_id}}">
             {{hotBbs.title}}
           </nuxt-link>
         </el-col>
       </el-col>
       <el-col :span="12" :offset="1" class="news-news-item-container">
         <el-col :span="23" :offset="1" v-for="(bbs,i) in bbsList" :key="i" class="news-news-item">
-          <nuxt-link :to="{name:'nsforum-sportType-articleId',params:{sportType:'all',articleId:bbs.article_id}}" target="_blank">
+          <nuxt-link :to="{name:'nsforum-sportType-articleId',params:{sportType:bbs.category,articleId:bbs.article_id}}" target="_blank">
             {{bbs.title}}
           </nuxt-link>
         </el-col>
