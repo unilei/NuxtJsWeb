@@ -2,7 +2,7 @@
   <el-container class="is-vertical" style="width: 1440px;margin: 0 auto;">
     <Header></Header>
     <nuxt/>
-    <Footer></Footer>
+    <Footer style="margin-top: 0;"></Footer>
   </el-container>
 </template>
 

@@ -730,8 +730,8 @@
   }
 
   .news-detail-content p {
-    margin: 0;
-    padding: 0;
+    margin-bottom: 0;
+    text-indent: 20px;
     color: #333333;
     text-align: left;
     font-size: 16px;
@@ -742,7 +742,6 @@
   .news-detail-content img {
     width: 100%;
   }
-
 
   .news-you-like {
     border: 1px solid #D0D0D0;;

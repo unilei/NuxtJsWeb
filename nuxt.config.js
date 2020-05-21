@@ -35,22 +35,22 @@ module.exports = {
       }
     ],
     script: [
-      // {
-      //   src: '/jquery-3.1.1.min.js',
-      //   ssr: false
-      // },
       {
-        src: 'https://aloss.hotforest.cn/web/jquery-3.1.1.min.js',
+        src: '/jquery-3.1.1.min.js',
         ssr: false
       },
       // {
-      //   src: '/jquery.SuperSlide.2.1.3.js',
+      //   src: 'https://aloss.hotforest.cn/web/jquery-3.1.1.min.js',
       //   ssr: false
       // },
       {
-        src: 'https://aloss.hotforest.cn/web/jquery.SuperSlide.2.1.3.js',
+        src: '/jquery.SuperSlide.2.1.3.js',
         ssr: false
       },
+      // {
+      //   src: 'https://aloss.hotforest.cn/web/jquery.SuperSlide.2.1.3.js',
+      //   ssr: false
+      // },
       {
         src: '/wxLogin.js',
         ssr: false
@@ -58,6 +58,9 @@ module.exports = {
       {
         src: 'https://js.users.51.la/20532775.js',
         ssr: false
+      },
+      {
+        src:'//res.cdn.openinstall.io/openinstall.js'
       }
     ]
   },
@@ -140,7 +143,6 @@ module.exports = {
       '/complaint',
       '/index',
       '/personalInformationService',
-      '/wechat',
       '/company',
       '/profile'
     ],

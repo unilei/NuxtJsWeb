@@ -17,13 +17,14 @@
         <nuxt-link :to="{name:'profile-activeName',params:{'activeName':'complaint'}}" >投诉侵权</nuxt-link>
       </li>
       <li>
-        <a href="https://171tiyu.com/download/android?channelCode=Web_Landing_Page"
-           v-if="this.os === 'Win'">
-          立即下载全民体育
-        </a>
-        <a v-if="this.os==='Mac'" href="https://apps.apple.com/app/id1482371213">
-          立即下载全民体育
-        </a>
+<!--        <a href="https://171tiyu.com/download/android?channelCode=Web_Landing_Page"-->
+<!--           v-if="this.os === 'Win'">-->
+<!--          立即下载全民体育-->
+<!--        </a>-->
+<!--        <a v-if="this.os==='Mac'" href="https://apps.apple.com/app/id1482371213">-->
+<!--          立即下载全民体育-->
+<!--        </a>-->
+        <nuxt-link :to="{name:'download'}">立即下载全民体育</nuxt-link>
       </li>
     </ul>
   </div>
@@ -91,7 +92,6 @@
   }
 
   .footer-top-l ul li a {
-    font-family: PingFangSC-Regular;
     font-size: 12px;
     color: #333333;
   }
@@ -105,7 +105,6 @@
   }
 
   .footer-top-r ul li a {
-    font-family: PingFangSC-Regular;
     font-size: 12px;
     color: #333333;
   }
@@ -148,7 +147,6 @@
   }
 
   .footer-d-t ul li a {
-    font-family: PingFangSC-Regular;
     font-size: 18px;
     color: #333333;
   }
@@ -157,14 +155,11 @@
     height: 49px;
     line-height: 49px;
     display: block;
-    /*margin-top: 15px;*/
-    font-family: PingFangSC-Regular;
     font-size: 14px;
     color: #333333;
   }
 
   .footer-d-d a {
-    font-family: PingFangSC-Regular;
     font-size: 14px;
     color: #333333;
   }

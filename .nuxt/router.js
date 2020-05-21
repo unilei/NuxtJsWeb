@@ -8,6 +8,7 @@ const _f82766d6 = () => interopDefault(import('..\\pages\\agreement.vue' /* webp
 const _0ffb3370 = () => interopDefault(import('..\\pages\\company.vue' /* webpackChunkName: "pages_company" */))
 const _b658a41e = () => interopDefault(import('..\\pages\\companyProfile.vue' /* webpackChunkName: "pages_companyProfile" */))
 const _3819beb6 = () => interopDefault(import('..\\pages\\complaint.vue' /* webpackChunkName: "pages_complaint" */))
+const _106ea066 = () => interopDefault(import('..\\pages\\download.vue' /* webpackChunkName: "pages_download" */))
 const _086bffce = () => interopDefault(import('..\\pages\\personalInformationService.vue' /* webpackChunkName: "pages_personalInformationService" */))
 const _1944cc8e = () => interopDefault(import('..\\pages\\profile\\index.vue' /* webpackChunkName: "pages_profile_index" */))
 const _7c3e3aab = () => interopDefault(import('..\\pages\\wechat.vue' /* webpackChunkName: "pages_wechat" */))
@@ -58,6 +59,10 @@ export const routerOptions = {
     path: "/complaint",
     component: _3819beb6,
     name: "complaint"
+  }, {
+    path: "/download",
+    component: _106ea066,
+    name: "download"
   }, {
     path: "/personalInformationService",
     component: _086bffce,

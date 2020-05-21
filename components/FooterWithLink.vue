@@ -1,5 +1,5 @@
 <template>
-  <el-footer>
+  <el-footer style="height: auto;">
     <div class="footer-top-container">
       <FooterTop></FooterTop>
       <FooterLink></FooterLink>

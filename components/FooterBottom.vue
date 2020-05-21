@@ -34,10 +34,7 @@
 
 <style scoped>
 
-  .el-footer {
-    width: 1440px;
-    margin-top: 20px;
-  }
+
 
   .footer-d-container {
     /*background: #CFD6DE;*/
@@ -45,10 +42,6 @@
     background: rgba(207, 214, 222, 1);
   }
 
-  .footer-d-t {
-    width: 100%;
-    /*height: 50px;*/
-  }
 
   .footer-d-d span {
     height: 49px;

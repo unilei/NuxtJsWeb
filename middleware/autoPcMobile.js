@@ -3,41 +3,42 @@ const axios = require('axios')
 
 export default function ({isServer,req,redirect,route}) {
 
+
+  // let pcOrigin = 'https://s.171tiyu.com'
   let pcOrigin = 'https://www.171tiyu.com'
   // let pcOrigin = 'http://localhost:3000'
+  // let mobileOrigin = 'https://sm.171tiyu.com'
   let mobileOrigin = 'https://m.171tiyu.com'
   // let mobileOrigin = 'http://localhost:3001'
-  // console.log(req)
 
   // console.log(route.fullPath)
   let old_route_fullPath = route.fullPath;
   let fullPathArr = old_route_fullPath.split('/')
-  // console.log(fullPathArr[0])
-  // console.log(fullPathArr[1])
-  // console.log(fullPathArr[2])
   if (fullPathArr[1] === 'article' || fullPathArr[1] === 'news'){
     let s = fullPathArr[2];
     let sArr = s.split('-');
-    // console.log(sArr)
     let redirect_url = pcOrigin+'/nsnews/'+sArr[0]+'/'+s;
-    // console.log(redirect_url)
     return redirect(301,redirect_url)
   }
-  //https://www.171tiyu.com/protocol
-  // https://www.171tiyu.com/privacy
-  // https://www.171tiyu.com/complaint
-  if (fullPathArr[1] === 'protocol' ){
+
+  if (old_route_fullPath === '/protocol' ){
     let redirect_url = pcOrigin+'/profile/agreement'
     return redirect(301,redirect_url)
   }
-  if (fullPathArr[1] === 'privacy'){
+  if (old_route_fullPath === '/privacy'){
     let redirect_url = pcOrigin+'/profile/privacy'
     return redirect(301,redirect_url)
   }
-  if (fullPathArr[1] === 'complaint'){
+  if (old_route_fullPath === '/complaint'){
     let redirect_url = pcOrigin+'/profile/complaint'
     return redirect(301,redirect_url)
   }
+
+  if (old_route_fullPath === '/app'){
+    let redirect_url = pcOrigin+'/download'
+    return redirect(301,redirect_url)
+  }
+
 
   // 旧链接跳转
   let old_route_name = route.name;
@@ -75,9 +76,6 @@ export default function ({isServer,req,redirect,route}) {
   }
 
   let userAgent = req ? req.headers['user-agent'] : navigator.userAgent || ''
-
-  // console.log(isMobile(userAgent))
-  // console.log(route)
 
   return isMobile(userAgent) ? redirect(301,mobileOrigin+route.fullPath) : ''
   // 使用redirect 重定向到外链需要加上前缀:http / https
