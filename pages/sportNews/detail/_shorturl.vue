@@ -452,7 +452,7 @@ line-height:30px;">换一换</span>
           // league:league_value,
           limit: 4,
           offset: 0,
-          author_filter: ['6', '7', '8', '9']
+          author_filter:'["6","7","8","9"]'
         }
       })
 

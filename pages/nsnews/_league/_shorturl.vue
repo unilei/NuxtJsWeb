@@ -383,7 +383,7 @@
           articleType: 3,
           limit: 4,
           offset: 0,
-          author_filter: ['6', '7', '8', '9']
+          author_filter:'["6","7","8","9"]'
         }
       } else {
         hot_params = {
@@ -391,7 +391,7 @@
           league: league,
           limit: 4,
           offset: 0,
-          author_filter: ['6', '7', '8', '9']
+          author_filter:'["6","7","8","9"]'
         }
       }
 

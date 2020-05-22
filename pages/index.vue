@@ -413,7 +413,7 @@
           articleType: 2,
           limit: 10,
           offset: 0,
-          author_filter: ['6', '7', '8', '9']
+          author_filter:'["6", "7", "8", "9"]'
         }
       })
       let hotNewsArticles = hotNewsList.Data.articles;

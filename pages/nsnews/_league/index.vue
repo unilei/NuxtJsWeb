@@ -128,7 +128,7 @@
           articleType: 2,
           offset: offset,
           limit: 6,
-          author_filter: ['6', '7', '8', '9']
+          author_filter:'["6","7","8","9"]'
         }
       } else {
         news_params = {
@@ -136,7 +136,7 @@
           offset: offset,
           league: league_value,
           limit: 6,
-          author_filter: ['6', '7', '8', '9']
+          author_filter:'["6","7","8","9"]'
         }
       }
 
@@ -172,7 +172,7 @@
           articleType: 3,
           limit: 4,
           offset: 0,
-          author_filter: ['6', '7', '8', '9']
+          author_filter:'["6","7","8","9"]'
         }
       } else {
         hot_params = {
@@ -180,7 +180,7 @@
           league: league_value,
           limit: 4,
           offset: 0,
-          author_filter: ['6', '7', '8', '9']
+          author_filter:'["6","7","8","9"]'
         }
       }
       console.log(hot_params)
@@ -218,7 +218,7 @@
               league: league_value,
               limit: 6,
               offset: this.offset,
-              author_filter: ['6', '7', '8', '9']
+              author_filter:'["6","7","8","9"]'
             }
           }).then(
             res => {
@@ -257,7 +257,7 @@
             articleType: 2,
             offset: this.offset,
             limit: 6,
-            author_filter: ['6', '7', '8', '9']
+            author_filter:'["6","7","8","9"]'
           }
           this.$axios.$get(`${base.sq}/v2/GetArticles`, { params: params }).then(
             res => {
