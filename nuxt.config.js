@@ -112,8 +112,18 @@ module.exports = {
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     '@nuxtjs/sitemap',
-    // With options
-    ['@nuxtjs/component-cache', { maxAge: 1000 * 60 * 60 }],
+    [
+      "nuxt-compress",
+      {
+        gzip: {
+          cache: true
+        },
+        brotli: {
+          threshold: 10240
+        }
+      }
+    ],
+
   ],
   sitemap: {
     hostname:'https://www.171tiyu.com',
@@ -246,17 +256,6 @@ module.exports = {
   build: {
     transpile: [/^element-ui/],
     extractCSS: true,
-    // // 按需引入element-ui
-    // babel: {
-    //   plugins: [
-    //     [ "component",
-    //       {
-    //         "libraryName": "element-ui",
-    //         "styleLibraryName": "theme-chalk"
-    //       }
-    //     ]
-    //   ]
-    // },
     /*
     ** You can extend webpack config here
     */
