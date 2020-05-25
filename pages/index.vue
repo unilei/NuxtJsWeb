@@ -16,7 +16,7 @@
         </el-col>
 
       </el-col>
-      <el-col :span="13"  :offset="1"  class="news-slider">
+      <el-col :span="13"  :offset="1"  class="news-slider" v-if="bannerArr">
         <div id="slideBox" class="slideBox">
           <div class="hd">
             <ul>
@@ -24,9 +24,9 @@
             </ul>
           </div>
           <div class="bd">
-            <ul>
-              <li v-for="(item,index) in bannerArr" :key="index">
-                <nuxt-link :to="{name:'nsnews-league-shorturl',params:{league:'all',shorturl:item.content}}" target="_blank">
+            <ul >
+              <li v-for="(item,index) in bannerArr" :key="index" >
+                <nuxt-link :to="{name:'nsnews-league-shorturl',params:{league:item.league_value,shorturl:item.content}}" target="_blank">
                   <img :src="item.image"/>
                 </nuxt-link>
               </li>
@@ -379,94 +379,262 @@
       }
     },
     async asyncData (context) {
+
       const sportType = 'all'
       const type = 'toplike'
       const limit_type = 10
       const type2 = 'newest'
       const limit_type2 = 9
-      // 获取比赛赛程列表
-      let matchList = await context.$axios.$get(`${base.sq}/v2/GetMatchList`, {})
-      // 获取帖子列表
-      let bbsList = await context.$axios.$get(`${base.sq}/v1/forum/` + sportType + `/0/` + type + `/articles`, {
-        params: {
-          limit: limit_type,
-          offset: 0
-        }
-      })
-      // 获取热门帖子列表
-      let hotBbsList = await context.$axios.$get(`${base.sq}/v1/forum/` + sportType + `/0/` + type2 + `/articles`, {
-        params: {
-          limit: limit_type2,
-          offset: 0
-        }
-      })
-      // 获取新闻轮播图
-      let newsBanner = await context.$axios.$get(`${base.sq}/GetBanner`, {
-        params: {
-          platform: 'WEB'
-        }
-      })
 
-      // 获取热门新闻列表
-      let hotNewsList = await context.$axios.$get(`${base.sq}/v2/GetArticles`, {
-        params: {
-          articleType: 2,
-          limit: 10,
-          offset: 0,
-          author_filter:'["6", "7", "8", "9"]'
-        }
-      })
-      let hotNewsArticles = hotNewsList.Data.articles;
-      hotNewsArticles.forEach(
+      let [matchList,
+        bbsList,hotBbsList,
+        newsBanner,hotNewsList,
+        lastNbaNews,lastFibaNews,
+        lastPremierNews,lastLaLigaNews,
+        lastSerieANews,nbaHotNewsList,
+        fibaHotNewsList,premierHotNewsList,
+        laLigaHotNewsList,serieAHotNewsList] = await Promise.all([
+        context.$axios.$get(`${base.sq}/v2/GetMatchList`),
+        context.$axios.$get(`${base.sq}/v1/forum/` + sportType + `/0/` + type + `/articles`, {
+          params: {
+            limit: limit_type,
+            offset: 0
+          }
+        }),
+        context.$axios.$get(`${base.sq}/v1/forum/` + sportType + `/0/` + type2 + `/articles`, {
+          params: {
+            limit: limit_type2,
+            offset: 0
+          }
+        }),
+        context.$axios.$get(`${base.sq}/GetBanner`, {
+          params: {
+            platform: 'WEB'
+          }
+        }),
+        context.$axios.$get(`${base.sq}/v2/GetArticles`, {
+          params: {
+            articleType: 2,
+            limit: 10,
+            offset: 0,
+            author_filter:['6','7', '8', '9']
+          }
+        }),
+        context.$axios.$get(`${base.sq}/v2/GetArticles`, {
+          params: {
+            league: 'nba',
+            articleType: 2,
+            limit: 10,
+            offset: 0,
+            author_filter:['6','7', '8', '9']
+          }
+        }),
+        context.$axios.$get(`${base.sq}/v2/GetArticles`, {
+          params: {
+            league: 'fiba',
+            articleType: 2,
+            limit: 10,
+            offset: 0,
+            author_filter:['6','7', '8', '9']
+          }
+        }),
+        context.$axios.$get(`${base.sq}/v2/GetArticles`, {
+          params: {
+            league: 'premier',
+            articleType: 2,
+            limit: 10,
+            offset: 0,
+            author_filter:['6','7', '8', '9']
+          }
+        }),
+        context.$axios.$get(`${base.sq}/v2/GetArticles`, {
+          params: {
+            league: 'la_liga',
+            articleType: 2,
+            limit: 10,
+            offset: 0,
+            author_filter:['6','7', '8', '9']
+          }
+        }),
+        context.$axios.$get(`${base.sq}/v2/GetArticles`, {
+          params: {
+            league: 'serie_a',
+            articleType: 2,
+            limit: 10,
+            offset: 0,
+            author_filter:['6','7', '8', '9']
+          }
+        }),
+        context.$axios.$get(`${base.sq}/v2/GetArticles`, {
+          params: {
+            league: 'nba',
+            articleType: 2,
+            limit: 2,
+            offset: 0,
+            author_filter:['6','7', '8', '9']
+          }
+        }),
+        context.$axios.$get(`${base.sq}/v2/GetArticles`, {
+          params: {
+            league: 'fiba',
+            articleType: 2,
+            limit: 2,
+            offset: 0,
+            author_filter:['6','7', '8', '9']
+          }
+        }),
+        context.$axios.$get(`${base.sq}/v2/GetArticles`, {
+          params: {
+            league: 'premier',
+            articleType: 2,
+            limit: 2,
+            offset: 0,
+            author_filter:['6','7', '8', '9']
+          }
+        }),
+        context.$axios.$get(`${base.sq}/v2/GetArticles`, {
+          params: {
+            league: 'la_liga',
+            articleType: 2,
+            limit: 2,
+            offset: 0,
+            author_filter:['6','7', '8', '9']
+          }
+        }),
+        context.$axios.$get(`${base.sq}/v2/GetArticles`, {
+          params: {
+            league: 'serie_a',
+            articleType: 2,
+            limit: 2,
+            offset: 0,
+            author_filter:['6','7', '8', '9']
+          }
+        })
+
+      ]).catch(err => {
+        error({ statusCode: 400, message: err })
+      });
+
+      // console.log(data)
+      // console.log(hotNewsList);
+      let hotArticles = hotNewsList.Data.articles;
+      hotArticles.forEach(
         item=>{
           // console.log(item)
           let s = item.shorturl;
-          let sArr = s.split('-')
+          let sArr = s.split('-');
           item.league_value = sArr[0];
-
         }
       )
+      let newsBannerData = newsBanner.Data;
+      newsBannerData.forEach(
+        item=>{
+          let s= item.content;
+          let sArr = s.split('-');
+          item.league_value = sArr[0]
+        }
+      )
+     // console.log(newsBanner)
+      //获取nba热们新闻
+      //获取nba热们新闻
+      const nba_article_id_f = nbaHotNewsList.Data.articles[0].article_id
+      const nba_article_id_s = nbaHotNewsList.Data.articles[1].article_id
+      const nba_params_f = {
+        article_id: nba_article_id_f
+      }
+      const nba_params_s = {
+        article_id: nba_article_id_s
+      }
+      let nbaFirst = await context.$axios.$get(`${base.sq}/v2/GetArticleDetail`, { params: nba_params_f })
+      let nbaSecond = await context.$axios.$get(`${base.sq}/v2/GetArticleDetail`, { params: nba_params_s })
 
-      let indexList = await context.$axios.$get(`${base.bd}/web/api.news/indexList`)
+      //获取fiba热们新闻
+      const fiba_article_id_f = fibaHotNewsList.Data.articles[0].article_id
+      const fiba_article_id_s = fibaHotNewsList.Data.articles[1].article_id
+      const fiba_params_f = {
+        article_id: fiba_article_id_f
+      }
+      const fiba_params_s = {
+        article_id: fiba_article_id_s
+      }
+      let fibaFirst = await context.$axios.$get(`${base.sq}/v2/GetArticleDetail`, { params: fiba_params_f })
+      let fibaSecond = await context.$axios.$get(`${base.sq}/v2/GetArticleDetail`, { params: fiba_params_s })
 
-      // console.log(indexList)
+      //获取premier热们新闻
+      //获取premier热们新闻
+      const premier_article_id_f = premierHotNewsList.Data.articles[0].article_id
+      const premier_article_id_s = premierHotNewsList.Data.articles[1].article_id
+      const premier_params_f = {
+        article_id: premier_article_id_f
+      }
+      const premier_params_s = {
+        article_id: premier_article_id_s
+      }
+      let premierFirst = await context.$axios.$get(`${base.sq}/v2/GetArticleDetail`, { params: premier_params_f })
+      let premierSecond = await context.$axios.$get(`${base.sq}/v2/GetArticleDetail`, { params: premier_params_s })
+
+
+      //获取la_liga热们新闻
+      const laLiga_article_id_f = laLigaHotNewsList.Data.articles[0].article_id
+      const laLiga_article_id_s = laLigaHotNewsList.Data.articles[1].article_id
+      const laLiga_params_f = {
+        article_id: laLiga_article_id_f
+      }
+      const laLiga_params_s = {
+        article_id: laLiga_article_id_s
+      }
+      let laLigaFirst = await context.$axios.$get(`${base.sq}/v2/GetArticleDetail`, { params: laLiga_params_f })
+      let laLigaSecond = await context.$axios.$get(`${base.sq}/v2/GetArticleDetail`, { params: laLiga_params_s })
+
+
+      //获取serie_a热们新闻
+      const serieA_article_id_f = serieAHotNewsList.Data.articles[0].article_id
+      const serieA_article_id_s = serieAHotNewsList.Data.articles[1].article_id
+      const serieA_params_f = {
+        article_id: serieA_article_id_f
+      }
+      const serieA_params_s = {
+        article_id: serieA_article_id_s
+      }
+      let serieAFirst = await context.$axios.$get(`${base.sq}/v2/GetArticleDetail`, { params: serieA_params_f })
+      let serieASecond = await context.$axios.$get(`${base.sq}/v2/GetArticleDetail`, { params: serieA_params_s })
+
 
       return {
         matchArr: matchList.Data.list,
         bbsList: bbsList.Data.list,
         hotBbsList: hotBbsList.Data.list,
-        bannerArr: newsBanner.Data,
-        hotNewsList:hotNewsArticles,
+        bannerArr: newsBannerData,
+        hotNewsList: hotArticles,
+        hotNbaNewsFirst: nbaFirst.Data,
+        nbaTimestamp1: getFormatTime(nbaFirst.Data.timestamp),
+        hotNbaNewsSecond: nbaSecond.Data,
+        nbaTimestamp2: getFormatTime(nbaSecond.Data.timestamp),
+        newNbaNewsList: lastNbaNews.Data.articles,
+        hotFibaNewsFirst: fibaFirst.Data,
+        fibaTimestamp1: getFormatTime(fibaFirst.Data.timestamp),
+        hotFibaNewsSecond: fibaSecond.Data,
+        fibaTimestamp2: getFormatTime(fibaSecond.Data.timestamp),
+        newFibaNewsList: lastFibaNews.Data.articles,
 
-        hotNbaNewsFirst: indexList.data.nbaFirst.Data,
-        nbaTimestamp1: indexList.data.nbaFirst.Data.published_at,
-        hotNbaNewsSecond: indexList.data.nbaSecond.Data,
-        nbaTimestamp2: indexList.data.nbaSecond.Data.published_at,
-        newNbaNewsList: indexList.data.lastNbaNews.Data.articles,
+        hotPremierNewsFirst: premierFirst.Data,
+        premierTimestamp1: getFormatTime(premierFirst.Data.timestamp),
+        hotPremierNewsSecond: premierSecond.Data,
+        premierTimestamp2: getFormatTime(premierSecond.Data.timestamp),
+        newPremierNewsList: lastPremierNews.Data.articles,
 
-        hotFibaNewsFirst: indexList.data.fibaFirst.Data,
-        fibaTimestamp1: indexList.data.fibaFirst.Data.published_at,
-        hotFibaNewsSecond: indexList.data.fibaSecond.Data,
-        fibaTimestamp2: indexList.data.fibaSecond.Data.published_at,
-        newFibaNewsList: indexList.data.lastFibaNews.Data.articles,
+        hotLaLigaNewsFirst: laLigaFirst.Data,
+        laLigaTimestamp1: getFormatTime(laLigaFirst.Data.timestamp),
+        hotLaLigaNewsSecond: laLigaSecond.Data,
+        laLigaTimestamp2: getFormatTime(laLigaSecond.Data.timestamp),
+        newLaLigaNewsList: lastLaLigaNews.Data.articles,
 
-        hotPremierNewsFirst: indexList.data.premierFirst.Data,
-        premierTimestamp1: indexList.data.premierFirst.Data.published_at,
-        hotPremierNewsSecond: indexList.data.premierSecond.Data,
-        premierTimestamp2: indexList.data.premierSecond.Data.published_at,
-        newPremierNewsList: indexList.data.lastPremierNews.Data.articles,
+        hotSerieANewsFirst: serieAFirst.Data,
+        serieATimestamp1: getFormatTime(serieAFirst.Data.timestamp),
+        hotSerieANewsSecond: serieASecond.Data,
+        serieATimestamp2: getFormatTime(serieASecond.Data.timestamp),
+        newSerieANewsList: lastSerieANews.Data.articles,
 
-        hotLaLigaNewsFirst: indexList.data.laLigaFirst.Data,
-        laLigaTimestamp1: indexList.data.laLigaFirst.Data.published_at,
-        hotLaLigaNewsSecond: indexList.data.laLigaSecond.Data,
-        laLigaTimestamp2: indexList.data.laLigaSecond.Data.published_at,
-        newLaLigaNewsList: indexList.data.lastLaLigaNews.Data.articles,
-
-        hotSerieANewsFirst: indexList.data.serieAFirst.Data,
-        serieATimestamp1: indexList.data.serieAFirst.Data.published_at,
-        hotSerieANewsSecond: indexList.data.serieASecond.Data,
-        serieATimestamp2: indexList.data.serieASecond.Data.published_at,
-        newSerieANewsList: indexList.data.lastSerieANews.Data.articles,
 
       }
     },

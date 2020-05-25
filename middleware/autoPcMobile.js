@@ -21,23 +21,23 @@ export default function ({isServer,req,redirect,route}) {
     return redirect(301,redirect_url)
   }
 
-  if (old_route_fullPath === '/protocol' ){
-    let redirect_url = pcOrigin+'/profile/agreement'
-    return redirect(301,redirect_url)
-  }
-  if (old_route_fullPath === '/privacy'){
-    let redirect_url = pcOrigin+'/profile/privacy'
-    return redirect(301,redirect_url)
-  }
-  if (old_route_fullPath === '/complaint'){
-    let redirect_url = pcOrigin+'/profile/complaint'
-    return redirect(301,redirect_url)
-  }
-
-  if (old_route_fullPath === '/app'){
-    let redirect_url = pcOrigin+'/download'
-    return redirect(301,redirect_url)
-  }
+  // if (old_route_fullPath === '/protocol' ){
+  //   let redirect_url = pcOrigin+'/profile/agreement'
+  //   return redirect(301,redirect_url)
+  // }
+  // if (old_route_fullPath === '/privacy'){
+  //   let redirect_url = pcOrigin+'/profile/privacy'
+  //   return redirect(301,redirect_url)
+  // }
+  // if (old_route_fullPath === '/complaint'){
+  //   let redirect_url = pcOrigin+'/profile/complaint'
+  //   return redirect(301,redirect_url)
+  // }
+  //
+  // if (old_route_fullPath === '/app'){
+  //   let redirect_url = pcOrigin+'/download'
+  //   return redirect(301,redirect_url)
+  // }
 
 
   // 旧链接跳转
