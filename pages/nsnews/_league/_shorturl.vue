@@ -440,7 +440,7 @@
         this.$axios.get(`${base.sq}/v2/` + type + `/` + article_id + `/` + sort + `/replys`, {
           params: {
             offset: i,
-            limit: 2
+            limit: 5
           }
         }).then(
           res => {
@@ -461,10 +461,9 @@
               })
             })
 
+            this.reply_count += newsReplyList.length;
             this.newsReplyList = this.newsReplyList.concat(newsReplyList)
-            this.offsetComment = i + 4
-
-            this.reply_count += this.newsReplyList.length;
+            this.offsetComment = i + 5
 
             console.log(this.offsetComment)
             console.log(this.newsReplyList)
@@ -502,8 +501,9 @@
             // console.log(newsReplyList)
             this.newsReplyList = newsReplyList
             this.reply_total_count = res.data.Data.totalCount;
-            this.reply_count += res.data.Data.list.length;
-            this.offsetComment = offset+1
+
+            this.reply_count += newsReplyList.length;
+            this.offsetComment = offset+2
             console.log(this.offsetComment)
           }
         )
