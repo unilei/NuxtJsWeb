@@ -3,6 +3,7 @@ const axios = require('axios')
 
 export default function ({isServer,req,redirect,route}) {
 
+  // console.log(req)
 
   // let pcOrigin = 'https://s.171tiyu.com'
   let pcOrigin = 'https://www.171tiyu.com'
@@ -21,23 +22,27 @@ export default function ({isServer,req,redirect,route}) {
     return redirect(301,redirect_url)
   }
 
-  // if (old_route_fullPath === '/protocol' ){
-  //   let redirect_url = pcOrigin+'/profile/agreement'
-  //   return redirect(301,redirect_url)
-  // }
-  // if (old_route_fullPath === '/privacy'){
-  //   let redirect_url = pcOrigin+'/profile/privacy'
-  //   return redirect(301,redirect_url)
-  // }
-  // if (old_route_fullPath === '/complaint'){
-  //   let redirect_url = pcOrigin+'/profile/complaint'
-  //   return redirect(301,redirect_url)
-  // }
-  //
-  // if (old_route_fullPath === '/app'){
-  //   let redirect_url = pcOrigin+'/download'
-  //   return redirect(301,redirect_url)
-  // }
+  if (old_route_fullPath === '/protocol' ){
+    let redirect_url = pcOrigin+'/profile/agreement'
+    return redirect(301,redirect_url)
+  }
+  if (old_route_fullPath === '/privacy'){
+    let redirect_url = pcOrigin+'/profile/privacy'
+    return redirect(301,redirect_url)
+  }
+  if (old_route_fullPath === '/complaint'){
+    let redirect_url = pcOrigin+'/profile/complaint'
+    return redirect(301,redirect_url)
+  }
+
+  if (old_route_fullPath === '/download/android?channelCode=Web_Landing_Page'){
+    let redirect_url = pcOrigin+'/download'
+    return redirect(301,redirect_url)
+  }
+  if (old_route_fullPath === '/app'){
+    let redirect_url = pcOrigin+'/download'
+    return redirect(301,redirect_url)
+  }
 
 
   // 旧链接跳转

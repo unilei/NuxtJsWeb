@@ -38,18 +38,10 @@ module.exports = {
         src: '/jquery-3.1.1.min.js',
         ssr: false
       },
-      // {
-      //   src: 'https://aloss.hotforest.cn/web/jquery-3.1.1.min.js',
-      //   ssr: false
-      // },
       {
         src: '/jquery.SuperSlide.2.1.3.js',
         ssr: false
       },
-      // {
-      //   src: 'https://aloss.hotforest.cn/web/jquery.SuperSlide.2.1.3.js',
-      //   ssr: false
-      // },
       {
         src: '/wxLogin.js',
         ssr: false
@@ -59,8 +51,11 @@ module.exports = {
         ssr: false
       },
       {
-        src:'//res.cdn.openinstall.io/openinstall.js'
+        src: '/openinstall.js',ssr:false
       }
+      // {
+      //   src:'//res.cdn.openinstall.io/openinstall.js'
+      // }
     ]
   },
   /*
@@ -111,18 +106,6 @@ module.exports = {
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     '@nuxtjs/sitemap',
-    [
-      "nuxt-compress",
-      {
-        gzip: {
-          cache: true
-        },
-        brotli: {
-          threshold: 10240
-        }
-      }
-    ],
-
   ],
   sitemap: {
     hostname:'https://www.171tiyu.com',
