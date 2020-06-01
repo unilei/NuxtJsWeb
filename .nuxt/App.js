@@ -8,19 +8,19 @@ import {
   sanitizeComponent
 } from './utils'
 
-import NuxtError from '../layouts/error.vue'
+import NuxtError from '..\\layouts\\error.vue'
 import NuxtLoading from './components/nuxt-loading.vue'
 
-import '../node_modules/_element-ui@2.13.0@element-ui/lib/theme-chalk/index.css'
+import '..\\node_modules\\_element-ui@2.13.0@element-ui\\lib\\theme-chalk\\index.css'
 
-import _6f2aba07 from '../layouts/bbsLayout.vue'
-import _6f6c098b from '../layouts/default.vue'
-import _13b8e170 from '../layouts/downloadLayout.vue'
-import _4a41c43a from '../layouts/linkLayout.vue'
-import _2fdf5853 from '../layouts/newsLayout.vue'
-import _b6662c68 from '../layouts/oldBbsLayout.vue'
-import _1e1d32e0 from '../layouts/oldDefault.vue'
-import _a2f9bda4 from '../layouts/oldNewsLayout.vue'
+import _6f2aba07 from '..\\layouts\\bbsLayout.vue'
+import _6f6c098b from '..\\layouts\\default.vue'
+import _13b8e170 from '..\\layouts\\downloadLayout.vue'
+import _4a41c43a from '..\\layouts\\linkLayout.vue'
+import _2fdf5853 from '..\\layouts\\newsLayout.vue'
+import _b6662c68 from '..\\layouts\\oldBbsLayout.vue'
+import _1e1d32e0 from '..\\layouts\\oldDefault.vue'
+import _a2f9bda4 from '..\\layouts\\oldNewsLayout.vue'
 
 const layouts = { "_bbsLayout": sanitizeComponent(_6f2aba07),"_default": sanitizeComponent(_6f6c098b),"_downloadLayout": sanitizeComponent(_13b8e170),"_linkLayout": sanitizeComponent(_4a41c43a),"_newsLayout": sanitizeComponent(_2fdf5853),"_oldBbsLayout": sanitizeComponent(_b6662c68),"_oldDefault": sanitizeComponent(_1e1d32e0),"_oldNewsLayout": sanitizeComponent(_a2f9bda4) }
 

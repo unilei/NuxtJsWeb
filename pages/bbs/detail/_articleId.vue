@@ -338,10 +338,10 @@ line-height:30px;cursor: pointer;">换一换</span>
 </template>
 
 <script>
-  import { getFormatTime } from '../../../utils/time'
+
   import base from '../../../api/base'
   import qs from 'qs'
-  import { dateFormat } from '../../../plugins/filter'
+
 
   export default {
     name: 'articleId',

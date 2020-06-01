@@ -222,11 +222,10 @@
 </template>
 
 <script>
-  import { getFormatTime } from '../../../utils/time'
+
   import base from '../../../api/base'
   import qs from 'qs'
   import Login from '../../../components/Login'
-  import { dateFormat } from '../../../plugins/filter'
 
   export default {
     name: 'articleId',
