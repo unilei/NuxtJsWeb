@@ -1,0 +1,38 @@
+{
+  "name": "sports-v-2",
+  "version": "1.0.0",
+  "description": "全民体育_懂球迷的聚集地",
+  "author": "xll",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
+    "build": "nuxt build",
+    "start:production": "cross-env NODE_ENV=production BUILD_TYPE=production node server/index.js",
+    "start:softlaunch": "cross-env NODE_ENV=production BUILD_TYPE=softlaunch node server/index.js",
+    "start:stage": "cross-env NODE_ENV=production BUILD_TYPE=stage node server/index.js",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/dotenv": "^1.4.0",
+    "@nuxtjs/pwa": "^3.0.0-0",
+    "@nuxtjs/sitemap": "^2.0.1",
+    "axios": "^0.19.2",
+    "cross-env": "^5.2.0",
+    "element-ui": "^2.4.11",
+    "express": "^4.16.4",
+    "nprogress": "^0.2.0",
+    "nuxt": "^2.0.0"
+  },
+  "devDependencies": {
+    "@nuxtjs/eslint-config": "^2.0.0",
+    "@nuxtjs/eslint-module": "^1.0.0",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-component": "^1.1.1",
+    "eslint": "^6.1.0",
+    "eslint-plugin-nuxt": ">=0.4.2",
+    "nodemon": "^1.18.9",
+    "webpack-bundle-analyzer": "^3.6.1"
+  }
+}

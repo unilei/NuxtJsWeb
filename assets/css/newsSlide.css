@@ -1,0 +1,161 @@
+/* 本例子css */
+.slideBox {
+  /*width: 750px;*/
+  height: 380px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #ddd;
+}
+
+.slideBox .hd {
+  height: 25px;
+  overflow: hidden;
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  z-index: 1;
+}
+
+.slideBox .hd ul {
+  overflow: hidden;
+  zoom: 1;
+  float: left;
+}
+
+.slideBox .hd ul li {
+  float: left;
+  margin-right: 8px;
+  width: 15px;
+  height: 8px;
+  line-height: 14px;
+  text-align: center;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.slideBox .hd ul li.on {
+  background: #CB2C40;
+  color: #fff;
+  width: 30px;
+  border-radius: 20px;
+}
+
+.slideBox .bd {
+  position: relative;
+  height: 100%;
+  z-index: 0;
+}
+.slideBox .bd ul{
+  margin: 0;
+}
+
+.slideBox .bd li {
+  zoom: 1;
+  vertical-align: middle;
+}
+
+.slideBox .bd img {
+  width: 750px;
+  height: 380px;
+  display: block;
+}
+
+/* 下面是前/后按钮代码，如果不需要删除即可 */
+.slideBox .news-prev{
+  position: absolute;
+  left: 0;
+  top: 40%;
+  margin-top: -25px;
+  display: block;
+
+  width: 76px;
+  height: 187px;
+  background: url(https://aloss.hotforest.cn/web/news-slide-l.png)  no-repeat center;
+
+  filter: alpha(opacity=50);
+  opacity: 1;
+}
+/*.slideBox .prevStop{*/
+/*    position: absolute;*/
+/*    left: 0;*/
+/*    top: 40%;*/
+/*    margin-top: -25px;*/
+/*    display: block !important;*/
+
+/*    width: 76px;*/
+/*    height: 187px;*/
+/*    !*background: url(../image/slide-left.png)  no-repeat center;*!*/
+/*    filter: alpha(opacity=50);*/
+/*    opacity: 0.5;*/
+
+/*}*/
+.slideBox .news-next {
+  position: absolute;
+  top: 40%;
+  margin-top: -25px;
+  display: block;
+  width: 76px;
+  height: 187px;
+  background: url(https://aloss.hotforest.cn/web/news-slide-r.png)  no-repeat center;
+
+  filter: alpha(opacity=50);
+  opacity: 1;
+
+  /*width: 0;*/
+  /*height: 0;*/
+  /*border-bottom: 187px solid black;*/
+  /*border-left: 76px solid transparent;*/
+  left: auto;
+  right: 0;
+
+
+}
+
+/*.slideBox .nextStop {*/
+/*    position: absolute;*/
+/*    top: 40%;*/
+/*    margin-top: -25px;*/
+/*    display: block;*/
+/*    width: 76px;*/
+/*    height: 187px;*/
+/*    !*background: url(../image/slide-right.png)  no-repeat center;*!*/
+/*    filter: alpha(opacity=50);*/
+/*    opacity: 0.5;*/
+
+/*    !*width: 0;*!*/
+/*    !*height: 0;*!*/
+/*    !*border-bottom: 187px solid black;*!*/
+/*    !*border-left: 76px solid transparent;*!*/
+/*    left: auto;*/
+/*    right: 0%;*/
+
+
+/*}*/
+
+
+/*.slideBox .prev:hover{*/
+/*    filter: alpha(opacity=100);*/
+/*    opacity: 1;*/
+/*    background: url("../image/slide-left-i.png") no-repeat center;*/
+/*}*/
+/*.slideBox .next:hover {*/
+/*    filter: alpha(opacity=100);*/
+/*    opacity: 1;*/
+/*    background: url("../image/slide-right-i.png") no-repeat center;*/
+/*}*/
+
+.slideBox .prevStop {
+  display: none;
+}
+
+.slideBox .nextStop {
+  display: none;
+}
+
+.pageState{
+  position: absolute;
+  color: white;
+  right: 10px;
+  bottom: 70px;
+}
