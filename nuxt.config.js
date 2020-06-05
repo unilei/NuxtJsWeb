@@ -1,10 +1,21 @@
-const axios = require('axios')
+process.on('unhandledRejection', error => {
+  console.error('unhandledRejection', error);
+  process.exit(1) // To exit with a 'failure' code
+});
 
+const axiosInit = require('axios')
+const axios = axiosInit.create({
+  // ...
+})
+console.log(process.env.NODE_ENV);
 module.exports = {
   mode: 'universal',
   /*
   ** Headers of the page
   */
+  env: {
+    BASE_URL: process.env.BASE_URL,
+  },
   server: {
     host: '0.0.0.0',
     port: '3000'
@@ -12,6 +23,9 @@ module.exports = {
   router: {
     middleware: 'autoPcMobile'
   },
+  serverMiddleware: [
+    '~/server/middleware/redirectTo'
+  ],
   head: {
     title: process.env.npm_package_name || '',
     meta: [
@@ -242,14 +256,6 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
-      if (ctx.isClient && !ctx.isDev) {
-
-        config.performance.hints = false
-        config.performance.maxEntrypointSize = 512000
-        config.performance.maxAssetSize = 512000
-        config.optimization.splitChunks.maxSize = 250000
-      }
-
     }
   }
 
