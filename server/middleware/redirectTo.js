@@ -2,6 +2,7 @@
 export default function (req, res, next) {
   let req_host= req.header('host');
   let req_path = req.path;
+  let build_type = process.env.BUILD_TYPE;
 
   let whiteList = [
     'localhost:3000',
@@ -19,14 +20,27 @@ export default function (req, res, next) {
     'slm.171tiyu.com'
   ];
   console.log(process.env.NODE_ENV);
+  console.log(build_type);
   // console.log(req_host);
   // console.log('redirect');
   if (whiteList.find(item=>item === req_host)){
 
-    // PRODUCTION
-    if (req_host === '171tiyu.com' || req_host === 's.171tiyu.com' || req_host==='sl.171tiyu.com' ){
+    if ( req_host ==='localhost:3000' ||  req_host === '171tiyu.com' || req_host === 's.171tiyu.com' || req_host==='sl.171tiyu.com' ){
       // console.log('0000')
-      let new_host = 'http://www.171tiyu.com'+req_path;
+      let new_host = '';
+      if (build_type === 'stage'){
+        new_host = 'http://s.171tiyu.com'+req_path;
+        // new_host = 'http://www.baidu.com'+req_path;
+      }
+      if (build_type === 'softlaunch'){
+        new_host = 'http://sl.171tiyu.com'+req_path;
+        // new_host = 'http://s.171tiyu.com'+req_path;
+      }
+      if (build_type === 'production'){
+        // new_host = 'http://www.171tiyu.com'+req_path;
+        new_host = 'http://www.171tiyu.com'+req_path;
+      }
+
       res.writeHead(301, { Location: new_host});
       res.end();
     }else{

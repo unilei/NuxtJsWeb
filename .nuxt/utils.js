@@ -150,7 +150,7 @@ export async function setContext (app, context) {
       payload: context.payload,
       error: context.error,
       base: '/',
-      env: {"BASE_URL":"http://0.0.0.0:3000","NODE_ENV":"production","VUE_APP_TITLE":"stage"}
+      env: {"BASE_URL":"http://0.0.0.0:3000"}
     }
     // Only set once
     if (context.req) {

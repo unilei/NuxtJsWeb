@@ -3,16 +3,29 @@ const axios = require('axios')
 
 export default function ({isServer,req,redirect,route}) {
 
-  // console.log(req)
+  let buildType = process.env.BUILD_TYPE;
 
-  // let pcOrigin = 'https://s.171tiyu.com'
-  let pcOrigin = 'https://www.171tiyu.com'
-  // let pcOrigin = 'http://localhost:3000'
-  // let mobileOrigin = 'https://sm.171tiyu.com'
-  let mobileOrigin = 'https://m.171tiyu.com'
-  // let mobileOrigin = 'http://localhost:3001'
+  let pcOrigin = '';
+  let mobileOrigin = '';
+  // console.log(buildType);
 
-  // console.log(route.fullPath)
+  if (buildType === 'stage'){
+    pcOrigin = 'https://s.171tiyu.com'
+    mobileOrigin = 'https://sm.171tiyu.com'
+    // mobileOrigin = 'https://www.sougou.com'
+  } else if (buildType === 'softlaunch'){
+    pcOrigin = 'https://sl.171tiyu.com'
+    mobileOrigin = 'https://slm.171tiyu.com'
+    // mobileOrigin = 'https://www.baidu.com'
+  } else if (buildType === 'production'){
+    pcOrigin = 'https://www.171tiyu.com'
+    mobileOrigin = 'https://m.171tiyu.com'
+    // mobileOrigin = 'https://360.com'
+  } else {
+    pcOrigin = 'https://www.171tiyu.com'
+    mobileOrigin = 'https://m.171tiyu.com'
+  }
+
   let old_route_fullPath = route.fullPath;
   let fullPathArr = old_route_fullPath.split('/')
   if (fullPathArr[1] === 'article' || fullPathArr[1] === 'news'){
