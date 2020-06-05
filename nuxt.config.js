@@ -13,9 +13,6 @@ module.exports = {
   /*
   ** Headers of the page
   */
-  env: {
-    BASE_URL: process.env.BASE_URL,
-  },
   server: {
     host: '0.0.0.0',
     port: '3000'
@@ -244,7 +241,7 @@ module.exports = {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    proxy: true
+    // proxy: true
   },
   /*
   ** Build configuration
