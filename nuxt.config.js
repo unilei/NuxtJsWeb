@@ -7,7 +7,7 @@ const axiosInit = require('axios')
 const axios = axiosInit.create({
   // ...
 })
-console.log(process.env.NODE_ENV);
+
 module.exports = {
   mode: 'universal',
   /*
@@ -256,6 +256,12 @@ module.exports = {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
+      if (ctx.isClient && !ctx.isDev) {
+        config.performance.hints = false
+        config.performance.maxEntrypointSize = 512000
+        config.performance.maxAssetSize = 512000
+        config.optimization.splitChunks.maxSize = 250000
+      }
     }
   }
 
