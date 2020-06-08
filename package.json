@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
     "build": "nuxt build",
+    "start": "cross-env NODE_ENV=production BUILD_TYPE=production node server/index.js",
     "start:production": "cross-env NODE_ENV=production BUILD_TYPE=production node server/index.js",
     "start:softlaunch": "cross-env NODE_ENV=production BUILD_TYPE=softlaunch node server/index.js",
     "start:stage": "cross-env NODE_ENV=production BUILD_TYPE=stage node server/index.js",
