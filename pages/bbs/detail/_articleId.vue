@@ -438,7 +438,7 @@ line-height:30px;cursor: pointer;">换一换</span>
       // console.log(bbsDetail.data.Data[0])
       return {
         bbsDetail: bbsDetail.data.Data[0],
-        bbsPublishFormatTime: dateFormat(bbsDetail.data.Data[0].create_time),
+        bbsPublishFormatTime: bbsDetail.data.Data[0].create_time,
         hotBbsList: hotBbsList.data.Data.list,
       }
 
