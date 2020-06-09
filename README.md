@@ -1,8 +1,8 @@
-# sports-v-2
+# 全民体育PC版官网
 
-> for seo 
+> 对seo友好的框架nuxt.js 
 
-## Build Setup
+## 网站运行命令
 
 ``` bash
 # install dependencies
