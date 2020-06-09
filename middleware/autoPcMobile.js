@@ -10,20 +10,20 @@ export default function ({isServer,req,redirect,route}) {
   // console.log(buildType);
 
   if (buildType === 'stage'){
-    pcOrigin = 'https://s.171tiyu.com'
-    mobileOrigin = 'https://sm.171tiyu.com'
+    pcOrigin = 'http://s.171tiyu.com'
+    mobileOrigin = 'http://sm.171tiyu.com'
     // mobileOrigin = 'https://www.sougou.com'
-  } else if (buildType === 'softlaunch'){
-    pcOrigin = 'https://sl.171tiyu.com'
-    mobileOrigin = 'https://slm.171tiyu.com'
+  } else if (buildType === 'release'){
+    pcOrigin = 'http://sl.171tiyu.com'
+    mobileOrigin = 'http://slm.171tiyu.com'
     // mobileOrigin = 'https://www.baidu.com'
   } else if (buildType === 'production'){
-    pcOrigin = 'https://www.171tiyu.com'
-    mobileOrigin = 'https://m.171tiyu.com'
+    pcOrigin = 'http://www.171tiyu.com'
+    mobileOrigin = 'http://m.171tiyu.com'
     // mobileOrigin = 'https://360.com'
   } else {
-    pcOrigin = 'https://www.171tiyu.com'
-    mobileOrigin = 'https://m.171tiyu.com'
+    pcOrigin = 'http://www.171tiyu.com'
+    mobileOrigin = 'http://m.171tiyu.com'
   }
 
   let old_route_fullPath = route.fullPath;

@@ -34,7 +34,7 @@
               全民体育主编
             </el-col>
             <el-col :span="8" :offset="12" class="news-detail-author-time">
-              {{bbsPublishFormatTime}}
+              {{bbsPublishFormatTime | dateFormat}}
             </el-col>
 
           </el-col>
@@ -351,7 +351,7 @@
         sportType:sportType,
         sportType_value:sportType_value,
         bbsDetail: bbsDetail.data.Data[0],
-        bbsPublishFormatTime: dateFormat(bbsDetail.data.Data[0].create_time),
+        bbsPublishFormatTime: bbsDetail.data.Data[0].create_time,
         hotBbsList: hotBbsList.data.Data.list,
         article_id:article_id,
       }

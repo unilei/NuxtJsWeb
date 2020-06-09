@@ -7,11 +7,10 @@ export default function (req, res, next) {
   let whiteList = [
     'localhost:3000',
     'localhost:3001',
-    '172.25.6.61:3000',
-    '192.168.0.0/24',
-    '10.0.0.0/8',
-    '10.0.0.0/8',
-    '172.16.0.0/16',
+    '47.103.30.132:3001',
+    '47.103.30.132:3000',
+    'www.hotforest.cn',
+    'm.hotforest.cn',
     'www.171tiyu.com',
     '171tiyu.com',
     's.171tiyu.com',
@@ -19,25 +18,22 @@ export default function (req, res, next) {
     'sl.171tiyu.com',
     'slm.171tiyu.com'
   ];
-  console.log(process.env.NODE_ENV);
-  console.log(build_type);
-  // console.log(req_host);
-  // console.log('redirect');
+  // console.log(process.env.NODE_ENV);
+  // console.log(build_type);
+
   if (whiteList.find(item=>item === req_host)){
 
-    if ( req_host ==='localhost:3000' ||  req_host === '171tiyu.com' || req_host === 's.171tiyu.com' || req_host==='sl.171tiyu.com' ){
-      // console.log('0000')
+    if ( req_host === '171tiyu.com'){
+
       let new_host = '';
+
       if (build_type === 'stage'){
         new_host = 'http://s.171tiyu.com'+req_path;
-        // new_host = 'http://www.baidu.com'+req_path;
       }
-      if (build_type === 'softlaunch'){
+      if (build_type === 'release'){
         new_host = 'http://sl.171tiyu.com'+req_path;
-        // new_host = 'http://s.171tiyu.com'+req_path;
       }
       if (build_type === 'production'){
-        // new_host = 'http://www.171tiyu.com'+req_path;
         new_host = 'http://www.171tiyu.com'+req_path;
       }
 
@@ -47,8 +43,8 @@ export default function (req, res, next) {
       next();
     }
   }else{
-    // next();
-    // res.writeHead('404','页面不存在');
+
+    res.writeHead('404');
     res.end();
   }
 
