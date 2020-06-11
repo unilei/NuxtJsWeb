@@ -63,7 +63,7 @@
           </nuxt-link>
         </el-col>
         <el-col :span="7" class="news-news-img">
-          <img :src="hotNbaNewsFirst.image" alt="nba">
+          <img :src="hotNbaNewsFirst.image | waterMark" alt="nba">
         </el-col>
         <el-col :span="16" :offset="1">
           <el-col :span="24" v-if="hotNbaNewsFirst.content" class="news-news-content">
@@ -81,7 +81,7 @@
           </nuxt-link>
         </el-col>
         <el-col :span="7" class="news-news-img">
-          <img :src="hotNbaNewsSecond.image" alt="nba">
+          <img :src="hotNbaNewsSecond.image | waterMark" alt="nba">
         </el-col>
         <el-col :span="16" :offset="1">
           <el-col :span="24" v-if="hotNbaNewsSecond.content" class="news-news-content">
@@ -152,7 +152,7 @@
           </nuxt-link>
         </el-col>
         <el-col :span="7" class="news-news-img">
-          <img :src="hotLaLigaNewsFirst.image" alt="la_liga">
+          <img :src="hotLaLigaNewsFirst.image | waterMark" alt="la_liga">
         </el-col>
         <el-col :span="16" :offset="1">
           <el-col :span="24" v-if="hotLaLigaNewsFirst.content" class="news-news-content">
@@ -170,7 +170,7 @@
           </nuxt-link>
         </el-col>
         <el-col :span="7" class="news-news-img">
-          <img :src="hotLaLigaNewsSecond.image" alt="la_liga">
+          <img :src="hotLaLigaNewsSecond.image | waterMark" alt="la_liga">
         </el-col>
         <el-col :span="16" :offset="1">
           <el-col :span="24" v-if="hotLaLigaNewsSecond.content" class="news-news-content">
@@ -211,7 +211,7 @@
           </nuxt-link>
         </el-col>
         <el-col :span="7" class="news-news-img">
-          <img :src="hotPremierNewsFirst.image" alt="premier">
+          <img :src="hotPremierNewsFirst.image | waterMark" alt="premier">
         </el-col>
         <el-col :span="16" :offset="1">
           <el-col :span="24" v-if="hotPremierNewsFirst.content" class="news-news-content">
@@ -229,7 +229,7 @@
           </nuxt-link>
         </el-col>
         <el-col :span="7" class="news-news-img">
-          <img :src="hotPremierNewsSecond.image" alt="premier">
+          <img :src="hotPremierNewsSecond.image | waterMark" alt="premier">
         </el-col>
         <el-col :span="16" :offset="1">
           <el-col :span="24" v-if="hotPremierNewsSecond.content" class="news-news-content">
@@ -271,7 +271,7 @@
           </nuxt-link>
         </el-col>
         <el-col :span="7" class="news-news-img">
-          <img :src="hotSerieANewsFirst.image" alt="serie_a">
+          <img :src="hotSerieANewsFirst.image | waterMark" alt="serie_a">
         </el-col>
         <el-col :span="16" :offset="1">
           <el-col :span="24" v-if="hotSerieANewsFirst.content" class="news-news-content">
@@ -289,7 +289,7 @@
           </nuxt-link>
         </el-col>
         <el-col :span="7" class="news-news-img">
-          <img :src="hotSerieANewsSecond.image" alt="serie_a">
+          <img :src="hotSerieANewsSecond.image | waterMark" alt="serie_a">
         </el-col>
         <el-col :span="16" :offset="1">
           <el-col :span="24" v-if="hotSerieANewsSecond.content" class="news-news-content">

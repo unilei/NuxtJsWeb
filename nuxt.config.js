@@ -88,12 +88,10 @@ module.exports = {
       ssr: true
     },
     {
-      src: '@/plugins/filter',
-      mode: 'client'
+      src: '@/plugins/filter',ssr:false
     },
     {
-      src: '@/plugins/loading',
-      mode: 'client'
+      src: '@/plugins/loading',ssr: true,mode: 'client'
     },
 
   ],

@@ -44,7 +44,7 @@
 
       <el-col :span="24" class="news-detail-content" v-for="(content,index) in newsDetail.content" :key="index">
         <p v-if="content.type == 1">{{content.content}}</p>
-        <img v-if="content.type == 2" :src="content.content" alt="">
+        <img v-if="content.type == 2" :src="content.content | waterMark" alt="">
       </el-col>
       <!--标签-->
       <el-col :span="24" class="news-detail-tag">
@@ -194,7 +194,7 @@
         </el-col>
         <el-col :span="24" v-for="(hotNews,index) in hotNewsList" :key="index" class="hot-news-list-item">
           <el-col :span="10" class="hot-news-list-img">
-            <img :src="hotNews.image" alt="image">
+            <img :src="hotNews.image | waterMark" alt="image">
           </el-col>
           <el-col :span="14" class="hot-news-list-title">
             <nuxt-link target="_blank"

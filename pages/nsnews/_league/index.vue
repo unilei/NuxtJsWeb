@@ -3,7 +3,7 @@
     <el-col :span="13" :offset="1" class="news-list-container">
       <el-col :span="24" v-for="(news,k) in newsList" :key="k" class="news-list-item">
         <el-col :span="8" class="news-list-img">
-          <img :src="news.image" alt="新闻配图">
+          <img :src="news.image | waterMark" alt="新闻配图">
         </el-col>
         <el-col :span="16" class="news-list-news">
           <el-col :span="24" class="news-list-title">
@@ -43,7 +43,7 @@
         </el-col>
         <el-col :span="24" v-for="(hotNews,index) in hotNewsList" :key="index" class="hot-news-list-item">
           <el-col :span="10" class="hot-news-list-img">
-            <img :src="hotNews.image" alt="image">
+            <img :src="hotNews.image | waterMark" alt="image">
           </el-col>
           <el-col :span="14" class="hot-news-list-title">
             <nuxt-link target="_blank" :to="{name:'nsnews-league-shorturl',params:{shorturl:hotNews.shorturl,league:hotNews.league_value}}">
