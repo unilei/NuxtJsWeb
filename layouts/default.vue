@@ -1,5 +1,5 @@
 <template>
-  <el-container class="is-vertical" style="width: 1440px;margin: 0 auto;">
+  <el-container class="is-vertical" style="width: 1440px;margin: 0 auto;background-color: #EFEFEF;">
     <Header></Header>
     <nuxt/>
     <Footer></Footer>

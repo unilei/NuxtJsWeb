@@ -1,5 +1,5 @@
 <template>
-  <el-footer style="height: auto;">
+  <el-footer>
     <div class="footer-top-container">
         <FooterTop></FooterTop>
     </div>
@@ -38,6 +38,8 @@
 
   .el-footer {
     width: 1440px;
+    height: auto !important;
+    margin: 0 auto;
     margin-top: 20px;
   }
 
