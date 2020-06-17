@@ -52,10 +52,13 @@
           <div class="nav-menu-box"></div>
 
           <div class="nav-menu-item nav-menu-item-first" style="border: none;">
-            <nuxt-link :to="'/'" exact>首页</nuxt-link>
+            <nuxt-link :to="{name:'nsnews-league',params:{league:'all'}}">首页</nuxt-link>
           </div>
           <div class="nav-menu-item">
             <nuxt-link :to="{name:'nsnews-league',params:{league:'nba'}}">NBA</nuxt-link>
+          </div>
+          <div class="nav-menu-item">
+            <nuxt-link :to="{name:'nsnews-league',params:{league:'la_liga'}}">西甲</nuxt-link>
           </div>
           <div class="nav-menu-item">
             <nuxt-link :to="{name:'nsnews-league',params:{league:'premier'}}">英超</nuxt-link>
@@ -63,14 +66,15 @@
           <div class="nav-menu-item">
             <nuxt-link :to="{name:'nsnews-league',params:{league:'serie_a'}}">意甲</nuxt-link>
           </div>
+
           <div class="nav-menu-item">
-            <nuxt-link :to="{name:'nsnews-league',params:{league:'la_liga'}}">西甲</nuxt-link>
+            <nuxt-link :to="{name:'nsforum-sportType',params:{sportType:'football'}}">足球社区</nuxt-link>
           </div>
           <div class="nav-menu-item">
-            <nuxt-link :to="{name:'nsnews-league',params:{league:'all'}}">中超</nuxt-link>
+            <nuxt-link :to="{name:'nsforum-sportType',params:{sportType:'basketball'}}">篮球社区</nuxt-link>
           </div>
           <div class="nav-menu-item">
-            <nuxt-link :to="{name:'nsforum-sportType',params:{'sportType':'football'}}">社区论坛</nuxt-link>
+            <nuxt-link :to="{name:'nsforum-sportType',params:{sportType:'football'}}">社区活动</nuxt-link>
           </div>
           <div class="nav-menu-item">
             <el-dropdown>
@@ -119,19 +123,19 @@
 
 
       <!--        悬浮二维码框-->
-      <div class="wx-qrcode-box">
-        <div class="wx-qrcode-box-img">
-          <a
-            href="https://171tiyu.com/download/android?channelCode=Web_Landing_Page"
-            v-if="this.os === 'Win'">
-            <img src="https://aloss.hotforest.cn/web/android-QRcode.png" alt="">
-          </a>
-          <a v-if="this.os==='Mac'" href="https://apps.apple.com/app/id1482371213">
-            <img src="https://aloss.hotforest.cn/web/android-QRcode.png" alt="">
-          </a>
-        </div>
-        <span>扫码下载安卓/IOS APP</span>
-      </div>
+<!--      <div class="wx-qrcode-box">-->
+<!--        <div class="wx-qrcode-box-img">-->
+<!--          <a-->
+<!--            href="https://171tiyu.com/download/android?channelCode=Web_Landing_Page"-->
+<!--            v-if="this.os === 'Win'">-->
+<!--            <img src="https://aloss.hotforest.cn/web/android-QRcode.png" alt="">-->
+<!--          </a>-->
+<!--          <a v-if="this.os==='Mac'" href="https://apps.apple.com/app/id1482371213">-->
+<!--            <img src="https://aloss.hotforest.cn/web/android-QRcode.png" alt="">-->
+<!--          </a>-->
+<!--        </div>-->
+<!--        <span>扫码下载安卓/IOS APP</span>-->
+<!--      </div>-->
       <!--        悬浮二维码框结束-->
 
     </client-only>

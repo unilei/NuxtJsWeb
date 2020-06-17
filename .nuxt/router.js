@@ -21,6 +21,7 @@ const _752d722c = () => interopDefault(import('..\\pages\\nsforum\\_sportType\\i
 const _5e8b9e61 = () => interopDefault(import('..\\pages\\nsnews\\_league\\index.vue' /* webpackChunkName: "pages_nsnews__league_index" */))
 const _aa934be8 = () => interopDefault(import('..\\pages\\profile\\_activeName.vue' /* webpackChunkName: "pages_profile__activeName" */))
 const _ba6d2370 = () => interopDefault(import('..\\pages\\nsforum\\_sportType\\_articleId.vue' /* webpackChunkName: "pages_nsforum__sportType__articleId" */))
+const _41a3b700 = () => interopDefault(import('..\\pages\\nsnews\\_league\\_shorturl---bak.vue' /* webpackChunkName: "pages_nsnews__league__shorturl---bak" */))
 const _411af2e1 = () => interopDefault(import('..\\pages\\nsnews\\_league\\_shorturl.vue' /* webpackChunkName: "pages_nsnews__league__shorturl" */))
 const _1cb01e46 = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages_index" */))
 
@@ -112,6 +113,10 @@ export const routerOptions = {
     path: "/nsforum/:sportType?/:articleId",
     component: _ba6d2370,
     name: "nsforum-sportType-articleId"
+  }, {
+    path: "/nsnews/:league?/:shorturl---bak",
+    component: _41a3b700,
+    name: "nsnews-league-shorturl---bak"
   }, {
     path: "/nsnews/:league?/:shorturl",
     component: _411af2e1,

@@ -19,11 +19,12 @@ import _13b8e170 from '..\\layouts\\downloadLayout.vue'
 import _8599ae34 from '..\\layouts\\indexLayout.vue'
 import _4a41c43a from '..\\layouts\\linkLayout.vue'
 import _2fdf5853 from '..\\layouts\\newsLayout.vue'
+import _050e6e58 from '..\\layouts\\nsnewsLayout.vue'
 import _b6662c68 from '..\\layouts\\oldBbsLayout.vue'
 import _1e1d32e0 from '..\\layouts\\oldDefault.vue'
 import _a2f9bda4 from '..\\layouts\\oldNewsLayout.vue'
 
-const layouts = { "_bbsLayout": sanitizeComponent(_6f2aba07),"_default": sanitizeComponent(_6f6c098b),"_downloadLayout": sanitizeComponent(_13b8e170),"_indexLayout": sanitizeComponent(_8599ae34),"_linkLayout": sanitizeComponent(_4a41c43a),"_newsLayout": sanitizeComponent(_2fdf5853),"_oldBbsLayout": sanitizeComponent(_b6662c68),"_oldDefault": sanitizeComponent(_1e1d32e0),"_oldNewsLayout": sanitizeComponent(_a2f9bda4) }
+const layouts = { "_bbsLayout": sanitizeComponent(_6f2aba07),"_default": sanitizeComponent(_6f6c098b),"_downloadLayout": sanitizeComponent(_13b8e170),"_indexLayout": sanitizeComponent(_8599ae34),"_linkLayout": sanitizeComponent(_4a41c43a),"_newsLayout": sanitizeComponent(_2fdf5853),"_nsnewsLayout": sanitizeComponent(_050e6e58),"_oldBbsLayout": sanitizeComponent(_b6662c68),"_oldDefault": sanitizeComponent(_1e1d32e0),"_oldNewsLayout": sanitizeComponent(_a2f9bda4) }
 
 export default {
   render (h, props) {

@@ -1,158 +1,190 @@
 <template>
-<div>
-    <el-col :span="13" :offset="1" class="news-list-container">
-      <el-col :span="24" v-for="(news,k) in newsList" :key="k" class="news-list-item">
-        <el-col :span="8" class="news-list-img">
-          <img :src="news.image | waterMark" alt="新闻配图">
+  <el-main>
+    <el-row>
+      <el-col :span="5" class="aside-nav">
+        <el-col :span="24" class="aside-title"><img src="@/assets/image/qmty-icon.png" alt="qmty"></el-col>
+
+        <el-col :span="24" class="aside-nav-item ">
+          <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/nba.png" alt="nba"></el-col>
+          <nuxt-link :to="{name:'nsnews-league',params:{league:'nba'}}">NBA</nuxt-link>
         </el-col>
-        <el-col :span="16" class="news-list-news">
-          <el-col :span="24" class="news-list-title">
-            <nuxt-link :to="{
-          name: 'nsnews-league-shorturl',
-          params: { shorturl: news.shorturl,league:news.league_value }
-        }">{{news.title}}</nuxt-link>
-
+        <el-col :span="24" class="aside-nav-item ">
+          <nuxt-link :to="{name:'nsnews-league',params:{league:'la_liga'}}">西甲</nuxt-link>
+          <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/laliga.png" alt="la_liga"></el-col>
+        </el-col>
+        <el-col :span="24" class="aside-nav-item ">
+          <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/premier.png" alt="premier"></el-col>
+          <nuxt-link :to="{name:'nsnews-league',params:{league:'premier'}}">英超</nuxt-link>
+        </el-col>
+        <el-col :span="24" class="aside-nav-item ">
+          <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/serie_a.png" alt="serie_a"></el-col>
+          <nuxt-link :to="{name:'nsnews-league',params:{league:'serie_a'}}">意甲</nuxt-link>
+        </el-col>
+        <el-col :span="24" class="aside-nav-item ">
+          <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/football.png" alt="football"></el-col>
+          <el-col :span="4" class="aside-nav-item-icon"><img src="@/assets/image/sub-menu-icon.png" alt="icon"></el-col>
+          <!--            <nuxt-link :to="{name:'nsforum-sportType',params:{sportType:'football'}}">足球社区</nuxt-link>-->
+          <a href="javascript:;">足球社区</a>
+          <div class="sub-forum-nav">
+            <div class="sub-forum-nav-item">
+              <nuxt-link :to="{name:'nsforum-sportType',params:{sportType:'football'}}">足球社区</nuxt-link>
+            </div>
+            <div class="sub-forum-nav-item">
+              <nuxt-link :to="{name:'nsforum-sportType',params:{sportType:'football'}}">足球</nuxt-link>
+            </div>
+          </div>
+        </el-col>
+        <el-col :span="24" class="aside-nav-item ">
+          <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/basketball.png" alt="basketball"></el-col>
+          <el-col :span="4" class="aside-nav-item-icon"><img src="@/assets/image/sub-menu-icon.png" alt="icon"></el-col>
+<!--          <nuxt-link :to="{name:'nsforum-sportType',params:{sportType:'basketball'}}">篮球社区</nuxt-link>-->
+          <a href="javascript:;">篮球社区</a>
+          <div class="sub-forum-nav">
+            <div class="sub-forum-nav-item">
+              <nuxt-link :to="{name:'nsforum-sportType',params:{sportType:'football'}}">篮球社区</nuxt-link>
+            </div>
+            <div class="sub-forum-nav-item">
+              <nuxt-link :to="{name:'nsforum-sportType',params:{sportType:'football'}}">篮球</nuxt-link>
+            </div>
+          </div>
+        </el-col>
+        <el-col :span="24" class="aside-nav-item ">
+          <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/social.png" alt="basketball">
           </el-col>
-          <el-col :span="24" class="news-list-content" >
-              <p v-for="(c,i) in news.content" :key="i"  v-if="c.type ===1"  class="news-list-content-item" >
-                {{c.content}}
-              </p>
-          </el-col>
-          <el-col :span="8" class="news-list-time">{{news.published_at}}</el-col>
-
-          <el-col :span="1" :offset="4" class="news-list-like-img"><img src="https://aloss.hotforest.cn/web/news-like.png" alt="like"></el-col>
-          <el-col :span="2" :offset="1" class="news-list-like">{{news.likes}}</el-col>
-          <el-col :span="1" :offset="4" class="news-list-comment-img"><img src="https://aloss.hotforest.cn/web/news-comment.png" alt="comment"></el-col>
-          <el-col :span="2" :offset="1" class="news-list-comment">{{news.commentTotalCount}}</el-col>
-
-
+          <nuxt-link :to="{name:'nsforum-sportType',params:{sportType:'basketball'}}">社区活动</nuxt-link>
         </el-col>
       </el-col>
-      <el-col :span="24" class="news-list-showmore">
-        <span @click="showMoreNews(offset)">查看更多</span>
-      </el-col>
-    </el-col>
-    <!--        news-list -->
 
-    <!--  热门新闻列表 -->
-    <el-col :span="6" :offset="1" >
-      <el-row class="hot-news-list">
-        <el-col :span="24" class="hot-news-list-t">
-          <div class="hot-news-list-t-icon"></div>
-          <span>热门新闻</span>
-        </el-col>
-        <el-col :span="24" v-for="(hotNews,index) in hotNewsList" :key="index" class="hot-news-list-item">
-          <el-col :span="10" class="hot-news-list-img">
-            <img :src="hotNews.image | waterMark" alt="image">
+      <el-col :span="14"
+              class="news-list"
+      >
+        <el-col :span="24" v-for="(news,i) in newsList" :key="i" class="news-list-item">
+
+          <el-col v-if="news.league_value==='nba'" :span="1" class="news-list-item-icon"><img src="@/assets/image/nba.png" alt="nba"></el-col>
+          <el-col v-if="news.league_value==='la_liga'" :span="1" class="news-list-item-icon"><img src="@/assets/image/laliga.png" alt="nba"></el-col>
+          <el-col v-if="news.league_value==='premier'" :span="1" class="news-list-item-icon"><img src="@/assets/image/premier.png" alt="nba"></el-col>
+          <el-col v-if="news.league_value==='serie_a'" :span="1" class="news-list-item-icon"><img src="@/assets/image/serie_a.png" alt="nba"></el-col>
+          <el-col :span="23" class="news-list-item-league">{{news.league}}</el-col>
+
+          <el-col :span="24" class="news-list-item-img">
+            <img :src="news.image | waterMark" alt="news">
           </el-col>
-          <el-col :span="14" class="hot-news-list-title">
-            <nuxt-link target="_blank" :to="{name:'nsnews-league-shorturl',params:{shorturl:hotNews.shorturl,league:hotNews.league_value}}">
-              {{hotNews.title}}
+          <el-col :span="24" class="news-list-item-title">
+            <nuxt-link
+              :to="{name: 'nsnews-league-shorturl', params: { shorturl: news.shorturl,league:news.league_value } }">
+              {{news.title}}
             </nuxt-link>
           </el-col>
+          <el-col :span="24" class="news-list-content">
+            <p v-for="(c,i) in news.content" :key="i" v-if="c.type ===1" class="news-list-content-item">
+              {{c.content}}
+            </p>
+          </el-col>
+          <el-col :span="24" class="news-list-item-time">{{news.published_at}}</el-col>
+        </el-col>
+
+
+      </el-col>
+
+      <el-col :span="5" class="hot-topics">
+        <el-col :span="24" class="hot-topics-title">
+          热门专题
+        </el-col>
+
+        <el-col :span="24" class="hot-topics-item" v-for="(topic,i) in topicsList" :key="i">
+          <el-col :span="24" class="hot-topics-item-img">
+            <img :src="topic.cover_pic" alt="news">
+          </el-col>
+          <el-col :span="24" class="hot-topics-item-title">{{topic.name}}</el-col>
+          <el-col :span="24" class="hot-topics-item-topics">专题文章 {{topic.article_amount}}</el-col>
 
         </el-col>
-      </el-row>
-    </el-col>
 
 
-</div>
+      </el-col>
+
+    </el-row>
+  </el-main>
 </template>
 
 <script>
+
   import base from '../../../api/base'
 
   export default {
     name: 'index',
-    layout: 'newsLayout',
+    layout: 'indexLayout',
     data () {
       return {
-        offset: 0,
-        newsList: [],
-        league_value: '',
-        hotNewsList: [],
-        title: '',
-        keywords: '',
-        description: ''
+        newsList: [], //新闻列表
+        topicsList: [], //专栏列表
+        newsOffset: 10,
+        loading: false,
+        league: '',
+
       }
     },
     head () {
-      if (this.league_value === '' || this.league_value === undefined || this.league_value === 'all') {
-        this.title = '体育新闻_体育快讯_体育最新资讯-全民体育'
-        this.keywords = '体育,新闻,体育新闻,体育快讯,体育资讯,体坛最新快讯,足球新闻,篮球新闻'
-        this.description = '全民体育提供全面专业的体育新闻和赛事报道，主要栏目有：英超，西甲，意甲，德甲，欧冠，中超，NBA，CBA，世界杯等，让球迷及时准确的了解赛事进展和结果。'
-      } else if (this.league_value === 'nba') {
-        this.title = 'NBA_NBA新闻_NBA快讯-全民体育'
-        this.keywords = 'NBA,NBA新闻,NBA快讯,NBA资讯,NBA最新快讯, NBA常规赛,NBA总决赛,NBA季后赛'
-        this.description = '全民体育拥有NBA常规赛、NBA总决赛、NBA季后赛等最新NBA快讯、NBA赛程、NBA球员球队的NBA数据以及丰富的NBA知识。想看NBA资讯，就上全民体育吧。'
-      } else if (this.league_value === 'premier') {
-        this.title = '英超_英超新闻_英超快讯-全民体育'
-        this.keywords = '英超,英超新闻,英超联赛,英超快讯,曼联,切尔西,阿森纳,利物浦,曼城,鲁尼,阿圭罗,阿扎尔,席尔瓦,穆里尼奥,范加尔,温格'
-        this.description = '全民体育提供最全面的英超新闻资讯，全面及时报道英超联赛,曼联,曼城,阿森纳,利物浦,切尔西等球队最新动态。'
-      } else if (this.league_value === 'serie_a') {
-        this.title = '意甲_意甲新闻_意甲快讯-全民体育'
-        this.keywords = '意甲新闻,意甲最新新闻,意甲快讯,意甲资讯'
-        this.description = '全民体育提供意甲联赛精彩的新闻报道，全面的意甲新闻，权威的足球评论，搭配人性化又时尚的操作介面，让球迷及时准确的了解赛事进展和结果。'
-      } else if (this.league_value === 'la_liga') {
-        this.title = '西甲_西甲新闻_西甲快讯-全民体育'
-        this.keywords = '西甲,西甲新闻,西甲最新新闻,西甲快讯,西甲资讯,皇马,皇家马德里,巴萨,巴塞罗那,马竞,马德里竞技,梅西'
-        this.description = '全民体育提供西甲联赛精彩的新闻报道，全面及时报道西甲联赛，皇马，皇家马德里，巴萨，巴塞罗那，马竞，马德里竞技，梅西，苏亚雷斯，贝尔，库蒂尼奥，登贝莱，拉莫斯，皮克，伊斯科，阿森西奥等球员球队的比赛数据。'
-      }
-
       return {
-        title: this.title,
+        title: '全民体育_懂球迷的聚集地',
         meta: [
           {
             hid: 'keywords',
             name: 'keywords',
-            content: this.keywords
+            content: '全民体育,体育,新闻,直播,足球,篮球,资讯,比分,社区,数据,比赛'
           },
           {
             hid: 'description',
             name: 'description',
-            content: this.description
-          }
+            content: '全民体育为您带来足球，篮球比赛，即时比分，数据库等一系列数据，包括：英超，西甲，意甲，德甲，欧冠，中超，NBA，CBA，世界杯等各种比赛，让球迷及时准确的了解赛事进展和结果'
+          },
         ]
       }
     },
-    watchQuery: ['league'],
     async asyncData (context) {
 
-      let offset = 0
-      let league_value = context.params.league
-
-      let news_params = {}
-      // 根据新闻类型 获取新闻列表
-      if (league_value === 'all' || league_value === undefined || league_value === '') {
-        news_params = {
+      let league = context.params.league
+      let article_params = {}
+      if (league === 'all') {
+        article_params = {
           articleType: 2,
-          offset: offset,
-          limit: 6,
-          author_filter:'["6","7","8","9"]'
+          limit: 10,
+          offset: 0,
+          author_filter: ['6', '7', '8', '9']
         }
       } else {
-        news_params = {
+        article_params = {
           articleType: 2,
-          offset: offset,
-          league: league_value,
-          limit: 6,
-          author_filter:'["6","7","8","9"]'
+          limit: 10,
+          offset: 0,
+          league: league,
+          author_filter: ['6', '7', '8', '9']
         }
       }
+      let [newsListRes, topicsRes] = await Promise.all([
+        context.$axios.$get(`${base.sq}/v2/GetArticles`, { params: article_params }),
+        context.$axios.$get(`${base.sq}/v2/all/columns`, {
+          params: {}
+        })
+      ]).catch(err => {
+        error({
+          statusCode: 400,
+          message: err
+        })
+      })
 
-      let allNewsList = await context.$axios.$get(`${base.sq}/v2/GetArticles`, { params: news_params })
+      let newsList = []
 
-      const newsList = allNewsList.Data.articles
-      // console.log(newsList)
-
-      if (newsList !== undefined && newsList !== []) {
+      if (newsListRes.Status === 1) {
+        newsList = newsListRes.Data.articles
         newsList.forEach(item => {
           // console.log(item)
-          let s = item.shorturl;
+          let s = item.shorturl
           let sArr = s.split('-')
-          item.league_value = sArr[0];
+          item.league_value = sArr[0]
 
           const article_id = item.article_id
+
           context.$axios.$get(`${base.sq}/v2/GetArticleDetail`, {
             params: {
               article_id: article_id
@@ -166,192 +198,290 @@
         })
       }
 
-      let hot_params = {}
-      if (league_value == 'all') {
-        hot_params = {
-          articleType: 3,
-          limit: 4,
-          offset: 0,
-          author_filter:'["6","7","8","9"]'
-        }
-      } else {
-        hot_params = {
-          articleType: 3,
-          league: league_value,
-          limit: 4,
-          offset: 0,
-          author_filter:'["6","7","8","9"]'
-        }
+      let topicsList = []
+      if (topicsRes.Status === 1) {
+        topicsList = topicsRes.Data.list
       }
-      console.log(hot_params)
-      //根据新闻类型 获取热门列表
-      let hotNewsList = await context.$axios.$get(`${base.sq}/v2/GetArticles`, { params: hot_params })
-      let hotNewsArticles = hotNewsList.Data.articles;
-      hotNewsArticles.forEach(
-        item=>{
-          let s = item.shorturl;
-          let sArr = s.split('-')
-          item.league_value = sArr[0];
+      topicsList = topicsList.slice(0, 4)
+      console.log(topicsList)
 
-        }
-      )
-
+      // console.log(newsList)
 
       return {
         newsList: newsList,
-        hotNewsList: hotNewsArticles,
-        league_value: league_value
+        topicsList: topicsList
       }
 
     },
     methods: {
-      showMoreNews (i) {
-        //下面这个很重要 记住哟
-        this.offset = i + 6
-        const league_value = this.$route.params.league
-        // console.log(league_value)
+      handleScroll (e) {
+        var scrollTop = e.target.documentElement.scrollTop || e.target.body.scrollTop      // 执行代码
+        this.loading = document.documentElement.offsetHeight - document.documentElement.scrollTop - window.innerHeight <= 0
 
-        if (league_value !== 'all') {
-          this.$axios.$get(`${base.sq}/v2/GetArticles`, {
-            params: {
-              articleType: 2,
-              league: league_value,
-              limit: 6,
-              offset: this.offset,
-              author_filter:'["6","7","8","9"]'
-            }
-          }).then(
-            res => {
-              if (res.Status === 1) {
-
-                const newsList = res.Data.articles
-
-                newsList.forEach(item => {
-
-                  let s = item.shorturl;
-                  let sArr = s.split('-')
-                  item.league_value = sArr[0];
-
-
-                  const article_id = item.article_id
-                  const params = {
-                    article_id: article_id
-                  }
-                  this.$axios.$get(`${base.sq}/v2/GetArticleDetail`, { params: params }).then(
-                    res => {
-                      // console.log(res)
-                      const content = res.Data.content
-                      this.$forceUpdate(item.content = content)
-
-                    }
-                  )
-                })
-                this.newsList = this.newsList.concat(newsList)
-              } else {
-                this.$message.error(res.ErrMsg)
-              }
-            }
-          )
-        } else {
-          const params = {
-            articleType: 2,
-            offset: this.offset,
-            limit: 6,
-            author_filter:'["6","7","8","9"]'
-          }
-          this.$axios.$get(`${base.sq}/v2/GetArticles`, { params: params }).then(
-            res => {
-
-              if (res.Status === 1) {
-                const newsList = res.Data.articles
-                newsList.forEach(item => {
-
-                  let s = item.shorturl;
-                  let sArr = s.split('-')
-                  item.league_value = sArr[0];
-
-
-                  const article_id = item.article_id
-                  const params = {
-                    article_id: article_id
-                  }
-                  this.$axios.$get(`${base.sq}/v2/GetArticleDetail`, { params: params }).then(
-                    res => {
-                      const content = res.Data.content
-                      this.$forceUpdate(item.content = content)
-
-                    }
-                  )
-                })
-                console.log(this.newsList)
-                this.newsList = this.newsList.concat(newsList)
-
-              } else {
-                this.$message.error(res.ErrMsg)
-              }
-
-            }
-          )
+        console.log(this.loading)
+        if (this.loading) {
+          this.getMoreNews(this.newsOffset)
         }
+
+      },
+      getMoreNews (i) {
+        //下面这个很重要 记住哟
+
+        let params = {}
+        let league = this.league
+
+        if (league === 'all') {
+          params = {
+            articleType: 2,
+            offset: i,
+            limit: 10,
+            author_filter: '["6","7","8","9"]'
+          }
+        } else {
+          params = {
+            articleType: 2,
+            offset: i,
+            limit: 10,
+            league: league,
+            author_filter: '["6","7","8","9"]'
+          }
+        }
+
+        this.$axios.$get(`${base.sq}/v2/GetArticles`, { params: params }).then(
+          res => {
+
+            if (res.Status === 1) {
+              const newsList = res.Data.articles
+              newsList.forEach(item => {
+
+                let s = item.shorturl
+                let sArr = s.split('-')
+                item.league_value = sArr[0]
+
+                const article_id = item.article_id
+                const params = {
+                  article_id: article_id
+                }
+                this.$axios.$get(`${base.sq}/v2/GetArticleDetail`, { params: params }).then(
+                  res => {
+                    const content = res.Data.content
+                    this.$forceUpdate(item.content = content)
+
+                  }
+                )
+              })
+              console.log(this.newsList)
+              this.newsList = this.newsList.concat(newsList)
+              this.newsOffset = i + 10
+              this.loading = false
+
+            } else {
+              this.$message.error(res.ErrMsg)
+            }
+
+          }
+        )
 
       }
 
     },
     watch: {
       $route (to, from) {
-
-        this.league_value = to.params.league
-
+        this.league = to.params.league
       }
-
     },
+    computed: {},
     mounted () {
-
-      this.league_value = this.$route.params.league
-
+      this.league = this.$route.params.league
+      window.addEventListener('scroll', this.handleScroll, true)
     }
+
   }
+
+
 </script>
 
 <style scoped>
-  .news-list-container{
+
+  .el-main {
+
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 0 auto;
+    width: 1440px;
+
+  }
+
+  .aside-nav {
+    padding: 10px;
+    background: rgba(248, 248, 248, 1);
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+  }
+
+  .aside-title {
+    text-align: left;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #E6E6E6;
+  }
+
+  .aside-title img {
+    width: 100px;
+    height: 20px;
+  }
+
+  .aside-nav-item {
+    text-align: left;
+    height: 40px;
+    border-bottom: 1px dashed #E6E6E6;
+    position: relative;
+
+  }
+
+  .aside-nav-item:hover {
+    background: #FFFFFF;
+  }
+
+  .aside-nav-item:hover .sub-forum-nav {
+    display: block;
+  }
+
+  .aside-nav-item-img {
+    height: 25px;
+    position: absolute;
+    left: 0;
+    top: 8px;
+  }
+
+  .aside-nav-item-img img {
+    height: 100%;
+  }
+
+  .aside-nav-item-icon{
+    height: 16px;
+    position: absolute;
+    right: 0;
+    top: 12px;
+  }
+
+  .aside-nav-item-icon img {
+    height: 100%;
+  }
+
+  .aside-nav-item a {
+    display: block;
+    height: 100%;
+    font-size: 14px;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 700;
+    color: rgba(51, 51, 51, 1);
+    line-height: 40px;
+    text-align: left;
+    text-indent: 30px;
+  }
+
+  .sub-forum-nav {
+    display: none;
+    position: absolute;
+    right: -180px;
+    top: 0;
+
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.1);
+    padding: 12px 18px;
+
+  }
+
+  .sub-forum-nav-item {
+    width: 145px;
+    height: 21px;
+    background: rgba(202, 231, 241, 1);
+    border-radius: 8px;
+    margin: 0 auto;
+    margin-top: 10px;
+    text-align: center;
+
+  }
+
+  .sub-forum-nav-item a {
+    font-size: 10px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+    line-height: 21px;
+  }
+
+  .news-list {
+    padding-left: 25px;
+    overflow: auto;
+    /*height: 900px;*/
+  }
+
+  .news-list::-webkit-scrollbar {
+    /*display: none;*/
+  }
+
+  .news-list-item {
+    /*height: 490px;*/
     margin-top: 30px;
+    padding: 14px;
+    background-color: #FFFFFF;
+    border-radius: 21px 8px 8px 8px;
+    box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.1);
   }
-  .news-list-item{
-    padding: 12px 0 12px 0;
-    border-bottom: 1px solid #DDDDDD;
+
+  .news-list-item:first-child {
+    margin-top: 0px !important;
   }
-  .news-list-img{
-    height: 170px;
-    overflow: hidden;
+
+  .news-list-item-icon {
+    text-align: left;
+    height: 25px;
   }
-  .news-list-img img{
-    max-height: 100%;
+
+  .news-list-item-icon img {
+    height: 100%;
+
   }
-  .news-list-title a{
+
+  .news-list-item-league {
+    text-align: left;
+    font-size: 12px;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 600;
+    color: rgba(51, 51, 51, 1);
+    line-height: 25px;
+  }
+
+  .news-list-item-title {
+    margin-top: 10px;
+    text-align: left;
+
+  }
+
+  .news-list-item-title a {
+    font-size: 20px;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
+    line-height: 28px;
+
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
-    text-align: left;
-
-    height: 50px;
-    color: #333333;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 25px;
-    cursor: pointer;
   }
-  .news-list-content{
+
+  .news-list-content {
     text-align: left;
-    height: 90px;
+    height: 30px;
     overflow: hidden;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 1;
     text-overflow: ellipsis;
 
   }
-  .news-list-content p{
+
+  .news-list-content p {
     margin: 0;
     padding: 0;
     color: #666666;
@@ -360,107 +490,95 @@
     line-height: 30px;
   }
 
-  .news-list-news{
-    padding-left: 14px;
+  .news-list-item-img {
+    margin-top: 10px;
+    height: 300px;
+    overflow: hidden;
   }
 
-  .news-list-time{
-    margin-top: 10px;
+  .news-list-item-img img {
+    /*max-height: 100%;*/
+    max-width: 100%;
+    border-radius: 8px;
+  }
+
+  .news-list-item-time {
     text-align: left;
-    color: #BBBBBB;
-    line-height: 30px;
-    font-size: 12px;
-    font-family: PingFangSC-Regular, PingFang SC;
-    font-weight: 400;
-    color: rgba(187, 187, 187, 1);
-  }
-  .news-list-like {
-    margin-top: 10px;
-    text-align: right;
-  }
-  .news-list-like-img{
-    margin-top: 10px;
-  }
-  .news-list-comment{
-    margin-top: 10px;
-    text-align: right;
-  }
-  .news-list-comment-img{
-    margin-top: 10px;
-  }
-  .news-list-showmore{
-    cursor: pointer;
-    font-size: 16px;
-    color: #666666;
-    margin-top: 30px;
-  }
-  .hot-news-list {
-    border: 1px solid #D0D0D0;;
-    margin-top: 30px;
-    padding: 12px 14px 12px 14px;
-  }
-
-
-  .hot-news-list-t {
-    text-align: left;
-    position: relative;
-    height: 44px;
+    text-indent: 10px;
+    font-size: 10px;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: rgba(102, 102, 102, 1);
 
   }
 
-  .hot-news-list-t-icon {
-    width: 8px;
-    height: 34px;
-    background-color: #EBB031;
-    /*float: left;margin-right: 14px;*/
-    position: absolute;
-    left: 0px;
-    top: 5px;
-
+  .el-image {
+    position: static;
+    border-radius: 12px;
   }
 
-  .hot-news-list-t span {
 
-    color: #000000;
-    font-size: 18px;
-    font-family: PingFangSC-Regular, PingFang SC;
-    font-weight: 400;
-    line-height: 25px;
-    position: absolute;
-    left: 20px;
-    top: 10px;
-  }
-  .hot-news-list-item{
-    padding: 12px 0 12px 0;
-    border-bottom: 1px solid #DDDDDD;
-  }
-  .hot-news-list-item:last-child {
-    border-bottom: transparent !important;
-  }
-
-  .hot-news-list-img img{
-    width: 100%;
-  }
-  .hot-news-list-title{
-    text-align: left;
+  .hot-topics {
     padding-left: 10px;
   }
-  .hot-news-list-title a {
+
+  .hot-topics-title {
+    height: 35px;
+    background: rgba(255, 224, 113, 1);
+    border-radius: 14px;
+
     font-size: 14px;
-    font-weight: 400;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 600;
     color: rgba(51, 51, 51, 1);
-    line-height: 25px;
+    line-height: 35px;
+  }
+
+  .hot-topics-item {
+    padding: 10px;
+    margin-top: 15px;
+    height: 195px;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+  }
+
+  .hot-topics-item-img {
+    /*height: 124px;*/
     overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
+
+  }
+
+  .hot-topics-item-img img {
+    max-width: 100%;
+    border-radius: 8px;
+  }
+
+  .hot-topics-item-title {
+    text-align: left;
+    text-indent: 10px;
+    margin-top: 10px;
+    font-size: 12px;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
+    line-height: 17px;
+  }
+
+  .hot-topics-item-topics {
+    margin-top: 4px;
+    text-indent: 10px;
+    text-align: left;
+    font-size: 8px;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: rgba(102, 102, 102, 1);
+    line-height: 11px;
   }
 
   .nuxt-link-active {
-    background: #58A4ED;
-    border-radius: 8px;
-    color: #FFFFFF;
+    background: #FFFFFF !important;
   }
+
 
 </style>
