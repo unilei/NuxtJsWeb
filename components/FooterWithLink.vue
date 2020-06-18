@@ -4,7 +4,6 @@
       <FooterTop></FooterTop>
       <FooterLink></FooterLink>
     </div>
-    <div style="clear: both;"></div>
     <FooterBottom></FooterBottom>
   </el-footer>
 </template>

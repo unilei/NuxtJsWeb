@@ -17,9 +17,11 @@ const _1c5fed01 = () => interopDefault(import('..\\pages\\bbs\\detail\\_articleI
 const _605e366b = () => interopDefault(import('..\\pages\\bbs\\list\\_sportType.vue' /* webpackChunkName: "pages_bbs_list__sportType" */))
 const _09eb0242 = () => interopDefault(import('..\\pages\\sportNews\\detail\\_shorturl.vue' /* webpackChunkName: "pages_sportNews_detail__shorturl" */))
 const _53d4c6ee = () => interopDefault(import('..\\pages\\sportNews\\list\\_league.vue' /* webpackChunkName: "pages_sportNews_list__league" */))
+const _a2e03100 = () => interopDefault(import('..\\pages\\nsforum\\_groupId\\index.vue' /* webpackChunkName: "pages_nsforum__groupId_index" */))
 const _752d722c = () => interopDefault(import('..\\pages\\nsforum\\_sportType\\index.vue' /* webpackChunkName: "pages_nsforum__sportType_index" */))
 const _5e8b9e61 = () => interopDefault(import('..\\pages\\nsnews\\_league\\index.vue' /* webpackChunkName: "pages_nsnews__league_index" */))
 const _aa934be8 = () => interopDefault(import('..\\pages\\profile\\_activeName.vue' /* webpackChunkName: "pages_profile__activeName" */))
+const _2cff2d74 = () => interopDefault(import('..\\pages\\nsforum\\_groupId\\_articleId.vue' /* webpackChunkName: "pages_nsforum__groupId__articleId" */))
 const _ba6d2370 = () => interopDefault(import('..\\pages\\nsforum\\_sportType\\_articleId.vue' /* webpackChunkName: "pages_nsforum__sportType__articleId" */))
 const _41a3b700 = () => interopDefault(import('..\\pages\\nsnews\\_league\\_shorturl---bak.vue' /* webpackChunkName: "pages_nsnews__league__shorturl---bak" */))
 const _411af2e1 = () => interopDefault(import('..\\pages\\nsnews\\_league\\_shorturl.vue' /* webpackChunkName: "pages_nsnews__league__shorturl" */))
@@ -98,6 +100,10 @@ export const routerOptions = {
     component: _53d4c6ee,
     name: "sportNews-list-league"
   }, {
+    path: "/nsforum/:groupId?",
+    component: _a2e03100,
+    name: "nsforum-groupId"
+  }, {
     path: "/nsforum/:sportType?",
     component: _752d722c,
     name: "nsforum-sportType"
@@ -109,6 +115,10 @@ export const routerOptions = {
     path: "/profile/:activeName",
     component: _aa934be8,
     name: "profile-activeName"
+  }, {
+    path: "/nsforum/:groupId?/:articleId",
+    component: _2cff2d74,
+    name: "nsforum-groupId-articleId"
   }, {
     path: "/nsforum/:sportType?/:articleId",
     component: _ba6d2370,

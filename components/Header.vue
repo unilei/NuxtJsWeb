@@ -68,13 +68,15 @@
           </div>
 
           <div class="nav-menu-item">
-            <nuxt-link :to="{name:'nsforum-sportType',params:{sportType:'football'}}">足球社区</nuxt-link>
+<!--            <nuxt-link :to="{name:'nsforum-sportType',params:{sportType:'football'}}">足球社区</nuxt-link>-->
+            <a href="javascript:;">足球社区</a>
           </div>
           <div class="nav-menu-item">
-            <nuxt-link :to="{name:'nsforum-sportType',params:{sportType:'basketball'}}">篮球社区</nuxt-link>
+<!--            <nuxt-link :to="{name:'nsforum-sportType',params:{sportType:'basketball'}}">篮球社区</nuxt-link>-->
+            <a href="javascript:;">篮球社区</a>
           </div>
           <div class="nav-menu-item">
-            <nuxt-link :to="{name:'nsforum-sportType',params:{sportType:'football'}}">社区活动</nuxt-link>
+            <nuxt-link :to="{name:'nsforum-sportType',params:{sportType:'aaaaaaa'}}">社区活动</nuxt-link>
           </div>
           <div class="nav-menu-item">
             <el-dropdown>

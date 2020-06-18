@@ -39,7 +39,7 @@
   .footer-d-container {
     /*background: #CFD6DE;*/
     height: 50px;
-    background: rgba(207, 214, 222, 1);
+    background-color: #ffffff;
   }
 
 

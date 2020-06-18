@@ -3,15 +3,17 @@
     <!-- 面包屑   -->
     <el-row>
       <el-col :span="24" class="news-bread">
-          <el-col :span="2" class="news-bread-l">
-            <el-col v-if="league==='nba'" :span="12" class="news-bread-l-img"><img src="@/assets/image/nba.png" alt="nba"></el-col>
-            <el-col v-if="league==='la_liga'" :span="12" class="news-bread-l-img"><img src="@/assets/image/laliga.png" alt="nba"></el-col>
-            <el-col v-if="league==='premier'" :span="12" class="news-bread-l-img"><img src="@/assets/image/premier.png" alt="nba"></el-col>
-            <el-col v-if="league==='serie_a'" :span="12" class="news-bread-l-img"><img src="@/assets/image/serie_a.png" alt="nba"></el-col>
-            <el-col :span="12" class="news-bread-l-text">{{league_value}}</el-col>
-          </el-col>
+        <el-col :span="2" class="news-bread-l">
+          <el-col v-if="forumDetail.group==='NBA'" :span="12" class="news-bread-l-img"><img src="@/assets/image/nba.png" alt="nba"></el-col>
+          <el-col v-if="forumDetail.group==='足球'" :span="12" class="news-bread-l-img"><img src="@/assets/image/football.png" alt="nba"></el-col>
+          <el-col v-if="forumDetail.group==='篮球'" :span="12" class="news-bread-l-img"><img src="@/assets/image/basketball.png" alt="nba"></el-col>
+          <el-col v-if="forumDetail.group==='全部'" :span="12" class="news-bread-l-img"><img src="@/assets/image/bbs.png" alt="nba"></el-col>
+          <el-col :span="12" class="news-bread-l-text">{{forumDetail.group}}</el-col>
+        </el-col>
         <el-col :span="22" class="news-bread-r">
-          首页 -  <span>{{league_value}}</span>
+          <nuxt-link style="color: #666666;" :to="{name:'nsnews-league',params:{league:'all'}}"> 首页 </nuxt-link>
+          -
+          <nuxt-link :to="{name:'nsforum-groupId',params:{groupId:groupId}}">{{forumDetail.group}}</nuxt-link>
         </el-col>
       </el-col>
     </el-row>
@@ -20,29 +22,29 @@
       <el-col :span="6" class="news-container-l">
         <el-col :span="24" class="news-container-l-item">
           <nuxt-link
-            :to="{name: 'nsnews-league-shorturl', params: { shorturl: newsDetail.shorturl,league:league } }" exact>
-            {{newsDetail.title}}
+            :to="{name: 'nsforum-groupId-articleId', params: { groupId: groupId,articleId:articleId } }" exact>
+            {{forumDetail.title}}
           </nuxt-link>
-
         </el-col>
 
-        <el-col :span="24" class="news-container-l-item" v-for="(hotNews,i) in hotNewsList" :key="i">
+        <el-col :span="24" class="news-container-l-item" v-for="(hotForum,i) in hotForumList" :key="i">
           <nuxt-link
-            :to="{name: 'nsnews-league-shorturl', params: { shorturl: hotNews.shorturl,league:hotNews.league_value } }" exact>
-            {{hotNews.title}}
+            :to="{name: 'nsforum-groupId-articleId', params: { groupId: groupId,articleId:hotForum.article_id } }" exact>
+            {{hotForum.title}}
           </nuxt-link>
-
         </el-col>
       </el-col>
+
       <el-col :span="18" class="news-container-r">
         <el-col :span="24" class="news-container-r-title">
-          {{newsDetail.title}}
+          {{forumDetail.title}}
         </el-col>
         <el-col :span="24" class="news-container-r-profile">
           <el-col :span="12" class="news-container-r-profile-1">
-            <el-col :span="2" class="news-container-r-profile-1-1"><img src="@/assets/image/serie_a.png" alt="nba"></el-col>
+            <el-col :span="2" class="news-container-r-profile-1-1">
+              <img :src="forumDetail.author.avatar_url" alt="avatar_url"></el-col>
             <el-col :span="6" class="news-container-r-profile-1-2">
-              {{newsDetail.author.name}} <br>
+              {{forumDetail.author.nickName}} <br>
               <span>足球热评人</span>
             </el-col>
             <el-col :span="16" class="news-container-r-profile-1-3">
@@ -58,31 +60,29 @@
               <el-col :span="2"><img src="@/assets/image/qzone.png" alt="1"></el-col>
             </el-col>
             <el-col :span="24" class="news-container-r-profile-2-2">
-              {{newsDetail.published_at}}
+              {{forumDetail.create_time | dateFormat}}
             </el-col>
           </el-col>
-
         </el-col>
 
         <el-col :span="24" class="news-container-r-content" >
-          <div v-for="(content,index) in newsDetail.content" :key="index">
+          <div v-for="(content,index) in forumDetail.content" :key="index">
             <p v-if="content.type == 1">{{content.content}}</p>
-            <img v-if="content.type == 2" :src="content.content | waterMark" alt="112">
+            <img v-if="content.type == 2" :src="content.content" alt="112">
           </div>
         </el-col>
 
         <el-col :span="24" class="news-container-r-tags">
-          标签: {{newsDetail.league}}
+          标签: {{forumDetail.group}}
         </el-col>
 
         <el-col :span="24" class="news-container-r-like">
           <img src="@/assets/image/like-icon-1.png" alt="icon"> <br>
-          已有 {{newsDetail.likes}}   人点赞
+          已有 {{forumDetail.likes_count}}   人点赞
         </el-col>
 
 
         <!--  评论列表      -->
-
         <el-col :span="24">
           <el-col :span="24" class="publish-comment-title">
             我有话说:
@@ -102,56 +102,59 @@
         <el-col :span="24">
           <el-col :span="24" class="comment-all-title">全部评论</el-col>
           <el-col :span="24" v-for="(newsReply,index) in newsReplyList" :key="index" class="list-item">
-                <el-col :span="2" class="comment-avatar">
-                  <img
-                    v-if="newsReply.author.avatar_url != null && newsReply.author.avatar_url !== '' && newsReply.author.avatar_url !== 'https://nsports-entity.171tiyu.com/'"
-                    :src="newsReply.author.avatar_url" alt="avatar">
-                  <img v-if="newsReply.author.avatar_url == null || newsReply.author.avatar_url === ''
+            <el-col :span="2" class="comment-avatar">
+              <img
+                v-if="newsReply.author.avatar_url != null && newsReply.author.avatar_url !== '' && newsReply.author.avatar_url !== 'https://nsports-entity.171tiyu.com/'"
+                :src="newsReply.author.avatar_url" alt="avatar">
+              <img v-if="newsReply.author.avatar_url == null || newsReply.author.avatar_url === ''
                       || newsReply.author.avatar_url==='https://nsports-entity.171tiyu.com/'"
-                       src="https://aloss.hotforest.cn/web/default-header.png" alt="avatar">
-                </el-col>
-                <el-col :span="6" class="comment-nickname">
-                  {{newsReply.author.nickName}}
-                </el-col>
-                <el-col :span="6" :offset="10" class="comment-time">{{newsReply.create_time | dateForHour }}</el-col>
+                   src="https://aloss.hotforest.cn/web/default-header.png" alt="avatar">
+            </el-col>
+            <el-col :span="6" class="comment-nickname">
+              {{newsReply.author.nickName}}
+            </el-col>
+            <el-col :span="6" :offset="10" class="comment-time">{{newsReply.create_time | dateForHour }}</el-col>
 
-                <el-col :span="22" :offset="2" class="comment-content" v-for="(content,i) in newsReply.content" :key="i">
-                  <p v-if="content.type == 1">
-                    {{content.content}}
-                  </p>
-                </el-col>
+            <el-col :span="22" :offset="2" class="comment-content" v-for="(content,i) in newsReply.content" :key="i">
+              <p v-if="content.type == 1">
+                {{content.content}}
+              </p>
+            </el-col>
 
-                <el-col :span="22" :offset="2" class="comment-reply-container" v-show="newsReply.replyReply">
-                  <el-col :span="24" v-for="reply in newsReply.replyReply" :key="reply.reply_id">
-                    <el-col :span="23" :offset="1" class="comment-reply-t">
-                      {{reply.author.nickName}} : <span v-for="(c,ii) in reply.content" :key="ii"> {{c.content}} </span>
-                    </el-col>
-                    <el-col :span="23" :offset="1" class="comment-reply-d">
-                      <el-col :span="2" class="comment-reply-like-img"><img src="https://aloss.hotforest.cn/web/news-like.png" alt="like"></el-col>
-                      <el-col :span="2" class="comment-reply-like">{{reply.likes_count}}</el-col>
-                      <el-col :span="20" class="comment-reply-time">{{reply.create_time | dateForHour}}</el-col>
-                    </el-col>
-                  </el-col>
+            <el-col :span="22" :offset="2" class="comment-reply-container" v-show="newsReply.replyReply">
+              <el-col :span="24" v-for="reply in newsReply.replyReply" :key="reply.reply_id">
+                <el-col :span="23" :offset="1" class="comment-reply-t">
+                  {{reply.author.nickName}} : <span v-for="(c,ii) in reply.content" :key="ii"> {{c.content}} </span>
                 </el-col>
-
-                <el-col :span="24" class="comment-like-container">
-                  <el-col :span="2" :offset="18" class="comment-like-img"><img
-                    src="https://aloss.hotforest.cn/web/news-like.png" alt=""></el-col>
-                  <el-col :span="2" class="comment-like">{{newsReply.likes_count}}</el-col>
-                  <el-col :span="2" class="comment-button">
-                    <button v-if="index !== showComment" @click="isShowComment(index)">回复</button>
-                    <button class="shouqi" v-if="index === showComment" @click="isHideComment(index)">收起</button>
-                  </el-col>
-
-                  <el-col :span="24" v-if="index === showComment" class="comment-input">
-                    <input type="text" v-model="replyReplyContent">
-                    <button @click="replyReplyNews(2,newsReply.reply_id)">发表</button>
-                  </el-col>
+                <el-col :span="23" :offset="1" class="comment-reply-d">
+                  <el-col :span="2" class="comment-reply-like-img"><img src="https://aloss.hotforest.cn/web/news-like.png" alt="like"></el-col>
+                  <el-col :span="2" class="comment-reply-like">{{reply.likes_count}}</el-col>
+                  <el-col :span="20" class="comment-reply-time">{{reply.create_time | dateForHour}}</el-col>
                 </el-col>
+              </el-col>
+            </el-col>
+
+            <el-col :span="24" class="comment-like-container">
+              <el-col :span="2" :offset="18" class="comment-like-img"><img
+                src="https://aloss.hotforest.cn/web/news-like.png" alt=""></el-col>
+              <el-col :span="2" class="comment-like">{{newsReply.likes_count}}</el-col>
+              <el-col :span="2" class="comment-button">
+                <button v-if="index !== showComment" @click="isShowComment(index)">回复</button>
+                <button class="shouqi" v-if="index === showComment" @click="isHideComment(index)">收起</button>
+              </el-col>
+
+              <el-col :span="24" v-if="index === showComment" class="comment-input">
+                <input type="text" v-model="replyReplyContent">
+                <button @click="replyReplyNews(2,newsReply.reply_id)">发表</button>
+              </el-col>
+            </el-col>
+
           </el-col>
+
           <el-col :span="24" class="comment-no-more">
             没有更多了
           </el-col>
+
         </el-col>
 
 
@@ -177,17 +180,18 @@
   import Login from '../../../components/Login'
 
   export default {
-    name: 'shorturl',
-    layout:'nsnewsLayout',
+    name: 'articleId',
+    layout:'nsforumLayout',
     components:{
       Login
     },
     data () {
       return {
-        article_id: '',
-        newsDetail: '',
-        newsPublishFormatTime: '',
-        hotNewsList: [],
+        articleId: '',
+        groupId:'',
+        forumDetail:'',
+        hotForumList:[],
+
         newsReplyList: [],
         showComment: -1,
         showCommentReply: -1,
@@ -232,8 +236,8 @@
     },
     head () {
       let description = ''
-      let newsContent = this.newsDetail.content
-      newsContent.every((v, i) => {
+      let forumContent = this.forumDetail.content
+      forumContent.every((v, i) => {
         if (v.type === 1) {
           description = v.content
           return false
@@ -242,12 +246,12 @@
       })
 
       return {
-        title: this.newsDetail.title,
+        title: this.forumDetail.title,
         meta: [
           {
             hid: 'keywords',
             name: 'keywords',
-            content: this.newsDetail.league
+            content: this.forumDetail.group
           },
           {
             hid: 'description',
@@ -259,13 +263,13 @@
     },
     watch: {
       $route (to, from) {
-        // console.log(to)
-        this.league = to.params.league
-        this.shorturl = to.params.shorturl
+        this.groupId = to.params.groupId;
+        this.articleId = to.params.articleId;
       }
     },
-    watchQuery: ['shorturl', 'league'],
+    watchQuery: ['groupId', 'articleId'],
     computed: {
+
     },
     destroyed () {
       window.removeEventListener('scroll', this.handleScroll,true)
@@ -275,76 +279,29 @@
     },
     mounted () {
       window.addEventListener('scroll', this.handleScroll, true)
-      this.league = this.$route.params.league
-      if (this.league === 'all') {
-        this.league_value = '全部新闻'
-      }
-      if (this.league === 'nba') {
-        this.league_value = 'NBA';
-      }
-      if (this.league === 'premier') {
-        this.league_value = '英超'
-      }
-      if (this.league === 'serie_a') {
-        this.league_value = '意甲';
-      }
-      if (this.league === 'la_liga') {
-        this.league_value = '西甲';
-      }
-      this.shorturl = this.$route.params.shorturl
+      this.groupId = this.$route.params.groupId;
+      this.articleId = this.$route.params.articleId;
+
       this.avatar_url = localStorage.getItem('avatar_url')
-      this.getReplyList(this.article_id, 0)
-
-
+      this.getReplyList(this.articleId, 0)
     },
-
     async asyncData (context) {
 
-      let league = context.params.league
-      let league_value = ''
-
-      if (league === 'all') {
-        league_value = '全部新闻'
+      let ns_device_id = 'website';
+      let limit = 4;
+      let offset = 0;
+      let groupId = context.params.groupId
+      let articleId = context.params.articleId
+      let forum_params = {
+        sort_type:'toplike',
+        group_id:groupId
       }
-      if (league === 'nba') {
-        league_value = 'NBA'
-      }
-      if (league === 'premier') {
-        league_value = '英超'
-      }
-      if (league === 'serie_a') {
-        league_value = '意甲'
-      }
-      if (league === 'la_liga') {
-        league_value = '西甲'
-      }
-
-      let shorturl = context.params.shorturl
-      let hot_params = {}
-      if (league === 'all') {
-        hot_params = {
-          articleType: 3,
-          limit: 4,
-          offset: 0,
-          author_filter:'["6","7","8","9"]'
-        }
-      } else {
-        hot_params = {
-          articleType: 3,
-          league: league,
-          limit: 4,
-          offset: 0,
-          author_filter:'["6","7","8","9"]'
-        }
-      }
-
-      let [newsDetail, hotNewsList] = await Promise.all([
-        context.$axios.get(`${base.sq}/v2/GetArticleDetail`, {
-          params: {
-            shorturl: shorturl
-          }
+      let [forumDetailRes,hotForumListRes] = await Promise.all([
+        context.$axios.$get(`${base.sq}/v3/forum/${articleId}`, {
+          headers:{ns_device_id:'website'}
         }),
-        context.$axios.get(`${base.sq}/v2/GetArticles`, { params: hot_params })
+        context.$axios.$get(`${base.sq}/v3/forum/articles/${limit}/${offset}`, { params: forum_params ,
+          headers:{ ns_device_id:ns_device_id }}),
       ]).catch(err => {
         error({
           statusCode: 400,
@@ -352,43 +309,23 @@
         })
       })
 
-      let news = [];
-      let hotNews = [];
-      if (newsDetail.data.Status === 1){
-        news =  newsDetail.data.Data;
+      let forumDetail = [];
+      if (forumDetailRes.Status === 1){
+        forumDetail = forumDetailRes.Data;
       }
-      if (hotNewsList.data.Status === 1){
-        hotNews = hotNewsList.data.Data.articles;
-        hotNews.forEach(item => {
-          // console.log(item)
-          let s = item.shorturl
-          let sArr = s.split('-')
-          item.league_value = sArr[0]
-
-          const article_id = item.article_id
-
-          context.$axios.$get(`${base.sq}/v2/GetArticleDetail`, {
-            params: {
-              article_id: article_id
-            }
-          }).then(
-            res => {
-              // console.log(res)
-              item.content = res.Data.content
-            }
-          )
-        })
+      let hotForumList = [];
+      if (hotForumListRes.Status === 1){
+        hotForumList = hotForumListRes.Data.list;
       }
 
-      console.log(news)
+      // console.log(forumDetail)
       return {
-        league: league,
-        league_value: league_value,
-        newsDetail:news,
-        hotNewsList:hotNews ,
-        newsPublishFormatTime: getFormatTime(newsDetail.data.Data.timestamp),
-        article_id: newsDetail.data.Data.article_id
+        forumDetail:forumDetail,
+        groupId:groupId,
+        hotForumList:hotForumList,
+        articleId:context.params.articleId
       }
+
     },
 
     methods: {
@@ -405,7 +342,7 @@
 
         if (bottomOfWindow && loading === false) {
           this.loading = true;
-          this.showMoreComment(this.newsOffset);
+          this.showMoreComment(this.forumOffset);
         }
 
       },
@@ -425,17 +362,10 @@
         this.wxIsLoginShow = false
         this.dialogMobileLogin = true
       },
-      load () {
-        this.loading = true
-        setTimeout(() => {
-          this.showMoreComment(this.offsetComment)
-          this.loading = false
-        }, 2000)
-      },
       showMoreComment (i) {
 
-        const article_id = this.article_id
-        const type = 'news'
+        const article_id = this.articleId;
+        const type = 'forum'
         const sort = 'newest'
 
         this.$axios.get(`${base.sq}/v2/` + type + `/` + article_id + `/` + sort + `/replys`, {
@@ -449,7 +379,7 @@
             newsReplyList.forEach(item => {
               // console.log(item)
               const reply_id = item.reply_id
-              const type = 'news'
+              const type = 'forum'
               const sort = 'toplike'
               this.$axios.get(`${base.sq}/v2/` + type + `/` + reply_id + `/` + sort + `/replys`, {
                 params: {
@@ -472,7 +402,7 @@
         )
       },
       getReplyList (article_id, offset) {
-        let type = 'news'
+        let type = 'forum'
         let sort = 'newest'
         this.$axios.get(`${base.sq}/v2/` + type + `/` + article_id + `/` + sort + `/replys`, {
           params: {
@@ -481,13 +411,13 @@
           }
         }).then(
           res => {
-            console.log(res)
+            // console.log(res)
             const newsReplyList = res.data.Data.list
 
             newsReplyList.forEach(item => {
               // console.log(item)
               const reply_id = item.reply_id
-              let type = 'news'
+              let type = 'forum'
               let sort = 'toplike'
               this.$axios.get(`${base.sq}/v2/` + type + `/` + reply_id + `/` + sort + `/replys`, {
                 params: {
@@ -505,7 +435,7 @@
 
             this.reply_count += newsReplyList.length;
             this.offsetComment = offset+2
-            console.log(this.offsetComment)
+            // console.log(this.offsetComment)
           }
         )
 
@@ -520,10 +450,6 @@
         const nickname = localStorage.getItem('nickname')
 
         if (uid === null || token == null) {
-          // this.$message({
-          //   message: '请先登录，再留言',
-          //   type: 'success'
-          // })
 
           this.mobileDialog()
 
@@ -538,8 +464,8 @@
                 type: 'warning'
               })
             }
-            const type = 'news'
-            const parentId = this.article_id
+            const type = 'forum'
+            const parentId = this.articleId
             const params = {
               content: [
                 {
@@ -562,7 +488,8 @@
                     message: '恭喜你，留言成功',
                     type: 'success'
                   })
-                  this.$router.go(0)
+                  this.getReplyList(this.articleId,0)
+                  // this.$forceUpdate();
                 } else {
                   this.$message.error(res.data.ErrMsg)
                 }
@@ -596,7 +523,7 @@
               })
             }
 
-            const type = 'news'
+            const type = 'forum'
             const parentId = reply_id
             const params = {
               content: [
@@ -619,7 +546,7 @@
                     message: '恭喜你，留言成功',
                     type: 'success'
                   })
-                  this.$router.go(0)
+                  this.$forceUpdate(this.getReplyList(this.articleId,0));
                 } else {
                   this.$message.error(res.data.ErrMsg)
                 }
@@ -698,7 +625,7 @@
     font-weight:400;
     color:rgba(102,102,102,1);
   }
-  .news-bread-r span{
+  .news-bread-r a{
     color: #333333;
   }
 
@@ -761,7 +688,7 @@
     text-align: left;
   }
   .news-container-r-profile-1-1{
-      line-height: 60px;
+    line-height: 60px;
   }
   .news-container-r-profile-1-1 img{
     height: 30px;

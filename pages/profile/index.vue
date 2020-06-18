@@ -164,6 +164,7 @@
 
   export default {
     name: 'index',
+    layout:'indexLayout',
     components: {},
     head () {
       return {

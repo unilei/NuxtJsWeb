@@ -164,6 +164,7 @@
 
   export default {
     name: 'activeName',
+    layout:'profileLayout',
     components: {},
     head () {
       return {
@@ -203,10 +204,12 @@
   .el-main {
     padding: 0 20px;
     width: 1440px;
+    margin: 0 auto;
   }
 
   .profile {
     margin-top: 4px;
+
   }
 
   .profile img {
@@ -288,5 +291,7 @@
     text-align: left;
     white-space: pre-wrap;
     word-wrap: break-word;
+    background-color: #ffffff;
+    padding: 14px;
   }
 </style>
