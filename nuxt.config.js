@@ -64,6 +64,9 @@ module.exports = {
       },
       {
         src: '/openinstall.js',ssr:false
+      },
+      {
+        src: '/social-share.min.js',ssr:true
       }
       // {
       //   src:'//res.cdn.openinstall.io/openinstall.js'

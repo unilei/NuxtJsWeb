@@ -21,6 +21,7 @@
 
 
 <style>
+  @import "../assets/css/share.min.css";
   html {
     text-align: center;
   }

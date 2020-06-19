@@ -64,6 +64,7 @@
 </script>
 
 <style scoped>
+  @import "../assets/css/share.min.css";
   .el-main {
     /*padding: 0 27px 0 27px;*/
     padding-left: 40px;
