@@ -1,30 +1,38 @@
 <template>
   <el-main>
     <el-row>
-     <LeftAside></LeftAside>
+      <LeftAside></LeftAside>
 
       <el-col :span="14"
-              class="forum-list"
+              class="news-list"
       >
-        <el-col :span="24" v-for="(forum,i) in forumList" :key="i" class="forum-list-item">
-          <el-col v-if="forum.group==='NBA'" :span="1" class="forum-list-item-icon"><img src="@/assets/image/nba.png" alt="nba"></el-col>
-          <el-col v-if="forum.group==='足球'" :span="1" class="forum-list-item-icon"><img src="@/assets/image/football.png" alt="nba"></el-col>
-          <el-col v-if="forum.group==='全部'" :span="1" class="forum-list-item-icon"><img src="@/assets/image/bbs.png" alt="nba"></el-col>
-          <el-col v-if="forum.group==='篮球'" :span="1" class="forum-list-item-icon"><img src="@/assets/image/basketball.png" alt="nba"></el-col>
-          <el-col :span="23" class="forum-list-item-league">{{forum.group}}</el-col>
+        <el-col :span="24" v-for="(news,i) in topicsNewsList" :key="i" class="news-list-item">
 
-          <el-col :span="24" class="forum-list-item-title">
+          <el-col v-if="news.league_value==='nba'" :span="1" class="news-list-item-icon"><img
+            src="@/assets/image/nba.png" alt="nba"></el-col>
+          <el-col v-if="news.league_value==='la_liga'" :span="1" class="news-list-item-icon"><img
+            src="@/assets/image/laliga.png" alt="nba"></el-col>
+          <el-col v-if="news.league_value==='premier'" :span="1" class="news-list-item-icon"><img
+            src="@/assets/image/premier.png" alt="nba"></el-col>
+          <el-col v-if="news.league_value==='serie_a'" :span="1" class="news-list-item-icon"><img
+            src="@/assets/image/serie_a.png" alt="nba"></el-col>
+          <el-col :span="23" class="news-list-item-league">{{news.league}}</el-col>
+
+          <el-col :span="24" class="news-list-item-img">
+            <img :src="news.image | waterMark" alt="news">
+          </el-col>
+          <el-col :span="24" class="news-list-item-title">
             <nuxt-link
-              :to="{name: 'nsforum-groupId-articleId', params: { groupId:groupId,articleId:forum.article_id } }">
-              {{forum.title}}
+              :to="{name: 'nsnews-league-shorturl', params: { shorturl: news.shorturl,league:news.league_value } }">
+              {{news.title}}
             </nuxt-link>
           </el-col>
-          <el-col :span="24" class="forum-list-content">
-            <p v-for="(c,i) in forum.content" :key="i" v-if="c.type ===1" class="news-list-content-item">
+          <el-col :span="24" class="news-list-content">
+            <p v-for="(c,i) in news.content" :key="i" v-if="c.type ===1" class="news-list-content-item">
               {{c.content}}
             </p>
           </el-col>
-          <el-col :span="24" class="forum-list-item-time">{{forum.create_time | dateFormat}}</el-col>
+          <el-col :span="24" class="news-list-item-time">{{news.published_at}}</el-col>
         </el-col>
 
       </el-col>
@@ -81,7 +89,6 @@
 
       </el-col>
 
-
     </el-row>
   </el-main>
 </template>
@@ -91,47 +98,52 @@
   import base from '../../../api/base'
 
   export default {
-    name: 'index',
-    layout: 'nsforumLayout',
-    components:{
+    name: 'columnId',
+    layout: 'indexLayout',
+    components: {
       LeftAside
     },
     data () {
       return {
-        forumList: [], //帖子列表
-        topicsList: [], //专栏列表
+        topicsNewsList: [], //专栏新闻列表
         allTopicsList:[], // 所有的专栏
+        topicsList: [], //专栏列表
         topicsCount: 0, //专栏数量
-        forumOffset: 10,
+        newsOffset: 10,
         loading: false,
-        groupId:'',
+        league: '',
+        columnId:'',
 
       }
     },
-    head(){
+    head () {
       return {
-        title:'社区论坛-全民体育',
-        meta:[
-          {hid:'keywords',name:'keywords',content:'社区论坛,体育社区,体育论坛,篮球社区,足球社区'},
-          {hid:'description',name:'description',content:'全民体育社区论坛拥有专业的互动参与平台，以篮球、足球话题为主，拥有热情而不失理性的良好讨论氛围,观看优质比赛，加入兴趣圈子，参与社区讨论！'}
+        title: '全民体育_懂球迷的聚集地',
+        meta: [
+          {
+            hid: 'keywords',
+            name: 'keywords',
+            content: '全民体育,体育,新闻,直播,足球,篮球,资讯,比分,社区,数据,比赛'
+          },
+          {
+            hid: 'description',
+            name: 'description',
+            content: '全民体育为您带来足球，篮球比赛，即时比分，数据库等一系列数据，包括：英超，西甲，意甲，德甲，欧冠，中超，NBA，CBA，世界杯等各种比赛，让球迷及时准确的了解赛事进展和结果'
+          },
         ]
       }
     },
     async asyncData (context) {
 
-      let ns_device_id = 'website';
-      let limit = 10;
-      let offset = 0;
-      let group_id = context.params.groupId;
-
-      let forum_params = {
-        sort_type:'newest',
-        group_id:group_id
+      let columnId = context.params.columnId;
+      let topicNewsParams = {
+        column_id:columnId,
+        limit:10,
+        offset:0,
       }
 
-      let [forumListRes, topicsRes] = await Promise.all([
-        context.$axios.$get(`${base.sq}/v3/forum/articles/${limit}/${offset}`, { params: forum_params ,
-          headers:{ ns_device_id:ns_device_id }}),
+      let [topicNewsRes, topicsRes] = await Promise.all([
+        context.$axios.$get(`${base.sq}/GetColumnArticles`, { params: topicNewsParams }),
         context.$axios.$get(`${base.sq}/v2/all/columns`, {
           params: {}
         })
@@ -142,11 +154,30 @@
         })
       })
 
-      let forumList = []
+      let topicNewsList = []
 
-      // console.log(forumListRes)
-      if (forumListRes.Status === 1) {
-        forumList = forumListRes.Data.list
+      console.log(topicNewsRes);
+      if (topicNewsRes.Status === 1) {
+        topicNewsList = topicNewsRes.Data.articles
+        topicNewsList.forEach(item => {
+          // console.log(item)
+          let s = item.shorturl
+          let sArr = s.split('-')
+          item.league_value = sArr[0]
+
+          const article_id = item.article_id
+
+          context.$axios.$get(`${base.sq}/v2/GetArticleDetail`, {
+            params: {
+              article_id: article_id
+            }
+          }).then(
+            res => {
+              // console.log(res)
+              item.content = res.Data.content
+            }
+          )
+        })
       }
 
       let topicsList = []
@@ -159,11 +190,12 @@
       let allTopicsList = topicsList;
       topicsList = topicsList.slice(0, 4)
 
+      console.log(topicsList)
+      // console.log(newsList)
 
       return {
-        forumList: forumList,
+        topicsNewsList:topicNewsList,
         topicsList: topicsList,
-        groupId:context.params.groupId,
         allTopicsList:allTopicsList,
         topicsCount: topicsLength,
       }
@@ -171,19 +203,18 @@
     },
     methods: {
       handleScroll (e) {
-        // var scrollTop = e.target.documentElement.scrollTop || e.target.body.scrollTop      // 执行代码
 
-        let scrollTop=document.documentElement.scrollTop || document.body.scrollTop || e.target.body.scrollTop;
-        let offsetHeight = document.documentElement.offsetHeight;
-        let innerHeight = window.innerHeight;
+        let scrollTop = document.documentElement.scrollTop || document.body.scrollTop || e.target.body.scrollTop
+        let offsetHeight = document.documentElement.offsetHeight
+        let innerHeight = window.innerHeight
 
-        let bottomOfWindow = offsetHeight - scrollTop - innerHeight <=100
+        let bottomOfWindow = offsetHeight - scrollTop - innerHeight <= 100
 
-        let loading = this.loading;
+        let loading = this.loading
 
         if (bottomOfWindow && loading === false) {
-          this.loading = true;
-          this.getMoreForum(this.forumOffset);
+          this.loading = true
+          this.getMoreNews(this.newsOffset)
         }
 
       },
@@ -197,30 +228,51 @@
         this.$forceUpdate(this.topicsList =  that.allTopicsList.slice(start, end));
         // console.log(this.topicsList)
       },
-      getMoreForum (i) {
-        let ns_device_id = 'website';
-        let limit = 10;
-        let offset = this.forumOffset;
-        let group_id = this.groupId;
-
-        let forum_params = {
-          sort_type:'newest',
-          group_id:group_id
-        }
+      getMoreNews (i) {
         //下面这个很重要 记住哟
-        this.$axios.$get(`${base.sq}/v3/forum/articles/${limit}/${offset}`, { params: forum_params ,
-          headers:{ ns_device_id:ns_device_id }}).then(
-            res=>{
-              if (res.Status === 1){
-                // this.forumList = res.Data.list;
-                this.forumList = this.forumList.concat(res.Data.list)
-                this.forumOffset = i+10;
-                this.loading = false;
-              } else {
-                this.$message.error(res.ErrMsg)
-              }
 
+        let columnId = this.$route.params.columnId;
+        let newsOffset = this.newsOffset;
+
+        let topicNewsParams = {
+          column_id:columnId,
+          limit:10,
+          offset:newsOffset,
+        }
+
+        this.$axios.$get(`${base.sq}/GetColumnArticles`, { params: topicNewsParams }).then(
+          res => {
+
+            if (res.Status === 1) {
+              const topicsNewsList = res.Data.articles
+              topicsNewsList.forEach(item => {
+
+                let s = item.shorturl
+                let sArr = s.split('-')
+                item.league_value = sArr[0]
+
+                const article_id = item.article_id
+                const params = {
+                  article_id: article_id
+                }
+                this.$axios.$get(`${base.sq}/v2/GetArticleDetail`, { params: params }).then(
+                  res => {
+                    const content = res.Data.content
+                    this.$forceUpdate(item.content = content)
+
+                  }
+                )
+              })
+
+              this.topicsNewsList = this.topicsNewsList.concat(topicsNewsList)
+              this.newsOffset = i + 10
+              this.loading = false
+
+            } else {
+              this.$message.error(res.ErrMsg)
             }
+
+          }
         )
 
       }
@@ -228,19 +280,19 @@
     },
     watch: {
       $route (to, from) {
-        this.groupId = to.params.groupId;
+        this.columnId = to.params.columnId
       }
     },
     computed: {},
     mounted () {
-      this.groupId = this.$route.params.groupId;
+      this.columnId = this.$route.params.columnId;
       window.addEventListener('scroll', this.handleScroll, true)
     },
     destroyed () {
-      window.removeEventListener('scroll', this.handleScroll,true)
+      window.removeEventListener('scroll', this.handleScroll, true)
     },
     deactivated () {
-      window.removeEventListener('scroll', this.handleScroll,true)
+      window.removeEventListener('scroll', this.handleScroll, true)
     }
 
   }
@@ -260,17 +312,17 @@
   }
 
 
-  .forum-list {
+  .news-list {
     padding-left: 25px;
     overflow: auto;
     /*height: 900px;*/
   }
 
-  .forum-list::-webkit-scrollbar {
+  .news-list::-webkit-scrollbar {
     /*display: none;*/
   }
 
-  .forum-list-item {
+  .news-list-item {
     /*height: 490px;*/
     margin-top: 30px;
     padding: 14px;
@@ -279,21 +331,21 @@
     box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.1);
   }
 
-  .forum-list-item:first-child {
+  .news-list-item:first-child {
     margin-top: 0px !important;
   }
 
-  .forum-list-item-icon {
+  .news-list-item-icon {
     text-align: left;
     height: 25px;
   }
 
-  .forum-list-item-icon img {
+  .news-list-item-icon img {
     height: 100%;
 
   }
 
-  .forum-list-item-league {
+  .news-list-item-league {
     text-align: left;
     font-size: 12px;
     font-family: PingFangSC-Medium, PingFang SC;
@@ -302,13 +354,13 @@
     line-height: 25px;
   }
 
-  .forum-list-item-title {
+  .news-list-item-title {
     margin-top: 10px;
     text-align: left;
 
   }
 
-  .forum-list-item-title a {
+  .news-list-item-title a {
     font-size: 20px;
     font-family: PingFangSC-Medium, PingFang SC;
     font-weight: 500;
@@ -322,7 +374,7 @@
     -webkit-box-orient: vertical;
   }
 
-  .forum-list-content {
+  .news-list-content {
     text-align: left;
     height: 30px;
     overflow: hidden;
@@ -331,7 +383,7 @@
 
   }
 
-  .forum-list-content p {
+  .news-list-content p {
     margin: 0;
     padding: 0;
     color: #666666;
@@ -340,13 +392,31 @@
     line-height: 30px;
   }
 
-  .forum-list-item-time {
+  .news-list-item-img {
+    margin-top: 10px;
+    height: 300px;
+    overflow: hidden;
+  }
+
+  .news-list-item-img img {
+    /*max-height: 100%;*/
+    max-width: 100%;
+    border-radius: 8px;
+  }
+
+  .news-list-item-time {
     text-align: left;
+    text-indent: 10px;
     font-size: 10px;
     font-family: PingFangSC-Medium, PingFang SC;
     font-weight: 500;
     color: rgba(102, 102, 102, 1);
 
+  }
+
+  .el-image {
+    position: static;
+    border-radius: 12px;
   }
 
 
@@ -455,6 +525,10 @@
     font-weight:500;
     color:rgba(255,255,255,1);
     line-height: 26px;
+  }
+
+  .nuxt-link-active {
+    background: #FFFFFF !important;
   }
 
 

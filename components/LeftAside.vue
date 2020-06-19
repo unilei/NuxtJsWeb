@@ -43,8 +43,9 @@
     <el-col :span="24" class="aside-nav-item ">
       <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/social.png" alt="basketball">
       </el-col>
-      <nuxt-link :to="{name:'nsforum-sportType',params:{sportType:'basketball'}}">社区活动</nuxt-link>
+      <nuxt-link v-if="socialGroupId" :to="{name:'nsforum-groupId',params:{groupId:socialGroupId}}">社区活动</nuxt-link>
     </el-col>
+
   </el-col>
 
 </template>
@@ -57,20 +58,29 @@
     data(){
       return {
         footballGroupList:[],
-        basketballGroupList:[]
+        basketballGroupList:[],
+        socialGroupId:'',
       }
     },
     mounted () {
       this.getFootballGroupList();
       this.getBasketballGroupList();
+
     },
     methods:{
       getFootballGroupList:function () {
           this.$axios.$get(`${base.sq}/v3/forum/football/groups`).then(
             res=>{
-              console.log(res)
+              // console.log(res)
               if (res.Status === 1){
                 this.footballGroupList = res.Data.list;
+                this.footballGroupList.forEach(item=>{
+                  if (item.name === '全部'){
+                    this.socialGroupId = item.id;
+                  }
+                })
+
+                // console.log(this.socialGroupId)
               }
             }
           )
@@ -78,7 +88,7 @@
       getBasketballGroupList:function () {
         this.$axios.$get(`${base.sq}/v3/forum/basketball/groups`).then(
           res=>{
-            console.log(res)
+            // console.log(res)
             if (res.Status === 1){
               this.basketballGroupList = res.Data.list;
             }

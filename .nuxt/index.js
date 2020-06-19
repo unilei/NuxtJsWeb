@@ -11,6 +11,7 @@ import { setContext, getLocation, getRouteData, normalizeError } from './utils'
 
 /* Plugins */
 
+import nuxt_plugin_plugin_3ceb5ba2 from 'nuxt_plugin_plugin_3ceb5ba2' // Source: .\\components\\plugin.js (mode: 'all')
 import nuxt_plugin_workbox_fa56eabe from 'nuxt_plugin_workbox_fa56eabe' // Source: .\\workbox.js (mode: 'client')
 import nuxt_plugin_nuxticons_9c012cba from 'nuxt_plugin_nuxticons_9c012cba' // Source: .\\nuxt-icons.js (mode: 'all')
 import nuxt_plugin_axios_53a5b2c5 from 'nuxt_plugin_axios_53a5b2c5' // Source: .\\axios.js (mode: 'all')
@@ -47,7 +48,7 @@ Vue.use(Meta, {"keyName":"head","attribute":"data-n-head","ssrAttribute":"data-n
 
 const defaultTransition = {"name":"page","mode":"out-in","appear":false,"appearClass":"appear","appearActiveClass":"appear-active","appearToClass":"appear-to"}
 
-async function createApp (ssrContext) {
+async function createApp(ssrContext, config = {}) {
   const router = await createRouter(ssrContext)
 
   // Create Root instance
@@ -123,7 +124,7 @@ async function createApp (ssrContext) {
     ssrContext
   })
 
-  const inject = function (key, value) {
+  function inject(key, value) {
     if (!key) {
       throw new Error('inject(key, value) has no key provided')
     }
@@ -134,6 +135,10 @@ async function createApp (ssrContext) {
     key = '$' + key
     // Add into app
     app[key] = value
+    // Add into context
+    if (!app.context[key]) {
+      app.context[key] = value
+    }
 
     // Check if plugin not already installed
     const installKey = '__nuxt_' + key + '_installed__'
@@ -153,7 +158,21 @@ async function createApp (ssrContext) {
     })
   }
 
+  // Inject runtime config as $config
+  inject('config', config)
+
+  // Add enablePreview(previewData = {}) in context for plugins
+  if (process.static && process.client) {
+    app.context.enablePreview = function (previewData = {}) {
+      app.previewData = Object.assign({}, previewData)
+      inject('preview', previewData)
+    }
+  }
   // Plugin execution
+
+  if (typeof nuxt_plugin_plugin_3ceb5ba2 === 'function') {
+    await nuxt_plugin_plugin_3ceb5ba2(app.context, inject)
+  }
 
   if (process.client && typeof nuxt_plugin_workbox_fa56eabe === 'function') {
     await nuxt_plugin_workbox_fa56eabe(app.context, inject)
@@ -177,6 +196,13 @@ async function createApp (ssrContext) {
 
   if (process.client && typeof nuxt_plugin_loading_71bc50c8 === 'function') {
     await nuxt_plugin_loading_71bc50c8(app.context, inject)
+  }
+
+  // Lock enablePreview in context
+  if (process.static && process.client) {
+    app.context.enablePreview = function () {
+      console.warn('You cannot call enablePreview() outside a plugin.')
+    }
   }
 
   // If server-side, wait for async component to be resolved first

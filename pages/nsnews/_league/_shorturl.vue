@@ -3,15 +3,19 @@
     <!-- 面包屑   -->
     <el-row>
       <el-col :span="24" class="news-bread">
-          <el-col :span="2" class="news-bread-l">
-            <el-col v-if="league==='nba'" :span="12" class="news-bread-l-img"><img src="@/assets/image/nba.png" alt="nba"></el-col>
-            <el-col v-if="league==='la_liga'" :span="12" class="news-bread-l-img"><img src="@/assets/image/laliga.png" alt="nba"></el-col>
-            <el-col v-if="league==='premier'" :span="12" class="news-bread-l-img"><img src="@/assets/image/premier.png" alt="nba"></el-col>
-            <el-col v-if="league==='serie_a'" :span="12" class="news-bread-l-img"><img src="@/assets/image/serie_a.png" alt="nba"></el-col>
-            <el-col :span="12" class="news-bread-l-text">{{league_value}}</el-col>
+        <el-col :span="2" class="news-bread-l">
+          <el-col v-if="league==='nba'" :span="12" class="news-bread-l-img"><img src="@/assets/image/nba.png" alt="nba">
           </el-col>
+          <el-col v-if="league==='la_liga'" :span="12" class="news-bread-l-img"><img src="@/assets/image/laliga.png"
+                                                                                     alt="nba"></el-col>
+          <el-col v-if="league==='premier'" :span="12" class="news-bread-l-img"><img src="@/assets/image/premier.png"
+                                                                                     alt="nba"></el-col>
+          <el-col v-if="league==='serie_a'" :span="12" class="news-bread-l-img"><img src="@/assets/image/serie_a.png"
+                                                                                     alt="nba"></el-col>
+          <el-col :span="12" class="news-bread-l-text">{{league_value}}</el-col>
+        </el-col>
         <el-col :span="22" class="news-bread-r">
-          首页 -  <span>{{league_value}}</span>
+          首页 - <span>{{league_value}}</span>
         </el-col>
       </el-col>
     </el-row>
@@ -28,7 +32,8 @@
 
         <el-col :span="24" class="news-container-l-item" v-for="(hotNews,i) in hotNewsList" :key="i">
           <nuxt-link
-            :to="{name: 'nsnews-league-shorturl', params: { shorturl: hotNews.shorturl,league:hotNews.league_value } }" exact>
+            :to="{name: 'nsnews-league-shorturl', params: { shorturl: hotNews.shorturl,league:hotNews.league_value } }"
+            exact>
             {{hotNews.title}}
           </nuxt-link>
 
@@ -40,7 +45,8 @@
         </el-col>
         <el-col :span="24" class="news-container-r-profile">
           <el-col :span="12" class="news-container-r-profile-1">
-            <el-col :span="2" class="news-container-r-profile-1-1"><img src="@/assets/image/serie_a.png" alt="nba"></el-col>
+            <el-col :span="2" class="news-container-r-profile-1-1"><img src="@/assets/image/serie_a.png" alt="nba">
+            </el-col>
             <el-col :span="6" class="news-container-r-profile-1-2">
               {{newsDetail.author.name}} <br>
               <span>足球热评人</span>
@@ -50,21 +56,27 @@
             </el-col>
           </el-col>
           <el-col :span="12" class="news-container-r-profile-2">
-            <el-col :span="24" class="news-container-r-profile-2-1">
-              <el-col :span="16">分享到 : </el-col>
-              <el-col :span="2"><img src="@/assets/image/wechat.png" alt="1"></el-col>
-              <el-col :span="2"><img src="@/assets/image/wxzone.png" alt="1"></el-col>
-              <el-col :span="2"><img src="@/assets/image/qq.png" alt="1"></el-col>
-              <el-col :span="2"><img src="@/assets/image/qzone.png" alt="1"></el-col>
+            <el-col :span="24" class="social-share" data-initialized="true">
+              <span>分享到 :</span>
+              <a href="#" class="social-share-icon icon-wechat"></a>
+              <a href="#" class="social-share-icon icon-weibo"></a>
+              <a href="#" class="social-share-icon icon-qq"></a>
+              <a href="#" class="social-share-icon icon-qzone"></a>
             </el-col>
+            <!--            <el-col :span="24" class="news-container-r-profile-2-1">-->
+            <!--              <el-col :span="16">分享到 : </el-col>-->
+            <!--              <el-col :span="2"><img src="@/assets/image/wechat.png" alt="1"></el-col>-->
+            <!--              <el-col :span="2"><img src="@/assets/image/wxzone.png" alt="1"></el-col>-->
+            <!--              <el-col :span="2"><img src="@/assets/image/qq.png" alt="1"></el-col>-->
+            <!--              <el-col :span="2"><img src="@/assets/image/qzone.png" alt="1"></el-col>-->
+            <!--            </el-col>-->
             <el-col :span="24" class="news-container-r-profile-2-2">
               {{newsDetail.published_at}}
             </el-col>
           </el-col>
-
         </el-col>
 
-        <el-col :span="24" class="news-container-r-content" >
+        <el-col :span="24" class="news-container-r-content">
           <div v-for="(content,index) in newsDetail.content" :key="index">
             <p v-if="content.type == 1">{{content.content}}</p>
             <img v-if="content.type == 2" :src="content.content | waterMark" alt="112">
@@ -77,7 +89,7 @@
 
         <el-col :span="24" class="news-container-r-like">
           <img src="@/assets/image/like-icon-1.png" alt="icon"> <br>
-          已有 {{newsDetail.likes}}   人点赞
+          已有 {{newsDetail.likes}} 人点赞
         </el-col>
 
 
@@ -102,52 +114,53 @@
         <el-col :span="24">
           <el-col :span="24" class="comment-all-title">全部评论</el-col>
           <el-col :span="24" v-for="(newsReply,index) in newsReplyList" :key="index" class="list-item">
-                <el-col :span="2" class="comment-avatar">
-                  <img
-                    v-if="newsReply.author.avatar_url != null && newsReply.author.avatar_url !== '' && newsReply.author.avatar_url !== 'https://nsports-entity.171tiyu.com/'"
-                    :src="newsReply.author.avatar_url" alt="avatar">
-                  <img v-if="newsReply.author.avatar_url == null || newsReply.author.avatar_url === ''
+            <el-col :span="2" class="comment-avatar">
+              <img
+                v-if="newsReply.author.avatar_url != null && newsReply.author.avatar_url !== '' && newsReply.author.avatar_url !== 'https://nsports-entity.171tiyu.com/'"
+                :src="newsReply.author.avatar_url" alt="avatar">
+              <img v-if="newsReply.author.avatar_url == null || newsReply.author.avatar_url === ''
                       || newsReply.author.avatar_url==='https://nsports-entity.171tiyu.com/'"
-                       src="https://aloss.hotforest.cn/web/default-header.png" alt="avatar">
-                </el-col>
-                <el-col :span="6" class="comment-nickname">
-                  {{newsReply.author.nickName}}
-                </el-col>
-                <el-col :span="6" :offset="10" class="comment-time">{{newsReply.create_time | dateForHour }}</el-col>
+                   src="https://aloss.hotforest.cn/web/default-header.png" alt="avatar">
+            </el-col>
+            <el-col :span="6" class="comment-nickname">
+              {{newsReply.author.nickName}}
+            </el-col>
+            <el-col :span="6" :offset="10" class="comment-time">{{newsReply.create_time | dateForHour }}</el-col>
 
-                <el-col :span="22" :offset="2" class="comment-content" v-for="(content,i) in newsReply.content" :key="i">
-                  <p v-if="content.type == 1">
-                    {{content.content}}
-                  </p>
-                </el-col>
+            <el-col :span="22" :offset="2" class="comment-content" v-for="(content,i) in newsReply.content" :key="i">
+              <p v-if="content.type == 1">
+                {{content.content}}
+              </p>
+            </el-col>
 
-                <el-col :span="22" :offset="2" class="comment-reply-container" v-show="newsReply.replyReply">
-                  <el-col :span="24" v-for="reply in newsReply.replyReply" :key="reply.reply_id">
-                    <el-col :span="23" :offset="1" class="comment-reply-t">
-                      {{reply.author.nickName}} : <span v-for="(c,ii) in reply.content" :key="ii"> {{c.content}} </span>
-                    </el-col>
-                    <el-col :span="23" :offset="1" class="comment-reply-d">
-                      <el-col :span="2" class="comment-reply-like-img"><img src="https://aloss.hotforest.cn/web/news-like.png" alt="like"></el-col>
-                      <el-col :span="2" class="comment-reply-like">{{reply.likes_count}}</el-col>
-                      <el-col :span="20" class="comment-reply-time">{{reply.create_time | dateForHour}}</el-col>
-                    </el-col>
-                  </el-col>
+            <el-col :span="22" :offset="2" class="comment-reply-container" v-show="newsReply.replyReply">
+              <el-col :span="24" v-for="reply in newsReply.replyReply" :key="reply.reply_id">
+                <el-col :span="23" :offset="1" class="comment-reply-t">
+                  {{reply.author.nickName}} : <span v-for="(c,ii) in reply.content" :key="ii"> {{c.content}} </span>
                 </el-col>
-
-                <el-col :span="24" class="comment-like-container">
-                  <el-col :span="2" :offset="18" class="comment-like-img"><img
-                    src="https://aloss.hotforest.cn/web/news-like.png" alt=""></el-col>
-                  <el-col :span="2" class="comment-like">{{newsReply.likes_count}}</el-col>
-                  <el-col :span="2" class="comment-button">
-                    <button v-if="index !== showComment" @click="isShowComment(index)">回复</button>
-                    <button class="shouqi" v-if="index === showComment" @click="isHideComment(index)">收起</button>
-                  </el-col>
-
-                  <el-col :span="24" v-if="index === showComment" class="comment-input">
-                    <input type="text" v-model="replyReplyContent">
-                    <button @click="replyReplyNews(2,newsReply.reply_id)">发表</button>
-                  </el-col>
+                <el-col :span="23" :offset="1" class="comment-reply-d">
+                  <el-col :span="2" class="comment-reply-like-img"><img
+                    src="https://aloss.hotforest.cn/web/news-like.png" alt="like"></el-col>
+                  <el-col :span="2" class="comment-reply-like">{{reply.likes_count}}</el-col>
+                  <el-col :span="20" class="comment-reply-time">{{reply.create_time | dateForHour}}</el-col>
                 </el-col>
+              </el-col>
+            </el-col>
+
+            <el-col :span="24" class="comment-like-container">
+              <el-col :span="2" :offset="18" class="comment-like-img"><img
+                src="https://aloss.hotforest.cn/web/news-like.png" alt=""></el-col>
+              <el-col :span="2" class="comment-like">{{newsReply.likes_count}}</el-col>
+              <el-col :span="2" class="comment-button">
+                <button v-if="index !== showComment" @click="isShowComment(index)">回复</button>
+                <button class="shouqi" v-if="index === showComment" @click="isHideComment(index)">收起</button>
+              </el-col>
+
+              <el-col :span="24" v-if="index === showComment" class="comment-input">
+                <input type="text" v-model="replyReplyContent">
+                <button @click="replyReplyNews(2,newsReply.reply_id)">发表</button>
+              </el-col>
+            </el-col>
           </el-col>
           <el-col :span="24" class="comment-no-more">
             没有更多了
@@ -159,11 +172,11 @@
 
       <!-- 登陆弹框-->
       <Login v-bind:dialogFormVisible="dialogFormVisible"
-             v-bind:dialogMobileLogin = "dialogMobileLogin"
-             v-bind:wxIsLoginShow = "wxIsLoginShow"
-             @closeDialog = "closeDialog"
-             @wxDialog = "wxDialog"
-             @mobileDialog = "mobileDialog"
+             v-bind:dialogMobileLogin="dialogMobileLogin"
+             v-bind:wxIsLoginShow="wxIsLoginShow"
+             @closeDialog="closeDialog"
+             @wxDialog="wxDialog"
+             @mobileDialog="mobileDialog"
       ></Login>
     </el-row>
   </el-main>
@@ -178,8 +191,8 @@
 
   export default {
     name: 'shorturl',
-    layout:'nsnewsLayout',
-    components:{
+    layout: 'nsnewsLayout',
+    components: {
       Login
     },
     data () {
@@ -224,9 +237,9 @@
         league_value: '',
 
         reply_total_count: 0,
-        reply_count:0,
+        reply_count: 0,
         loading: false,
-        no_more:false,
+        no_more: false,
 
       }
     },
@@ -265,36 +278,49 @@
       }
     },
     watchQuery: ['shorturl', 'league'],
-    computed: {
-    },
+    computed: {},
     destroyed () {
-      window.removeEventListener('scroll', this.handleScroll,true)
+      window.removeEventListener('scroll', this.handleScroll, true)
     },
     deactivated () {
-      window.removeEventListener('scroll', this.handleScroll,true)
+      window.removeEventListener('scroll', this.handleScroll, true)
     },
     mounted () {
+
+      let $config = {
+        url: window.location.href, // 网址，默认使用 window.location.href
+        summary: document.title,
+        source: window.location.href, // 来源（QQ空间会用到）, 默认读取head标签：<meta name="site" content="http://overtrue" />
+        title: document.title, // 标题，默认读取 document.title 或者 <meta name="title" content="share.js" />
+        origin: '', // 分享 @ 相关 twitter 账号
+        description: document.title, // 描述, 默认读取head标签：<meta name="description" content="PHP弱类型的实现原理分析" />
+        image: '', // 图片, 默认取网页中第一个img标签
+        wechatQrcodeTitle: '微信扫一扫：分享', // 微信二维码提示文字
+        wechatQrcodeHelper: '<p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>'
+      }
+      socialShare('.social-share', $config)
+
+
       window.addEventListener('scroll', this.handleScroll, true)
       this.league = this.$route.params.league
       if (this.league === 'all') {
         this.league_value = '全部新闻'
       }
       if (this.league === 'nba') {
-        this.league_value = 'NBA';
+        this.league_value = 'NBA'
       }
       if (this.league === 'premier') {
         this.league_value = '英超'
       }
       if (this.league === 'serie_a') {
-        this.league_value = '意甲';
+        this.league_value = '意甲'
       }
       if (this.league === 'la_liga') {
-        this.league_value = '西甲';
+        this.league_value = '西甲'
       }
       this.shorturl = this.$route.params.shorturl
       this.avatar_url = localStorage.getItem('avatar_url')
       this.getReplyList(this.article_id, 0)
-
 
     },
 
@@ -326,7 +352,7 @@
           articleType: 3,
           limit: 4,
           offset: 0,
-          author_filter:'["6","7","8","9"]'
+          author_filter: '["6","7","8","9"]'
         }
       } else {
         hot_params = {
@@ -334,7 +360,7 @@
           league: league,
           limit: 4,
           offset: 0,
-          author_filter:'["6","7","8","9"]'
+          author_filter: '["6","7","8","9"]'
         }
       }
 
@@ -352,13 +378,13 @@
         })
       })
 
-      let news = [];
-      let hotNews = [];
-      if (newsDetail.data.Status === 1){
-        news =  newsDetail.data.Data;
+      let news = []
+      let hotNews = []
+      if (newsDetail.data.Status === 1) {
+        news = newsDetail.data.Data
       }
-      if (hotNewsList.data.Status === 1){
-        hotNews = hotNewsList.data.Data.articles;
+      if (hotNewsList.data.Status === 1) {
+        hotNews = hotNewsList.data.Data.articles
         hotNews.forEach(item => {
           // console.log(item)
           let s = item.shorturl
@@ -384,8 +410,8 @@
       return {
         league: league,
         league_value: league_value,
-        newsDetail:news,
-        hotNewsList:hotNews ,
+        newsDetail: news,
+        hotNewsList: hotNews,
         newsPublishFormatTime: getFormatTime(newsDetail.data.Data.timestamp),
         article_id: newsDetail.data.Data.article_id
       }
@@ -395,17 +421,17 @@
       handleScroll (e) {
         // var scrollTop = e.target.documentElement.scrollTop || e.target.body.scrollTop      // 执行代码
 
-        let scrollTop=document.documentElement.scrollTop || document.body.scrollTop || e.target.body.scrollTop;
-        let offsetHeight = document.documentElement.offsetHeight;
-        let innerHeight = window.innerHeight;
+        let scrollTop = document.documentElement.scrollTop || document.body.scrollTop || e.target.body.scrollTop
+        let offsetHeight = document.documentElement.offsetHeight
+        let innerHeight = window.innerHeight
 
-        let bottomOfWindow = offsetHeight - scrollTop - innerHeight <=100
+        let bottomOfWindow = offsetHeight - scrollTop - innerHeight <= 100
 
-        let loading = this.loading;
+        let loading = this.loading
 
         if (bottomOfWindow && loading === false) {
-          this.loading = true;
-          this.showMoreComment(this.newsOffset);
+          this.loading = true
+          this.showMoreComment(2)
         }
 
       },
@@ -462,7 +488,7 @@
               })
             })
 
-            this.reply_count += newsReplyList.length;
+            this.reply_count += newsReplyList.length
             this.newsReplyList = this.newsReplyList.concat(newsReplyList)
             this.offsetComment = i + 5
 
@@ -501,10 +527,10 @@
             })
             // console.log(newsReplyList)
             this.newsReplyList = newsReplyList
-            this.reply_total_count = res.data.Data.totalCount;
+            this.reply_total_count = res.data.Data.totalCount
 
-            this.reply_count += newsReplyList.length;
-            this.offsetComment = offset+2
+            this.reply_count += newsReplyList.length
+            this.offsetComment = offset + 2
             console.log(this.offsetComment)
           }
         )
@@ -530,7 +556,7 @@
         } else {
 
           if (nickname === '' || nickname === null) {
-            this.mobileDialog();
+            this.mobileDialog()
           } else {
             if (this.replyContent === '') {
               return this.$message({
@@ -587,7 +613,7 @@
         } else {
 
           if (nickname === '' || nickname === null) {
-            this.mobileDialog();
+            this.mobileDialog()
           } else {
             if (this.replyReplyContent === '') {
               return this.$message({
@@ -646,7 +672,6 @@
         this.showCommentReply = -1
       },
 
-
     }
 
   }
@@ -663,67 +688,75 @@
     width: 1440px;
   }
 
-  .news-bread{
+  .news-bread {
     height: 60px;
-    box-shadow:0px 2px 4px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
     background-color: #ffffff;
   }
+
   .news-bread-l {
     margin-top: 15px;
     border-right: 1px solid #C8C8C8;
     line-height: 30px;
-    font-size:12px;
-    font-family:PingFangSC-Medium,PingFang SC;
-    font-weight:500;
-    color:rgba(51,51,51,1);
+    font-size: 12px;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
   }
-  .news-bread-l-img{
+
+  .news-bread-l-img {
     height: 30px;
     text-align: right;
   }
-  .news-bread-l-img img{
+
+  .news-bread-l-img img {
     height: 100%;
   }
-  .news-bread-l-text{
+
+  .news-bread-l-text {
     text-align: center;
   }
 
-  .news-bread-r{
+  .news-bread-r {
     text-align: left;
     text-indent: 20px;
     margin-top: 15px;
     line-height: 30px;
-    font-size:16px;
-    font-family:PingFangSC-Regular,PingFang SC;
-    font-weight:400;
-    color:rgba(102,102,102,1);
+    font-size: 16px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(102, 102, 102, 1);
   }
-  .news-bread-r span{
+
+  .news-bread-r span {
     color: #333333;
   }
 
-  .news-container{
+  .news-container {
     padding-left: 20px;
     padding-right: 20px;
     margin: 0 auto;
     margin-top: 14px;
 
   }
-  .news-container-l{
+
+  .news-container-l {
     height: 660px;
 
     background-color: #F8F8F8;
 
   }
-  .news-container-l-item{
+
+  .news-container-l-item {
     /*height: 100px;*/
 
   }
-  .news-container-l-item a{
+
+  .news-container-l-item a {
     color: #666666;
-    font-size:14px;
-    font-family:PingFangSC-Regular,PingFang SC;
-    font-weight:400;
+    font-size: 14px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
     display: block;
     height: 100px;
     padding-top: 30px;
@@ -731,112 +764,118 @@
     line-height: 30px;
     padding-left: 10px;
     padding-right: 10px;
-    border-bottom:1px solid  #E6E6E6;
+    border-bottom: 1px solid #E6E6E6;
   }
 
-  .news-container-r{
+  .news-container-r {
     /*height: 800px;*/
     padding-left: 100px;
     padding-right: 110px;
     background-color: #ffffff;
   }
 
-  .news-container-r-title{
-    font-size:28px;
-    font-family:PingFangSC-Regular,PingFang SC;
-    font-weight:400;
-    color:rgba(51,51,51,1);
+  .news-container-r-title {
+    font-size: 28px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
     padding-top: 10px;
     text-align: left;
     line-height: 40px;
   }
 
-  .news-container-r-profile{
+  .news-container-r-profile {
     margin-top: 10px;
     padding-bottom: 10px;
     border-bottom: 1px solid #E4E4E4;
   }
 
-  .news-container-r-profile-1{
+  .news-container-r-profile-1 {
     text-align: left;
   }
-  .news-container-r-profile-1-1{
-      line-height: 60px;
+
+  .news-container-r-profile-1-1 {
+    line-height: 60px;
   }
-  .news-container-r-profile-1-1 img{
+
+  .news-container-r-profile-1-1 img {
     height: 30px;
     width: 30px;
     margin-top: 14px;
     border-radius: 30px;
   }
 
-  .news-container-r-profile-1-2{
-    font-size:12px;
-    font-family:PingFangSC-Regular,PingFang SC;
-    font-weight:400;
-    color:rgba(51,51,51,1);
-    line-height:30px;
+  .news-container-r-profile-1-2 {
+    font-size: 12px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+    line-height: 30px;
   }
-  .news-container-r-profile-1-2 span{
-    font-size:10px;
-    font-family:PingFangSC-Regular,PingFang SC;
-    font-weight:400;
-    color:rgba(131,131,131,1);
-    line-height:30px;
+
+  .news-container-r-profile-1-2 span {
+    font-size: 10px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(131, 131, 131, 1);
+    line-height: 30px;
   }
-  .news-container-r-profile-1-3{
+
+  .news-container-r-profile-1-3 {
     height: 60px;
   }
-  .news-container-r-profile-1-3 button{
+
+  .news-container-r-profile-1-3 button {
     outline: none;
     border: none;
-    width:70px;
-    height:30px;
-    background:rgba(118,188,255,1);
-    border-radius:2px;
+    width: 70px;
+    height: 30px;
+    background: rgba(118, 188, 255, 1);
+    border-radius: 2px;
     margin-top: 15px;
 
-    font-size:12px;
-    font-family:PingFangSC-Medium,PingFang SC;
-    font-weight:500;
-    color:rgba(255,255,255,1);
+    font-size: 12px;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 1);
   }
 
-  .news-container-r-profile-2{
+  .news-container-r-profile-2 {
     text-align: right;
   }
 
-  .news-container-r-profile-2-1{
+  .news-container-r-profile-2-1 {
     height: 30px;
     line-height: 30px;
-    font-size:12px;
-    font-family:PingFangSC-Regular,PingFang SC;
-    font-weight:400;
-    color:rgba(51,51,51,1);
+    font-size: 12px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
   }
 
-  .news-container-r-profile-2-1 img{
+  .news-container-r-profile-2-1 img {
     width: 25px;
     height: 25px;
     margin-top: 2px;
   }
 
-  .news-container-r-profile-2-2{
-    font-size:10px;
-    font-family:PingFangSC-Regular,PingFang SC;
-    font-weight:400;
-    color:rgba(102,102,102,1);
+  .news-container-r-profile-2-2 {
+    font-size: 10px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(102, 102, 102, 1);
     line-height: 30px;
   }
 
 
-  .news-container-r-content{
+  .news-container-r-content {
     padding-bottom: 20px;
     padding-top: 14px;
     padding-left: 10px;
     padding-right: 10px;
   }
-  .news-container-r-content p{
+
+  .news-container-r-content p {
     margin-bottom: 0;
     /*text-indent: 20px;*/
     color: #333333;
@@ -846,34 +885,41 @@
     line-height: 30px;
   }
 
-  .news-container-r-content img{
+  .news-container-r-content img {
     width: 100%;
     margin-top: 10px;
   }
 
-  .news-container-r-tags{
+  .news-container-r-tags {
     text-align: left;
-    font-size:18px;
-    font-family:PingFangSC-Regular,PingFang SC;
-    font-weight:400;
-    color:rgba(102,102,102,1);
-    line-height:25px;
+    font-size: 18px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(102, 102, 102, 1);
+    line-height: 25px;
     padding-left: 10px;
     padding-right: 10px;
   }
 
-  .news-container-r-like{
+  .news-container-r-like {
     padding-bottom: 20px;
     padding-top: 20px;
-    font-size:12px;
-    font-family:PingFangSC-Regular,PingFang SC;
-    font-weight:400;
-    color:rgba(153,153,153,1);
+    font-size: 12px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(153, 153, 153, 1);
   }
-  .news-container-r-like img{
+
+  .news-container-r-like img {
     width: 50px;
     height: 50px;
   }
+
+  /deep/ .social-share .icon-wechat .wechat-qrcode {
+    top: 40px !important;
+  }
+
+
   .nuxt-link-active {
     color: #333333 !important;
     background: #FFFFFF !important;

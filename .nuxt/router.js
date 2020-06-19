@@ -17,6 +17,7 @@ const _1c5fed01 = () => interopDefault(import('..\\pages\\bbs\\detail\\_articleI
 const _605e366b = () => interopDefault(import('..\\pages\\bbs\\list\\_sportType.vue' /* webpackChunkName: "pages_bbs_list__sportType" */))
 const _09eb0242 = () => interopDefault(import('..\\pages\\sportNews\\detail\\_shorturl.vue' /* webpackChunkName: "pages_sportNews_detail__shorturl" */))
 const _53d4c6ee = () => interopDefault(import('..\\pages\\sportNews\\list\\_league.vue' /* webpackChunkName: "pages_sportNews_list__league" */))
+const _5e4552fc = () => interopDefault(import('..\\pages\\nscolumn\\_columnId\\index.vue' /* webpackChunkName: "pages_nscolumn__columnId_index" */))
 const _a2e03100 = () => interopDefault(import('..\\pages\\nsforum\\_groupId\\index.vue' /* webpackChunkName: "pages_nsforum__groupId_index" */))
 const _752d722c = () => interopDefault(import('..\\pages\\nsforum\\_sportType\\index.vue' /* webpackChunkName: "pages_nsforum__sportType_index" */))
 const _5e8b9e61 = () => interopDefault(import('..\\pages\\nsnews\\_league\\index.vue' /* webpackChunkName: "pages_nsnews__league_index" */))
@@ -99,6 +100,10 @@ export const routerOptions = {
     path: "/sportNews/list/:league?",
     component: _53d4c6ee,
     name: "sportNews-list-league"
+  }, {
+    path: "/nscolumn/:columnId?",
+    component: _5e4552fc,
+    name: "nscolumn-columnId"
   }, {
     path: "/nsforum/:groupId?",
     component: _a2e03100,

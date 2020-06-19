@@ -68,29 +68,24 @@
           </div>
 
           <div class="nav-menu-item">
-<!--            <nuxt-link :to="{name:'nsforum-sportType',params:{sportType:'football'}}">足球社区</nuxt-link>-->
             <a href="javascript:;">足球社区</a>
+            <div class="nav-sub-menu">
+                <div class="nav-sub-menu-item" v-for="(fg,i) in footballGroupList" :key="i">
+                  <nuxt-link :to="{name:'nsforum-groupId',params:{groupId:fg.id}}">{{fg.name}}</nuxt-link>
+                </div>
+            </div>
           </div>
           <div class="nav-menu-item">
-<!--            <nuxt-link :to="{name:'nsforum-sportType',params:{sportType:'basketball'}}">篮球社区</nuxt-link>-->
             <a href="javascript:;">篮球社区</a>
+            <div class="nav-sub-menu">
+              <div class="nav-sub-menu-item" v-for="(bg,i) in basketballGroupList" :key="i">
+                <nuxt-link :to="{name:'nsforum-groupId',params:{groupId:bg.id}}">{{bg.name}}</nuxt-link>
+              </div>
+            </div>
+
           </div>
           <div class="nav-menu-item">
-            <nuxt-link :to="{name:'nsforum-sportType',params:{sportType:'aaaaaaa'}}">社区活动</nuxt-link>
-          </div>
-          <div class="nav-menu-item">
-            <el-dropdown>
-                <span class="el-dropdown-link">
-                  ...
-                </span>
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item >黄金糕</el-dropdown-item>
-                <el-dropdown-item >狮子头</el-dropdown-item>
-                <el-dropdown-item >螺蛳粉</el-dropdown-item>
-                <el-dropdown-item >双皮奶</el-dropdown-item>
-                <el-dropdown-item >蚵仔煎</el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
+            <nuxt-link  :to="{name:'nsforum-groupId',params:{groupId:socialGroupId}}">社区活动</nuxt-link>
           </div>
 
           <div class="header-top">
@@ -148,6 +143,7 @@
 <script>
   import { GetCurrentBrowser, GetOs } from '~/utils/systemTool.js'
   import Login from './Login'
+  import base from '../api/base'
 
   export default {
     name: 'Header',
@@ -167,6 +163,9 @@
         avatar_url: null,
         phone: null,
         uid: null,
+        footballGroupList:[],
+        basketballGroupList:[],
+        socialGroupId:'5dc930cb521f10002f1050b7',
       }
     },
     components: {
@@ -174,6 +173,7 @@
     },
     watch: {
       $route (to, from) {
+        this.socialGroupId = to.params.groupId;
       }
     },
     methods: {
@@ -211,9 +211,37 @@
       loginOut () {
         localStorage.clear()
         this.$router.go(0)
-      }
+      },
+      getFootballGroupList:function () {
+        this.$axios.$get(`${base.sq}/v3/forum/football/groups`).then(
+          res=>{
+            // console.log(res)
+            if (res.Status === 1){
+              this.footballGroupList = res.Data.list;
+              this.footballGroupList.forEach(item=>{
+                if (item.name === '全部'){
+                  this.socialGroupId = item.id;
+                }
+              })
+            }
+          }
+        )
+      },
+      getBasketballGroupList:function () {
+        this.$axios.$get(`${base.sq}/v3/forum/basketball/groups`).then(
+          res=>{
+            // console.log(res)
+            if (res.Status === 1){
+              this.basketballGroupList = res.Data.list;
+            }
+          }
+        )
+      },
     },
     mounted () {
+
+      this.getFootballGroupList();
+      this.getBasketballGroupList();
 
       let sportNewsPath = this.$route.fullPath
 
@@ -347,6 +375,7 @@
     float: left;
     margin-left: 25px;
     line-height: 70px;
+    position: relative;
   }
   .nav-menu-item-first{
     margin-left: 195px !important;
@@ -360,12 +389,33 @@
 
   }
 
-
-
   .nav-menu-item a:hover {
     background: url("../assets/image/nav-box-icon.png") no-repeat bottom;
 
   }
+
+  .nav-menu-item:hover  .nav-sub-menu{
+    display: block;
+  }
+
+  .nav-sub-menu {
+    position: absolute;
+    z-index: 1000;
+    width: 200px;
+    /*background: rgba(248, 248, 248, 1);*/
+    background-color: #ffffff;
+    top: 70px;
+    left: 0;
+    display: none;
+  }
+
+  .nav-sub-menu-item {
+    border-bottom: 1px dashed #E6E6E6;
+  }
+  .nav-sub-menu-item a{
+    color: #000000;
+  }
+
 
   .nuxt-link-active{
     background: url("../assets/image/nav-box-icon.png") no-repeat bottom !important;

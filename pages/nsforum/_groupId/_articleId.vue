@@ -52,12 +52,19 @@
             </el-col>
           </el-col>
           <el-col :span="12" class="news-container-r-profile-2">
-            <el-col :span="24" class="news-container-r-profile-2-1">
-              <el-col :span="16">分享到 : </el-col>
-              <el-col :span="2"><img src="@/assets/image/wechat.png" alt="1"></el-col>
-              <el-col :span="2"><img src="@/assets/image/wxzone.png" alt="1"></el-col>
-              <el-col :span="2"><img src="@/assets/image/qq.png" alt="1"></el-col>
-              <el-col :span="2"><img src="@/assets/image/qzone.png" alt="1"></el-col>
+<!--            <el-col :span="24" class="news-container-r-profile-2-1">-->
+<!--              <el-col :span="16">分享到 : </el-col>-->
+<!--              <el-col :span="2"><img src="@/assets/image/wechat.png" alt="1"></el-col>-->
+<!--              <el-col :span="2"><img src="@/assets/image/wxzone.png" alt="1"></el-col>-->
+<!--              <el-col :span="2"><img src="@/assets/image/qq.png" alt="1"></el-col>-->
+<!--              <el-col :span="2"><img src="@/assets/image/qzone.png" alt="1"></el-col>-->
+<!--            </el-col>-->
+            <el-col :span="24" class="social-share" data-initialized="true">
+              <span>分享到 :</span>
+              <a href="#" class="social-share-icon icon-wechat"></a>
+              <a href="#" class="social-share-icon icon-weibo"></a>
+              <a href="#" class="social-share-icon icon-qq"></a>
+              <a href="#" class="social-share-icon icon-qzone"></a>
             </el-col>
             <el-col :span="24" class="news-container-r-profile-2-2">
               {{forumDetail.create_time | dateFormat}}
@@ -278,6 +285,22 @@
       window.removeEventListener('scroll', this.handleScroll,true)
     },
     mounted () {
+
+      let $config = {
+        url: window.location.href, // 网址，默认使用 window.location.href
+        summary: document.title,
+        source: window.location.href, // 来源（QQ空间会用到）, 默认读取head标签：<meta name="site" content="http://overtrue" />
+        title: document.title, // 标题，默认读取 document.title 或者 <meta name="title" content="share.js" />
+        origin: '', // 分享 @ 相关 twitter 账号
+        description: document.title, // 描述, 默认读取head标签：<meta name="description" content="PHP弱类型的实现原理分析" />
+        image: '', // 图片, 默认取网页中第一个img标签
+        wechatQrcodeTitle: '微信扫一扫：分享', // 微信二维码提示文字
+        wechatQrcodeHelper: '<p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>'
+      }
+      socialShare('.social-share', $config)
+
+
+
       window.addEventListener('scroll', this.handleScroll, true)
       this.groupId = this.$route.params.groupId;
       this.articleId = this.$route.params.articleId;
@@ -342,7 +365,7 @@
 
         if (bottomOfWindow && loading === false) {
           this.loading = true;
-          this.showMoreComment(this.forumOffset);
+          this.showMoreComment(2);
         }
 
       },
@@ -801,6 +824,12 @@
     width: 50px;
     height: 50px;
   }
+
+  /deep/ .social-share .icon-wechat .wechat-qrcode {
+    top: 40px !important;
+  }
+
+
   .nuxt-link-active {
     color: #333333 !important;
     background: #FFFFFF !important;
