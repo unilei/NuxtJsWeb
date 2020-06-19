@@ -125,10 +125,11 @@
   margin-top: 20px;
 }
 .login-modal-t-wx img{
-  width: 30px;
+  width: 25px;
   height: 25px;
 }
-.login-modal-t-wx a{
+.login-modal-t-wx span{
+  margin-top: 10px;
   display: block;
   font-family: PingFangSC-Regular;
   font-size: 14px;
@@ -137,13 +138,31 @@
 
 .login-modal-t-xx{
   /*margin-top: 40px;*/
+  margin-top: 30px;
 }
+
 .login-modal-t-xx span{
   font-family: PingFangSC-Regular;
   font-size: 14px;
   color: #999999;
 }
 .login-modal-t-xx span:nth-child(2){
+  font-family: PingFangSC-Regular;
+  font-size: 14px;
+  color: #76BCFF;
+  cursor:pointer;
+}
+.login-modal-t-xx-2{
+  /*margin-top: 40px;*/
+  margin-top: 10px;
+}
+
+.login-modal-t-xx-2 span{
+  font-family: PingFangSC-Regular;
+  font-size: 14px;
+  color: #999999;
+}
+.login-modal-t-xx-2 span:nth-child(2){
   font-family: PingFangSC-Regular;
   font-size: 14px;
   color: #76BCFF;

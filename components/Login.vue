@@ -1,7 +1,5 @@
 <template>
   <div>
-
-
   <!--  手机      登陆弹出框-->
   <div v-show="dialogFormVisible" class="login-modal-container">
     <div class="login-modal" v-show="dialogLoginModal">
@@ -28,9 +26,11 @@
         </div>
         <div class="login-modal-t-wx">
           <div>
-            <img @click="wxDialog" style="cursor:pointer;" src="https://aloss.hotforest.cn/web/wx.png" alt="">
+            <img @click="wxDialog" style="cursor:pointer;" src="@/assets/image/wechat.png" alt="wechat">
+            <img @click="wxDialog" style="cursor:pointer;width: 24px;height: 25px;" src="@/assets/image/qq.png" alt="qq">
           </div>
-          <a href="#" @click="wxDialog">使用微信登录</a>
+
+          <span>使用微信登录/QQ登陆</span>
         </div>
 
         <div class="login-modal-t-xx">
@@ -50,7 +50,7 @@
         </div>
         <div class="wx-login-modal-img" id="login_container">
         </div>
-        <div class="login-modal-t-xx">
+        <div class="login-modal-t-xx-2">
           <span>使用即为同意</span>
           <span @click="turn_agreement">全民体育用户协议/隐私权政策</span>
         </div>
@@ -132,7 +132,7 @@
     ],
     methods: {
       turn_agreement () {
-        this.$router.push({ path: '/agreement' })
+        this.$router.push({ path: '/profile/privacy' })
       },
       turn_own () {
         window.location.href = 'https://www.171tiyu.com'
