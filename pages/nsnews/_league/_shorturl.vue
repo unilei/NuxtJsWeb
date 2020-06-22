@@ -445,6 +445,7 @@
         this.dialogFormVisible = true
         this.wxIsLoginShow = true
         this.dialogMobileLogin = false
+
       },
       mobileDialog () {
         this.dialogFormVisible = true

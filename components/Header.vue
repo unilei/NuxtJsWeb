@@ -1,6 +1,6 @@
 <template>
   <el-header style="width:1440px;height: auto;margin: 0 auto;">
-    <client-only>
+<!--    <client-only>-->
       <!--导航栏-->
       <el-row>
         <el-col :span="24" class="nav-menu" v-if="pathStatus">
@@ -135,7 +135,7 @@
 <!--      </div>-->
       <!--        悬浮二维码框结束-->
 
-    </client-only>
+<!--    </client-only>-->
 
   </el-header>
 </template>

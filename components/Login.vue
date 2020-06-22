@@ -44,7 +44,7 @@
           <span>使用其他方式登录</span>
         </div>
         <div class="wx-login-modal-p">
-          <a href="#" @click="mobileDialog">
+          <a href="javascript:;" @click="mobileDialog">
             使用手机号登录
           </a>
         </div>
