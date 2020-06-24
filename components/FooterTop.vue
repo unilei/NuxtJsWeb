@@ -62,7 +62,7 @@
     height: 80px;
     margin: 0;
     padding: 0;
-    background: #E3E8EE;
+    /*background: #E3E8EE;*/
   }
 
   .footer-top-l {

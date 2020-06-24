@@ -47,19 +47,9 @@
     height: 80px;
     margin: 0;
     padding: 0;
-    background: #E3E8EE;
+    /*background: #E3E8EE;*/
   }
 
-  .footer-top-l {
-    width: 100%;
-    height: 35px;
-    /*float: left;*/
-  }
-
-  .footer-top-r {
-    /*width: 49%;*/
-    /*float: left;*/
-  }
 
   .footer-top-l ul {
 
@@ -101,24 +91,7 @@
     height: 125px;
   }
 
-  .footer-top-r-img {
-    float: left;
-  }
 
-  .footer-top-r-a {
-    float: left;
-  }
-
-  .footer-d-container {
-    /*background: #CFD6DE;*/
-    height: 50px;
-    background: rgba(207, 214, 222, 1);
-  }
-
-  .footer-d-t {
-    width: 100%;
-    /*height: 50px;*/
-  }
 
   .footer-d-t ul {
     width: 80%;

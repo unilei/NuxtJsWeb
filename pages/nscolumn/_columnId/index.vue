@@ -19,7 +19,13 @@
           <el-col :span="23" class="news-list-item-league">{{news.league}}</el-col>
 
           <el-col :span="24" class="news-list-item-img">
-            <img :src="news.image | waterMark" alt="news">
+            <el-image
+              @click="turnNewsDetail(news.shorturl,news.league_value)"
+              style="width: 100%; height: 300px"
+              :src="news.image | waterMark"
+              fit="cover"
+              lazy>
+            </el-image>
           </el-col>
           <el-col :span="24" class="news-list-item-title">
             <nuxt-link
@@ -32,7 +38,13 @@
               {{c.content}}
             </p>
           </el-col>
-          <el-col :span="24" class="news-list-item-time">{{news.published_at}}</el-col>
+          <el-col :span="12" class="news-list-item-time">{{news.published_at}}</el-col>
+          <el-col :span="12" >
+            <el-col :span="2" :offset="8" class="news-list-item-like-img"><img src="@/assets/image/like-2.png" alt="like"></el-col>
+            <el-col :span="6" class="news-list-item-like">{{news.likes}}</el-col>
+            <el-col :span="2" class="news-list-item-com-img"><img src="@/assets/image/comment-icon.png" alt="comment"></el-col>
+            <el-col :span="6" class="news-list-item-com">{{news.commentTotalCount}}</el-col>
+          </el-col>
         </el-col>
 
       </el-col>
@@ -41,7 +53,7 @@
         <!-- 热门专题       -->
         <el-col :span="24" class="hot-topics">
           <el-col :span="24" class="hot-topics-title">
-            <el-col :span="21">热门专题</el-col>
+            <el-col :span="24">热门专题</el-col>
             <el-col :span="3" class="hot-topics-xuanzhuan">
               <img @click="randomTopics()" src="@/assets/image/xuanzhuan-icon.png" alt="icon">
             </el-col>
@@ -49,13 +61,20 @@
 
           <el-col :span="24" class="hot-topics-item" v-for="(topic,i) in topicsList" :key="i">
             <el-col :span="24" class="hot-topics-item-img">
+              <!--              <el-image-->
+              <!--                style="width: 100%; height: 124px"-->
+              <!--                :src="topic.cover_pic"-->
+              <!--                fit="cover"-->
+              <!--                :preview-src-list="[topic.cover_pic]" lazy>-->
+              <!--              </el-image>-->
               <el-image
+                @click="turnColumn(topic.id)"
                 style="width: 100%; height: 124px"
                 :src="topic.cover_pic"
                 fit="cover"
-                :preview-src-list="[topic.cover_pic]" lazy>
+                lazy>
               </el-image>
-              <!--              <img :src="topic.cover_pic" alt="news">-->
+
             </el-col>
             <el-col :span="24" class="hot-topics-item-title">
               <nuxt-link :to="{name:'nscolumn-columnId',params:{columnId:topic.id}}"> {{topic.name}}</nuxt-link>
@@ -66,8 +85,7 @@
 
         <el-col :span="24" class="join-qq-wechat">
           <el-col :span="24" class="join-qq">
-            <el-col :span="4" class="join-qq-img"><img src="@/assets/image/qq.png" alt="qq"></el-col>
-            <!--            <el-col :span="20" class="join-qq-text">加入篮球QQ群：568468754</el-col>-->
+            <el-col :span="4" class="join-qq-img"><img src="@/assets/image/qq-icon.png" alt="qq"></el-col>
             <el-col :span="20" class="join-qq-text">
               <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=72f3014553b1953de71861de3876f9d2470314c80db8841846605de452008500">
                 加入篮球QQ群：568468754
@@ -76,8 +94,7 @@
           </el-col>
 
           <el-col :span="24" class="join-qq">
-            <el-col :span="4" class="join-qq-img"><img src="@/assets/image/qq.png" alt="qq"></el-col>
-            <!--            <el-col :span="20" class="join-qq-text">加入足球QQ群：826695023</el-col>-->
+            <el-col :span="4" class="join-qq-img"><img src="@/assets/image/qq-icon.png" alt="qq"></el-col>
             <el-col :span="20" class="join-qq-text">
               <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=4645b8b96c0f3a75b896250bd58c50b02eec5d4b20d9a81462165e68354ba9ba">
                 加入足球QQ群：826695023
@@ -218,6 +235,12 @@
         }
 
       },
+      turnNewsDetail(shorturl,league_value){
+        this.$router.push({name: 'nsnews-league-shorturl', params: { shorturl: shorturl,league:league_value } })
+      },
+      turnColumn(id){
+        this.$router.push({name:'nscolumn-columnId',params:{columnId:id}});
+      },
       randomTopics () {
         let that = this
         let count = that.topicsCount - 4
@@ -301,7 +324,8 @@
 </script>
 
 <style scoped>
-
+  @import "assets/css/topics.css";
+  @import "assets/css/news-list.css";
   .el-main {
 
     padding-left: 20px;
@@ -311,221 +335,11 @@
 
   }
 
-
-  .news-list {
-    padding-left: 25px;
-    overflow: auto;
-    /*height: 900px;*/
-  }
-
-  .news-list::-webkit-scrollbar {
-    /*display: none;*/
-  }
-
-  .news-list-item {
-    /*height: 490px;*/
-    margin-top: 30px;
-    padding: 14px;
-    background-color: #FFFFFF;
-    border-radius: 21px 8px 8px 8px;
-    box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.1);
-  }
-
-  .news-list-item:first-child {
-    margin-top: 0px !important;
-  }
-
-  .news-list-item-icon {
-    text-align: left;
-    height: 25px;
-  }
-
-  .news-list-item-icon img {
-    height: 100%;
-
-  }
-
-  .news-list-item-league {
-    text-align: left;
-    font-size: 12px;
-    font-family: PingFangSC-Medium, PingFang SC;
-    font-weight: 600;
-    color: rgba(51, 51, 51, 1);
-    line-height: 25px;
-  }
-
-  .news-list-item-title {
-    margin-top: 10px;
-    text-align: left;
-
-  }
-
-  .news-list-item-title a {
-    font-size: 20px;
-    font-family: PingFangSC-Medium, PingFang SC;
-    font-weight: 500;
-    color: rgba(51, 51, 51, 1);
-    line-height: 28px;
-
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-  }
-
-  .news-list-content {
-    text-align: left;
-    height: 30px;
-    overflow: hidden;
-    -webkit-line-clamp: 1;
-    text-overflow: ellipsis;
-
-  }
-
-  .news-list-content p {
-    margin: 0;
-    padding: 0;
-    color: #666666;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 30px;
-  }
-
-  .news-list-item-img {
-    margin-top: 10px;
-    height: 300px;
-    overflow: hidden;
-  }
-
-  .news-list-item-img img {
-    /*max-height: 100%;*/
-    max-width: 100%;
-    border-radius: 8px;
-  }
-
-  .news-list-item-time {
-    text-align: left;
-    text-indent: 10px;
-    font-size: 10px;
-    font-family: PingFangSC-Medium, PingFang SC;
-    font-weight: 500;
-    color: rgba(102, 102, 102, 1);
-
-  }
-
   .el-image {
     position: static;
     border-radius: 12px;
   }
 
-
-
-  .hot-topics {
-    padding-left: 10px;
-  }
-
-  .hot-topics-title {
-    height: 35px;
-    background: rgba(255, 224, 113, 1);
-    border-radius: 14px;
-
-    font-size: 14px;
-    font-family: PingFangSC-Medium, PingFang SC;
-    font-weight: 600;
-    color: rgba(51, 51, 51, 1);
-    line-height: 35px;
-  }
-
-  .hot-topics-xuanzhuan {
-    text-align: left;
-
-  }
-
-  .hot-topics-xuanzhuan img {
-    width: 20px;
-    height: 20px;
-    margin-top: 7px;
-    cursor: pointer;
-  }
-
-  .hot-topics-item {
-    padding: 10px;
-    margin-top: 15px;
-    height: 195px;
-    background: rgba(255, 255, 255, 1);
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-  }
-
-  .hot-topics-item-img {
-    height: 124px;
-    overflow: hidden;
-
-  }
-
-  .hot-topics-item-img img {
-    max-width: 100%;
-    border-radius: 8px;
-  }
-
-  .hot-topics-item-title {
-    margin-top: 10px;
-  }
-  .hot-topics-item-title a {
-    display: block;
-    text-align: left;
-    text-indent: 10px;
-    font-size: 12px;
-    font-family: PingFangSC-Medium, PingFang SC;
-    font-weight: 500;
-    color: rgba(51, 51, 51, 1);
-    line-height: 17px;
-  }
-
-  .hot-topics-item-topics {
-    margin-top: 6px;
-    text-indent: 10px;
-    text-align: left;
-    font-size: 8px;
-    font-family: PingFangSC-Medium, PingFang SC;
-    font-weight: 500;
-    color: rgba(102, 102, 102, 1);
-    line-height: 11px;
-  }
-
-  .join-qq-wechat{
-    padding-left: 10px;
-
-  }
-  .join-qq{
-    text-align: right;
-    margin-top: 20px;
-    height:26px;
-    background:rgba(118,188,255,1);
-    box-shadow:0px 0px 4px 0px rgba(0,0,0,0.2);
-    border-radius:10px;
-  }
-  .join-qq-img{
-    padding-top: 5px;
-  }
-  .join-qq-img img{
-    width: 15px;
-    height: 16px;
-
-  }
-
-  .join-qq-text{
-    text-align: left;
-    text-indent: 14px;
-  }
-  .join-qq-text a{
-    font-size:12px;
-    font-family:PingFangSC-Medium,PingFang SC;
-    font-weight:500;
-    color:rgba(255,255,255,1);
-    line-height: 26px;
-  }
 
   .nuxt-link-active {
     background: #FFFFFF !important;

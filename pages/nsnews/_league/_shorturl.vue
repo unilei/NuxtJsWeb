@@ -4,13 +4,13 @@
     <el-row>
       <el-col :span="24" class="news-bread">
         <el-col :span="2" class="news-bread-l">
-          <el-col v-if="league==='nba'" :span="12" class="news-bread-l-img"><img src="@/assets/image/nba.png" alt="nba">
+          <el-col v-if="league==='nba'" :span="6" :offset="6" class="news-bread-l-img"><img src="@/assets/image/nba.png" alt="nba">
           </el-col>
-          <el-col v-if="league==='la_liga'" :span="12" class="news-bread-l-img"><img src="@/assets/image/laliga.png"
+          <el-col v-if="league==='la_liga'" :span="6" :offset="6" class="news-bread-l-img"><img src="@/assets/image/laliga.png"
                                                                                      alt="nba"></el-col>
-          <el-col v-if="league==='premier'" :span="12" class="news-bread-l-img"><img src="@/assets/image/premier.png"
+          <el-col v-if="league==='premier'" :span="6" :offset="6" class="news-bread-l-img"><img src="@/assets/image/premier.png"
                                                                                      alt="nba"></el-col>
-          <el-col v-if="league==='serie_a'" :span="12" class="news-bread-l-img"><img src="@/assets/image/serie_a.png"
+          <el-col v-if="league==='serie_a'" :span="6" :offset="6" class="news-bread-l-img"><img src="@/assets/image/serie_a.png"
                                                                                      alt="nba"></el-col>
           <el-col :span="12" class="news-bread-l-text">{{league_value}}</el-col>
         </el-col>
@@ -45,7 +45,8 @@
         </el-col>
         <el-col :span="24" class="news-container-r-profile">
           <el-col :span="12" class="news-container-r-profile-1">
-            <el-col :span="2" class="news-container-r-profile-1-1"><img src="@/assets/image/serie_a.png" alt="nba">
+            <el-col :span="2" class="news-container-r-profile-1-1">
+              <img src="https://aloss.hotforest.cn/web/default-header.png" alt="nba">
             </el-col>
             <el-col :span="6" class="news-container-r-profile-1-2">
               {{newsDetail.author.name}} <br>
@@ -171,13 +172,13 @@
       </el-col>
 
       <!-- 登陆弹框-->
-      <Login v-bind:dialogFormVisible="dialogFormVisible"
+      <LoginComment v-bind:dialogFormVisible="dialogFormVisible"
              v-bind:dialogMobileLogin="dialogMobileLogin"
              v-bind:wxIsLoginShow="wxIsLoginShow"
              @closeDialog="closeDialog"
              @wxDialog="wxDialog"
              @mobileDialog="mobileDialog"
-      ></Login>
+      ></LoginComment>
     </el-row>
   </el-main>
 </template>
@@ -187,13 +188,13 @@
   import { getFormatTime } from '../../../utils/time'
   import base from '../../../api/base'
   import qs from 'qs'
-  import Login from '../../../components/Login'
+  import LoginComment from '../../../components/LoginComment'
 
   export default {
     name: 'shorturl',
     layout: 'nsnewsLayout',
     components: {
-      Login
+      LoginComment
     },
     data () {
       return {
@@ -708,11 +709,16 @@
 
   .news-bread-l-img {
     height: 30px;
+
+    display: flex;
+    align-items: center;
     text-align: right;
   }
 
   .news-bread-l-img img {
-    height: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    align-items: center;
   }
 
   .news-bread-l-text {
@@ -894,7 +900,7 @@
 
   .news-container-r-tags {
     text-align: left;
-    font-size: 18px;
+    font-size: 12px;
     font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
     color: rgba(102, 102, 102, 1);

@@ -2,7 +2,7 @@
   <el-container class="is-vertical" style="background-color: #EFEFEF;">
     <Header></Header>
     <nuxt/>
-    <Footer></Footer>
+    <Footer style="background-color: #ffffff !important;"></Footer>
   </el-container>
 </template>
 

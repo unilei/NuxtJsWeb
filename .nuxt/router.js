@@ -10,6 +10,8 @@ const _b658a41e = () => interopDefault(import('..\\pages\\companyProfile.vue' /*
 const _3819beb6 = () => interopDefault(import('..\\pages\\complaint.vue' /* webpackChunkName: "pages_complaint" */))
 const _106ea066 = () => interopDefault(import('..\\pages\\download.vue' /* webpackChunkName: "pages_download" */))
 const _435fbca4 = () => interopDefault(import('..\\pages\\index1.vue' /* webpackChunkName: "pages_index1" */))
+const _7ebf1d53 = () => interopDefault(import('..\\pages\\kol.vue' /* webpackChunkName: "pages_kol" */))
+const _45fce491 = () => interopDefault(import('..\\pages\\myqq.vue' /* webpackChunkName: "pages_myqq" */))
 const _086bffce = () => interopDefault(import('..\\pages\\personalInformationService.vue' /* webpackChunkName: "pages_personalInformationService" */))
 const _1944cc8e = () => interopDefault(import('..\\pages\\profile\\index.vue' /* webpackChunkName: "pages_profile_index" */))
 const _7c3e3aab = () => interopDefault(import('..\\pages\\wechat.vue' /* webpackChunkName: "pages_wechat" */))
@@ -24,7 +26,6 @@ const _5e8b9e61 = () => interopDefault(import('..\\pages\\nsnews\\_league\\index
 const _aa934be8 = () => interopDefault(import('..\\pages\\profile\\_activeName.vue' /* webpackChunkName: "pages_profile__activeName" */))
 const _2cff2d74 = () => interopDefault(import('..\\pages\\nsforum\\_groupId\\_articleId.vue' /* webpackChunkName: "pages_nsforum__groupId__articleId" */))
 const _ba6d2370 = () => interopDefault(import('..\\pages\\nsforum\\_sportType\\_articleId.vue' /* webpackChunkName: "pages_nsforum__sportType__articleId" */))
-const _41a3b700 = () => interopDefault(import('..\\pages\\nsnews\\_league\\_shorturl---bak.vue' /* webpackChunkName: "pages_nsnews__league__shorturl---bak" */))
 const _411af2e1 = () => interopDefault(import('..\\pages\\nsnews\\_league\\_shorturl.vue' /* webpackChunkName: "pages_nsnews__league__shorturl" */))
 const _1cb01e46 = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages_index" */))
 
@@ -72,6 +73,14 @@ export const routerOptions = {
     path: "/index1",
     component: _435fbca4,
     name: "index1"
+  }, {
+    path: "/kol",
+    component: _7ebf1d53,
+    name: "kol"
+  }, {
+    path: "/myqq",
+    component: _45fce491,
+    name: "myqq"
   }, {
     path: "/personalInformationService",
     component: _086bffce,
@@ -128,10 +137,6 @@ export const routerOptions = {
     path: "/nsforum/:sportType?/:articleId",
     component: _ba6d2370,
     name: "nsforum-sportType-articleId"
-  }, {
-    path: "/nsnews/:league?/:shorturl---bak",
-    component: _41a3b700,
-    name: "nsnews-league-shorturl---bak"
   }, {
     path: "/nsnews/:league?/:shorturl",
     component: _411af2e1,

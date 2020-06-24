@@ -33,7 +33,7 @@
         <!-- 热门专题       -->
         <el-col :span="24" class="hot-topics">
           <el-col :span="24" class="hot-topics-title">
-            <el-col :span="21">热门专题</el-col>
+            <el-col :span="24">热门专题</el-col>
             <el-col :span="3" class="hot-topics-xuanzhuan">
               <img @click="randomTopics()" src="@/assets/image/xuanzhuan-icon.png" alt="icon">
             </el-col>
@@ -41,13 +41,20 @@
 
           <el-col :span="24" class="hot-topics-item" v-for="(topic,i) in topicsList" :key="i">
             <el-col :span="24" class="hot-topics-item-img">
+              <!--              <el-image-->
+              <!--                style="width: 100%; height: 124px"-->
+              <!--                :src="topic.cover_pic"-->
+              <!--                fit="cover"-->
+              <!--                :preview-src-list="[topic.cover_pic]" lazy>-->
+              <!--              </el-image>-->
               <el-image
+                @click="turnColumn(topic.id)"
                 style="width: 100%; height: 124px"
                 :src="topic.cover_pic"
                 fit="cover"
-                :preview-src-list="[topic.cover_pic]" lazy>
+                lazy>
               </el-image>
-              <!--              <img :src="topic.cover_pic" alt="news">-->
+
             </el-col>
             <el-col :span="24" class="hot-topics-item-title">
               <nuxt-link :to="{name:'nscolumn-columnId',params:{columnId:topic.id}}"> {{topic.name}}</nuxt-link>
@@ -58,8 +65,7 @@
 
         <el-col :span="24" class="join-qq-wechat">
           <el-col :span="24" class="join-qq">
-            <el-col :span="4" class="join-qq-img"><img src="@/assets/image/qq.png" alt="qq"></el-col>
-            <!--            <el-col :span="20" class="join-qq-text">加入篮球QQ群：568468754</el-col>-->
+            <el-col :span="4" class="join-qq-img"><img src="@/assets/image/qq-icon.png" alt="qq"></el-col>
             <el-col :span="20" class="join-qq-text">
               <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=72f3014553b1953de71861de3876f9d2470314c80db8841846605de452008500">
                 加入篮球QQ群：568468754
@@ -68,8 +74,7 @@
           </el-col>
 
           <el-col :span="24" class="join-qq">
-            <el-col :span="4" class="join-qq-img"><img src="@/assets/image/qq.png" alt="qq"></el-col>
-            <!--            <el-col :span="20" class="join-qq-text">加入足球QQ群：826695023</el-col>-->
+            <el-col :span="4" class="join-qq-img"><img src="@/assets/image/qq-icon.png" alt="qq"></el-col>
             <el-col :span="20" class="join-qq-text">
               <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=4645b8b96c0f3a75b896250bd58c50b02eec5d4b20d9a81462165e68354ba9ba">
                 加入足球QQ群：826695023
@@ -80,7 +85,6 @@
         </el-col>
 
       </el-col>
-
 
     </el-row>
   </el-main>
@@ -187,6 +191,9 @@
         }
 
       },
+      turnColumn(id){
+        this.$router.push({name:'nscolumn-columnId',params:{columnId:id}});
+      },
       randomTopics () {
         let that = this
         let count = that.topicsCount - 4
@@ -249,7 +256,7 @@
 </script>
 
 <style scoped>
-
+  @import "assets/css/topics.css";
   .el-main {
 
     padding-left: 20px;
@@ -286,11 +293,14 @@
   .forum-list-item-icon {
     text-align: left;
     height: 25px;
+    display: flex;
+    align-items: center;
   }
 
   .forum-list-item-icon img {
-    height: 100%;
-
+    max-height: 100%;
+    max-width: 100%;
+    align-items: center;
   }
 
   .forum-list-item-league {
@@ -349,113 +359,6 @@
 
   }
 
-
-
-  .hot-topics {
-    padding-left: 10px;
-  }
-
-  .hot-topics-title {
-    height: 35px;
-    background: rgba(255, 224, 113, 1);
-    border-radius: 14px;
-
-    font-size: 14px;
-    font-family: PingFangSC-Medium, PingFang SC;
-    font-weight: 600;
-    color: rgba(51, 51, 51, 1);
-    line-height: 35px;
-  }
-
-  .hot-topics-xuanzhuan {
-    text-align: left;
-
-  }
-
-  .hot-topics-xuanzhuan img {
-    width: 20px;
-    height: 20px;
-    margin-top: 7px;
-    cursor: pointer;
-  }
-
-  .hot-topics-item {
-    padding: 10px;
-    margin-top: 15px;
-    height: 195px;
-    background: rgba(255, 255, 255, 1);
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-  }
-
-  .hot-topics-item-img {
-    height: 124px;
-    overflow: hidden;
-
-  }
-
-  .hot-topics-item-img img {
-    max-width: 100%;
-    border-radius: 8px;
-  }
-
-  .hot-topics-item-title {
-    margin-top: 10px;
-  }
-  .hot-topics-item-title a {
-    display: block;
-    text-align: left;
-    text-indent: 10px;
-    font-size: 12px;
-    font-family: PingFangSC-Medium, PingFang SC;
-    font-weight: 500;
-    color: rgba(51, 51, 51, 1);
-    line-height: 17px;
-  }
-
-  .hot-topics-item-topics {
-    margin-top: 6px;
-    text-indent: 10px;
-    text-align: left;
-    font-size: 8px;
-    font-family: PingFangSC-Medium, PingFang SC;
-    font-weight: 500;
-    color: rgba(102, 102, 102, 1);
-    line-height: 11px;
-  }
-
-  .join-qq-wechat{
-    padding-left: 10px;
-
-  }
-  .join-qq{
-    text-align: right;
-    margin-top: 20px;
-    height:26px;
-    background:rgba(118,188,255,1);
-    box-shadow:0px 0px 4px 0px rgba(0,0,0,0.2);
-    border-radius:10px;
-  }
-  .join-qq-img{
-    padding-top: 5px;
-  }
-  .join-qq-img img{
-    width: 15px;
-    height: 16px;
-
-  }
-
-  .join-qq-text{
-    text-align: left;
-    text-indent: 14px;
-  }
-  .join-qq-text a{
-    font-size:12px;
-    font-family:PingFangSC-Medium,PingFang SC;
-    font-weight:500;
-    color:rgba(255,255,255,1);
-    line-height: 26px;
-  }
 
 
 </style>

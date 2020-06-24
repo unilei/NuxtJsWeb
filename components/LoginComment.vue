@@ -30,7 +30,7 @@
               <img @click="wxDialog" style="cursor:pointer;" src="@/assets/image/wx-icon.png" alt="wechat">
             </el-col>
             <el-col :span="12" id="qqLoginBtn" class="login-modal-t-wx-1-2">
-<!--              <img @click="qqDialog" style="cursor:pointer;" src="@/assets/image/qq.png" alt="wechat">-->
+              <!--              <img @click="qqDialog" style="cursor:pointer;" src="@/assets/image/qq.png" alt="wechat">-->
               <img  style="cursor:pointer;" src="@/assets/image/qq-icon.png" alt="wechat">
             </el-col>
           </el-col>
@@ -53,8 +53,7 @@
             使用手机号登录
           </a>
         </div>
-        <div class="wx-login-modal-img" id="login_container">
-
+        <div class="wx-login-modal-img" id="login_container_1">
         </div>
         <div class="login-modal-t-xx-2">
           <span>使用即为同意</span>
@@ -108,7 +107,7 @@
   import qs from 'qs'
 
   export default {
-    name: 'Login',
+    name: 'LoginComment',
     data () {
       return {
         ip: '',
@@ -136,9 +135,6 @@
     props: [
       'dialogFormVisible', 'dialogMobileLogin', 'wxIsLoginShow'
     ],
-    mounted () {
-
-    },
     methods: {
       turn_agreement () {
         this.$router.push({ path: '/profile/privacy' })
@@ -158,7 +154,7 @@
         this.$emit('wxDialog')
         var obj = new WxLogin({
           self_redirect: false,
-          id: 'login_container',
+          id: 'login_container_1',
           appid: 'wx31ded528641f2b4c',
           scope: 'snsapi_login',
           redirect_uri: encodeURIComponent(this.redirect_uri),
@@ -166,19 +162,6 @@
           style: 'black',
           href: '',
         })
-      },
-      qqDialog(){
-        QC.Login.getMe(function(openId, accessToken){
-          console.log(openId)
-          console.log(accessToken)
-        })
-        console.log(QC.Login.check())
-        QC.Login.showPopup({
-          appId:"101878258",
-          appKey:"5bdb3eadc40f09c77424651b9ce585ed",
-          // redirectURI:"https://www.171tiyu.com/myqq",
-          redirectURI:"https://www.171tiyu.com/myqq"
-        });
       },
       mobileDialog () {
         this.$emit('mobileDialog')

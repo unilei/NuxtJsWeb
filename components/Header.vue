@@ -71,7 +71,7 @@
             <a href="javascript:;">足球社区</a>
             <div class="nav-sub-menu">
                 <div class="nav-sub-menu-item" v-for="(fg,i) in footballGroupList" :key="i">
-                  <nuxt-link :to="{name:'nsforum-groupId',params:{groupId:fg.id}}">{{fg.name}}</nuxt-link>
+                  <nuxt-link active-class="nuxt-link-active-1" :to="{name:'nsforum-groupId',params:{groupId:fg.id}}">{{fg.name}}</nuxt-link>
                 </div>
             </div>
           </div>
@@ -79,7 +79,7 @@
             <a href="javascript:;">篮球社区</a>
             <div class="nav-sub-menu">
               <div class="nav-sub-menu-item" v-for="(bg,i) in basketballGroupList" :key="i">
-                <nuxt-link :to="{name:'nsforum-groupId',params:{groupId:bg.id}}">{{bg.name}}</nuxt-link>
+                <nuxt-link active-class="nuxt-link-active-1" :to="{name:'nsforum-groupId',params:{groupId:bg.id}}">{{bg.name}}</nuxt-link>
               </div>
             </div>
 
@@ -116,8 +116,8 @@
              @closeDialog="closeDialog"
              @wxDialog="wxDialog"
              @mobileDialog="mobileDialog"
+             @qqDialog="qqDialog"
       ></Login>
-
 
       <!--        悬浮二维码框-->
 <!--      <div class="wx-qrcode-box">-->
@@ -184,6 +184,11 @@
         this.wxIsLoginShow = false
       },
       wxDialog () {
+        this.dialogFormVisible = true
+        this.wxIsLoginShow = true
+        this.dialogMobileLogin = false
+      },
+      qqDialog () {
         this.dialogFormVisible = true
         this.wxIsLoginShow = true
         this.dialogMobileLogin = false
@@ -325,13 +330,14 @@
   .nav-menu-logo-1{
 
     width: 100px;
-    height: 20px;
+    height: 18px;
     margin: 0 auto;
     margin-top: 15px;
 
   }
   .nav-menu-logo-1 img{
-    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
   }
 
   .nav-menu-logo-2 {
@@ -339,7 +345,8 @@
     font-family:HanziPenSC-W3,HanziPenSC;
     font-weight:normal;
     color:rgba(255,255,255,1);
-    line-height:21px;
+    line-height:22px;
+    margin-top: 4px;
   }
 
   .nav-menu-box{
@@ -415,10 +422,21 @@
   .nav-sub-menu-item a{
     color: #000000;
   }
+  .nav-sub-menu-item a:hover{
+    background:rgba(202,231,241,1) !important;
+    border-radius:8px;
+  }
+
 
 
   .nuxt-link-active{
     background: url("../assets/image/nav-box-icon.png") no-repeat bottom !important;
+  }
+  .nuxt-link-active-1 {
+    /*width:145px;*/
+    /*height:21px;*/
+    background:rgba(202,231,241,1) !important;
+    border-radius:8px;
   }
 
 

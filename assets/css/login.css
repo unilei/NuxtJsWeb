@@ -10,8 +10,8 @@
 }
 
 .login-modal{
-  width: 384px;
-  height: 506px;
+  width: 370px;
+  height: 512px;
   margin: 100px auto;
   background: #FFFFFF;
   box-shadow: 0 4px 7px 0 rgba(0,0,0,0.20);
@@ -37,21 +37,21 @@
   color: #333333;
 }
 .login-modal-t-p{
-  width: 328px;
   height: 50px;
   line-height: 50px;
   margin-top: 30px;
-  margin-left: 30px;
   background: #FFFFFF;
   border: 2px solid #D4D4D4;
   border-radius: 2px;
   text-align: left;
+  position: relative;
 }
 
 .login-modal-t-p input{
   outline: none;
   border: 1px solid transparent;
-  width: 200px;
+  /*width: 200px;*/
+  width: 90%;
   height: 46px;
   margin: 0;
   padding: 0;
@@ -68,6 +68,9 @@
   outline: none;
   cursor: pointer;
   border: 1px solid transparent !important;
+  position: absolute;
+  right: 10px;
+  top: 10px;
 
 }
 .login-modal-t-p-b-disable{
@@ -75,11 +78,11 @@
 }
 
 .login-modal-t-c {
-  width: 328px;
+  /*width: 328px;*/
   height: 50px;
   line-height: 50px;
   margin-top: 30px;
-  margin-left: 30px;
+  /*margin-left: 30px;*/
   background: #FFFFFF;
   border: 2px solid #D4D4D4;
   border-radius: 2px;
@@ -93,6 +96,7 @@
   margin: 0;
   padding: 0;
   padding-left: 4px;
+  width: 90%;
 }
 
 .login-modal-t-b{
@@ -123,18 +127,36 @@
 
 .login-modal-t-wx{
   margin-top: 20px;
+  height: 80px;
 }
-.login-modal-t-wx img{
-  width: 25px;
-  height: 25px;
+.login-modal-t-wx-1{
+
 }
-.login-modal-t-wx span{
+.login-modal-t-wx-1-1{
+  text-align: right;
+
+}
+.login-modal-t-wx-1-1 img{
+  margin-right: 10px;
+}
+.login-modal-t-wx-1-2{
+  text-align: left;
+}
+.login-modal-t-wx-1-2 img{
+  margin-left: 10px;
+}
+
+.login-modal-t-wx-2{
   margin-top: 10px;
-  display: block;
   font-family: PingFangSC-Regular;
   font-size: 14px;
   color: #999999;
 }
+.login-modal-t-wx img{
+  /*width: 25px;*/
+  /*height: 25px;*/
+}
+
 
 .login-modal-t-xx{
   /*margin-top: 40px;*/

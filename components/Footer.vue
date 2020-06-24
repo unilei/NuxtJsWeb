@@ -46,7 +46,7 @@
     height: 80px;
     margin: 0;
     padding: 0;
-    background-color: #ffffff;
+    /*background-color: #ffffff;*/
     /*background: #E3E8EE;*/
   }
 

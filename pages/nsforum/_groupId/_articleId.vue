@@ -168,13 +168,13 @@
       </el-col>
 
       <!-- 登陆弹框-->
-      <Login v-bind:dialogFormVisible="dialogFormVisible"
+      <LoginComment v-bind:dialogFormVisible="dialogFormVisible"
              v-bind:dialogMobileLogin = "dialogMobileLogin"
              v-bind:wxIsLoginShow = "wxIsLoginShow"
              @closeDialog = "closeDialog"
              @wxDialog = "wxDialog"
              @mobileDialog = "mobileDialog"
-      ></Login>
+      ></LoginComment>
     </el-row>
   </el-main>
 </template>
@@ -184,13 +184,13 @@
   import { getFormatTime } from '../../../utils/time'
   import base from '../../../api/base'
   import qs from 'qs'
-  import Login from '../../../components/Login'
+  import LoginComment from '../../../components/LoginComment'
 
   export default {
     name: 'articleId',
     layout:'nsforumLayout',
     components:{
-      Login
+      LoginComment
     },
     data () {
       return {
@@ -803,7 +803,7 @@
 
   .news-container-r-tags{
     text-align: left;
-    font-size:18px;
+    font-size:12px;
     font-family:PingFangSC-Regular,PingFang SC;
     font-weight:400;
     color:rgba(102,102,102,1);
