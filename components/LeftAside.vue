@@ -9,7 +9,7 @@
     </el-col>
     <el-col :span="22" :offset="1" class="aside-border"></el-col>
     <el-col :span="24" class="aside-nav-item ">
-      <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/nba.png" alt="nba"></el-col>
+      <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/cba.png" alt="cba"></el-col>
       <nuxt-link :to="{name:'nsnews-league',params:{league:'cba'}}">CBA</nuxt-link>
     </el-col>
     <el-col :span="22" :offset="1" class="aside-border"></el-col>
@@ -205,13 +205,18 @@
   }
 
   .sub-forum-nav-item a {
-    font-size: 10px;
+    font-size: 12px;
     font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
     color: rgba(51, 51, 51, 1);
     line-height: 21px;
     text-align: center;
     text-indent: 0;
+  }
+
+  .sub-forum-nav-item a:hover {
+    background:rgba(202,231,241,1) !important;
+    border-radius:8px;
   }
 
   .nuxt-link-active {

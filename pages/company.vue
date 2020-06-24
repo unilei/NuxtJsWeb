@@ -120,28 +120,28 @@
             </el-col>
           </el-col>
           <el-col :span="24"  class="zb-basket-items">
-            <el-col :span="3" :offset="3" class="zb-basket-item">
-              <img src="https://aloss.hotforest.cn/web/p-1.png" alt="basketball"> <br>
+            <el-col :span="3" :offset="3" >
+              <img  @click="turnKol()" src="https://aloss.hotforest.cn/web/p-1.png" alt="basketball"> <br>
               陈正昊
             </el-col>
             <el-col :span="3">
-              <img src="https://aloss.hotforest.cn/web/p-2.png" alt="basketball"> <br>
-              方良超
+              <img @click="turnKol()" src="https://aloss.hotforest.cn/web/p-2.png" alt="basketball"> <br>
+              张天昊
             </el-col>
             <el-col :span="3">
-              <img src="https://aloss.hotforest.cn/web/p-3.png" alt="basketball"> <br>
+              <img @click="turnKol()" src="https://aloss.hotforest.cn/web/p-3.png" alt="basketball"> <br>
               凌光
             </el-col>
             <el-col :span="3">
-              <img src="https://aloss.hotforest.cn/web/p-4.png" alt="basketball"> <br>
+              <img @click="turnKol()" src="https://aloss.hotforest.cn/web/p-4.png" alt="basketball"> <br>
               汪轩
             </el-col>
             <el-col :span="3">
-              <img src="https://aloss.hotforest.cn/web/p-5.png" alt="basketball"> <br>
+              <img @click="turnKol()" src="https://aloss.hotforest.cn/web/p-5.png" alt="basketball"> <br>
               张大维
             </el-col>
             <el-col :span="3">
-              <img src="https://aloss.hotforest.cn/web/p-6.png" alt="basketball"> <br>
+              <img @click="turnKol()" src="https://aloss.hotforest.cn/web/p-6.png" alt="basketball"> <br>
               张小天
             </el-col>
           </el-col>
@@ -156,34 +156,32 @@
           </el-col>
 
           <el-col :span="24" class="zb-basket-items">
-            <el-col :span="3" :offset="3" class="zb-basket-item">
-              <img src="https://aloss.hotforest.cn/web/pp-1.png" alt="basketball"> <br>
-              李彦
-            </el-col>
-            <el-col :span="3">
-              <img src="https://aloss.hotforest.cn/web/pp-2.png" alt="basketball"> <br>
+            <el-col :span="3" :offset="3">
+              <img @click="turnKol()" src="https://aloss.hotforest.cn/web/pp-1.png" alt="basketball"> <br>
               范志毅
             </el-col>
             <el-col :span="3">
-              <img src="https://aloss.hotforest.cn/web/pp-3.png" alt="basketball"> <br>
-              浦玮
+              <img @click="turnKol()" src="https://aloss.hotforest.cn/web/pp-2.png" alt="basketball"> <br>
+              刘越
             </el-col>
             <el-col :span="3">
-              <img src="https://aloss.hotforest.cn/web/pp-4.png" alt="basketball"> <br>
-              朱广沪
+              <img @click="turnKol()" src="https://aloss.hotforest.cn/web/pp-3.png" alt="basketball"> <br>
+              白国华
             </el-col>
             <el-col :span="3">
-              <img src="https://aloss.hotforest.cn/web/pp-5.png" alt="basketball"> <br>
-              朱炯
+              <img @click="turnKol()" src="https://aloss.hotforest.cn/web/pp-4.png" alt="basketball"> <br>
+              姬宇阳
             </el-col>
             <el-col :span="3">
-              <img src="https://aloss.hotforest.cn/web/pp-6.png" alt="basketball"> <br>
-              祁宏
+              <img @click="turnKol()" src="https://aloss.hotforest.cn/web/pp-5.png" alt="basketball"> <br>
+              熊冰杰
+            </el-col>
+            <el-col :span="3">
+              <img @click="turnKol()" src="https://aloss.hotforest.cn/web/pp-6.png" alt="basketball"> <br>
+              唐晖
             </el-col>
           </el-col>
           </el-col>
-
-
       </el-col>
       <el-col :span="24">
         <el-divider></el-divider>
@@ -281,6 +279,10 @@
         console.log(value)
         this.option = value
         // console.log(tab, event)
+      },
+      turnKol:function () {
+        console.log('turnllll')
+        this.$router.push('/kol')
       }
     }
 
@@ -421,26 +423,23 @@
   }
 
   .zb-basket-title {
-    /*width: 47px;*/
-    /*height: 200px;*/
-    /*padding-top: 35px;*/
     background: #003160;
     font-size: 24px;
     font-weight: 500;
     color: rgba(255, 255, 255, 1);
     line-height: 33px;
   }
-  .zb-basket-item {
-    text-align: left;
+  /*.zb-basket-item {*/
+  /*  text-align: left;*/
 
-  }
+  /*}*/
   .zb-basket-items{
+    cursor: pointer;
     margin-top: 27px;
   }
 
   .zb-basket-item img {
     width: 130px;
-    height: 200px;
   }
 
   .company-business {

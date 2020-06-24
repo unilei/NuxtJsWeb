@@ -85,12 +85,14 @@
   margin-top: 10px;
   height: 300px;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .news-list-item-img img {
   /*max-height: 100%;*/
   max-width: 100%;
   border-radius: 8px;
+
 }
 
 .news-list-item-time {
@@ -104,7 +106,7 @@
 }
 
 .news-list-item-like{
-
+  text-align: center;
   font-size:8px;
   font-family:PingFangSC-Regular,PingFang SC;
   font-weight:400;
@@ -119,6 +121,7 @@
   height: 14px;
 }
 .news-list-item-com{
+  text-align: center;
   font-size:8px;
   font-family:PingFangSC-Regular,PingFang SC;
   font-weight:400;

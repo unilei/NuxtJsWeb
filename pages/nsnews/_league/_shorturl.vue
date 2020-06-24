@@ -30,13 +30,26 @@
 
         </el-col>
 
-        <el-col :span="24" class="news-container-l-item" v-for="(hotNews,i) in hotNewsList" :key="i">
+<!--        <el-col :span="24" class="news-container-l-item" v-for="(hotNews,i) in hotNewsList" :key="i">-->
+<!--          <nuxt-link-->
+<!--            :to="{name: 'nsnews-league-shorturl', params: { shorturl: hotNews.shorturl,league:hotNews.league_value } }"-->
+<!--            exact>-->
+<!--            {{hotNews.title}}-->
+<!--          </nuxt-link>-->
+<!--        </el-col>-->
+        <el-col :span="24" class="news-container-l-item" v-for="(hotNews,i) in similarArticles" :key="i">
           <nuxt-link
             :to="{name: 'nsnews-league-shorturl', params: { shorturl: hotNews.shorturl,league:hotNews.league_value } }"
             exact>
             {{hotNews.title}}
           </nuxt-link>
 
+        </el-col>
+        <el-col  :span="24" >
+          <div class="news-container-l-xuanzhuan"  @click="turnLoadNews()">
+            <img @click="turnLoadNews()" src="@/assets/image/xuanzhuan-icon.png" alt="icon">
+            换一换
+          </div>
         </el-col>
       </el-col>
       <el-col :span="18" class="news-container-r">
@@ -48,11 +61,11 @@
             <el-col :span="2" class="news-container-r-profile-1-1">
               <img src="https://aloss.hotforest.cn/web/default-header.png" alt="nba">
             </el-col>
-            <el-col :span="6" class="news-container-r-profile-1-2">
-              {{newsDetail.author.name}} <br>
-              <span>足球热评人</span>
+            <el-col :span="7" class="news-container-r-profile-1-2">
+              <el-col :span="24" class="news-container-r-profile-1-2-1">{{newsDetail.author.name}}</el-col>
+              <el-col :span="24"  class="news-container-r-profile-1-2-2"><span>足球热评人</span></el-col>
             </el-col>
-            <el-col :span="16" class="news-container-r-profile-1-3">
+            <el-col :span="15" class="news-container-r-profile-1-3">
               <button>关注</button>
             </el-col>
           </el-col>
@@ -89,7 +102,7 @@
         </el-col>
 
         <el-col :span="24" class="news-container-r-like">
-          <img src="@/assets/image/like-icon-1.png" alt="icon"> <br>
+          <img src="@/assets/image/like-icon-2.png" alt="icon"> <br>
           已有 {{newsDetail.likes}} 人点赞
         </el-col>
 
@@ -202,6 +215,7 @@
         newsDetail: '',
         newsPublishFormatTime: '',
         hotNewsList: [],
+        similarArticles:[],
         newsReplyList: [],
         showComment: -1,
         showCommentReply: -1,
@@ -407,11 +421,22 @@
         })
       }
 
-      console.log(news)
+      let similar_articles = news.similar_articles;
+      similar_articles.forEach(
+        item=>{
+          let s = item.shorturl
+          let sArr = s.split('-')
+          item.league_value = sArr[0]
+
+        }
+      )
+      // console.log(news)
+      // console.log(news.similar_articles)
       return {
         league: league,
         league_value: league_value,
         newsDetail: news,
+        similarArticles:similar_articles,
         hotNewsList: hotNews,
         newsPublishFormatTime: getFormatTime(newsDetail.data.Data.timestamp),
         article_id: newsDetail.data.Data.article_id
@@ -419,6 +444,10 @@
     },
 
     methods: {
+      turnLoadNews:function(){
+        // console.log('122')
+        this.$router.go(0);
+      },
       handleScroll (e) {
         // var scrollTop = e.target.documentElement.scrollTop || e.target.body.scrollTop      // 执行代码
 
@@ -674,6 +703,7 @@
         this.showCommentReply = -1
       },
 
+
     }
 
   }
@@ -749,8 +779,8 @@
   }
 
   .news-container-l {
-    height: 660px;
-
+    /*height: 660px;*/
+    height: 700px;
     background-color: #F8F8F8;
 
   }
@@ -773,6 +803,22 @@
     padding-left: 10px;
     padding-right: 10px;
     border-bottom: 1px solid #E6E6E6;
+  }
+
+  .news-container-l-xuanzhuan{
+    margin-top: 10px;
+    font-size:12px;
+    font-family:PingFangSC-Regular,PingFang SC;
+    font-weight:400;
+    color:rgba(118,188,255,1);
+    line-height:20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .news-container-l-xuanzhuan img{
+      margin-right: 10px;
   }
 
   .news-container-r {
@@ -803,7 +849,7 @@
   }
 
   .news-container-r-profile-1-1 {
-    line-height: 60px;
+    /*line-height: 60px;*/
   }
 
   .news-container-r-profile-1-1 img {
@@ -814,19 +860,26 @@
   }
 
   .news-container-r-profile-1-2 {
+    margin-top: 10px;
+    text-indent: 8px;
     font-size: 12px;
     font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
     color: rgba(51, 51, 51, 1);
-    line-height: 30px;
+    /*line-height: 30px;*/
   }
+  .news-container-r-profile-1-2-1{
 
-  .news-container-r-profile-1-2 span {
+  }
+  .news-container-r-profile-1-2-2{
+    margin-top: 4px;
+  }
+  .news-container-r-profile-1-2-2 span {
     font-size: 10px;
     font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
     color: rgba(131, 131, 131, 1);
-    line-height: 30px;
+    /*line-height: 30px;*/
   }
 
   .news-container-r-profile-1-3 {
@@ -834,6 +887,7 @@
   }
 
   .news-container-r-profile-1-3 button {
+    cursor: pointer;
     outline: none;
     border: none;
     width: 70px;

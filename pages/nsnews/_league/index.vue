@@ -45,10 +45,10 @@
             {{news.published_at}}
           </el-col>
           <el-col :span="12" >
-            <el-col :span="2" :offset="8" class="news-list-item-like-img"><img src="@/assets/image/like-2.png" alt="like"></el-col>
-            <el-col :span="6" class="news-list-item-like">{{news.likes}}</el-col>
+            <el-col :span="2" :offset="14" class="news-list-item-like-img"><img src="@/assets/image/like-2.png" alt="like"></el-col>
+            <el-col :span="3" class="news-list-item-like">{{news.likes}}</el-col>
             <el-col :span="2" class="news-list-item-com-img"><img src="@/assets/image/comment-icon.png" alt="comment"></el-col>
-            <el-col :span="6" class="news-list-item-com">{{news.commentTotalCount}}</el-col>
+            <el-col :span="3" class="news-list-item-com">{{news.commentTotalCount}}</el-col>
           </el-col>
         </el-col>
 
@@ -92,7 +92,8 @@
           <el-col :span="24" class="join-qq">
             <el-col :span="4" class="join-qq-img"><img src="@/assets/image/qq-icon.png" alt="qq"></el-col>
             <el-col :span="20" class="join-qq-text">
-              <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=72f3014553b1953de71861de3876f9d2470314c80db8841846605de452008500">
+              <a target="_blank"
+                 href="//shang.qq.com/wpa/qunwpa?idkey=72f3014553b1953de71861de3876f9d2470314c80db8841846605de452008500">
                 加入篮球QQ群：568468754
               </a>
             </el-col>
@@ -101,7 +102,8 @@
           <el-col :span="24" class="join-qq">
             <el-col :span="4" class="join-qq-img"><img src="@/assets/image/qq-icon.png" alt="qq"></el-col>
             <el-col :span="20" class="join-qq-text">
-              <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=4645b8b96c0f3a75b896250bd58c50b02eec5d4b20d9a81462165e68354ba9ba">
+              <a target="_blank"
+                 href="//shang.qq.com/wpa/qunwpa?idkey=4645b8b96c0f3a75b896250bd58c50b02eec5d4b20d9a81462165e68354ba9ba">
                 加入足球QQ群：826695023
               </a>
             </el-col>

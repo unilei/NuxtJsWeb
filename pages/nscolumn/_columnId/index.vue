@@ -40,10 +40,10 @@
           </el-col>
           <el-col :span="12" class="news-list-item-time">{{news.published_at}}</el-col>
           <el-col :span="12" >
-            <el-col :span="2" :offset="8" class="news-list-item-like-img"><img src="@/assets/image/like-2.png" alt="like"></el-col>
-            <el-col :span="6" class="news-list-item-like">{{news.likes}}</el-col>
+            <el-col :span="2" :offset="14" class="news-list-item-like-img"><img src="@/assets/image/like-2.png" alt="like"></el-col>
+            <el-col :span="3" class="news-list-item-like">{{news.likes}}</el-col>
             <el-col :span="2" class="news-list-item-com-img"><img src="@/assets/image/comment-icon.png" alt="comment"></el-col>
-            <el-col :span="6" class="news-list-item-com">{{news.commentTotalCount}}</el-col>
+            <el-col :span="3" class="news-list-item-com">{{news.commentTotalCount}}</el-col>
           </el-col>
         </el-col>
 

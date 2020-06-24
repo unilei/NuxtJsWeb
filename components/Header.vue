@@ -107,7 +107,7 @@
 
       </el-row>
 
-
+    <el-backtop  :bottom="100"></el-backtop>
       <!-- 登陆弹框-->
       <Login v-bind:dialogFormVisible="dialogFormVisible"
              v-bind:dialogMobileLogin="dialogMobileLogin"
@@ -120,19 +120,20 @@
       ></Login>
 
       <!--        悬浮二维码框-->
-<!--      <div class="wx-qrcode-box">-->
-<!--        <div class="wx-qrcode-box-img">-->
-<!--          <a-->
-<!--            href="https://171tiyu.com/download/android?channelCode=Web_Landing_Page"-->
-<!--            v-if="this.os === 'Win'">-->
-<!--            <img src="https://aloss.hotforest.cn/web/android-QRcode.png" alt="">-->
-<!--          </a>-->
-<!--          <a v-if="this.os==='Mac'" href="https://apps.apple.com/app/id1482371213">-->
-<!--            <img src="https://aloss.hotforest.cn/web/android-QRcode.png" alt="">-->
-<!--          </a>-->
-<!--        </div>-->
+      <div class="wx-qrcode-box">
+        <div class="wx-qrcode-box-img">
+          <a
+            href="https://171tiyu.com/download"
+            v-if="this.os === 'Win'">
+            <img src="https://aloss.hotforest.cn/web/android-QRcode.png" alt="">
+          </a>
+          <a v-if="this.os==='Mac'" href="https://apps.apple.com/app/id1482371213">
+            <img src="https://aloss.hotforest.cn/web/android-QRcode.png" alt="">
+          </a>
+        </div>
 <!--        <span>扫码下载安卓/IOS APP</span>-->
-<!--      </div>-->
+        <span>立即下载APP</span>
+      </div>
       <!--        悬浮二维码框结束-->
 
 <!--    </client-only>-->
@@ -417,10 +418,16 @@
   }
 
   .nav-sub-menu-item {
+    padding-top: 4px;
+    padding-bottom: 4px;
     border-bottom: 1px dashed #E6E6E6;
   }
   .nav-sub-menu-item a{
     color: #000000;
+    width: 90%;
+    height: 40px;
+    margin: 0 auto;
+    line-height: 40px;
   }
   .nav-sub-menu-item a:hover{
     background:rgba(202,231,241,1) !important;

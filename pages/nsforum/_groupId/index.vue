@@ -9,7 +9,7 @@
         <el-col :span="24" v-for="(forum,i) in forumList" :key="i" class="forum-list-item">
           <el-col v-if="forum.group==='NBA'" :span="1" class="forum-list-item-icon"><img src="@/assets/image/nba.png" alt="nba"></el-col>
           <el-col v-if="forum.group==='足球'" :span="1" class="forum-list-item-icon"><img src="@/assets/image/football.png" alt="nba"></el-col>
-          <el-col v-if="forum.group==='全部'" :span="1" class="forum-list-item-icon"><img src="@/assets/image/bbs.png" alt="nba"></el-col>
+          <el-col v-if="forum.group==='全部'" :span="1" class="forum-list-item-icon"><img src="@/assets/image/social.png" alt="nba"></el-col>
           <el-col v-if="forum.group==='篮球'" :span="1" class="forum-list-item-icon"><img src="@/assets/image/basketball.png" alt="nba"></el-col>
           <el-col :span="23" class="forum-list-item-league">{{forum.group}}</el-col>
 

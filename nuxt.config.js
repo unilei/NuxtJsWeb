@@ -103,7 +103,7 @@ module.exports = {
     '@nuxtjs/sitemap',
   ],
   sitemap: {
-    hostname:'https://www.171tiyu.com',
+    // hostname:'https://www.171tiyu.com',
     path: '/sitemap.xml',
     cacheTime: 1000 * 60 * 60 * 24,
     // generate:true,
@@ -131,7 +131,8 @@ module.exports = {
       '/index',
       '/personalInformationService',
       '/company',
-      '/profile'
+      '/profile',
+      '/kol'
     ],
     sitemaps: [
       {
@@ -205,6 +206,77 @@ module.exports = {
       },
       {
         path: '/sitemap-nsforum.xml',
+        routes: async () => {
+          let sportType = 'all'
+          let type = 'newest'
+          let params = {
+            offset: 0
+          }
+          const res = await axios.get(`https://api.npse.com:8081/v1/forum/` + sportType + `/0/` + type + `/articles`, { params: params })
+          // console.log(res.data.Data)
+          return res.data.Data.list.map(bbs => `/nsforum/${bbs.category}/${bbs.article_id}`)
+        },
+        gzip: false,
+      },
+      {
+        path: '/sitemap-forum-basketball.xml',
+        routes: async () => {
+          const res = await axios.get(`https://api.npse.com:8081/v3/forum/basketball/groups`)
+          // console.log(res.data.Data)
+          // this.footballGroupList = res.Data.list;
+          return res.data.Data.list.map(bbs => `/nsforum/${bbs.id}`)
+        },
+        gzip: false,
+      },
+      {
+        path: '/sitemap-forum-basketball-list.xml',
+        routes: async () => {
+          const res = await axios.get(`https://api.npse.com:8081/v3/forum/basketball/groups`)
+          // console.log(res.data.Data)
+          let footballGroupList = res.data.Data.list;
+
+          let forumList = [];
+          footballGroupList.forEach(
+            item=>{
+              let id = item.id;
+              let forum_params = {
+                sort_type:'newest',
+                group_id:id
+              }
+              let limit = 100;
+              let offset = 0;
+              let list = [];
+              axios.get(`https://api.npse.com:8081/v3/forum/articles/${limit}/${offset}`, { params: forum_params,headers:{ ns_device_id:'website' }})
+                .then(
+                  res=>{
+                    // console.log(res.data.Data.list)
+                    list =  list.concat(res.data.Data.list)
+                    // console.log(forumList)
+                    console.log(list)
+                    // return res.data.Data.list.map(bbs => `/nsforum/${id}/${bbs.article_id}`)
+                  }
+                )
+              // console.log(list)
+
+            }
+          )
+
+
+        },
+        gzip: false,
+      },
+      {
+        path: '/sitemap-forum-football.xml',
+        routes: async () => {
+          const res = await axios.get(`https://api.npse.com:8081/v3/forum/football/groups`)
+          // console.log(res.data.Data)
+          // this.footballGroupList = res.Data.list;
+          return res.data.Data.list.map(bbs => `/nsforum/${bbs.id}`)
+        },
+        gzip: false,
+      },
+      {
+        path: '/sitemap-forum.xml',
         routes: async () => {
           let sportType = 'all'
           let type = 'newest'

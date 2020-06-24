@@ -17,14 +17,47 @@
         <nuxt-link :to="{name:'profile-activeName',params:{'activeName':'complaint'}}" >投诉侵权</nuxt-link>
       </li>
       <li>
-<!--        <a href="https://171tiyu.com/download/android?channelCode=Web_Landing_Page"-->
-<!--           v-if="this.os === 'Win'">-->
-<!--          立即下载全民体育-->
-<!--        </a>-->
-<!--        <a v-if="this.os==='Mac'" href="https://apps.apple.com/app/id1482371213">-->
-<!--          立即下载全民体育-->
-<!--        </a>-->
         <nuxt-link :to="{name:'download'}">立即下载全民体育</nuxt-link>
+      </li>
+      <li class="sina-wx">
+        <div>
+          <img src="@/assets/image/sina.png" alt="sina">
+        </div>
+        <div class="sina-wx-2">
+          <a href="">全民体育足球圈</a>
+        </div>
+
+      </li>
+      <li class="sina-wx">
+        <div>
+          <img src="@/assets/image/sina.png" alt="sina">
+        </div>
+        <div class="sina-wx-2">
+          <a href=""> 全民体育 <br>
+            NationalSports</a>
+
+        </div>
+
+      </li>
+      <li class="sina-wx">
+        <div>
+          <img src="@/assets/image/wx-icon.png" alt="sina">
+        </div>
+        <div class="sina-wx-2">
+          <a href="">全民体育足球 <br>
+            NationalSports</a>
+
+        </div>
+
+      </li>
+      <li class="sina-wx">
+        <div>
+          <img src="@/assets/image/wx-icon.png" alt="sina">
+        </div>
+        <div class="sina-wx-2">
+          <a href="">全民体育 <br>
+            NationalSports</a>
+        </div>
       </li>
     </ul>
   </div>
@@ -58,23 +91,13 @@
     margin-top: 20px;
   }
 
-  .footer-top-container {
-    height: 80px;
-    margin: 0;
-    padding: 0;
-    /*background: #E3E8EE;*/
-  }
 
   .footer-top-l {
     width: 100%;
-    height: 35px;
+    height: 85px;
     /*float: left;*/
   }
 
-  .footer-top-r {
-    /*width: 49%;*/
-    /*float: left;*/
-  }
 
   .footer-top-l ul {
 
@@ -87,7 +110,7 @@
 
   .footer-top-l ul li {
     float: left;
-    margin-right: 5%;
+    margin-right: 3%;
     padding-top: 10px;
   }
 
@@ -96,73 +119,12 @@
     color: #333333;
   }
 
-  .footer-top-r ul {
+  .sina-wx{
+    display: flex;
+    align-items: center;
   }
-
-  .footer-top-r ul li {
-    float: left;
-    margin-left: 5%;
+  .sina-wx-2{
+    margin-left: 8px;
   }
-
-  .footer-top-r ul li a {
-    font-size: 12px;
-    color: #333333;
-  }
-
-  .footer-top-r ul li img {
-    width: 130px;
-    height: 125px;
-  }
-
-  .footer-top-r-img {
-    float: left;
-  }
-
-  .footer-top-r-a {
-    float: left;
-  }
-
-  .footer-d-container {
-    /*background: #CFD6DE;*/
-    height: 50px;
-    background: rgba(207, 214, 222, 1);
-  }
-
-  .footer-d-t {
-    width: 100%;
-    /*height: 50px;*/
-  }
-
-  .footer-d-t ul {
-    width: 80%;
-    height: 50px;
-    margin: 0 auto;
-    padding: 0;
-  }
-
-  .footer-d-t ul li {
-    float: left;
-    margin-left: 27px;
-    padding-top: 20px;
-  }
-
-  .footer-d-t ul li a {
-    font-size: 18px;
-    color: #333333;
-  }
-
-  .footer-d-d span {
-    height: 49px;
-    line-height: 49px;
-    display: block;
-    font-size: 14px;
-    color: #333333;
-  }
-
-  .footer-d-d a {
-    font-size: 14px;
-    color: #333333;
-  }
-
 
 </style>

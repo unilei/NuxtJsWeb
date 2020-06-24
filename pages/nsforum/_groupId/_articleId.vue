@@ -42,12 +42,13 @@
         <el-col :span="24" class="news-container-r-profile">
           <el-col :span="12" class="news-container-r-profile-1">
             <el-col :span="2" class="news-container-r-profile-1-1">
-              <img :src="forumDetail.author.avatar_url" alt="avatar_url"></el-col>
-            <el-col :span="6" class="news-container-r-profile-1-2">
-              {{forumDetail.author.nickName}} <br>
-              <span>足球热评人</span>
+              <img :src="forumDetail.author.avatar_url" alt="avatar_url">
             </el-col>
-            <el-col :span="16" class="news-container-r-profile-1-3">
+            <el-col :span="7" class="news-container-r-profile-1-2">
+              <el-col :span="24" class="news-container-r-profile-1-2-1"> {{forumDetail.author.nickName}} </el-col>
+              <el-col :span="24"  class="news-container-r-profile-1-2-2"><span>足球热评人</span></el-col>
+            </el-col>
+            <el-col :span="15" class="news-container-r-profile-1-3">
               <button>关注</button>
             </el-col>
           </el-col>
@@ -84,7 +85,7 @@
         </el-col>
 
         <el-col :span="24" class="news-container-r-like">
-          <img src="@/assets/image/like-icon-1.png" alt="icon"> <br>
+          <img src="@/assets/image/like-icon-2.png" alt="icon"> <br>
           已有 {{forumDetail.likes_count}}   人点赞
         </el-col>
 
@@ -298,8 +299,6 @@
         wechatQrcodeHelper: '<p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>'
       }
       socialShare('.social-share', $config)
-
-
 
       window.addEventListener('scroll', this.handleScroll, true)
       this.groupId = this.$route.params.groupId;
@@ -720,24 +719,34 @@
     border-radius: 30px;
   }
 
-  .news-container-r-profile-1-2{
-    font-size:12px;
-    font-family:PingFangSC-Regular,PingFang SC;
-    font-weight:400;
-    color:rgba(51,51,51,1);
-    line-height:30px;
+  .news-container-r-profile-1-2 {
+    margin-top: 10px;
+    text-indent: 8px;
+    font-size: 12px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(51, 51, 51, 1);
+    /*line-height: 30px;*/
   }
-  .news-container-r-profile-1-2 span{
-    font-size:10px;
-    font-family:PingFangSC-Regular,PingFang SC;
-    font-weight:400;
-    color:rgba(131,131,131,1);
-    line-height:30px;
+  .news-container-r-profile-1-2-1{
+
   }
+  .news-container-r-profile-1-2-2{
+    margin-top: 4px;
+  }
+  .news-container-r-profile-1-2-2 span {
+    font-size: 10px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(131, 131, 131, 1);
+    /*line-height: 30px;*/
+  }
+
   .news-container-r-profile-1-3{
     height: 60px;
   }
   .news-container-r-profile-1-3 button{
+    cursor: pointer;
     outline: none;
     border: none;
     width:70px;

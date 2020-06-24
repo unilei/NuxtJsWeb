@@ -72,7 +72,7 @@
       <el-col :span="24"  v-if="showFootball">
         <el-col :span="24" class="kol-3" >
           <el-col :span="10" class="kol-3-1">
-            <img style="margin-top: -10px;" src="@/assets/image/czh.png" alt="czh">
+            <img style="margin-top: -10px;" src="@/assets/image/fanzhiyi.png" alt="czh">
           </el-col>
           <el-col :span="14" class="kol-3-2">
             <el-col class="kol-3-2-1" :span="24">范志毅（亚洲足球先生）</el-col>
@@ -85,12 +85,12 @@
             <el-col :span="24" class="kol-4-1-1">刘越（五星体育、PPTV首席解说嘉宾）</el-col>
             <el-col :span="24" class="kol-4-1-2">前中国职业足球运动员，曾效力于山东鲁能泰山。退役后刘越曾赴大学修读本科学位，同时也受到上海电视台的邀请，担任电视转播评论员。刘越目前在五星体育以及PPTV等平台担任解说嘉宾，现主说英超和欧冠等赛事。</el-col>
           </el-col>
-          <el-col :span="10" class="kol-4-2"><img src="@/assets/image/zth.png" alt="zth"></el-col>
+          <el-col :span="10" class="kol-4-2"><img src="@/assets/image/liuyue.png" alt="zth"></el-col>
         </el-col>
 
         <el-col :span="24" class="kol-3">
           <el-col :span="10" class="kol-3-1">
-            <img src="@/assets/image/lingguang.png" alt="czh">
+            <img src="@/assets/image/baiguohua.png" alt="czh">
           </el-col>
           <el-col :span="14" class="kol-3-2">
             <el-col :span="24" class="kol-3-2-1">白国华（《足球报》著名记者）</el-col>
@@ -103,12 +103,12 @@
             <el-col :span="24" class="kol-4-1-1">姬宇阳（国内知名足球记者、评论员）</el-col>
             <el-col :span="24" class="kol-4-1-2">国内著名足球记者、评论员。曾经供职于《新民晚报》体育部、并长期担任《足球报》驻上海记者，担任《东方体育日报》首席记者兼评论员。著有《目击十强赛》一书，并和李承鹏、刘晓新共同完成《甲A十年》一书。</el-col>
           </el-col>
-          <el-col :span="10" class="kol-4-2"><img src="@/assets/image/wangxuan.png" alt="zth"></el-col>
+          <el-col :span="10" class="kol-4-2"><img src="@/assets/image/jiyuyang.png" alt="zth"></el-col>
         </el-col>
 
         <el-col :span="24" class="kol-3">
           <el-col :span="10" class="kol-3-1">
-            <img src="@/assets/image/zhangdawei.png" alt="czh">
+            <img src="@/assets/image/xiongbingjie.png" alt="czh">
           </el-col>
           <el-col :span="14" class="kol-3-2">
             <el-col :span="24" class="kol-3-2-1">熊冰杰（爱奇艺体育首席解说）</el-col>
@@ -121,7 +121,7 @@
             <el-col :span="24" class="kol-4-1-1">唐晖（西乙胡米利亚足球俱乐部董事）</el-col>
             <el-col :span="24" class="kol-4-1-2">资深足球人，08年毕业于上海外国语大学，随后进入劲爆体育。自2011年起以西甲欢乐多名义与李翔搭档解说西甲。15/16赛季通过赞助拉科鲁尼亚进军西班牙足球界，并在16年完成对西乙B俱乐部胡米利亚足球俱乐部的收购，现任球队董事。</el-col>
           </el-col>
-          <el-col :span="10" class="kol-4-2"><img src="@/assets/image/zxiaotian.png" alt="zth"></el-col>
+          <el-col :span="10" class="kol-4-2"><img src="@/assets/image/tanghui.png" alt="zth"></el-col>
         </el-col>
       </el-col>
 
