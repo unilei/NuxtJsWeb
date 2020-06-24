@@ -35,7 +35,7 @@
           <el-col :span="24" class="hot-topics-title">
             <el-col :span="24">热门专题</el-col>
             <el-col :span="3" class="hot-topics-xuanzhuan">
-              <img @click="randomTopics()" src="@/assets/image/xuanzhuan-icon.png" alt="icon">
+              <img @click="randomTopics()" src="@/assets/image/change-icon.png" alt="icon">
             </el-col>
           </el-col>
 
@@ -160,8 +160,13 @@
         topicsLength = topicsRes.Data.list.length
       }
 
+
       let allTopicsList = topicsList;
-      topicsList = topicsList.slice(0, 4)
+      let count = topicsLength - 4
+
+      let start = parseInt(Math.random() * count, 10)
+      let end = start + 4
+      topicsList = topicsList.slice(start, end)
 
 
       return {

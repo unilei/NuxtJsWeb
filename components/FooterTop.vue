@@ -24,7 +24,7 @@
           <img src="@/assets/image/sina.png" alt="sina">
         </div>
         <div class="sina-wx-2">
-          <a href="">全民体育足球圈</a>
+          <a target="_blank" href="https://weibo.com/5421557556/profile?topnav=1&wvr=6">全民体育足球圈</a>
         </div>
 
       </li>
@@ -33,30 +33,38 @@
           <img src="@/assets/image/sina.png" alt="sina">
         </div>
         <div class="sina-wx-2">
-          <a href=""> 全民体育 <br>
-            NationalSports</a>
-
+          <a target="_blank" href="https://weibo.com/u/7130101391?sudaref=www.baidu.com&sudaref=passport.weibo.com&display=0&retcode=6102&is_all=1">
+            全民体育 <br>
+            NationalSports
+          </a>
         </div>
 
       </li>
-      <li class="sina-wx">
+      <li class="sina-wx-foot">
         <div>
           <img src="@/assets/image/wx-icon.png" alt="sina">
         </div>
         <div class="sina-wx-2">
-          <a href="">全民体育足球 <br>
-            NationalSports</a>
+          <a href="javascript:;">全民体育足球 <br>
+            NationalSports
+          </a>
+        </div>
 
+        <div class="sina-wx-football">
+          <img src="@/assets/image/wechat-football.jpg" alt="football">
         </div>
 
       </li>
-      <li class="sina-wx">
+      <li class="sina-wx-basket">
         <div>
           <img src="@/assets/image/wx-icon.png" alt="sina">
         </div>
         <div class="sina-wx-2">
-          <a href="">全民体育 <br>
+          <a href="javascript:;">全民体育 <br>
             NationalSports</a>
+        </div>
+        <div class="sina-wx-basketball">
+          <img src="@/assets/image/wechat-basketball.jpg" alt="football">
         </div>
       </li>
     </ul>
@@ -118,13 +126,51 @@
     font-size: 12px;
     color: #333333;
   }
-
   .sina-wx{
     display: flex;
     align-items: center;
+    position: relative;
+  }
+  .sina-wx-foot{
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  .sina-wx-foot:hover .sina-wx-football{
+    display: block;
+  }
+  .sina-wx-basket{
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  .sina-wx-basket:hover .sina-wx-basketball{
+    display: block;
   }
   .sina-wx-2{
     margin-left: 8px;
+  }
+
+  .sina-wx-football{
+    position: absolute;
+    top: -90px;
+    left: 30px;
+    display: none;
+  }
+  .sina-wx-football img{
+    width: 100px;
+    height: 100px;
+  }
+
+  .sina-wx-basketball{
+    position: absolute;
+    top: -90px;
+    left: 30px;
+    display: none;
+  }
+  .sina-wx-basketball img{
+    width: 100px;
+    height: 100px;
   }
 
 </style>

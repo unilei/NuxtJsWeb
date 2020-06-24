@@ -11,6 +11,7 @@ export default function (req, res, next) {
     '47.103.30.132:3000',
     '49.235.129.155:3000',
     'www.hotforest.cn',
+    'w.hotforest.cn',
     'm.hotforest.cn',
     'm8.xuliulei.xyz',
     'www.171tiyu.com',

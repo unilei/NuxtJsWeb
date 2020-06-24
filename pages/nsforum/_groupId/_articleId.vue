@@ -7,7 +7,7 @@
           <el-col v-if="forumDetail.group==='NBA'" :span="12" class="news-bread-l-img"><img src="@/assets/image/nba.png" alt="nba"></el-col>
           <el-col v-if="forumDetail.group==='足球'" :span="12" class="news-bread-l-img"><img src="@/assets/image/football.png" alt="nba"></el-col>
           <el-col v-if="forumDetail.group==='篮球'" :span="12" class="news-bread-l-img"><img src="@/assets/image/basketball.png" alt="nba"></el-col>
-          <el-col v-if="forumDetail.group==='全部'" :span="12" class="news-bread-l-img"><img src="@/assets/image/bbs.png" alt="nba"></el-col>
+          <el-col v-if="forumDetail.group==='全部'" :span="12" class="news-bread-l-img"><img src="@/assets/image/social.png" alt="nba"></el-col>
           <el-col :span="12" class="news-bread-l-text">{{forumDetail.group}}</el-col>
         </el-col>
         <el-col :span="22" class="news-bread-r">

@@ -26,15 +26,16 @@
         </div>
         <div class="login-modal-t-wx">
           <el-col :span="24" class="login-modal-t-wx-1">
-            <el-col :span="12" class="login-modal-t-wx-1-1">
-              <img @click="wxDialog" style="cursor:pointer;" src="@/assets/image/wx-icon.png" alt="wechat">
-            </el-col>
-            <el-col :span="12" id="qqLoginBtn" class="login-modal-t-wx-1-2">
-<!--              <img @click="qqDialog" style="cursor:pointer;" src="@/assets/image/qq.png" alt="wechat">-->
-              <img  style="cursor:pointer;" src="@/assets/image/qq-icon.png" alt="wechat">
-            </el-col>
+            <img @click="wxDialog" style="cursor:pointer;" src="@/assets/image/wx-icon.png" alt="wechat">
+<!--            <el-col :span="12" class="login-modal-t-wx-1-1">-->
+<!--              <img @click="wxDialog" style="cursor:pointer;" src="@/assets/image/wx-icon.png" alt="wechat">-->
+<!--            </el-col>-->
+<!--            <el-col :span="12" id="qqLoginBtn" class="login-modal-t-wx-1-2">-->
+<!--              <img  style="cursor:pointer;" src="@/assets/image/qq-icon.png" alt="wechat">-->
+<!--            </el-col>-->
           </el-col>
-          <el-col :span="24" class="login-modal-t-wx-2"> <span>使用微信登录/QQ登陆</span></el-col>
+<!--          <el-col :span="24" class="login-modal-t-wx-2"> <span>使用微信登录/QQ登陆</span></el-col>-->
+          <el-col :span="24" class="login-modal-t-wx-2"> <span>使用微信登录</span></el-col>
 
         </div>
 

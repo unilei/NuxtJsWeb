@@ -144,18 +144,18 @@
 
   .aside-nav-item-img {
 
-    height: 25px;
+    height: 20px;
     position: absolute;
     left:10px;
-    top: 10px;
+    top: 12px;
     display: flex;
     align-items: center;
   }
 
   .aside-nav-item-img img {
     max-height: 100%;
-    max-width: 100%;
-    align-items: center;
+    /*max-width: 100%;*/
+
   }
 
   .aside-nav-item-icon{
