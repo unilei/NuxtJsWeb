@@ -111,10 +111,12 @@ module.exports = {
     defaults: {
       changefreq: 'daily',
       priority: 1,
-      lastmod: new Date(),
-      lastmodrealtime: true
+      lastmod: new Date()
     },
-    exclude: [],
+    exclude: [
+      '/wechat',
+      '/myqq'
+    ],
     filter ({ routes }) {
       return routes.map(route => {
         route.url = `${route.url}/`
@@ -230,12 +232,11 @@ module.exports = {
       },
       {
         path: '/sitemap-forum-basketball-list.xml',
-        routes: async () => {
+        routes: async ({ route }) => {
           const res = await axios.get(`https://api.npse.com:8081/v3/forum/basketball/groups`)
-          // console.log(res.data.Data)
-          let footballGroupList = res.data.Data.list;
 
-          let forumList = [];
+          let footballGroupList = res.data.Data.list;
+          let list = [];
           footballGroupList.forEach(
             item=>{
               let id = item.id;
@@ -243,24 +244,20 @@ module.exports = {
                 sort_type:'newest',
                 group_id:id
               }
-              let limit = 100;
+              let limit = 1;
               let offset = 0;
-              let list = [];
+
               axios.get(`https://api.npse.com:8081/v3/forum/articles/${limit}/${offset}`, { params: forum_params,headers:{ ns_device_id:'website' }})
                 .then(
                   res=>{
-                    // console.log(res.data.Data.list)
-                    list =  list.concat(res.data.Data.list)
-                    // console.log(forumList)
-                    console.log(list)
-                    // return res.data.Data.list.map(bbs => `/nsforum/${id}/${bbs.article_id}`)
+                    // console.log(res.data.Data.list.map(bbs => `/nsforum/${id}/${bbs.article_id}`));
+                    res.data.Data.list.map(bbs => `/nsforum/${id}/${bbs.article_id}`)
+                    // route = res.data.Data.list.map(bbs => `/nsforum/${id}/${bbs.article_id}`)
                   }
                 )
-              // console.log(list)
-
             }
           )
-
+          // return  list.map(bbs => `/nsforum/${id}/${bbs.article_id}`);
 
         },
         gzip: false,
@@ -269,8 +266,14 @@ module.exports = {
         path: '/sitemap-forum-football.xml',
         routes: async () => {
           const res = await axios.get(`https://api.npse.com:8081/v3/forum/football/groups`)
-          // console.log(res.data.Data)
-          // this.footballGroupList = res.Data.list;
+          return res.data.Data.list.map(bbs => `/nsforum/${bbs.id}`)
+        },
+        gzip: false,
+      },
+      {
+        path: '/sitemap-forum-football-list.xml',
+        routes: async () => {
+          const res = await axios.get(`https://api.npse.com:8081/v3/forum/football/groups`)
           return res.data.Data.list.map(bbs => `/nsforum/${bbs.id}`)
         },
         gzip: false,
