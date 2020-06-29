@@ -232,32 +232,14 @@ module.exports = {
       },
       {
         path: '/sitemap-forum-basketball-list.xml',
-        routes: async ({ route }) => {
-          const res = await axios.get(`https://api.npse.com:8081/v3/forum/basketball/groups`)
+        routes: async () => {
+          let params = {
+            category:'basketball'
+          };
+          const res = await axios.get(`http://admin.hotforest.cn/web/api.Forum/getAllForums`,{params:params})
 
-          let footballGroupList = res.data.Data.list;
-          let list = [];
-          footballGroupList.forEach(
-            item=>{
-              let id = item.id;
-              let forum_params = {
-                sort_type:'newest',
-                group_id:id
-              }
-              let limit = 1;
-              let offset = 0;
-
-              axios.get(`https://api.npse.com:8081/v3/forum/articles/${limit}/${offset}`, { params: forum_params,headers:{ ns_device_id:'website' }})
-                .then(
-                  res=>{
-                    // console.log(res.data.Data.list.map(bbs => `/nsforum/${id}/${bbs.article_id}`));
-                    res.data.Data.list.map(bbs => `/nsforum/${id}/${bbs.article_id}`)
-                    // route = res.data.Data.list.map(bbs => `/nsforum/${id}/${bbs.article_id}`)
-                  }
-                )
-            }
-          )
-          // return  list.map(bbs => `/nsforum/${id}/${bbs.article_id}`);
+          // console.log(res.data.data)
+          return  res.data.data.map(bbs => `/nsforum/${bbs.group_id}/${bbs.article_id}`);
 
         },
         gzip: false,
@@ -273,8 +255,14 @@ module.exports = {
       {
         path: '/sitemap-forum-football-list.xml',
         routes: async () => {
-          const res = await axios.get(`https://api.npse.com:8081/v3/forum/football/groups`)
-          return res.data.Data.list.map(bbs => `/nsforum/${bbs.id}`)
+          let params = {
+            category:'football'
+          };
+          const res = await axios.get(`http://admin.hotforest.cn/web/api.Forum/getAllForums`,{params:params})
+
+          // console.log(res.data.data)
+          return  res.data.data.map(bbs => `/nsforum/${bbs.group_id}/${bbs.article_id}`);
+
         },
         gzip: false,
       },
