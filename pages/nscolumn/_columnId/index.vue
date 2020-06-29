@@ -328,8 +328,8 @@
 </script>
 
 <style scoped>
-  @import "assets/css/topics.css";
-  @import "assets/css/news-list.css";
+  @import "../../../assets/css/topics.css";
+  @import "../../../assets/css/news-list.css";
   .el-main {
 
     padding-left: 20px;
