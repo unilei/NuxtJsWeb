@@ -121,27 +121,27 @@
           </el-col>
           <el-col :span="24"  class="zb-basket-items">
             <el-col :span="3" :offset="3" >
-              <img  @click="turnKol()" src="https://aloss.hotforest.cn/web/p-1.png" alt="basketball"> <br>
+              <img  @click="turnKol()" src="https://aloss.hotforest.cn/web/b-1.png" alt="basketball"> <br>
               陈正昊
             </el-col>
             <el-col :span="3">
-              <img @click="turnKol()" src="https://aloss.hotforest.cn/web/p-2.png" alt="basketball"> <br>
+              <img @click="turnKol()" src="https://aloss.hotforest.cn/web/b-2.png" alt="basketball"> <br>
               张天昊
             </el-col>
             <el-col :span="3">
-              <img @click="turnKol()" src="https://aloss.hotforest.cn/web/p-3.png" alt="basketball"> <br>
+              <img @click="turnKol()" src="https://aloss.hotforest.cn/web/b-3.png" alt="basketball"> <br>
               凌光
             </el-col>
             <el-col :span="3">
-              <img @click="turnKol()" src="https://aloss.hotforest.cn/web/p-4.png" alt="basketball"> <br>
+              <img @click="turnKol()" src="https://aloss.hotforest.cn/web/b-4.png" alt="basketball"> <br>
               汪轩
             </el-col>
             <el-col :span="3">
-              <img @click="turnKol()" src="https://aloss.hotforest.cn/web/p-5.png" alt="basketball"> <br>
+              <img @click="turnKol()" src="https://aloss.hotforest.cn/web/b-5.png" alt="basketball"> <br>
               张大维
             </el-col>
             <el-col :span="3">
-              <img @click="turnKol()" src="https://aloss.hotforest.cn/web/p-6.png" alt="basketball"> <br>
+              <img @click="turnKol()" src="https://aloss.hotforest.cn/web/b-6.png" alt="basketball"> <br>
               张小天
             </el-col>
           </el-col>
@@ -157,27 +157,27 @@
 
           <el-col :span="24" class="zb-basket-items">
             <el-col :span="3" :offset="3">
-              <img @click="turnKol()" src="https://aloss.hotforest.cn/web/pp-1.png" alt="basketball"> <br>
+              <img @click="turnKol()" src="https://aloss.hotforest.cn/web/f-1.png" alt="basketball"> <br>
               范志毅
             </el-col>
             <el-col :span="3">
-              <img @click="turnKol()" src="https://aloss.hotforest.cn/web/pp-2.png" alt="basketball"> <br>
+              <img @click="turnKol()" src="https://aloss.hotforest.cn/web/f-2.png" alt="basketball"> <br>
               刘越
             </el-col>
             <el-col :span="3">
-              <img @click="turnKol()" src="https://aloss.hotforest.cn/web/pp-3.png" alt="basketball"> <br>
+              <img @click="turnKol()" src="https://aloss.hotforest.cn/web/f-3.png" alt="basketball"> <br>
               白国华
             </el-col>
             <el-col :span="3">
-              <img @click="turnKol()" src="https://aloss.hotforest.cn/web/pp-4.png" alt="basketball"> <br>
+              <img @click="turnKol()" src="https://aloss.hotforest.cn/web/f-4.png" alt="basketball"> <br>
               姬宇阳
             </el-col>
             <el-col :span="3">
-              <img @click="turnKol()" src="https://aloss.hotforest.cn/web/pp-5.png" alt="basketball"> <br>
+              <img @click="turnKol()" src="https://aloss.hotforest.cn/web/f-5.png" alt="basketball"> <br>
               熊冰杰
             </el-col>
             <el-col :span="3">
-              <img @click="turnKol()" src="https://aloss.hotforest.cn/web/pp-6.png" alt="basketball"> <br>
+              <img @click="turnKol()" src="https://aloss.hotforest.cn/web/f-6.png" alt="basketball"> <br>
               唐晖
             </el-col>
           </el-col>
