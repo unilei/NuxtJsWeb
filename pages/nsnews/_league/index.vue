@@ -7,6 +7,8 @@
         <el-col :span="24" v-for="(news,i) in newsList" :key="i" class="news-list-item">
           <el-col v-if="news.league_value==='nba'" :span="1" class="news-list-item-icon"><img
             src="@/assets/image/nba.png" alt="nba"></el-col>
+          <el-col v-if="news.league_value==='cba'" :span="1" class="news-list-item-icon"><img
+            src="@/assets/image/cba.png" alt="cba"></el-col>
           <el-col v-if="news.league_value==='la_liga'" :span="1" class="news-list-item-icon"><img
             src="@/assets/image/laliga.png" alt="nba"></el-col>
           <el-col v-if="news.league_value==='premier'" :span="1" class="news-list-item-icon"><img

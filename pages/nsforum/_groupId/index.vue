@@ -109,15 +109,37 @@
         forumOffset: 10,
         loading: false,
         groupId:'',
+        title:'',
+        keywords:'',
+        description:''
 
       }
     },
     head(){
+
+      if (this.groupId === '5dc28f9d460c21002f300583'){
+        this.title='足球论坛-全民体育'
+        this.keywords = '足球社区,足球论坛,国际足球论坛,英超论坛,西甲论坛,意甲论坛'
+        this.description= '全民体育足球论坛拥有专业的互动参与平台，以英超、意甲、西甲、德甲等足球话题为主，拥有热情而不失理性的良好讨论氛围,观看优质比赛，加入兴趣圈子，参与社区讨论！'
+      }else if (this.groupId === '5dc930cb521f10002f1050b7'){
+          this.title = '社区论坛-全民体育'
+        this.keywords='社区论坛,社区活动,体育社区,体育论坛,篮球社区,足球社区'
+        this.description='全民体育社区论坛拥有专业的互动参与平台，以篮球、足球社区活动为主，拥有热情而不失理性的良好讨论氛围,观看优质比赛，加入兴趣圈子，参与社区讨论！'
+      }else if (this.groupId === '5dba9e1fe9e2d6002fdc23a5'){
+        this.title = 'NBA论坛-全民体育'
+        this.keywords='NBA社区,NBA论坛,NBA专区,NBA球迷社区'
+        this.description='全民体育NBA论坛拥有专业的互动参与平台，以NBA球员、NBA球队、NBA联赛等话题为主，拥有热情而不失理性的良好讨论氛围,观看优质比赛，加入兴趣圈子，参与社区讨论！'
+      }else if (this.groupId === '5dc29044889abe002ff5eee7'){
+        this.title = '篮球论坛-全民体育'
+        this.keywords='篮球论坛,篮球社区,NBA篮球社区,CBA论坛,CBA社区'
+        this.description='全民体育篮球论坛拥有专业的互动参与平台，以CBA、NBA联赛话题为主，拥有热情而不失理性的良好讨论氛围,观看优质比赛，加入兴趣圈子，参与社区讨论！'
+      }
+
       return {
-        title:'社区论坛-全民体育',
+        title:this.title,
         meta:[
-          {hid:'keywords',name:'keywords',content:'社区论坛,体育社区,体育论坛,篮球社区,足球社区'},
-          {hid:'description',name:'description',content:'全民体育社区论坛拥有专业的互动参与平台，以篮球、足球话题为主，拥有热情而不失理性的良好讨论氛围,观看优质比赛，加入兴趣圈子，参与社区讨论！'}
+          {hid:'keywords',name:'keywords',content:this.keywords},
+          {hid:'description',name:'description',content:this.description}
         ]
       }
     },

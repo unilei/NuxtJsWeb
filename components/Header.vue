@@ -58,6 +58,9 @@
             <nuxt-link :to="{name:'nsnews-league',params:{league:'nba'}}">NBA</nuxt-link>
           </div>
           <div class="nav-menu-item">
+            <nuxt-link :to="{name:'nsnews-league',params:{league:'cba'}}">CBA</nuxt-link>
+          </div>
+          <div class="nav-menu-item">
             <nuxt-link :to="{name:'nsnews-league',params:{league:'la_liga'}}">西甲</nuxt-link>
           </div>
           <div class="nav-menu-item">
