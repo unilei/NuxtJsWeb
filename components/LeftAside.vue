@@ -1,61 +1,78 @@
 <template>
 
-  <el-col :span="5" class="aside-nav">
-    <el-col :span="24" class="aside-title">
-      <img @click="backIndex" src="@/assets/image/qmty-icon.png" alt="全民体育">
+  <el-col :span="5" >
+    <el-col :span="24" class="aside-nav">
+      <el-col :span="24" class="aside-title">
+        <img @click="backIndex" src="@/assets/image/qmty-icon.png" alt="全民体育">
+      </el-col>
+
+      <el-col :span="24" class="aside-nav-item ">
+        <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/nba.png" alt="nba"></el-col>
+        <nuxt-link :to="{name:'nsnews-league',params:{league:'nba'}}">NBA</nuxt-link>
+      </el-col>
+      <el-col :span="22" :offset="1" class="aside-border"></el-col>
+      <el-col :span="24" class="aside-nav-item ">
+        <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/cba.png" alt="cba"></el-col>
+        <nuxt-link :to="{name:'nsnews-league',params:{league:'cba'}}">CBA</nuxt-link>
+      </el-col>
+      <el-col :span="22" :offset="1" class="aside-border"></el-col>
+      <el-col :span="24" class="aside-nav-item ">
+        <nuxt-link :to="{name:'nsnews-league',params:{league:'la_liga'}}">西甲</nuxt-link>
+        <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/laliga.png" alt="la_liga"></el-col>
+      </el-col>
+      <el-col :span="22" :offset="1" class="aside-border"></el-col>
+      <el-col :span="24" class="aside-nav-item ">
+        <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/premier.png" alt="premier"></el-col>
+        <nuxt-link :to="{name:'nsnews-league',params:{league:'premier'}}">英超</nuxt-link>
+      </el-col>
+      <el-col :span="22" :offset="1" class="aside-border"></el-col>
+      <el-col :span="24" class="aside-nav-item ">
+        <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/serie_a.png" alt="serie_a"></el-col>
+        <nuxt-link :to="{name:'nsnews-league',params:{league:'serie_a'}}">意甲</nuxt-link>
+      </el-col>
+      <el-col :span="22" :offset="1" class="aside-border"></el-col>
+      <el-col :span="24" class="aside-nav-item ">
+        <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/football.png" alt="football"></el-col>
+        <el-col :span="4" class="aside-nav-item-icon"><img src="@/assets/image/sub-menu-icon.png" alt="icon"></el-col>
+        <a href="javascript:;">足球社区</a>
+        <div class="sub-forum-nav">
+          <div class="sub-forum-nav-item" v-for="(fg,i) in footballGroupList" :key="i">
+            <nuxt-link active-class="nuxt-link-active-1"  :to="{name:'nsforum-groupId',params:{groupId:fg.id}}">{{fg.name}}</nuxt-link>
+          </div>
+        </div>
+      </el-col>
+      <el-col :span="22" :offset="1" class="aside-border"></el-col>
+      <el-col :span="24" class="aside-nav-item ">
+        <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/basketball.png" alt="basketball"></el-col>
+        <el-col :span="4" class="aside-nav-item-icon"><img src="@/assets/image/sub-menu-icon.png" alt="icon"></el-col>
+        <a href="javascript:;">篮球社区</a>
+        <div class="sub-forum-nav">
+          <div class="sub-forum-nav-item" v-for="(bg,i) in basketballGroupList" :key="i">
+            <nuxt-link active-class="nuxt-link-active-1" :to="{name:'nsforum-groupId',params:{groupId:bg.id}}">{{bg.name}}</nuxt-link>
+          </div>
+        </div>
+      </el-col>
+      <el-col :span="22" :offset="1" class="aside-border"></el-col>
+      <el-col :span="24" class="aside-nav-item ">
+        <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/social.png" alt="basketball">
+        </el-col>
+        <nuxt-link v-if="socialGroupId" :to="{name:'nsforum-groupId',params:{groupId:socialGroupId}}">社区活动</nuxt-link>
+      </el-col>
     </el-col>
 
-    <el-col :span="24" class="aside-nav-item ">
-      <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/nba.png" alt="nba"></el-col>
-      <nuxt-link :to="{name:'nsnews-league',params:{league:'nba'}}">NBA</nuxt-link>
-    </el-col>
-    <el-col :span="22" :offset="1" class="aside-border"></el-col>
-    <el-col :span="24" class="aside-nav-item ">
-      <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/cba.png" alt="cba"></el-col>
-      <nuxt-link :to="{name:'nsnews-league',params:{league:'cba'}}">CBA</nuxt-link>
-    </el-col>
-    <el-col :span="22" :offset="1" class="aside-border"></el-col>
-    <el-col :span="24" class="aside-nav-item ">
-      <nuxt-link :to="{name:'nsnews-league',params:{league:'la_liga'}}">西甲</nuxt-link>
-      <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/laliga.png" alt="la_liga"></el-col>
-    </el-col>
-    <el-col :span="22" :offset="1" class="aside-border"></el-col>
-    <el-col :span="24" class="aside-nav-item ">
-      <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/premier.png" alt="premier"></el-col>
-      <nuxt-link :to="{name:'nsnews-league',params:{league:'premier'}}">英超</nuxt-link>
-    </el-col>
-    <el-col :span="22" :offset="1" class="aside-border"></el-col>
-    <el-col :span="24" class="aside-nav-item ">
-      <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/serie_a.png" alt="serie_a"></el-col>
-      <nuxt-link :to="{name:'nsnews-league',params:{league:'serie_a'}}">意甲</nuxt-link>
-    </el-col>
-    <el-col :span="22" :offset="1" class="aside-border"></el-col>
-    <el-col :span="24" class="aside-nav-item ">
-      <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/football.png" alt="football"></el-col>
-      <el-col :span="4" class="aside-nav-item-icon"><img src="@/assets/image/sub-menu-icon.png" alt="icon"></el-col>
-      <a href="javascript:;">足球社区</a>
-      <div class="sub-forum-nav">
-        <div class="sub-forum-nav-item" v-for="(fg,i) in footballGroupList" :key="i">
-          <nuxt-link active-class="nuxt-link-active-1"  :to="{name:'nsforum-groupId',params:{groupId:fg.id}}">{{fg.name}}</nuxt-link>
-        </div>
-      </div>
-    </el-col>
-    <el-col :span="22" :offset="1" class="aside-border"></el-col>
-    <el-col :span="24" class="aside-nav-item ">
-      <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/basketball.png" alt="basketball"></el-col>
-      <el-col :span="4" class="aside-nav-item-icon"><img src="@/assets/image/sub-menu-icon.png" alt="icon"></el-col>
-      <a href="javascript:;">篮球社区</a>
-      <div class="sub-forum-nav">
-        <div class="sub-forum-nav-item" v-for="(bg,i) in basketballGroupList" :key="i">
-          <nuxt-link active-class="nuxt-link-active-1" :to="{name:'nsforum-groupId',params:{groupId:bg.id}}">{{bg.name}}</nuxt-link>
-        </div>
-      </div>
-    </el-col>
-    <el-col :span="22" :offset="1" class="aside-border"></el-col>
-    <el-col :span="24" class="aside-nav-item ">
-      <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/social.png" alt="basketball">
+    <el-col :span="24" class="left-qrcode">
+      <el-col :span="12" class="download-qrcode">
+        <img id="downloadButton" src="https://aloss.hotforest.cn/web/m/download-qrcode.png" alt="qrcode">
       </el-col>
-      <nuxt-link v-if="socialGroupId" :to="{name:'nsforum-groupId',params:{groupId:socialGroupId}}">社区活动</nuxt-link>
+      <el-col :span="12">
+        <el-col :span="14" class="download-c-text">
+          点击二维码即可下载
+        </el-col>
+        <el-col :span="10" class="download-click-icon">
+          <img src="https://aloss.hotforest.cn/web/click-icon.png" alt="icon">
+        </el-col>
+      </el-col>
+
     </el-col>
 
   </el-col>
@@ -222,6 +239,43 @@
   .sub-forum-nav-item a:hover {
     background:rgba(202,231,241,1) !important;
     border-radius:8px;
+  }
+
+  .left-qrcode{
+    margin-top: 15px;
+    height: 172px;
+    background: url("../assets/image/index-l-qrcode-bg.png") no-repeat center;
+    background-size: 100% 100%;
+  }
+
+  .download-qrcode{
+    margin-top: 35px;
+    text-align: center;
+  }
+  .download-qrcode img{
+    width: 39px;
+    height: 38px;
+    cursor: pointer;
+
+  }
+  .download-click-icon{
+    text-align: left;
+    padding-left: 20px;
+    padding-top: 20px;
+  }
+  .download-click-icon img{
+    width: 49px;
+    height:49px;
+    /*height: 40px;*/
+  }
+
+  .download-c-text{
+    font-size:16px;
+    font-weight:500;
+    color:rgba(255,255,255,1);
+    /*line-height:25px;*/
+    text-align: right;
+    line-height: 69px;
   }
 
   .nuxt-link-active {
