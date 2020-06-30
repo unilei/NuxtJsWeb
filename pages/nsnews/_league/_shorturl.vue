@@ -15,8 +15,13 @@
           <el-col :span="12" class="news-bread-l-text">{{league_value}}</el-col>
         </el-col>
         <el-col :span="22" class="news-bread-r">
-          首页 - <span>{{league_value}}</span>
+          <nuxt-link style="color: #666666;" :to="{path:'/'}"> 首页 </nuxt-link>
+          -
+          <nuxt-link :to="{name:'nsnews-league',params:{league:league}}">{{league_value}}</nuxt-link>
         </el-col>
+<!--        <el-col :span="22" class="news-bread-r">-->
+<!--          首页 - <span>{{league_value}}</span>-->
+<!--        </el-col>-->
       </el-col>
     </el-row>
 
@@ -755,18 +760,17 @@
     text-align: center;
   }
 
-  .news-bread-r {
+  .news-bread-r{
     text-align: left;
     text-indent: 20px;
     margin-top: 15px;
     line-height: 30px;
-    font-size: 16px;
-    font-family: PingFangSC-Regular, PingFang SC;
-    font-weight: 400;
-    color: rgba(102, 102, 102, 1);
+    font-size:16px;
+    font-family:PingFangSC-Regular,PingFang SC;
+    font-weight:400;
+    color:rgba(102,102,102,1);
   }
-
-  .news-bread-r span {
+  .news-bread-r a{
     color: #333333;
   }
 

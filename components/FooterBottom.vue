@@ -5,7 +5,7 @@
                     <a rel="nofollow" href="http://beian.miit.gov.cn/" target="_blank">浙ICP备18019159号-2</a>
                     <a rel="nofollow" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010402004047"
                        target="_blank">浙公网安备浙公网安备 33010402004047号</a>
-                    举报电话：+8613482207807   举报邮箱：customer@nsnni.com   Copyright © 全民体育</span>
+                    举报电话：+8613482207807   举报邮箱：customer@nsnni.com   Copyright © <a href="/">全民体育</a> </span>
     </div>
   </div>
 </template>

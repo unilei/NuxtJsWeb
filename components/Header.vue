@@ -42,7 +42,7 @@
         <el-col :span="24" class="nav-menu" v-if="pathStatus===false">
           <div class="nav-menu-logo">
             <div class="nav-menu-logo-1">
-              <img src="@/assets/image/logo-1.png" alt="logo-1">
+              <img @click="backIndex" src="@/assets/image/logo-1.png" alt="全民体育">
             </div>
             <div class="nav-menu-logo-2">
               全民体育 懂球迷的聚集地
@@ -178,6 +178,9 @@
       }
     },
     methods: {
+      backIndex:function(){
+        this.$router.push('/')
+      },
       closeDialog () {
         this.dialogTableVisible = false
         this.dialogFormVisible = false

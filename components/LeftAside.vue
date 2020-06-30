@@ -1,7 +1,9 @@
 <template>
 
   <el-col :span="5" class="aside-nav">
-    <el-col :span="24" class="aside-title"><img src="@/assets/image/qmty-icon.png" alt="qmty"></el-col>
+    <el-col :span="24" class="aside-title">
+      <img @click="backIndex" src="@/assets/image/qmty-icon.png" alt="全民体育">
+    </el-col>
 
     <el-col :span="24" class="aside-nav-item ">
       <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/nba.png" alt="nba"></el-col>
@@ -78,6 +80,9 @@
 
     },
     methods:{
+      backIndex:function(){
+        this.$router.push('/')
+      },
       getFootballGroupList:function () {
           this.$axios.$get(`${base.sq}/v3/forum/football/groups`).then(
             res=>{
