@@ -129,6 +129,9 @@
     },
     data () {
       return {
+        title:'',
+        keywords:'',
+        description:'',
         newsList: [], //新闻列表
         allTopicsList:[], // 所有的专栏
         topicsList: [], //专栏列表
@@ -142,18 +145,41 @@
       }
     },
     head () {
+
+      if (this.league === '' || this.league === undefined || this.league === 'all') {
+        this.title = '体育新闻_体育快讯_体育最新资讯-全民体育'
+        this.keywords = '体育,新闻,体育新闻,体育快讯,体育资讯,体坛最新快讯,足球新闻,篮球新闻'
+        this.description = '全民体育提供全面专业的体育新闻和赛事报道，主要栏目有：英超，西甲，意甲，德甲，欧冠，中超，NBA，CBA，世界杯等，让球迷及时准确的了解赛事进展和结果。'
+      } else if (this.league === 'nba') {
+        this.title = 'NBA_NBA新闻_NBA快讯-全民体育'
+        this.keywords = 'NBA,NBA新闻,NBA快讯,NBA资讯,NBA最新快讯, NBA常规赛,NBA总决赛,NBA季后赛'
+        this.description = '全民体育拥有NBA常规赛、NBA总决赛、NBA季后赛等最新NBA快讯、NBA赛程、NBA球员球队的NBA数据以及丰富的NBA知识。想看NBA资讯，就上全民体育吧。'
+      } else if (this.league === 'premier') {
+        this.title = '英超_英超新闻_英超快讯-全民体育'
+        this.keywords = '英超,英超新闻,英超联赛,英超快讯,曼联,切尔西,阿森纳,利物浦,曼城,鲁尼,阿圭罗,阿扎尔,席尔瓦,穆里尼奥,范加尔,温格'
+        this.description = '全民体育提供最全面的英超新闻资讯，全面及时报道英超联赛,曼联,曼城,阿森纳,利物浦,切尔西等球队最新动态。'
+      } else if (this.league === 'serie_a') {
+        this.title = '意甲_意甲新闻_意甲快讯-全民体育'
+        this.keywords = '意甲新闻,意甲最新新闻,意甲快讯,意甲资讯'
+        this.description = '全民体育提供意甲联赛精彩的新闻报道，全面的意甲新闻，权威的足球评论，搭配人性化又时尚的操作介面，让球迷及时准确的了解赛事进展和结果。'
+      } else if (this.league === 'la_liga') {
+        this.title = '西甲_西甲新闻_西甲快讯-全民体育'
+        this.keywords = '西甲,西甲新闻,西甲最新新闻,西甲快讯,西甲资讯,皇马,皇家马德里,巴萨,巴塞罗那,马竞,马德里竞技,梅西'
+        this.description = '全民体育提供西甲联赛精彩的新闻报道，全面及时报道西甲联赛，皇马，皇家马德里，巴萨，巴塞罗那，马竞，马德里竞技，梅西，苏亚雷斯，贝尔，库蒂尼奥，登贝莱，拉莫斯，皮克，伊斯科，阿森西奥等球员球队的比赛数据。'
+      }
+
       return {
-        title: '全民体育_懂球迷的聚集地',
+        title: this.title,
         meta: [
           {
             hid: 'keywords',
             name: 'keywords',
-            content: '全民体育,体育,新闻,直播,足球,篮球,资讯,比分,社区,数据,比赛'
+            content: this.keywords
           },
           {
             hid: 'description',
             name: 'description',
-            content: '全民体育为您带来足球，篮球比赛，即时比分，数据库等一系列数据，包括：英超，西甲，意甲，德甲，欧冠，中超，NBA，CBA，世界杯等各种比赛，让球迷及时准确的了解赛事进展和结果'
+            content: this.description
           },
         ]
       }
@@ -237,6 +263,7 @@
         topicsList: topicsList,
         allTopicsList:allTopicsList,
         topicsCount: topicsLength,
+        league:league,
       }
 
     },
