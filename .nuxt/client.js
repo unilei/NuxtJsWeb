@@ -45,7 +45,7 @@ Object.assign(Vue.config, {"silent":true,"performance":false})
 const errorHandler = Vue.config.errorHandler || console.error
 
 // Create and mount App
-createApp().then(mountApp).catch(errorHandler)
+createApp(null, NUXT.config).then(mountApp).catch(errorHandler)
 
 function componentOption (component, key, ...args) {
   if (!component || !component.options || !component.options[key]) {
@@ -114,11 +114,11 @@ async function loadAsyncComponents (to, from, next) {
         }
         return false
       })
+
       if (startLoader && this.$loading.start && !this.$loading.manual) {
         this.$loading.start()
       }
     }
-
     // Call next()
     next()
   } catch (error) {
@@ -339,7 +339,7 @@ async function render (to, from, next) {
 
     let instances
     // Call asyncData & fetch hooks on components matched by the route.
-    await Promise.all(Components.map((Component, i) => {
+    await Promise.all(Components.map(async (Component, i) => {
       // Check if only children route changed
       Component._path = compile(to.matched[matches[i]].path)(to.params)
       Component._dataRefresh = false
@@ -384,13 +384,14 @@ async function render (to, from, next) {
       // Call asyncData(context)
       if (hasAsyncData) {
         const promise = promisify(Component.options.asyncData, app.context)
-          .then((asyncDataResult) => {
-            applyAsyncData(Component, asyncDataResult)
 
-            if (this.$loading.increase) {
-              this.$loading.increase(loadingIncrease)
-            }
-          })
+        promise.then((asyncDataResult) => {
+          applyAsyncData(Component, asyncDataResult)
+
+          if (this.$loading.increase) {
+            this.$loading.increase(loadingIncrease)
+          }
+        })
         promises.push(promise)
       }
 
@@ -457,12 +458,7 @@ function normalizeComponents (to, ___) {
   })
 }
 
-function showNextPage (to) {
-  // Hide error component if no error
-  if (this._hadError && this._dateLastError === this.$options.nuxt.dateErr) {
-    this.error()
-  }
-
+function setLayoutForNextPage (to) {
   // Set layout
   let layout = this.$options.nuxt.err
     ? (NuxtError.options || NuxtError).layout
@@ -472,6 +468,13 @@ function showNextPage (to) {
     layout = layout(app.context)
   }
   this.setLayout(layout)
+}
+
+function checkForErrors (app) {
+  // Hide error component if no error
+  if (app._hadError && app._dateLastError === app.$options.nuxt.dateErr) {
+    app.error()
+  }
 }
 
 // When navigating on a different route but the same component is used, Vue.js
@@ -507,7 +510,7 @@ function fixPrepatch (to, ___) {
         })
       }
     })
-    showNextPage.call(this, to)
+    checkForErrors(this)
   })
 }
 
@@ -547,6 +550,9 @@ async function mountApp (__app) {
 
     // Add afterEach router hooks
     router.afterEach(normalizeComponents)
+
+    router.afterEach(setLayoutForNextPage.bind(_app))
+
     router.afterEach(fixPrepatch.bind(_app))
 
     // Listen for first Vue update
@@ -576,6 +582,10 @@ async function mountApp (__app) {
   router.beforeEach(loadAsyncComponents.bind(_app))
   router.beforeEach(render.bind(_app))
 
+  // Fix in static: remove trailing slash to force hydration
+  if (process.static && NUXT.serverRendered && NUXT.routePath !== '/' && NUXT.routePath.slice(-1) !== '/' && _app.context.route.path.slice(-1) === '/') {
+    _app.context.route.path = _app.context.route.path.replace(/\/+$/, '')
+  }
   // If page already is server rendered and it was done on the same route path as client side render
   if (NUXT.serverRendered && NUXT.routePath === _app.context.route.path) {
     mount()
@@ -585,11 +595,14 @@ async function mountApp (__app) {
   // First render on client-side
   const clientFirstMount = () => {
     normalizeComponents(router.currentRoute, router.currentRoute)
-    showNextPage.call(_app, router.currentRoute)
+    setLayoutForNextPage.call(_app, router.currentRoute)
+    checkForErrors(_app)
     // Don't call fixPrepatch.call(_app, router.currentRoute, router.currentRoute) since it's first render
     mount()
   }
 
+  // fix: force next tick to avoid having same timestamp when an error happen on spa fallback
+  await new Promise(resolve => setTimeout(resolve, 0))
   render.call(_app, router.currentRoute, router.currentRoute, (path) => {
     // If not redirected
     if (!path) {
