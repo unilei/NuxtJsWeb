@@ -61,14 +61,14 @@
     </el-col>
 
     <el-col :span="24" class="left-qrcode">
-      <el-col :span="12" class="download-qrcode">
+      <el-col :span="6" class="download-qrcode">
         <img id="downloadButton" src="https://aloss.hotforest.cn/web/m/download-qrcode.png" alt="qrcode">
       </el-col>
-      <el-col :span="12">
-        <el-col :span="14" class="download-c-text">
+      <el-col :span="18" class="download-c">
+        <el-col :span="24" class="download-c-text">
           点击二维码即可下载
         </el-col>
-        <el-col :span="10" class="download-click-icon">
+        <el-col :span="24" class="download-click-icon">
           <img src="https://aloss.hotforest.cn/web/click-icon.png" alt="icon">
         </el-col>
       </el-col>
@@ -94,6 +94,38 @@
     mounted () {
       this.getFootballGroupList();
       this.getBasketballGroupList();
+
+      //openinstall app唤醒
+      var data = OpenInstall.parseUrlParams()
+      // console.log(data)
+
+      new OpenInstall({
+        /*appKey必选参数，openinstall平台为每个应用分配的ID*/
+        appKey: 'y346df',
+        /*可选参数，自定义android平台的apk下载文件名；个别andriod浏览器下载时，中文文件名显示乱码，请慎用中文文件名！*/
+        //apkFileName : 'com.fm.openinstalldemo-v2.2.0.apk',
+        /*可选参数，是否优先考虑拉起app，以牺牲下载体验为代价*/
+        //preferWakeup:true,
+        /*自定义遮罩的html*/
+        //mask:function(){
+        //  return "<div id='openinstall_shadow' style='position:fixed;left:0;top:0;background:rgba(0,255,0,0.5);filter:alpha(opacity=50);width:100%;height:100%;z-index:10000;'></div>"
+        //},
+        /*openinstall初始化完成的回调函数，可选*/
+        onready: function () {
+          var m = this
+          var button = document.getElementById('downloadButton')
+          button.style.visibility = 'visible'
+
+          /*在app已安装的情况尝试拉起app*/
+          // m.wakeupOrInstall()
+          /*用户点击某个按钮时(假定按钮id为downloadButton)，安装app*/
+          button.onclick = function () {
+            m.wakeupOrInstall()
+            return false
+          }
+        }
+      }, data)
+
 
     },
     methods:{
@@ -243,14 +275,14 @@
 
   .left-qrcode{
     margin-top: 15px;
-    height: 172px;
+    height: 170px;
     background: url("../assets/image/index-l-qrcode-bg.png") no-repeat center;
     background-size: 100% 100%;
   }
 
   .download-qrcode{
-    margin-top: 35px;
-    text-align: center;
+    margin-top: 105px;
+    text-align: right;
   }
   .download-qrcode img{
     width: 39px;
@@ -258,24 +290,28 @@
     cursor: pointer;
 
   }
+
+
+  .download-c{
+    margin-top: 105px;
+    padding-left: 10px;
+  }
+
   .download-click-icon{
     text-align: left;
-    padding-left: 20px;
-    padding-top: 20px;
+    margin-top: 4px;
   }
   .download-click-icon img{
-    width: 49px;
-    height:49px;
-    /*height: 40px;*/
+    width: 20px;
+    height:20px;
   }
 
   .download-c-text{
-    font-size:16px;
+    text-align: left;
+    font-size:10px;
+    font-family:PingFangSC-Medium,PingFang SC;
     font-weight:500;
     color:rgba(255,255,255,1);
-    /*line-height:25px;*/
-    text-align: right;
-    line-height: 69px;
   }
 
   .nuxt-link-active {

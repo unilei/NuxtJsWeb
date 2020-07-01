@@ -1,551 +1,416 @@
-<!--<template>-->
-<!--  <el-main>-->
-<!--    <el-row>-->
-<!--      <el-col :span="5" class="aside-nav">-->
-<!--        <el-col :span="24" class="aside-title"><img src="@/assets/image/qmty-icon.png" alt="qmty"></el-col>-->
-
-<!--        <el-col :span="24" class="aside-nav-item ">-->
-<!--          <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/nba.png" alt="nba"></el-col>-->
-<!--          <el-col :span="20" class="aside-nav-item-text">-->
-<!--            <nuxt-link :to="{name:'nsnews-league',params:{league:'nba'}}">NBA</nuxt-link>-->
-<!--          </el-col>-->
-<!--        </el-col>-->
-<!--        <el-col :span="24" class="aside-nav-item ">-->
-<!--          <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/laliga.png" alt="la_liga"></el-col>-->
-<!--          <el-col :span="20" class="aside-nav-item-text">-->
-<!--            <nuxt-link :to="{name:'nsnews-league',params:{league:'la_liga'}}">西甲</nuxt-link>-->
-<!--          </el-col>-->
-<!--        </el-col>-->
-<!--        <el-col :span="24" class="aside-nav-item ">-->
-<!--          <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/premier.png" alt="premier"></el-col>-->
-<!--          <el-col :span="20" class="aside-nav-item-text">-->
-<!--            <nuxt-link :to="{name:'nsnews-league',params:{league:'premier'}}">英超</nuxt-link>-->
-<!--          </el-col>-->
-<!--        </el-col>-->
-<!--        <el-col :span="24" class="aside-nav-item ">-->
-<!--          <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/serie_a.png" alt="serie_a"></el-col>-->
-<!--          <el-col :span="20" class="aside-nav-item-text">-->
-<!--            <nuxt-link :to="{name:'nsnews-league',params:{league:'serie_a'}}">意甲</nuxt-link>-->
-<!--          </el-col>-->
-<!--        </el-col>-->
-<!--        <el-col :span="24" class="aside-nav-item ">-->
-<!--          <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/football.png" alt="football"></el-col>-->
-<!--          <el-col :span="20" class="aside-nav-item-text">-->
-<!--            <nuxt-link :to="{name:'nsnews-league',params:{league:'football'}}">足球社区</nuxt-link>-->
-<!--          </el-col>-->
-<!--          <div class="sub-forum-nav">-->
-<!--            <div class="sub-forum-nav-item">-->
-<!--              <nuxt-link :to="{name:'nsnews-league',params:{league:'football'}}">足球</nuxt-link>-->
-<!--            </div>-->
-<!--            <div class="sub-forum-nav-item">-->
-<!--              <nuxt-link :to="{name:'nsnews-league',params:{league:'football'}}">足球活动</nuxt-link>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </el-col>-->
-<!--        <el-col :span="24" class="aside-nav-item ">-->
-<!--          <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/basketball.png" alt="basketball">-->
-<!--          </el-col>-->
-<!--          <el-col :span="20" class="aside-nav-item-text">-->
-<!--            <nuxt-link :to="{name:'nsnews-league',params:{league:'basketball'}}">篮球社区</nuxt-link>-->
-<!--          </el-col>-->
-<!--        </el-col>-->
-<!--        <el-col :span="24" class="aside-nav-item ">-->
-<!--          <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/social.png" alt="basketball">-->
-<!--          </el-col>-->
-<!--          <el-col :span="20" class="aside-nav-item-text">-->
-<!--            <nuxt-link :to="{name:'nsnews-league',params:{league:'basketball'}}">社区活动</nuxt-link>-->
-<!--          </el-col>-->
-<!--        </el-col>-->
-<!--      </el-col>-->
-
-<!--      <el-col :span="14"-->
-<!--              class="news-list"-->
-<!--      >-->
-<!--        <el-col :span="24"  v-for="(news,i) in newsList" :key="i" class="news-list-item">-->
-<!--          <el-col :span="1" class="news-list-item-icon"><img src="@/assets/image/nba.png" alt="nba"></el-col>-->
-<!--          <el-col :span="23" class="news-list-item-league">{{news.league}}</el-col>-->
-
-<!--          <el-col :span="24" class="news-list-item-img">-->
-<!--                            <img :src="news.image | waterMark" alt="news">-->
-<!--          </el-col>-->
-<!--          <el-col :span="24" class="news-list-item-title">-->
-<!--            <nuxt-link-->
-<!--              :to="{name: 'nsnews-league-shorturl', params: { shorturl: news.shorturl,league:news.league_value } }">-->
-<!--              {{news.title}}-->
-<!--            </nuxt-link>-->
-<!--          </el-col>-->
-<!--          <el-col :span="24" class="news-list-content">-->
-<!--            <p v-for="(c,i) in news.content" :key="i" v-if="c.type ===1" class="news-list-content-item">-->
-<!--              {{c.content}}-->
-<!--            </p>-->
-<!--          </el-col>-->
-<!--          <el-col :span="24" class="news-list-item-time">{{news.published_at}}</el-col>-->
-<!--        </el-col>-->
-
-
-<!--      </el-col>-->
-
-<!--      <el-col :span="5"  class="hot-topics">-->
-<!--        <el-col :span="24" class="hot-topics-title">-->
-<!--          热门专题-->
-<!--        </el-col>-->
-
-<!--        <el-col :span="24" class="hot-topics-item" v-for="(topic,i) in topicsList" :key="i">-->
-<!--          <el-col :span="24" class="hot-topics-item-img">-->
-<!--            <img :src="topic.cover_pic" alt="news">-->
-<!--          </el-col>-->
-<!--          <el-col :span="24" class="hot-topics-item-title">{{topic.name}}</el-col>-->
-<!--          <el-col :span="24" class="hot-topics-item-topics">专题文章  {{topic.article_amount}}</el-col>-->
-
-<!--        </el-col>-->
-
-
-<!--      </el-col>-->
-
-<!--    </el-row>-->
-<!--  </el-main>-->
-<!--</template>-->
-
-<!--<script>-->
-
-<!--  import { getFormatTime } from '../utils/time'-->
-<!--  import base from '../api/base'-->
-
-<!--  export default {-->
-<!--    name: 'index',-->
-<!--    layout: 'indexLayout',-->
-<!--    data () {-->
-<!--      return {-->
-<!--        newsList: [], //新闻列表-->
-<!--        topicsList:[], //专栏列表-->
-<!--        newsOffset:10,-->
-<!--        loading:false,-->
-
-<!--      }-->
-<!--    },-->
-<!--    head () {-->
-<!--      return {-->
-<!--        title: '全民体育_懂球迷的聚集地',-->
-<!--        meta: [-->
-<!--          {-->
-<!--            hid: 'keywords',-->
-<!--            name: 'keywords',-->
-<!--            content: '全民体育,体育,新闻,直播,足球,篮球,资讯,比分,社区,数据,比赛'-->
-<!--          },-->
-<!--          {-->
-<!--            hid: 'description',-->
-<!--            name: 'description',-->
-<!--            content: '全民体育为您带来足球，篮球比赛，即时比分，数据库等一系列数据，包括：英超，西甲，意甲，德甲，欧冠，中超，NBA，CBA，世界杯等各种比赛，让球迷及时准确的了解赛事进展和结果'-->
-<!--          },-->
-<!--        ]-->
-<!--      }-->
-<!--    },-->
-<!--    async asyncData (context) {-->
-
-<!--      let [newsListRes,topicsRes] = await Promise.all([-->
-<!--        context.$axios.$get(`${base.sq}/v2/GetArticles`, {-->
-<!--          params: {-->
-<!--            articleType: 2,-->
-<!--            limit: 10,-->
-<!--            offset: 0,-->
-<!--            author_filter: ['6', '7', '8', '9']-->
-<!--          }-->
-<!--        }),-->
-<!--        context.$axios.$get(`${base.sq}/v2/all/columns`, {-->
-<!--          params: {}-->
-<!--        })-->
-<!--      ]).catch(err => {-->
-<!--        error({-->
-<!--          statusCode: 400,-->
-<!--          message: err-->
-<!--        })-->
-<!--      })-->
-
-<!--      let newsList = []-->
-
-<!--      if (newsListRes.Status === 1) {-->
-<!--        newsList = newsListRes.Data.articles-->
-<!--        newsList.forEach(item => {-->
-<!--          // console.log(item)-->
-<!--          let s = item.shorturl-->
-<!--          let sArr = s.split('-')-->
-<!--          item.league_value = sArr[0]-->
-
-<!--          const article_id = item.article_id-->
-
-<!--          context.$axios.$get(`${base.sq}/v2/GetArticleDetail`, {-->
-<!--            params: {-->
-<!--              article_id: article_id-->
-<!--            }-->
-<!--          }).then(-->
-<!--            res => {-->
-<!--              // console.log(res)-->
-<!--              item.content = res.Data.content-->
-<!--            }-->
-<!--          )-->
-<!--        })-->
-<!--      }-->
-
-<!--      let topicsList = [];-->
-<!--      if (topicsRes.Status === 1){-->
-<!--        topicsList = topicsRes.Data.list;-->
-<!--      }-->
-<!--      topicsList = topicsList.slice(0,4)-->
-<!--      console.log(topicsList)-->
-
-<!--      // console.log(newsList)-->
-
-<!--      return {-->
-<!--        newsList: newsList,-->
-<!--        topicsList:topicsList-->
-<!--      }-->
-
-<!--    },-->
-<!--    methods: {-->
-<!--      handleScroll(e){-->
-<!--        var scrollTop = e.target.documentElement.scrollTop || e.target.body.scrollTop;      // 执行代码-->
-<!--        this.loading  = document.documentElement.offsetHeight - document.documentElement.scrollTop - window.innerHeight <= 0-->
-
-<!--        console.log(this.loading)-->
-<!--        if (this.loading){-->
-<!--          this.getMoreNews(this.newsOffset)-->
-<!--        }-->
-
-<!--      },-->
-<!--      getMoreNews (i) {-->
-<!--        //下面这个很重要 记住哟-->
-
-<!--        const params = {-->
-<!--          articleType: 2,-->
-<!--          offset: i,-->
-<!--          limit: 10,-->
-<!--          author_filter: '["6","7","8","9"]'-->
-<!--        }-->
-<!--        this.$axios.$get(`${base.sq}/v2/GetArticles`, { params: params }).then(-->
-<!--          res => {-->
-
-<!--            if (res.Status === 1) {-->
-<!--              const newsList = res.Data.articles-->
-<!--              newsList.forEach(item => {-->
-
-<!--                let s = item.shorturl-->
-<!--                let sArr = s.split('-')-->
-<!--                item.league_value = sArr[0]-->
-
-<!--                const article_id = item.article_id-->
-<!--                const params = {-->
-<!--                  article_id: article_id-->
-<!--                }-->
-<!--                this.$axios.$get(`${base.sq}/v2/GetArticleDetail`, { params: params }).then(-->
-<!--                  res => {-->
-<!--                    const content = res.Data.content-->
-<!--                    this.$forceUpdate(item.content = content)-->
-
-<!--                  }-->
-<!--                )-->
-<!--              })-->
-<!--              console.log(this.newsList)-->
-<!--              this.newsList = this.newsList.concat(newsList)-->
-<!--              this.newsOffset = i+10;-->
-<!--              this.loading = false;-->
-
-<!--            } else {-->
-<!--              this.$message.error(res.ErrMsg)-->
-<!--            }-->
-
-<!--          }-->
-<!--        )-->
-
-<!--      }-->
-
-<!--    },-->
-<!--    watch: {},-->
-<!--    computed: {-->
-
-<!--    },-->
-<!--    mounted () {-->
-<!--      window.addEventListener('scroll',this.handleScroll,true)-->
-<!--    }-->
-<!--  }-->
-
-
-<!--</script>-->
-
-<!--<style scoped>-->
-
-<!--  .el-main {-->
-
-<!--    padding-left: 20px;-->
-<!--    padding-right: 20px;-->
-<!--    margin: 0 auto;-->
-<!--    width: 1440px;-->
-
-<!--  }-->
-
-<!--  .aside-nav {-->
-<!--    padding: 10px;-->
-<!--    background: rgba(248, 248, 248, 1);-->
-<!--    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);-->
-<!--  }-->
-
-<!--  .aside-title {-->
-<!--    text-align: left;-->
-<!--    padding-bottom: 10px;-->
-<!--    border-bottom: 1px solid #E6E6E6;-->
-<!--  }-->
-
-<!--  .aside-title img {-->
-<!--    width: 100px;-->
-<!--    height: 20px;-->
-<!--  }-->
-
-<!--  .aside-nav-item {-->
-<!--    text-align: left;-->
-<!--    padding-top: 10px;-->
-<!--    padding-bottom: 10px;-->
-<!--    border-bottom: 1px dashed #E6E6E6;-->
-<!--    position: relative;-->
-
-<!--  }-->
-
-<!--  .aside-nav-item:hover {-->
-<!--    background: #FFFFFF;-->
-<!--  }-->
-
-<!--  .aside-nav-item:hover .sub-forum-nav {-->
-<!--    display: block;-->
-<!--  }-->
-
-<!--  .aside-nav-item-img {-->
-<!--    height: 25px;-->
-<!--  }-->
-
-<!--  .aside-nav-item-img img {-->
-<!--    height: 100%;-->
-<!--  }-->
-
-<!--  .aside-nav-item-text a {-->
-<!--    display: block;-->
-<!--    font-size: 14px;-->
-<!--    font-family: PingFangSC-Medium, PingFang SC;-->
-<!--    font-weight: 600;-->
-<!--    color: rgba(51, 51, 51, 1);-->
-<!--    line-height: 25px;-->
-<!--    text-align: left;-->
-<!--  }-->
-
-<!--  .sub-forum-nav {-->
-<!--    display: none;-->
-<!--    position: absolute;-->
-<!--    right: -180px;-->
-<!--    top: 0;-->
-
-<!--    background: rgba(255, 255, 255, 1);-->
-<!--    box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.1);-->
-<!--    padding: 12px 18px;-->
-
-<!--  }-->
-
-<!--  .sub-forum-nav-item {-->
-<!--    width: 145px;-->
-<!--    height: 21px;-->
-<!--    background: rgba(202, 231, 241, 1);-->
-<!--    border-radius: 8px;-->
-<!--    margin: 0 auto;-->
-<!--    margin-top: 10px;-->
-<!--    text-align: center;-->
-
-<!--  }-->
-
-<!--  .sub-forum-nav-item a {-->
-<!--    font-size: 10px;-->
-<!--    font-family: PingFangSC-Regular, PingFang SC;-->
-<!--    font-weight: 400;-->
-<!--    color: rgba(51, 51, 51, 1);-->
-<!--    line-height: 21px;-->
-<!--  }-->
-
-<!--  .news-list {-->
-<!--    padding-left: 25px;-->
-<!--    overflow: auto;-->
-<!--    /*height: 900px;*/-->
-<!--  }-->
-<!--  .news-list::-webkit-scrollbar {-->
-<!--    /*display: none;*/-->
-<!--  }-->
-<!--  .news-list-item {-->
-<!--    /*height: 490px;*/-->
-<!--    margin-top: 30px;-->
-<!--    padding: 14px;-->
-<!--    background-color: #FFFFFF;-->
-<!--    border-radius: 21px 8px 8px 8px;-->
-<!--    box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.1);-->
-<!--  }-->
-
-<!--  .news-list-item:first-child {-->
-<!--    margin-top: 0px !important;-->
-<!--  }-->
-
-<!--  .news-list-item-icon {-->
-<!--    text-align: left;-->
-<!--    height: 25px;-->
-<!--  }-->
-
-<!--  .news-list-item-icon img {-->
-<!--    height: 100%;-->
-
-<!--  }-->
-
-<!--  .news-list-item-league {-->
-<!--    text-align: left;-->
-<!--    font-size: 12px;-->
-<!--    font-family: PingFangSC-Medium, PingFang SC;-->
-<!--    font-weight: 500;-->
-<!--    color: rgba(51, 51, 51, 1);-->
-<!--    line-height: 25px;-->
-<!--  }-->
-
-<!--  .news-list-item-title {-->
-<!--    margin-top: 10px;-->
-<!--    text-align: left;-->
-
-<!--  }-->
-
-<!--  .news-list-item-title a {-->
-<!--    font-size: 20px;-->
-<!--    font-family: PingFangSC-Medium, PingFang SC;-->
-<!--    font-weight: 500;-->
-<!--    color: rgba(51, 51, 51, 1);-->
-<!--    line-height: 28px;-->
-
-<!--    overflow: hidden;-->
-<!--    text-overflow: ellipsis;-->
-<!--    display: -webkit-box;-->
-<!--    -webkit-line-clamp: 1;-->
-<!--    -webkit-box-orient: vertical;-->
-<!--  }-->
-
-<!--  .news-list-content {-->
-<!--    text-align: left;-->
-<!--    height: 30px;-->
-<!--    overflow: hidden;-->
-<!--    -webkit-line-clamp: 1;-->
-<!--    text-overflow: ellipsis;-->
-
-<!--  }-->
-
-<!--  .news-list-content p {-->
-<!--    margin: 0;-->
-<!--    padding: 0;-->
-<!--    color: #666666;-->
-<!--    font-size: 12px;-->
-<!--    font-weight: 400;-->
-<!--    line-height: 30px;-->
-<!--  }-->
-
-<!--  .news-list-item-img {-->
-<!--    margin-top: 10px;-->
-<!--    height: 300px;-->
-<!--    overflow: hidden;-->
-<!--  }-->
-
-<!--  .news-list-item-img img {-->
-<!--    /*max-height: 100%;*/-->
-<!--    max-width: 100%;-->
-<!--    border-radius: 8px;-->
-<!--  }-->
-
-<!--  .news-list-item-time {-->
-<!--    text-align: left;-->
-<!--    text-indent: 10px;-->
-<!--    font-size: 10px;-->
-<!--    font-family: PingFangSC-Medium, PingFang SC;-->
-<!--    font-weight: 500;-->
-<!--    color: rgba(102, 102, 102, 1);-->
-
-<!--  }-->
-
-<!--  .el-image{-->
-<!--    position:static ;-->
-<!--    border-radius: 12px;-->
-<!--  }-->
-
-
-<!--  .hot-topics {-->
-<!--    padding-left: 10px;-->
-<!--  }-->
-<!--  .hot-topics-title{-->
-<!--    height: 35px;-->
-<!--    background:rgba(255,224,113,1);-->
-<!--    border-radius:14px;-->
-
-<!--    font-size:14px;-->
-<!--    font-family:PingFangSC-Medium,PingFang SC;-->
-<!--    font-weight:600;-->
-<!--    color:rgba(51,51,51,1);-->
-<!--    line-height:35px;-->
-<!--  }-->
-
-<!--  .hot-topics-item{-->
-<!--    padding: 10px;-->
-<!--    margin-top: 15px;-->
-<!--    height:195px;-->
-<!--    background:rgba(255,255,255,1);-->
-<!--    box-shadow:0px 0px 4px 0px rgba(0,0,0,0.2);-->
-<!--    border-radius:10px;-->
-<!--  }-->
-<!--  .hot-topics-item-img{-->
-<!--    /*height: 124px;*/-->
-<!--    overflow: hidden;-->
-
-<!--  }-->
-<!--  .hot-topics-item-img img{-->
-<!--    max-width: 100%;-->
-<!--    border-radius: 8px;-->
-<!--  }-->
-
-<!--  .hot-topics-item-title{-->
-<!--    text-align: left;-->
-<!--    text-indent: 10px;-->
-<!--    margin-top: 10px;-->
-<!--    font-size:12px;-->
-<!--    font-family:PingFangSC-Medium,PingFang SC;-->
-<!--    font-weight:500;-->
-<!--    color:rgba(51,51,51,1);-->
-<!--    line-height:17px;-->
-<!--  }-->
-
-<!--  .hot-topics-item-topics{-->
-<!--    margin-top: 4px;-->
-<!--    text-indent: 10px;-->
-<!--    text-align: left;-->
-<!--    font-size:8px;-->
-<!--    font-family:PingFangSC-Medium,PingFang SC;-->
-<!--    font-weight:500;-->
-<!--    color:rgba(102,102,102,1);-->
-<!--    line-height:11px;-->
-<!--  }-->
-
-<!--  .nuxt-link-active {-->
-<!--    background: #FFFFFF !important;-->
-<!--  }-->
-
-
-<!--</style>-->
 <template>
-  <div></div>
+  <el-main>
+    <el-row>
+      <LeftAside></LeftAside>
+
+      <el-col :span="14" class="news-list">
+        <el-col :span="24" v-for="(news,i) in newsList" :key="i" class="news-list-item">
+          <el-col v-if="news.league_value==='nba'" :span="1" class="news-list-item-icon"><img
+            src="@/assets/image/nba.png" alt="nba"></el-col>
+          <el-col v-if="news.league_value==='cba'" :span="1" class="news-list-item-icon"><img
+            src="@/assets/image/cba.png" alt="cba"></el-col>
+          <el-col v-if="news.league_value==='la_liga'" :span="1" class="news-list-item-icon"><img
+            src="@/assets/image/laliga.png" alt="nba"></el-col>
+          <el-col v-if="news.league_value==='premier'" :span="1" class="news-list-item-icon"><img
+            src="@/assets/image/premier.png" alt="nba"></el-col>
+          <el-col v-if="news.league_value==='serie_a'" :span="1" class="news-list-item-icon"><img
+            src="@/assets/image/serie_a.png" alt="nba"></el-col>
+          <el-col :span="23" class="news-list-item-league">{{news.league}}</el-col>
+
+          <el-col :span="24" class="news-list-item-img">
+            <!--            <el-image-->
+            <!--              style="width: 100%; height: 300px"-->
+            <!--              :src="news.image | waterMark"-->
+            <!--              fit="cover"-->
+            <!--              :preview-src-list="[news.image]" lazy>-->
+            <!--            </el-image>-->
+            <el-image
+              @click="turnNewsDetail(news.shorturl,news.league_value)"
+              style="width: 100%; height: 300px"
+              :src="news.image | waterMark"
+              fit="cover"
+              lazy>
+            </el-image>
+          </el-col>
+          <el-col :span="24" class="news-list-item-title">
+            <nuxt-link
+              :to="{name: 'nsnews-league-shorturl', params: { shorturl: news.shorturl,league:news.league_value } }">
+              {{news.title}}
+            </nuxt-link>
+          </el-col>
+          <el-col :span="24" class="news-list-content">
+            <p v-for="(c,i) in news.content" :key="i" v-if="c.type ===1" class="news-list-content-item">
+              {{c.content}}
+            </p>
+          </el-col>
+          <el-col :span="12" class="news-list-item-time">
+            {{news.published_at}}
+          </el-col>
+          <el-col :span="12" >
+            <el-col :span="2" :offset="14" class="news-list-item-like-img"><img src="@/assets/image/like-2.png" alt="like"></el-col>
+            <el-col :span="3" class="news-list-item-like">{{news.likes}}</el-col>
+            <el-col :span="2" class="news-list-item-com-img"><img src="@/assets/image/comment-icon.png" alt="comment"></el-col>
+            <el-col :span="3" class="news-list-item-com">{{news.commentTotalCount}}</el-col>
+          </el-col>
+        </el-col>
+
+      </el-col>
+
+      <el-col :span="5" >
+        <!-- 热门专题       -->
+        <el-col :span="24" class="hot-topics">
+          <el-col :span="24" class="hot-topics-title">
+            <el-col :span="24">热门专题</el-col>
+            <el-col :span="3" class="hot-topics-xuanzhuan">
+              <img @click="randomTopics()" src="@/assets/image/change-icon.png" alt="icon">
+            </el-col>
+          </el-col>
+
+          <el-col :span="24" class="hot-topics-item" v-for="(topic,i) in topicsList" :key="i">
+            <el-col :span="24" class="hot-topics-item-img">
+              <!--              <el-image-->
+              <!--                style="width: 100%; height: 124px"-->
+              <!--                :src="topic.cover_pic"-->
+              <!--                fit="cover"-->
+              <!--                :preview-src-list="[topic.cover_pic]" lazy>-->
+              <!--              </el-image>-->
+              <el-image
+                @click="turnColumn(topic.id)"
+                style="width: 100%; height: 124px"
+                :src="topic.cover_pic"
+                fit="cover"
+                lazy>
+              </el-image>
+
+            </el-col>
+            <el-col :span="24" class="hot-topics-item-title">
+              <nuxt-link :to="{name:'nscolumn-columnId',params:{columnId:topic.id}}"> {{topic.name}}</nuxt-link>
+            </el-col>
+            <el-col :span="24" class="hot-topics-item-topics">专题文章 {{topic.article_amount}}</el-col>
+          </el-col>
+        </el-col>
+
+        <el-col :span="24" class="join-qq-wechat">
+          <el-col :span="24" class="join-qq">
+            <el-col :span="4" class="join-qq-img"><img src="@/assets/image/qq-icon.png" alt="qq"></el-col>
+            <el-col :span="20" class="join-qq-text">
+              <a target="_blank"
+                 href="//shang.qq.com/wpa/qunwpa?idkey=72f3014553b1953de71861de3876f9d2470314c80db8841846605de452008500">
+                加入篮球QQ群：568468754
+              </a>
+            </el-col>
+          </el-col>
+
+          <el-col :span="24" class="join-qq">
+            <el-col :span="4" class="join-qq-img"><img src="@/assets/image/qq-icon.png" alt="qq"></el-col>
+            <el-col :span="20" class="join-qq-text">
+              <a target="_blank"
+                 href="//shang.qq.com/wpa/qunwpa?idkey=4645b8b96c0f3a75b896250bd58c50b02eec5d4b20d9a81462165e68354ba9ba">
+                加入足球QQ群：826695023
+              </a>
+            </el-col>
+          </el-col>
+
+        </el-col>
+
+      </el-col>
+
+    </el-row>
+  </el-main>
 </template>
 
 <script>
+  import LeftAside from '../components/LeftAside'
+  import base from '../api/base'
+
   export default {
     name: 'index',
-    asyncData({ redirect }) {
-      redirect(301,{name:'nsnews-league',params:{league:'all'}})
+    layout: 'indexLayout',
+    components: {
+      LeftAside
+    },
+    data () {
+      return {
+        title:'',
+        keywords:'',
+        description:'',
+        newsList: [], //新闻列表
+        allTopicsList:[], // 所有的专栏
+        topicsList: [], //专栏列表
+        topicsCount: 0, //专栏数量
+        newsOffset: 10,
+        loading: false,
+        league: '',
+        randomStart:0,
+        randomEnd:0,
+
+      }
+    },
+    head () {
+
+      if (this.league === '' || this.league === undefined || this.league === 'all') {
+        this.title = '体育新闻_体育快讯_体育最新资讯-全民体育'
+        this.keywords = '体育,新闻,体育新闻,体育快讯,体育资讯,体坛最新快讯,足球新闻,篮球新闻'
+        this.description = '全民体育提供全面专业的体育新闻和赛事报道，主要栏目有：英超，西甲，意甲，德甲，欧冠，中超，NBA，CBA，世界杯等，让球迷及时准确的了解赛事进展和结果。'
+      } else if (this.league === 'nba') {
+        this.title = 'NBA_NBA新闻_NBA快讯-全民体育'
+        this.keywords = 'NBA,NBA新闻,NBA快讯,NBA资讯,NBA最新快讯, NBA常规赛,NBA总决赛,NBA季后赛'
+        this.description = '全民体育拥有NBA常规赛、NBA总决赛、NBA季后赛等最新NBA快讯、NBA赛程、NBA球员球队的NBA数据以及丰富的NBA知识。想看NBA资讯，就上全民体育吧。'
+      } else if (this.league === 'premier') {
+        this.title = '英超_英超新闻_英超快讯-全民体育'
+        this.keywords = '英超,英超新闻,英超联赛,英超快讯,曼联,切尔西,阿森纳,利物浦,曼城,鲁尼,阿圭罗,阿扎尔,席尔瓦,穆里尼奥,范加尔,温格'
+        this.description = '全民体育提供最全面的英超新闻资讯，全面及时报道英超联赛,曼联,曼城,阿森纳,利物浦,切尔西等球队最新动态。'
+      } else if (this.league === 'serie_a') {
+        this.title = '意甲_意甲新闻_意甲快讯-全民体育'
+        this.keywords = '意甲新闻,意甲最新新闻,意甲快讯,意甲资讯'
+        this.description = '全民体育提供意甲联赛精彩的新闻报道，全面的意甲新闻，权威的足球评论，搭配人性化又时尚的操作介面，让球迷及时准确的了解赛事进展和结果。'
+      } else if (this.league === 'la_liga') {
+        this.title = '西甲_西甲新闻_西甲快讯-全民体育'
+        this.keywords = '西甲,西甲新闻,西甲最新新闻,西甲快讯,西甲资讯,皇马,皇家马德里,巴萨,巴塞罗那,马竞,马德里竞技,梅西'
+        this.description = '全民体育提供西甲联赛精彩的新闻报道，全面及时报道西甲联赛，皇马，皇家马德里，巴萨，巴塞罗那，马竞，马德里竞技，梅西，苏亚雷斯，贝尔，库蒂尼奥，登贝莱，拉莫斯，皮克，伊斯科，阿森西奥等球员球队的比赛数据。'
+      }
+
+      return {
+        title: this.title,
+        meta: [
+          {
+            hid: 'keywords',
+            name: 'keywords',
+            content: this.keywords
+          },
+          {
+            hid: 'description',
+            name: 'description',
+            content: this.description
+          },
+        ]
+      }
+    },
+    async asyncData (context) {
+
+      let league = context.params.league
+      let article_params = {}
+      if (league === 'all') {
+        article_params = {
+          articleType: 2,
+          limit: 10,
+          offset: 0,
+          author_filter: ['6', '7', '8', '9']
+        }
+      } else {
+        article_params = {
+          articleType: 2,
+          limit: 10,
+          offset: 0,
+          league: league,
+          author_filter: ['6', '7', '8', '9']
+        }
+      }
+      let [newsListRes, topicsRes] = await Promise.all([
+        context.$axios.$get(`${base.sq}/v2/GetArticles`, { params: article_params }),
+        context.$axios.$get(`${base.sq}/v2/all/columns`, {
+          params: {}
+        })
+      ]).catch(err => {
+        error({
+          statusCode: 400,
+          message: err
+        })
+      })
+
+      let newsList = []
+
+      if (newsListRes.Status === 1) {
+        newsList = newsListRes.Data.articles
+        newsList.forEach(item => {
+          // console.log(item)
+          let s = item.shorturl
+          let sArr = s.split('-')
+          item.league_value = sArr[0]
+
+          const article_id = item.article_id
+
+          context.$axios.$get(`${base.sq}/v2/GetArticleDetail`, {
+            params: {
+              article_id: article_id
+            }
+          }).then(
+            res => {
+              // console.log(res)
+              item.content = res.Data.content
+            }
+          )
+        })
+      }
+
+      let topicsList = []
+      let topicsLength = 0
+      if (topicsRes.Status === 1) {
+        topicsList = topicsRes.Data.list
+        topicsLength = topicsRes.Data.list.length
+      }
+
+      let allTopicsList = topicsList;
+      let count = topicsLength - 4
+
+      let start = parseInt(Math.random() * count, 10)
+      let end = start + 4
+      topicsList = topicsList.slice(start, end)
+
+      // console.log(topicsList)
+      // console.log(newsList)
+
+      return {
+        newsList: newsList,
+        topicsList: topicsList,
+        allTopicsList:allTopicsList,
+        topicsCount: topicsLength,
+        league:league,
+      }
+
+    },
+    methods: {
+      handleScroll (e) {
+
+        let scrollTop = document.documentElement.scrollTop || document.body.scrollTop || e.target.body.scrollTop
+        let offsetHeight = document.documentElement.offsetHeight
+        let innerHeight = window.innerHeight
+
+        let bottomOfWindow = offsetHeight - scrollTop - innerHeight <= 100
+
+        let loading = this.loading
+
+        if (bottomOfWindow && loading === false) {
+          this.loading = true
+          this.getMoreNews(this.newsOffset)
+        }
+
+      },
+      turnNewsDetail(shorturl,league_value){
+        this.$router.push({name: 'nsnews-league-shorturl', params: { shorturl: shorturl,league:league_value } })
+      },
+      turnColumn(id){
+        this.$router.push({name:'nscolumn-columnId',params:{columnId:id}});
+      },
+      randomTopics () {
+        let that = this
+        let count = that.topicsCount - 4
+
+        let start = parseInt(Math.random() * count, 10)
+        let end = start + 4
+
+        this.$forceUpdate(this.topicsList =  that.allTopicsList.slice(start, end));
+        // console.log(this.topicsList)
+      },
+      getMoreNews (i) {
+        //下面这个很重要 记住哟
+
+        let params = {}
+        let league = this.league
+
+        if (league === 'all') {
+          params = {
+            articleType: 2,
+            offset: i,
+            limit: 10,
+            author_filter: '["6","7","8","9"]'
+          }
+        } else {
+          params = {
+            articleType: 2,
+            offset: i,
+            limit: 10,
+            league: league,
+            author_filter: '["6","7","8","9"]'
+          }
+        }
+
+        this.$axios.$get(`${base.sq}/v2/GetArticles`, { params: params }).then(
+          res => {
+
+            if (res.Status === 1) {
+              const newsList = res.Data.articles
+              newsList.forEach(item => {
+
+                let s = item.shorturl
+                let sArr = s.split('-')
+                item.league_value = sArr[0]
+
+                const article_id = item.article_id
+                const params = {
+                  article_id: article_id
+                }
+                this.$axios.$get(`${base.sq}/v2/GetArticleDetail`, { params: params }).then(
+                  res => {
+                    const content = res.Data.content
+                    this.$forceUpdate(item.content = content)
+
+                  }
+                )
+              })
+              console.log(this.newsList)
+              this.newsList = this.newsList.concat(newsList)
+              this.newsOffset = i + 10
+              this.loading = false
+
+            } else {
+              this.$message.error(res.ErrMsg)
+            }
+
+          }
+        )
+
+      }
+
+    },
+    watch: {
+      $route (to, from) {
+        this.league = to.params.league
+      }
+    },
+    computed: {},
+    mounted () {
+      this.league = this.$route.params.league
+      this.getMoreNews(0);
+      window.addEventListener('scroll', this.handleScroll, true)
+    },
+    destroyed () {
+      window.removeEventListener('scroll', this.handleScroll, true)
+    },
+    deactivated () {
+      window.removeEventListener('scroll', this.handleScroll, true)
     }
+
   }
+
+
 </script>
 
 <style scoped>
+
+  @import "../assets/css/topics.css";
+  @import "../assets/css/news-list.css";
+
+  .el-main {
+
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 0 auto;
+    width: 1440px;
+
+  }
+
+
+
+  .el-image {
+    position: static;
+    border-radius: 12px;
+  }
+
+
+  .nuxt-link-active {
+    background: #FFFFFF !important;
+  }
 
 
 </style>

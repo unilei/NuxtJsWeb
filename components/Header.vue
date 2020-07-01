@@ -52,7 +52,8 @@
           <div class="nav-menu-box"></div>
 
           <div class="nav-menu-item nav-menu-item-first" style="border: none;">
-            <nuxt-link :to="{name:'nsnews-league',params:{league:'all'}}">首页</nuxt-link>
+<!--            <nuxt-link :to="{name:'nsnews-league',params:{league:'all'}}">首页</nuxt-link>-->
+            <nuxt-link :to="{path:'/'}" exact>首页</nuxt-link>
           </div>
           <div class="nav-menu-item">
             <nuxt-link :to="{name:'nsnews-league',params:{league:'nba'}}">NBA</nuxt-link>
@@ -123,20 +124,20 @@
       ></Login>
 
       <!--        悬浮二维码框-->
-      <div class="wx-qrcode-box">
-        <div class="wx-qrcode-box-img">
-          <a
-            href="https://171tiyu.com/download"
-            v-if="this.os === 'Win'">
-            <img src="https://aloss.hotforest.cn/web/android-QRcode.png" alt="">
-          </a>
-          <a v-if="this.os==='Mac'" href="https://apps.apple.com/app/id1482371213">
-            <img src="https://aloss.hotforest.cn/web/android-QRcode.png" alt="">
-          </a>
-        </div>
-<!--        <span>扫码下载安卓/IOS APP</span>-->
-        <span>立即下载APP</span>
-      </div>
+<!--      <div class="wx-qrcode-box">-->
+<!--        <div class="wx-qrcode-box-img">-->
+<!--          <a-->
+<!--            href="https://171tiyu.com/download"-->
+<!--            v-if="this.os === 'Win'">-->
+<!--            <img src="https://aloss.hotforest.cn/web/android-QRcode.png" alt="">-->
+<!--          </a>-->
+<!--          <a v-if="this.os==='Mac'" href="https://apps.apple.com/app/id1482371213">-->
+<!--            <img src="https://aloss.hotforest.cn/web/android-QRcode.png" alt="">-->
+<!--          </a>-->
+<!--        </div>-->
+<!--&lt;!&ndash;        <span>扫码下载安卓/IOS APP</span>&ndash;&gt;-->
+<!--        <span>立即下载APP</span>-->
+<!--      </div>-->
       <!--        悬浮二维码框结束-->
 
 <!--    </client-only>-->

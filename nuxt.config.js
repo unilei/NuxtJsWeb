@@ -50,7 +50,6 @@ module.exports = {
       { src: '/jquery.SuperSlide.2.1.3.js', ssr: false },
       { src: '/wxLogin.js', ssr: false },
       { src: '/qc.js',ssr:false},
-      { src: 'https://js.users.51.la/20532775.js', ssr: false },
       { src: '/openinstall.js',ssr:false },
       { src: '/social-share.min.js',ssr:true }
     ]
