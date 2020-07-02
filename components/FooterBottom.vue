@@ -7,7 +7,8 @@
                        target="_blank">浙公网安备浙公网安备 33010402004047号</a>
                     举报电话：+8613482207807   举报邮箱：customer@nsnni.com   Copyright © 全民体育</span>
     </div>
-    <div class="footer-d-d" v-if="hostname === 'www.51体育.net' || hostname === '51体育.net'">
+    <div class="footer-d-d" v-if="hostname === 'www.51体育.net' || hostname === '51体育.net' || hostname === 's.51体育.net'
+                                || hostname === 'sl.51体育.net'" >
                 <span>上海辣森网络科技有限公司
                     <a rel="nofollow" href="http://beian.miit.gov.cn/" target="_blank">沪ICP备18038979号-4</a>
                     <a rel="nofollow" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31010702006081"
