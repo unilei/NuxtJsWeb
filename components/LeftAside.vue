@@ -2,53 +2,57 @@
 
   <el-col :span="5" >
     <el-col :span="24" class="aside-nav">
-      <el-col :span="24" class="aside-title">
+      <el-col :span="24" class="aside-title NS_Tab_Click_Logo">
         <img @click="backIndex" src="@/assets/image/qmty-icon.png" alt="全民体育">
       </el-col>
 
-      <el-col :span="24" class="aside-nav-item ">
+      <el-col :span="24" class="aside-nav-item NS_Tab_Click_NBA ">
         <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/nba.png" alt="nba"></el-col>
         <nuxt-link :to="{name:'nsnews-league',params:{league:'nba'}}">NBA</nuxt-link>
       </el-col>
       <el-col :span="22" :offset="1" class="aside-border"></el-col>
-      <el-col :span="24" class="aside-nav-item ">
+      <el-col :span="24" class="aside-nav-item NS_Tab_Click_CBA ">
         <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/cba.png" alt="cba"></el-col>
         <nuxt-link :to="{name:'nsnews-league',params:{league:'cba'}}">CBA</nuxt-link>
       </el-col>
       <el-col :span="22" :offset="1" class="aside-border"></el-col>
-      <el-col :span="24" class="aside-nav-item ">
+      <el-col :span="24" class="aside-nav-item NS_Tab_Click_SpanishPrimereLeague">
         <nuxt-link :to="{name:'nsnews-league',params:{league:'la_liga'}}">西甲</nuxt-link>
         <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/laliga.png" alt="la_liga"></el-col>
       </el-col>
       <el-col :span="22" :offset="1" class="aside-border"></el-col>
-      <el-col :span="24" class="aside-nav-item ">
+      <el-col :span="24" class="aside-nav-item NS_Tab_Click_PremierLeague">
         <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/premier.png" alt="premier"></el-col>
         <nuxt-link :to="{name:'nsnews-league',params:{league:'premier'}}">英超</nuxt-link>
       </el-col>
       <el-col :span="22" :offset="1" class="aside-border"></el-col>
-      <el-col :span="24" class="aside-nav-item ">
+      <el-col :span="24" class="aside-nav-item NS_Tab_Click_ItalianSerieA">
         <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/serie_a.png" alt="serie_a"></el-col>
         <nuxt-link :to="{name:'nsnews-league',params:{league:'serie_a'}}">意甲</nuxt-link>
       </el-col>
       <el-col :span="22" :offset="1" class="aside-border"></el-col>
-      <el-col :span="24" class="aside-nav-item ">
+      <el-col :span="24" class="aside-nav-item NS_Tab_Click_SoccerForum">
         <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/football.png" alt="football"></el-col>
         <el-col :span="4" class="aside-nav-item-icon"><img src="@/assets/image/sub-menu-icon.png" alt="icon"></el-col>
         <a href="javascript:;">足球社区</a>
         <div class="sub-forum-nav">
           <div class="sub-forum-nav-item" v-for="(fg,i) in footballGroupList" :key="i">
-            <nuxt-link active-class="nuxt-link-active-1"  :to="{name:'nsforum-groupId',params:{groupId:fg.id}}">{{fg.name}}</nuxt-link>
+            <nuxt-link active-class="nuxt-link-active-1"
+                       :class="[fg.name==='足球' ? 'NS_Tab_Click_SoccerForum_Soccer' : '',fg.name==='全部' ? 'NS_Tab_Click_SoccerForum_All' : '']"
+                       :to="{name:'nsforum-groupId',params:{groupId:fg.id}}">{{fg.name}}</nuxt-link>
           </div>
         </div>
       </el-col>
       <el-col :span="22" :offset="1" class="aside-border"></el-col>
-      <el-col :span="24" class="aside-nav-item ">
+      <el-col :span="24" class="aside-nav-item NS_Tab_Click_BasketballForum">
         <el-col :span="4" class="aside-nav-item-img"><img src="@/assets/image/basketball.png" alt="basketball"></el-col>
         <el-col :span="4" class="aside-nav-item-icon"><img src="@/assets/image/sub-menu-icon.png" alt="icon"></el-col>
         <a href="javascript:;">篮球社区</a>
         <div class="sub-forum-nav">
           <div class="sub-forum-nav-item" v-for="(bg,i) in basketballGroupList" :key="i">
-            <nuxt-link active-class="nuxt-link-active-1" :to="{name:'nsforum-groupId',params:{groupId:bg.id}}">{{bg.name}}</nuxt-link>
+            <nuxt-link
+              :class="[bg.name==='NBA' ? 'NS_Tab_Click_BasketballForum_NBA' : '',bg.name==='篮球' ? 'NS_Tab_Click_BasketballForum_Basketball' : '',bg.name==='全部' ? 'NS_Tab_Click_BasketballForum_All' : '']"
+              active-class="nuxt-link-active-1" :to="{name:'nsforum-groupId',params:{groupId:bg.id}}">{{bg.name}}</nuxt-link>
           </div>
         </div>
       </el-col>
@@ -60,7 +64,7 @@
       </el-col>
     </el-col>
 
-    <el-col :span="24" class="left-qrcode">
+    <el-col :span="24" class="left-qrcode NS_Click_QRcode">
       <el-col :span="6" class="download-qrcode">
         <img id="downloadButton" src="https://aloss.hotforest.cn/web/m/download-qrcode.png" alt="qrcode">
       </el-col>

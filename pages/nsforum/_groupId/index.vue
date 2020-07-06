@@ -11,7 +11,8 @@
           <el-col v-if="forum.group==='足球'" :span="1" class="forum-list-item-icon"><img src="@/assets/image/football.png" alt="nba"></el-col>
           <el-col v-if="forum.group==='全部'" :span="1" class="forum-list-item-icon"><img src="@/assets/image/social.png" alt="nba"></el-col>
           <el-col v-if="forum.group==='篮球'" :span="1" class="forum-list-item-icon"><img src="@/assets/image/basketball.png" alt="nba"></el-col>
-          <el-col :span="23" class="forum-list-item-league">{{forum.group}}</el-col>
+          <el-col :span="23" v-if="forum.group !== '全部' " class="forum-list-item-league">{{forum.group}}</el-col>
+          <el-col :span="23" v-if="forum.group === '全部' " class="forum-list-item-league">社区活动</el-col>
 
           <el-col :span="24" class="forum-list-item-title">
             <nuxt-link

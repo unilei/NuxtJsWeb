@@ -1,25 +1,25 @@
 <template>
   <div class="footer-top-l">
     <ul>
-      <li>
+      <li class="NS_Footer_Click_CompanyIntro">
         <nuxt-link :to="'/company'">公司介绍</nuxt-link>
       </li>
-      <li>
+      <li class="NS_Footer_Click_About">
         <nuxt-link :to="{name:'profile-activeName',params:{'activeName':'about'}}" >关于全民体育</nuxt-link>
       </li>
-      <li>
+      <li class="NS_Footer_Click_ServiceAgreement">
         <nuxt-link  :to="{name:'profile-activeName',params:{'activeName':'agreement'}}" >服务协议</nuxt-link>
       </li>
-      <li>
+      <li class="NS_Footer_Click_PrivatePlicy">
         <nuxt-link :to="{name:'profile-activeName',params:{'activeName':'privacy'}}" >隐私政策</nuxt-link>
       </li>
-      <li>
+      <li class="NS_Footer_Click_Complaint">
         <nuxt-link :to="{name:'profile-activeName',params:{'activeName':'complaint'}}" >投诉侵权</nuxt-link>
       </li>
-      <li>
+      <li class="NS_Footer_Click_Download">
         <nuxt-link :to="{name:'download'}">立即下载全民体育</nuxt-link>
       </li>
-      <li class="sina-wx">
+      <li class="sina-wx NS_Footer_Click_Sina_NSSoccer ">
         <div>
           <img src="@/assets/image/sina.png" alt="sina">
         </div>
@@ -28,7 +28,7 @@
         </div>
 
       </li>
-      <li class="sina-wx">
+      <li class="sina-wx NS_Footer_Click_Sina_NS">
         <div>
           <img src="@/assets/image/sina.png" alt="sina">
         </div>
@@ -40,7 +40,7 @@
         </div>
 
       </li>
-      <li class="sina-wx-foot">
+      <li class="sina-wx-foot NS_Footer_Click_WX_Soccer">
         <div>
           <img src="@/assets/image/wx-icon.png" alt="sina">
         </div>
@@ -55,7 +55,7 @@
         </div>
 
       </li>
-      <li class="sina-wx-basket">
+      <li class="sina-wx-basket NS_Footer_Click_WX_NS">
         <div>
           <img src="@/assets/image/wx-icon.png" alt="sina">
         </div>

@@ -1,24 +1,24 @@
 <template>
   <div>
   <!--  手机      登陆弹出框-->
-  <div v-show="dialogFormVisible" class="login-modal-container">
+  <div v-show="dialogFormVisible" class="login-modal-container ">
     <div class="login-modal" v-show="dialogLoginModal">
-      <div class="login-modal-t-img" @click="closeDialog">
-        <img src="https://aloss.hotforest.cn/web/login-icon.png" alt="">
+      <div class="login-modal-t-img NS_Login_Click_Close" @click="closeDialog">
+        <img src="https://aloss.hotforest.cn/web/login-icon.png" alt="logo">
       </div>
       <div v-show="dialogMobileLogin">
         <div class="login-modal-t">
           <span>手机登录</span>
         </div>
-        <div class="login-modal-t-p">
+        <div class="login-modal-t-p NS_Login_Input_PhoneNumber">
           <input type="text" placeholder="手机号码" v-model="mobile">
           <button v-if="mobile !== '' " @click="sendMobileLoginSms">验证</button>
           <button v-if="mobile===''" class="login-modal-t-p-b-disable">验证</button>
         </div>
-        <div class="login-modal-t-c">
+        <div class="login-modal-t-c NS_Login_Click_Verify ">
           <input type="text" placeholder="请输入验证码" v-model="code">
         </div>
-        <div class="login-modal-t-b">
+        <div class="login-modal-t-b NS_Login_Click_Login">
           <button @click="mobileLogin">登录</button>
         </div>
         <div class="login-modal-t-s">
@@ -35,11 +35,11 @@
 <!--            </el-col>-->
           </el-col>
 <!--          <el-col :span="24" class="login-modal-t-wx-2"> <span>使用微信登录/QQ登陆</span></el-col>-->
-          <el-col :span="24" class="login-modal-t-wx-2"> <span>使用微信登录</span></el-col>
+          <el-col :span="24" class="login-modal-t-wx-2 NS_Login_Click_WX"> <span>使用微信登录</span></el-col>
 
         </div>
 
-        <div class="login-modal-t-xx">
+        <div class="login-modal-t-xx NS_Login_Click_Policy">
           <span>使用即为同意</span>
           <span @click="turn_agreement">全民体育用户协议/隐私权政策</span>
         </div>
@@ -49,7 +49,7 @@
         <div class="login-modal-t">
           <span>使用其他方式登录</span>
         </div>
-        <div class="wx-login-modal-p">
+        <div class="wx-login-modal-p NS_Login_Click_Login">
           <a href="javascript:;" @click="mobileDialog">
             使用手机号登录
           </a>
@@ -57,7 +57,7 @@
         <div class="wx-login-modal-img" id="login_container">
 
         </div>
-        <div class="login-modal-t-xx-2">
+        <div class="login-modal-t-xx-2 NS_Login_Click_Policy">
           <span>使用即为同意</span>
           <span @click="turn_agreement">全民体育用户协议/隐私权政策</span>
         </div>

@@ -3,95 +3,57 @@
 <!--    <client-only>-->
       <!--导航栏-->
       <el-row>
-        <el-col :span="24" class="nav-menu" v-if="pathStatus">
-
-          <div class="nav-menu-logo">
-            全民体育 <br>
-            全民体育 懂球迷的聚集地
-          </div>
-          <div class="nav-menu-box"></div>
-
-          <div class="nav-menu-item nav-menu-item-first" style="border: none;">
-            <nuxt-link :to="'/'" exact>首页</nuxt-link>
-          </div>
-          <div class="nav-menu-item">
-
-<!--            <nuxt-link :to="{name:'sportNews-list-league',params:{league:'all'}}" exact>全部新闻</nuxt-link>-->
-          </div>
-          <div class="nav-menu-item">
-            <ul>
-              <li>
-                <nuxt-link :to="{name:'sportNews-list-league',params:{league:'nba'}}" exact>NBA</nuxt-link>
-              </li>
-              <li>
-                <nuxt-link :to="{name:'sportNews-list-league',params:{league:'premier'}}" exact>英超</nuxt-link>
-              </li>
-              <li>
-                <nuxt-link :to="{name:'sportNews-list-league',params:{league:'serie_a'}}" exact>意甲</nuxt-link>
-              </li>
-              <li>
-                <nuxt-link :to="{name:'sportNews-list-league',params:{league:'la_liga'}}" exact>西甲</nuxt-link>
-              </li>
-            </ul>
-          </div>
-          <div class="nav-menu-item">
-            <nuxt-link :to="{name:'bbs-list-sportType',params:{'sportType':'all'}}" exact>社区论坛</nuxt-link>
-          </div>
-        </el-col>
-
-        <el-col :span="24" class="nav-menu" v-if="pathStatus===false">
-          <div class="nav-menu-logo">
-            <div class="nav-menu-logo-1">
+        <el-col :span="24" class="nav-menu">
+          <div class="nav-menu-logo NS_Tab_Click_Logo">
+            <div class="nav-menu-logo-1 NS_Tab_Click_Logo">
               <img @click="backIndex" src="@/assets/image/logo-1.png" alt="全民体育">
             </div>
-            <div class="nav-menu-logo-2">
+            <div class="nav-menu-logo-2 NS_Tab_Click_Logo">
               全民体育 懂球迷的聚集地
             </div>
           </div>
 
           <div class="nav-menu-box"></div>
 
-          <div class="nav-menu-item nav-menu-item-first" style="border: none;">
-<!--            <nuxt-link :to="{name:'nsnews-league',params:{league:'all'}}">首页</nuxt-link>-->
+          <div class="nav-menu-item nav-menu-item-first NS_Tab_Click_Home" style="border: none;">
             <nuxt-link :to="{path:'/'}" exact>首页</nuxt-link>
           </div>
-          <div class="nav-menu-item">
+          <div class="nav-menu-item NS_Tab_Click_NBA">
             <nuxt-link :to="{name:'nsnews-league',params:{league:'nba'}}">NBA</nuxt-link>
           </div>
-          <div class="nav-menu-item">
+          <div class="nav-menu-item NS_Tab_Click_CBA">
             <nuxt-link :to="{name:'nsnews-league',params:{league:'cba'}}">CBA</nuxt-link>
           </div>
-          <div class="nav-menu-item">
+          <div class="nav-menu-item NS_Tab_Click_SpanishPrimereLeague">
             <nuxt-link :to="{name:'nsnews-league',params:{league:'la_liga'}}">西甲</nuxt-link>
           </div>
-          <div class="nav-menu-item">
+          <div class="nav-menu-item NS_Tab_Click_PremierLeague">
             <nuxt-link :to="{name:'nsnews-league',params:{league:'premier'}}">英超</nuxt-link>
           </div>
-          <div class="nav-menu-item">
+          <div class="nav-menu-item NS_Tab_Click_ItalianSerieA">
             <nuxt-link :to="{name:'nsnews-league',params:{league:'serie_a'}}">意甲</nuxt-link>
           </div>
 
-          <div class="nav-menu-item">
+          <div class="nav-menu-item NS_Tab_Click_SoccerForum" >
             <a href="javascript:;">足球社区</a>
             <div class="nav-sub-menu">
                 <div class="nav-sub-menu-item" v-for="(fg,i) in footballGroupList" :key="i">
-                  <nuxt-link active-class="nuxt-link-active-1" :to="{name:'nsforum-groupId',params:{groupId:fg.id}}">{{fg.name}}</nuxt-link>
+                  <nuxt-link  :class="[fg.name==='足球' ? 'NS_Tab_Click_SoccerForum_Soccer' : '',fg.name==='全部' ? 'NS_Tab_Click_SoccerForum_All' : '']" active-class="nuxt-link-active-1" :to="{name:'nsforum-groupId',params:{groupId:fg.id}}">{{fg.name}}</nuxt-link>
                 </div>
             </div>
           </div>
-          <div class="nav-menu-item">
+          <div class="nav-menu-item NS_Tab_Click_BasketballForum">
             <a href="javascript:;">篮球社区</a>
             <div class="nav-sub-menu">
               <div class="nav-sub-menu-item" v-for="(bg,i) in basketballGroupList" :key="i">
-                <nuxt-link active-class="nuxt-link-active-1" :to="{name:'nsforum-groupId',params:{groupId:bg.id}}">{{bg.name}}</nuxt-link>
+                <nuxt-link :class="[bg.name==='NBA' ? 'NS_Tab_Click_BasketballForum_NBA' : '',bg.name==='篮球' ? 'NS_Tab_Click_BasketballForum_Basketball' : '',bg.name==='全部' ? 'NS_Tab_Click_BasketballForum_All' : '']"
+                           active-class="nuxt-link-active-1" :to="{name:'nsforum-groupId',params:{groupId:bg.id}}">{{bg.name}}</nuxt-link>
               </div>
             </div>
-
           </div>
           <div class="nav-menu-item">
             <nuxt-link  :to="{name:'nsforum-groupId',params:{groupId:socialGroupId}}">社区活动</nuxt-link>
           </div>
-
           <div class="header-top">
             <el-col :span="24" class="header-top-right" v-if="this.uid !==  null">
               <img v-if="this.avatar_url != null && this.avatar_url !== '' " :src="this.avatar_url" alt="">
@@ -101,17 +63,14 @@
               <a v-if="this.nickname == null || this.nickname === ''" href="javascript:;">{{this.phone}}</a>
               <button @click="loginOut">退出</button>
             </el-col>
-
-            <el-col :span="24" class="header-top-right" v-if="this.uid == null">
+            <el-col :span="24" class="header-top-right NS_Click_Login" v-if="this.uid == null">
               <button @click="dialogLogin">登录账号</button>
             </el-col>
           </div>
-
         </el-col>
-
       </el-row>
 
-    <el-backtop  :bottom="100"></el-backtop>
+    <el-backtop  :bottom="100" class="NS_Click_BacktoTop"> </el-backtop>
       <!-- 登陆弹框-->
       <Login v-bind:dialogFormVisible="dialogFormVisible"
              v-bind:dialogMobileLogin="dialogMobileLogin"
