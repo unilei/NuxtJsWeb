@@ -20,14 +20,17 @@
 
     <el-row class="news-container">
       <el-col :span="6" class="news-container-l">
-        <el-col :span="24" class="news-container-l-item">
+        <el-col :span="24" class="news-container-l-item NS_InTopic_Click_Switch1">
           <nuxt-link
             :to="{name: 'nsforum-groupId-articleId', params: { groupId: groupId,articleId:articleId } }" exact>
             {{forumDetail.title}}
           </nuxt-link>
         </el-col>
 
-        <el-col :span="24" class="news-container-l-item" v-for="(hotForum,i) in hotForumList" :key="i">
+        <el-col :span="24" class="news-container-l-item"
+                :class="[i===0 ? 'NS_InTopic_Click_Switch2' : '',i===1 ? 'NS_InTopic_Click_Switch3' : '',
+                i===2 ? 'NS_InTopic_Click_Switch4' : '',i===3 ? 'NS_InTopic_Click_Switch5' : '']"
+                v-for="(hotForum,i) in hotForumList" :key="i">
           <nuxt-link
             :to="{name: 'nsforum-groupId-articleId', params: { groupId: groupId,articleId:hotForum.article_id } }" exact>
             {{hotForum.title}}
@@ -48,7 +51,7 @@
               <el-col :span="24" class="news-container-r-profile-1-2-1"> {{forumDetail.author.nickName}} </el-col>
               <el-col :span="24"  class="news-container-r-profile-1-2-2"><span>足球热评人</span></el-col>
             </el-col>
-            <el-col :span="15" class="news-container-r-profile-1-3">
+            <el-col :span="15" class="news-container-r-profile-1-3 NS_InTopic_Click_Follow">
               <button>关注</button>
             </el-col>
           </el-col>
@@ -62,10 +65,10 @@
 <!--            </el-col>-->
             <el-col :span="24" class="social-share" data-initialized="true">
               <span>分享到 :</span>
-              <a href="#" class="social-share-icon icon-wechat"></a>
-              <a href="#" class="social-share-icon icon-weibo"></a>
-              <a href="#" class="social-share-icon icon-qq"></a>
-              <a href="#" class="social-share-icon icon-qzone"></a>
+              <a href="#" class="social-share-icon icon-wechat NS_InTopic_Click_ShareWX"></a>
+              <a href="#" class="social-share-icon icon-weibo NS_InTopic_Click_ShareWB"></a>
+              <a href="#" class="social-share-icon icon-qq NS_InTopic_Click_ShareQQ"></a>
+              <a href="#" class="social-share-icon icon-qzone NS_InTopic_Click_ShareQQSpace"></a>
             </el-col>
             <el-col :span="24" class="news-container-r-profile-2-2">
               {{forumDetail.create_time | dateFormat}}
@@ -84,7 +87,7 @@
           标签: {{forumDetail.group}}
         </el-col>
 
-        <el-col :span="24" class="news-container-r-like">
+        <el-col :span="24" class="news-container-r-like NS_InTopic_Click_Like">
           <img src="@/assets/image/like-icon-2.png" alt="icon"> <br>
           已有 {{forumDetail.likes_count}}   人点赞
         </el-col>
@@ -102,8 +105,8 @@
             <img v-if="avatar_url !== '' && avatar_url !== null " :src="avatar_url" alt="avatar">
           </el-col>
           <el-col :span="21" class="publish-comment-c">
-            <textarea name="reply_content" cols="30" rows="10" placeholder="说两句呗..." v-model="replyContent"></textarea>
-            <button @click="replyNews(1)">发表评论</button>
+            <textarea class="NS_InTopic_Input_CommentBox" name="reply_content" cols="30" rows="10" placeholder="说两句呗..." v-model="replyContent"></textarea>
+            <button class="NS_InTopic_Click_Comment" @click="replyNews(1)">发表评论</button>
           </el-col>
         </el-col>
 
@@ -135,8 +138,8 @@
                   {{reply.author.nickName}} : <span v-for="(c,ii) in reply.content" :key="ii"> {{c.content}} </span>
                 </el-col>
                 <el-col :span="23" :offset="1" class="comment-reply-d">
-                  <el-col :span="2" class="comment-reply-like-img"><img src="https://aloss.hotforest.cn/web/news-like.png" alt="like"></el-col>
-                  <el-col :span="2" class="comment-reply-like">{{reply.likes_count}}</el-col>
+                  <el-col :span="2" class="comment-reply-like-img NS_InTopic_Click_OthersHeart"><img src="https://aloss.hotforest.cn/web/news-like.png" alt="like"></el-col>
+                  <el-col :span="2" class="comment-reply-like NS_InTopic_Click_OthersHeart">{{reply.likes_count}}</el-col>
                   <el-col :span="20" class="comment-reply-time">{{reply.create_time | dateForHour}}</el-col>
                 </el-col>
               </el-col>
@@ -145,15 +148,15 @@
             <el-col :span="24" class="comment-like-container">
               <el-col :span="2" :offset="18" class="comment-like-img"><img
                 src="https://aloss.hotforest.cn/web/news-like.png" alt=""></el-col>
-              <el-col :span="2" class="comment-like">{{newsReply.likes_count}}</el-col>
+              <el-col :span="2" class="comment-like NS_InTopic_Click_OthersHeart">{{newsReply.likes_count}}</el-col>
               <el-col :span="2" class="comment-button">
                 <button v-if="index !== showComment" @click="isShowComment(index)">回复</button>
                 <button class="shouqi" v-if="index === showComment" @click="isHideComment(index)">收起</button>
               </el-col>
 
               <el-col :span="24" v-if="index === showComment" class="comment-input">
-                <input type="text" v-model="replyReplyContent">
-                <button @click="replyReplyNews(2,newsReply.reply_id)">发表</button>
+                <input class="NS_InTopic_Input_OthersCommentBox" type="text" v-model="replyReplyContent">
+                <button class="NS_InTopic_Click_OthersComment" @click="replyReplyNews(2,newsReply.reply_id)">发表</button>
               </el-col>
             </el-col>
 

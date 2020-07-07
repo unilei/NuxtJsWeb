@@ -32,7 +32,7 @@
 
       <el-col :span="5" >
         <!-- 热门专题       -->
-        <el-col :span="24" class="hot-topics">
+        <el-col :span="24" class="hot-topics NS_Forum_Click_Topic">
           <el-col :span="24" class="hot-topics-title">
             <el-col :span="24">热门专题</el-col>
             <el-col :span="3" class="hot-topics-xuanzhuan">

@@ -63,9 +63,7 @@
 
   .footer-d-container {
     height: 50px;
-    background: rgba(207, 214, 222, 1);
   }
-
 
   .footer-d-d span {
     height: 49px;

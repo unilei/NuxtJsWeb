@@ -3,8 +3,8 @@
     <el-row>
       <LeftAside></LeftAside>
 
-      <el-col :span="14" class="news-list">
-        <el-col :span="24" v-for="(news,i) in newsList" :key="i" class="news-list-item">
+      <el-col :span="14" class="news-list NS_Click_Article">
+        <el-col :span="24" v-for="(news,i) in newsList" :key="i" class="news-list-item NS_Click_Article">
           <el-col v-if="news.league_value==='nba'" :span="1" class="news-list-item-icon"><img
             src="@/assets/image/nba.png" alt="nba"></el-col>
           <el-col v-if="news.league_value==='cba'" :span="1" class="news-list-item-icon"><img
@@ -47,10 +47,10 @@
             {{news.published_at}}
           </el-col>
           <el-col :span="12" >
-            <el-col :span="2" :offset="14" class="news-list-item-like-img"><img src="@/assets/image/like-2.png" alt="like"></el-col>
-            <el-col :span="3" class="news-list-item-like">{{news.likes}}</el-col>
-            <el-col :span="2" class="news-list-item-com-img"><img src="@/assets/image/comment-icon.png" alt="comment"></el-col>
-            <el-col :span="3" class="news-list-item-com">{{news.commentTotalCount}}</el-col>
+            <el-col :span="2" :offset="14" class="news-list-item-like-img NS_Click_ArticleHeart"><img src="@/assets/image/like-2.png" alt="like"></el-col>
+            <el-col :span="3" class="news-list-item-like NS_Click_ArticleHeart">{{news.likes}}</el-col>
+            <el-col :span="2" class="news-list-item-com-img NS_Click_ArticleComment"><img src="@/assets/image/comment-icon.png" alt="comment"></el-col>
+            <el-col :span="3" class="news-list-item-com NS_Click_ArticleComment">{{news.commentTotalCount}}</el-col>
           </el-col>
         </el-col>
 
@@ -61,12 +61,12 @@
         <el-col :span="24" class="hot-topics">
           <el-col :span="24" class="hot-topics-title">
             <el-col :span="24">热门专题</el-col>
-            <el-col :span="3" class="hot-topics-xuanzhuan">
+            <el-col :span="3" class="hot-topics-xuanzhuan NS_Click_HotTopic_Refresh">
               <img @click="randomTopics()" src="@/assets/image/change-icon.png" alt="icon">
             </el-col>
           </el-col>
 
-          <el-col :span="24" class="hot-topics-item" v-for="(topic,i) in topicsList" :key="i">
+          <el-col :span="24" class="hot-topics-item NS_Click_HotTopic_Article" v-for="(topic,i) in topicsList" :key="i">
             <el-col :span="24" class="hot-topics-item-img">
 <!--              <el-image-->
 <!--                style="width: 100%; height: 124px"-->
@@ -91,7 +91,7 @@
         </el-col>
 
         <el-col :span="24" class="join-qq-wechat">
-          <el-col :span="24" class="join-qq">
+          <el-col :span="24" class="join-qq NS_Click_BasketballQQ">
             <el-col :span="4" class="join-qq-img"><img src="@/assets/image/qq-icon.png" alt="qq"></el-col>
             <el-col :span="20" class="join-qq-text">
               <a target="_blank"
@@ -101,7 +101,7 @@
             </el-col>
           </el-col>
 
-          <el-col :span="24" class="join-qq">
+          <el-col :span="24" class="join-qq NS_Click_SoccerQQ">
             <el-col :span="4" class="join-qq-img"><img src="@/assets/image/qq-icon.png" alt="qq"></el-col>
             <el-col :span="20" class="join-qq-text">
               <a target="_blank"
