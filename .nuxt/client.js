@@ -14,7 +14,9 @@ import {
   getLocation,
   compile,
   getQueryDiff,
-  globalHandleError
+  globalHandleError,
+  isSamePath,
+  urlJoin
 } from './utils.js'
 import { createApp, NuxtError } from './index.js'
 import fetchMixin from './mixins/fetch.client'
@@ -40,54 +42,12 @@ let router
 // Try to rehydrate SSR data from window
 const NUXT = window.__NUXT__ || {}
 
-Object.assign(Vue.config, {"silent":false,"performance":true})
-
-const logs = NUXT.logs || []
-  if (logs.length > 0) {
-  const ssrLogStyle = 'background: #2E495E;border-radius: 0.5em;color: white;font-weight: bold;padding: 2px 0.5em;'
-  console.group && console.group ('%cNuxt SSR', ssrLogStyle)
-  logs.forEach(logObj => (console[logObj.type] || console.log)(...logObj.args))
-  delete NUXT.logs
-  console.groupEnd && console.groupEnd()
+const $config = NUXT.config || {}
+if ($config.app) {
+  __webpack_public_path__ = urlJoin($config.app.cdnURL, $config.app.assetsPath)
 }
 
-// Setup global Vue error handler
-if (!Vue.config.$nuxt) {
-  const defaultErrorHandler = Vue.config.errorHandler
-  Vue.config.errorHandler = (err, vm, info, ...rest) => {
-    // Call other handler if exist
-    let handled = null
-    if (typeof defaultErrorHandler === 'function') {
-      handled = defaultErrorHandler(err, vm, info, ...rest)
-    }
-    if (handled === true) {
-      return handled
-    }
-
-    if (vm && vm.$root) {
-      const nuxtApp = Object.keys(Vue.config.$nuxt)
-        .find(nuxtInstance => vm.$root[nuxtInstance])
-
-      // Show Nuxt Error Page
-      if (nuxtApp && vm.$root[nuxtApp].error && info !== 'render function') {
-        vm.$root[nuxtApp].error(err)
-      }
-    }
-
-    if (typeof defaultErrorHandler === 'function') {
-      return handled
-    }
-
-    // Log to console
-    if (process.env.NODE_ENV !== 'production') {
-      console.error(err)
-    } else {
-      console.error(err.message || err)
-    }
-  }
-  Vue.config.$nuxt = {}
-}
-Vue.config.$nuxt.$nuxt = true
+Object.assign(Vue.config, {"silent":true,"performance":false})
 
 const errorHandler = Vue.config.errorHandler || console.error
 
@@ -251,8 +211,10 @@ async function render (to, from, next) {
     return next()
   }
   // Handle first render on SPA mode
+  let spaFallback = false
   if (to === from) {
     _lastPaths = []
+    spaFallback = true
   } else {
     const fromMatches = []
     _lastPaths = getMatchedComponents(from, fromMatches).map((Component, i) => {
@@ -507,13 +469,18 @@ function normalizeComponents (to, ___) {
 
 function setLayoutForNextPage (to) {
   // Set layout
-  let layout = this.$options.nuxt.err
+  let hasError = Boolean(this.$options.nuxt.err)
+  if (this._hadError && this._dateLastError === this.$options.nuxt.dateErr) {
+    hasError = false
+  }
+  let layout = hasError
     ? (NuxtError.options || NuxtError).layout
     : to.matched[0].components.default.options.layout
 
   if (typeof layout === 'function') {
     layout = layout(app.context)
   }
+
   this.setLayout(layout)
 }
 
@@ -534,6 +501,8 @@ function fixPrepatch (to, ___) {
   const instances = getMatchedComponentsInstances(to)
   const Components = getMatchedComponents(to)
 
+  let triggerScroll = false
+
   Vue.nextTick(() => {
     instances.forEach((instance, i) => {
       if (!instance || instance._isDestroyed) {
@@ -551,16 +520,18 @@ function fixPrepatch (to, ___) {
           Vue.set(instance.$data, key, newData[key])
         }
 
-        // Ensure to trigger scroll event after calling scrollBehavior
-        window.$nuxt.$nextTick(() => {
-          window.$nuxt.$emit('triggerScroll')
-        })
+        triggerScroll = true
       }
     })
-    checkForErrors(this)
 
-    // Hot reloading
-    setTimeout(() => hotReloadAPI(this), 100)
+    if (triggerScroll) {
+      // Ensure to trigger scroll event after calling scrollBehavior
+      window.$nuxt.$nextTick(() => {
+        window.$nuxt.$emit('triggerScroll')
+      })
+    }
+
+    checkForErrors(this)
   })
 }
 
@@ -579,117 +550,6 @@ function nuxtReady (_app) {
     // Wait for fixPrepatch + $data updates
     Vue.nextTick(() => _app.$nuxt.$emit('routeChanged', to, from))
   })
-}
-
-const noopData = () => { return {} }
-const noopFetch = () => {}
-
-// Special hot reload with asyncData(context)
-function getNuxtChildComponents ($parent, $components = []) {
-  $parent.$children.forEach(($child) => {
-    if ($child.$vnode && $child.$vnode.data.nuxtChild && !$components.find(c =>(c.$options.__file === $child.$options.__file))) {
-      $components.push($child)
-    }
-    if ($child.$children && $child.$children.length) {
-      getNuxtChildComponents($child, $components)
-    }
-  })
-
-  return $components
-}
-
-function hotReloadAPI(_app) {
-  if (!module.hot) return
-
-  let $components = getNuxtChildComponents(_app.$nuxt, [])
-
-  $components.forEach(addHotReload.bind(_app))
-}
-
-function addHotReload ($component, depth) {
-  if ($component.$vnode.data._hasHotReload) return
-  $component.$vnode.data._hasHotReload = true
-
-  var _forceUpdate = $component.$forceUpdate.bind($component.$parent)
-
-  $component.$vnode.context.$forceUpdate = async () => {
-    let Components = getMatchedComponents(router.currentRoute)
-    let Component = Components[depth]
-    if (!Component) {
-      return _forceUpdate()
-    }
-    if (typeof Component === 'object' && !Component.options) {
-      // Updated via vue-router resolveAsyncComponents()
-      Component = Vue.extend(Component)
-      Component._Ctor = Component
-    }
-    this.error()
-    let promises = []
-    const next = function (path) {
-      this.$loading.finish && this.$loading.finish()
-      router.push(path)
-    }
-    await setContext(app, {
-      route: router.currentRoute,
-      isHMR: true,
-      next: next.bind(this)
-    })
-    const context = app.context
-
-    if (this.$loading.start && !this.$loading.manual) {
-      this.$loading.start()
-    }
-
-    callMiddleware.call(this, Components, context)
-    .then(() => {
-      // If layout changed
-      if (depth !== 0) {
-        return
-      }
-
-      let layout = Component.options.layout || 'default'
-      if (typeof layout === 'function') {
-        layout = layout(context)
-      }
-      if (this.layoutName === layout) {
-        return
-      }
-      let promise = this.loadLayout(layout)
-      promise.then(() => {
-        this.setLayout(layout)
-        Vue.nextTick(() => hotReloadAPI(this))
-      })
-      return promise
-    })
-
-    .then(() => {
-      return callMiddleware.call(this, Components, context, this.layout)
-    })
-
-    .then(() => {
-      // Call asyncData(context)
-      let pAsyncData = promisify(Component.options.asyncData || noopData, context)
-      pAsyncData.then((asyncDataResult) => {
-        applyAsyncData(Component, asyncDataResult)
-        this.$loading.increase && this.$loading.increase(30)
-      })
-      promises.push(pAsyncData)
-
-      // Call fetch()
-      Component.options.fetch = Component.options.fetch || noopFetch
-      let pFetch = Component.options.fetch.length && Component.options.fetch(context)
-      if (!pFetch || (!(pFetch instanceof Promise) && (typeof pFetch.then !== 'function'))) { pFetch = Promise.resolve(pFetch) }
-      pFetch.then(() => this.$loading.increase && this.$loading.increase(30))
-      promises.push(pFetch)
-
-      return Promise.all(promises)
-    })
-    .then(() => {
-      this.$loading.finish && this.$loading.finish()
-      _forceUpdate()
-      setTimeout(() => hotReloadAPI(this), 100)
-    })
-  }
 }
 
 async function mountApp (__app) {
@@ -720,9 +580,6 @@ async function mountApp (__app) {
     Vue.nextTick(() => {
       // Call window.{{globals.readyCallback}} callbacks
       nuxtReady(_app)
-
-      // Enable hot reloading
-      hotReloadAPI(_app)
     })
   }
 
@@ -747,13 +604,11 @@ async function mountApp (__app) {
   router.beforeEach(render.bind(_app))
 
   // Fix in static: remove trailing slash to force hydration
-  if (process.static && NUXT.serverRendered && NUXT.routePath !== '/' && NUXT.routePath.slice(-1) !== '/' && _app.context.route.path.slice(-1) === '/') {
-    _app.context.route.path = _app.context.route.path.replace(/\/+$/, '')
-  }
-  // If page already is server rendered and it was done on the same route path as client side render
-  if (NUXT.serverRendered && NUXT.routePath === _app.context.route.path) {
-    mount()
-    return
+  // Full static, if server-rendered: hydrate, to allow custom redirect to generated page
+
+  // Fix in static: remove trailing slash to force hydration
+  if (NUXT.serverRendered && isSamePath(NUXT.routePath, _app.context.route.path)) {
+    return mount()
   }
 
   // First render on client-side

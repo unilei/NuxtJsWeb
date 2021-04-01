@@ -15,6 +15,8 @@ export default function (req, res, next) {
   let whiteList = [
     'localhost:3000',
     'localhost:3001',
+    'laycode.cn',
+    'sport.laycode.cn',
     '47.103.30.132:3001',
     '47.103.30.132:3000',
     'www.hotforest.cn',

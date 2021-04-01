@@ -1,4 +1,5 @@
 import Vue from 'vue'
+
 import Meta from 'vue-meta'
 import ClientOnly from 'vue-client-only'
 import NoSsr from 'vue-no-ssr'
@@ -11,10 +12,10 @@ import { setContext, getLocation, getRouteData, normalizeError } from './utils'
 
 /* Plugins */
 
-import nuxt_plugin_plugin_3ceb5ba2 from 'nuxt_plugin_plugin_3ceb5ba2' // Source: .\\components\\plugin.js (mode: 'all')
-import nuxt_plugin_workbox_fa56eabe from 'nuxt_plugin_workbox_fa56eabe' // Source: .\\workbox.js (mode: 'client')
-import nuxt_plugin_nuxticons_9c012cba from 'nuxt_plugin_nuxticons_9c012cba' // Source: .\\nuxt-icons.js (mode: 'all')
-import nuxt_plugin_axios_53a5b2c5 from 'nuxt_plugin_axios_53a5b2c5' // Source: .\\axios.js (mode: 'all')
+import nuxt_plugin_workbox_4c1b0900 from 'nuxt_plugin_workbox_4c1b0900' // Source: .\\workbox.js (mode: 'client')
+import nuxt_plugin_metaplugin_5869f000 from 'nuxt_plugin_metaplugin_5869f000' // Source: .\\pwa\\meta.plugin.js (mode: 'all')
+import nuxt_plugin_iconplugin_5d119574 from 'nuxt_plugin_iconplugin_5d119574' // Source: .\\pwa\\icon.plugin.js (mode: 'all')
+import nuxt_plugin_axios_960f6138 from 'nuxt_plugin_axios_960f6138' // Source: .\\axios.js (mode: 'all')
 import nuxt_plugin_elementui_d905880e from 'nuxt_plugin_elementui_d905880e' // Source: ..\\plugins\\element-ui (mode: 'all')
 import nuxt_plugin_filter_2aab3a6c from 'nuxt_plugin_filter_2aab3a6c' // Source: ..\\plugins\\filter (mode: 'client')
 import nuxt_plugin_loading_71bc50c8 from 'nuxt_plugin_loading_71bc50c8' // Source: ..\\plugins\\loading (mode: 'client')
@@ -44,19 +45,26 @@ Vue.component('NChild', NuxtChild)
 // Component: <Nuxt>
 Vue.component(Nuxt.name, Nuxt)
 
+Object.defineProperty(Vue.prototype, '$nuxt', {
+  get() {
+    return this.$root.$options.$nuxt
+  },
+  configurable: true
+})
+
 Vue.use(Meta, {"keyName":"head","attribute":"data-n-head","ssrAttribute":"data-n-head-ssr","tagIDKeyName":"hid"})
 
 const defaultTransition = {"name":"page","mode":"out-in","appear":false,"appearClass":"appear","appearActiveClass":"appear-active","appearToClass":"appear-to"}
 
 async function createApp(ssrContext, config = {}) {
-  const router = await createRouter(ssrContext)
+  const router = await createRouter(ssrContext, config)
 
   // Create Root instance
 
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
-    head: {"title":"sports-v-2","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"全民体育_懂球迷的聚集地"},{"hid":"mobile-web-app-capable","name":"mobile-web-app-capable","content":"yes"},{"hid":"apple-mobile-web-app-title","name":"apple-mobile-web-app-title","content":"sports-v-2"},{"hid":"author","name":"author","content":"xll"},{"hid":"theme-color","name":"theme-color","content":"#fff"},{"hid":"og:type","name":"og:type","property":"og:type","content":"website"},{"hid":"og:title","name":"og:title","property":"og:title","content":"sports-v-2"},{"hid":"og:site_name","name":"og:site_name","property":"og:site_name","content":"sports-v-2"},{"hid":"og:description","name":"og:description","property":"og:description","content":"全民体育_懂球迷的聚集地"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"manifest","href":"\u002F_nuxt\u002Fmanifest.55284235.json"},{"rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64.2eeb4d.png"},{"rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512.2eeb4d.png","sizes":"512x512"}],"script":[{"src":"\u002Fjquery-3.1.1.min.js","ssr":false},{"src":"\u002Fjquery.SuperSlide.2.1.3.js","ssr":false},{"src":"\u002FwxLogin.js","ssr":false},{"src":"\u002Fqc.js","ssr":false},{"src":"\u002Fopeninstall.js","ssr":false},{"src":"\u002Fsocial-share.min.js","ssr":true}],"style":[],"htmlAttrs":{"lang":"en"}},
+    head: {"title":"sports-v-2","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"全民体育_懂球迷的聚集地"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"}],"script":[{"src":"\u002Fjquery-3.1.1.min.js","ssr":false},{"src":"\u002Fjquery.SuperSlide.2.1.3.js","ssr":false},{"src":"\u002FwxLogin.js","ssr":false},{"src":"\u002Fqc.js","ssr":false},{"src":"\u002Fopeninstall.js","ssr":false},{"src":"\u002Fsocial-share.min.js","ssr":true}],"style":[]},
 
     router,
     nuxt: {
@@ -148,7 +156,7 @@ async function createApp(ssrContext, config = {}) {
     Vue[installKey] = true
     // Call Vue.use() to install the plugin into vm
     Vue.use(() => {
-      if (!Object.prototype.hasOwnProperty.call(Vue, key)) {
+      if (!Object.prototype.hasOwnProperty.call(Vue.prototype, key)) {
         Object.defineProperty(Vue.prototype, key, {
           get () {
             return this.$root.$options[key]
@@ -170,20 +178,20 @@ async function createApp(ssrContext, config = {}) {
   }
   // Plugin execution
 
-  if (typeof nuxt_plugin_plugin_3ceb5ba2 === 'function') {
-    await nuxt_plugin_plugin_3ceb5ba2(app.context, inject)
+  if (process.client && typeof nuxt_plugin_workbox_4c1b0900 === 'function') {
+    await nuxt_plugin_workbox_4c1b0900(app.context, inject)
   }
 
-  if (process.client && typeof nuxt_plugin_workbox_fa56eabe === 'function') {
-    await nuxt_plugin_workbox_fa56eabe(app.context, inject)
+  if (typeof nuxt_plugin_metaplugin_5869f000 === 'function') {
+    await nuxt_plugin_metaplugin_5869f000(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_nuxticons_9c012cba === 'function') {
-    await nuxt_plugin_nuxticons_9c012cba(app.context, inject)
+  if (typeof nuxt_plugin_iconplugin_5d119574 === 'function') {
+    await nuxt_plugin_iconplugin_5d119574(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_axios_53a5b2c5 === 'function') {
-    await nuxt_plugin_axios_53a5b2c5(app.context, inject)
+  if (typeof nuxt_plugin_axios_960f6138 === 'function') {
+    await nuxt_plugin_axios_960f6138(app.context, inject)
   }
 
   if (typeof nuxt_plugin_elementui_d905880e === 'function') {
@@ -208,9 +216,13 @@ async function createApp(ssrContext, config = {}) {
   // If server-side, wait for async component to be resolved first
   if (process.server && ssrContext && ssrContext.url) {
     await new Promise((resolve, reject) => {
-      router.push(ssrContext.url, resolve, () => {
+      router.push(ssrContext.url, resolve, (err) => {
+        // https://github.com/vuejs/vue-router/blob/v3.4.3/src/util/errors.js
+        if (!err._isRouter) return reject(err)
+        if (err.type !== 2 /* NavigationFailureType.redirected */) return resolve()
+
         // navigated to a different route in router guard
-        const unregister = router.afterEach(async (to, from, next) => {
+        const unregister = router.afterEach(async (to, from) => {
           ssrContext.url = to.fullPath
           app.context.route = await getRouteData(to)
           app.context.params = to.params || {}

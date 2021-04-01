@@ -145,10 +145,15 @@ export default function (context) {
         mobileOrigin = 'http://m.xotiyu.com'
       }
 
+      if (hostname === 'sport.laycode.cn' || hostname === 'laycode.cn'){
+        pcOrigin = 'http://sport.laycode.cn'
+        mobileOrigin = 'http://m.laycode.cn'
+      }
+
     }
   } else {
-    pcOrigin = 'http://www.171tiyu.com'
-    mobileOrigin = 'http://m.171tiyu.com'
+    pcOrigin = 'http://sport.laycode.cn'
+    mobileOrigin = 'http://m.laycode.cn'
   }
 
   let old_route_fullPath = context.route.fullPath;

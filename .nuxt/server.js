@@ -1,5 +1,5 @@
-import { stringify } from 'querystring'
 import Vue from 'vue'
+import { joinURL, normalizeURL, withQuery } from 'ufo'
 import fetch from 'node-fetch'
 import middleware from './middleware.js'
 import {
@@ -28,11 +28,7 @@ Vue.component('NLink', NuxtLink)
 
 if (!global.fetch) { global.fetch = fetch }
 
-const noopApp = () => new Vue({ render: h => h('div') })
-
-function urlJoin () {
-  return Array.prototype.slice.call(arguments).join('/').replace(/\/+/g, '/')
-}
+const noopApp = () => new Vue({ render: h => h('div', { domProps: { id: '__nuxt' } }) })
 
 const createNext = ssrContext => (opts) => {
   // If static target, render on client-side
@@ -41,19 +37,19 @@ const createNext = ssrContext => (opts) => {
     ssrContext.nuxt.serverRendered = false
     return
   }
-  opts.query = stringify(opts.query)
-  opts.path = opts.path + (opts.query ? '?' + opts.query : '')
-  const routerBase = '/'
-  if (!opts.path.startsWith('http') && (routerBase !== '/' && !opts.path.startsWith(routerBase))) {
-    opts.path = urlJoin(routerBase, opts.path)
+  let fullPath = withQuery(opts.path, opts.query)
+  const $config = ssrContext.runtimeConfig || {}
+  const routerBase = ($config.app && $config.app.basePath) || '/'
+  if (!fullPath.startsWith('http') && (routerBase !== '/' && !fullPath.startsWith(routerBase))) {
+    fullPath = joinURL(routerBase, fullPath)
   }
   // Avoid loop redirect
-  if (opts.path === ssrContext.url) {
+  if (decodeURI(fullPath) === decodeURI(ssrContext.url)) {
     ssrContext.redirected = false
     return
   }
   ssrContext.res.writeHead(opts.status, {
-    Location: opts.path
+    Location: normalizeURL(fullPath)
   })
   ssrContext.res.end()
 }
@@ -70,15 +66,19 @@ export default async (ssrContext) => {
   // Used for beforeNuxtRender({ Components, nuxtState })
   ssrContext.beforeRenderFns = []
   // Nuxt object (window.{{globals.context}}, defaults to window.__NUXT__)
-  ssrContext.nuxt = { layout: 'default', data: [], fetch: [], error: null, serverRendered: true, routePath: '' }
+  ssrContext.nuxt = { layout: 'default', data: [], fetch: {}, error: null, serverRendered: true, routePath: '' }
+
+    ssrContext.fetchCounters = {}
+
   // Remove query from url is static target
-  if (process.static && ssrContext.url) {
-    ssrContext.url = ssrContext.url.split('?')[0]
-  }
+
   // Public runtime config
   ssrContext.nuxt.config = ssrContext.runtimeConfig.public
+  if (ssrContext.nuxt.config.app) {
+    __webpack_public_path__ = joinURL(ssrContext.nuxt.config.app.cdnURL, ssrContext.nuxt.config.app.assetsPath)
+  }
   // Create the app definition and the instance (created for each request)
-  const { app, router } = await createApp(ssrContext, { ...ssrContext.runtimeConfig.public, ...ssrContext.runtimeConfig.private })
+const { app, router } = await createApp(ssrContext, ssrContext.runtimeConfig.private)
   const _app = new Vue(app)
   // Add ssr route path to nuxt context so we can account for page navigation between ssr and csr
   ssrContext.nuxt.routePath = app.context.route.path
@@ -114,8 +114,6 @@ export default async (ssrContext) => {
     app.context.error({ statusCode: 404, path: ssrContext.url, message: 'This page could not be found' })
     return renderErrorPage()
   }
-
-  const s = Date.now()
 
   // Components are already resolved by setContext -> getRouteData (app/utils.js)
   const Components = getMatchedComponents(router.match(ssrContext.url))
@@ -251,8 +249,6 @@ export default async (ssrContext) => {
 
     return Promise.all(promises)
   }))
-
-  if (process.env.DEBUG && asyncDatas.length) console.debug('Data fetching ' + ssrContext.url + ': ' + (Date.now() - s) + 'ms')
 
   // datas are the first row of each
   ssrContext.nuxt.data = asyncDatas.map(r => r[0] || {})

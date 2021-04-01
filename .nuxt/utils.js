@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import { isSamePath as _isSamePath, joinURL, normalizeURL, withQuery, withoutTrailingSlash } from 'ufo'
 
 // window.{{globals.loadedCallback}} hook
 // Useful for jsdom testing or plugins (https://github.com/tmpvar/jsdom#dealing-with-asynchronous-script-loading)
@@ -6,6 +7,15 @@ if (process.client) {
   window.onNuxtReadyCbs = []
   window.onNuxtReady = (cb) => {
     window.onNuxtReadyCbs.push(cb)
+  }
+}
+
+export function createGetCounter (counterObject, defaultKey = '') {
+  return function getCounter (id = defaultKey) {
+    if (counterObject[id] === undefined) {
+      counterObject[id] = 0
+    }
+    return counterObject[id]++
   }
 }
 
@@ -23,6 +33,24 @@ export function interopDefault (promise) {
 
 export function hasFetch(vm) {
   return vm.$options && typeof vm.$options.fetch === 'function' && !vm.$options.fetch.length
+}
+export function purifyData(data) {
+  if (process.env.NODE_ENV === 'production') {
+    return data
+  }
+
+  return Object.entries(data).filter(
+    ([key, value]) => {
+      const valid = !(value instanceof Function) && !(value instanceof Promise)
+      if (!valid) {
+        console.warn(`${key} is not able to be stringified. This will break in a production environment.`)
+      }
+      return valid
+    }
+    ).reduce((obj, [key, value]) => {
+      obj[key] = value
+      return obj
+    }, {})
 }
 export function getChildrenComponentInstancesUsingFetch(vm, instances = []) {
   const children = vm.$children || []
@@ -143,22 +171,24 @@ export async function setContext (app, context) {
   if (!app.context) {
     app.context = {
       isStatic: process.static,
-      isDev: true,
+      isDev: false,
       isHMR: false,
       app,
 
       payload: context.payload,
       error: context.error,
-      base: '/',
+      base: app.router.options.base,
       env: {"BASE_URL":"http://0.0.0.0:3000"}
     }
     // Only set once
-    if (!process.static && context.req) {
+
+    if (context.req) {
       app.context.req = context.req
     }
-    if (!process.static && context.res) {
+    if (context.res) {
       app.context.res = context.res
     }
+
     if (context.ssrContext) {
       app.context.ssrContext = context.ssrContext
     }
@@ -186,7 +216,7 @@ export async function setContext (app, context) {
           status
         })
       } else {
-        path = formatUrl(path, query)
+        path = withQuery(path, query)
         if (process.server) {
           app.context.next({
             path,
@@ -227,7 +257,7 @@ export async function setContext (app, context) {
   app.context.next = context.next
   app.context._redirected = false
   app.context._errored = false
-  app.context.isHMR = Boolean(context.isHMR)
+  app.context.isHMR = false
   app.context.params = app.context.route.params || {}
   app.context.query = app.context.route.query || {}
 }
@@ -245,9 +275,6 @@ export function middlewareSeries (promises, appContext) {
 export function promisify (fn, context) {
   let promise
   if (fn.length === 2) {
-      console.warn('Callback-based asyncData, fetch or middleware calls are deprecated. ' +
-        'Please switch to promises or async/await syntax')
-
     // fn(context, callback)
     promise = new Promise((resolve) => {
       fn(context, function (err, data) {
@@ -270,14 +297,20 @@ export function promisify (fn, context) {
 
 // Imported from vue-router
 export function getLocation (base, mode) {
-  let path = decodeURI(window.location.pathname)
   if (mode === 'hash') {
     return window.location.hash.replace(/^#\//, '')
   }
-  if (base && path.indexOf(base) === 0) {
+
+  base = decodeURI(base).slice(0, -1) // consideration is base is normalized with trailing slash
+  let path = decodeURI(window.location.pathname)
+
+  if (base && path.startsWith(base)) {
     path = path.slice(base.length)
   }
-  return (path || '/') + window.location.search + window.location.hash
+
+  const fullPath = (path || '/') + window.location.search + window.location.hash
+
+  return normalizeURL(fullPath)
 }
 
 // Imported from path-to-regexp
@@ -550,66 +583,6 @@ function flags (options) {
   return options && options.sensitive ? '' : 'i'
 }
 
-/**
- * Format given url, append query to url query string
- *
- * @param  {string} url
- * @param  {string} query
- * @return {string}
- */
-function formatUrl (url, query) {
-  let protocol
-  const index = url.indexOf('://')
-  if (index !== -1) {
-    protocol = url.substring(0, index)
-    url = url.substring(index + 3)
-  } else if (url.startsWith('//')) {
-    url = url.substring(2)
-  }
-
-  let parts = url.split('/')
-  let result = (protocol ? protocol + '://' : '//') + parts.shift()
-
-  let path = parts.join('/')
-  if (path === '' && parts.length === 1) {
-    result += '/'
-  }
-
-  let hash
-  parts = path.split('#')
-  if (parts.length === 2) {
-    [path, hash] = parts
-  }
-
-  result += path ? '/' + path : ''
-
-  if (query && JSON.stringify(query) !== '{}') {
-    result += (url.split('?').length === 2 ? '&' : '?') + formatQuery(query)
-  }
-  result += hash ? '#' + hash : ''
-
-  return result
-}
-
-/**
- * Transform data object to query string
- *
- * @param  {object} query
- * @return {string}
- */
-function formatQuery (query) {
-  return Object.keys(query).sort().map((key) => {
-    const val = query[key]
-    if (val == null) {
-      return ''
-    }
-    if (Array.isArray(val)) {
-      return val.slice().map(val2 => [key, '=', val2].join('')).join('&')
-    }
-    return key + '=' + val
-  }).filter(Boolean).join('&')
-}
-
 export function addLifecycleHook(vm, hook, fn) {
   if (!vm.$options[hook]) {
     vm.$options[hook] = []
@@ -619,10 +592,14 @@ export function addLifecycleHook(vm, hook, fn) {
   }
 }
 
-export const urlJoin = function urlJoin () {
-  return [].slice
-    .call(arguments)
-    .join('/')
-    .replace(/\/+/g, '/')
-    .replace(':/', '://')
+export const urlJoin = joinURL
+
+export const stripTrailingSlash = withoutTrailingSlash
+
+export const isSamePath = _isSamePath
+
+export function setScrollRestoration (newVal) {
+  try {
+    window.history.scrollRestoration = newVal;
+  } catch(e) {}
 }

@@ -1,150 +1,163 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import { normalizeURL, decode } from 'ufo'
 import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
-const _5c1fd3d0 = () => interopDefault(import('..\\pages\\about.vue' /* webpackChunkName: "pages_about" */))
-const _f82766d6 = () => interopDefault(import('..\\pages\\agreement.vue' /* webpackChunkName: "pages_agreement" */))
-const _0ffb3370 = () => interopDefault(import('..\\pages\\company.vue' /* webpackChunkName: "pages_company" */))
-const _b658a41e = () => interopDefault(import('..\\pages\\companyProfile.vue' /* webpackChunkName: "pages_companyProfile" */))
-const _3819beb6 = () => interopDefault(import('..\\pages\\complaint.vue' /* webpackChunkName: "pages_complaint" */))
-const _106ea066 = () => interopDefault(import('..\\pages\\download.vue' /* webpackChunkName: "pages_download" */))
-const _7ebf1d53 = () => interopDefault(import('..\\pages\\kol.vue' /* webpackChunkName: "pages_kol" */))
-const _45fce491 = () => interopDefault(import('..\\pages\\myqq.vue' /* webpackChunkName: "pages_myqq" */))
-const _086bffce = () => interopDefault(import('..\\pages\\personalInformationService.vue' /* webpackChunkName: "pages_personalInformationService" */))
-const _1944cc8e = () => interopDefault(import('..\\pages\\profile\\index.vue' /* webpackChunkName: "pages_profile_index" */))
-const _7c3e3aab = () => interopDefault(import('..\\pages\\wechat.vue' /* webpackChunkName: "pages_wechat" */))
-const _1c5fed01 = () => interopDefault(import('..\\pages\\bbs\\detail\\_articleId.vue' /* webpackChunkName: "pages_bbs_detail__articleId" */))
-const _605e366b = () => interopDefault(import('..\\pages\\bbs\\list\\_sportType.vue' /* webpackChunkName: "pages_bbs_list__sportType" */))
-const _09eb0242 = () => interopDefault(import('..\\pages\\sportNews\\detail\\_shorturl.vue' /* webpackChunkName: "pages_sportNews_detail__shorturl" */))
-const _53d4c6ee = () => interopDefault(import('..\\pages\\sportNews\\list\\_league.vue' /* webpackChunkName: "pages_sportNews_list__league" */))
-const _5e4552fc = () => interopDefault(import('..\\pages\\nscolumn\\_columnId\\index.vue' /* webpackChunkName: "pages_nscolumn__columnId_index" */))
-const _a2e03100 = () => interopDefault(import('..\\pages\\nsforum\\_groupId\\index.vue' /* webpackChunkName: "pages_nsforum__groupId_index" */))
-const _752d722c = () => interopDefault(import('..\\pages\\nsforum\\_sportType\\index.vue' /* webpackChunkName: "pages_nsforum__sportType_index" */))
-const _5e8b9e61 = () => interopDefault(import('..\\pages\\nsnews\\_league\\index.vue' /* webpackChunkName: "pages_nsnews__league_index" */))
-const _aa934be8 = () => interopDefault(import('..\\pages\\profile\\_activeName.vue' /* webpackChunkName: "pages_profile__activeName" */))
-const _2cff2d74 = () => interopDefault(import('..\\pages\\nsforum\\_groupId\\_articleId.vue' /* webpackChunkName: "pages_nsforum__groupId__articleId" */))
-const _ba6d2370 = () => interopDefault(import('..\\pages\\nsforum\\_sportType\\_articleId.vue' /* webpackChunkName: "pages_nsforum__sportType__articleId" */))
-const _411af2e1 = () => interopDefault(import('..\\pages\\nsnews\\_league\\_shorturl.vue' /* webpackChunkName: "pages_nsnews__league__shorturl" */))
-const _1cb01e46 = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages_index" */))
+const _919cf64e = () => interopDefault(import('..\\pages\\about.vue' /* webpackChunkName: "pages/about" */))
+const _0d331a54 = () => interopDefault(import('..\\pages\\agreement.vue' /* webpackChunkName: "pages/agreement" */))
+const _dab9ae6e = () => interopDefault(import('..\\pages\\company.vue' /* webpackChunkName: "pages/company" */))
+const _5aa76f60 = () => interopDefault(import('..\\pages\\companyProfile.vue' /* webpackChunkName: "pages/companyProfile" */))
+const _a4d83612 = () => interopDefault(import('..\\pages\\complaint.vue' /* webpackChunkName: "pages/complaint" */))
+const _9d7f8528 = () => interopDefault(import('..\\pages\\download.vue' /* webpackChunkName: "pages/download" */))
+const _0b5f4854 = () => interopDefault(import('..\\pages\\kol.vue' /* webpackChunkName: "pages/kol" */))
+const _4d6219b0 = () => interopDefault(import('..\\pages\\myqq.vue' /* webpackChunkName: "pages/myqq" */))
+const _f265f8a6 = () => interopDefault(import('..\\pages\\personalInformationService.vue' /* webpackChunkName: "pages/personalInformationService" */))
+const _471d66ed = () => interopDefault(import('..\\pages\\profile\\index.vue' /* webpackChunkName: "pages/profile/index" */))
+const _3f2aa40a = () => interopDefault(import('..\\pages\\wechat.vue' /* webpackChunkName: "pages/wechat" */))
+const _5254e4fc = () => interopDefault(import('..\\pages\\bbs\\detail\\_articleId.vue' /* webpackChunkName: "pages/bbs/detail/_articleId" */))
+const _7114032c = () => interopDefault(import('..\\pages\\bbs\\list\\_sportType.vue' /* webpackChunkName: "pages/bbs/list/_sportType" */))
+const _653a06fe = () => interopDefault(import('..\\pages\\sportNews\\detail\\_shorturl.vue' /* webpackChunkName: "pages/sportNews/detail/_shorturl" */))
+const _2fd992e6 = () => interopDefault(import('..\\pages\\sportNews\\list\\_league.vue' /* webpackChunkName: "pages/sportNews/list/_league" */))
+const _4f3e5a61 = () => interopDefault(import('..\\pages\\nscolumn\\_columnId\\index.vue' /* webpackChunkName: "pages/nscolumn/_columnId/index" */))
+const _42ce571f = () => interopDefault(import('..\\pages\\nsforum\\_groupId\\index.vue' /* webpackChunkName: "pages/nsforum/_groupId/index" */))
+const _18e313ea = () => interopDefault(import('..\\pages\\nsforum\\_sportType\\index.vue' /* webpackChunkName: "pages/nsforum/_sportType/index" */))
+const _648f69c0 = () => interopDefault(import('..\\pages\\nsnews\\_league\\index.vue' /* webpackChunkName: "pages/nsnews/_league/index" */))
+const _37a3712b = () => interopDefault(import('..\\pages\\profile\\_activeName.vue' /* webpackChunkName: "pages/profile/_activeName" */))
+const _08c0a935 = () => interopDefault(import('..\\pages\\nsforum\\_groupId\\_articleId.vue' /* webpackChunkName: "pages/nsforum/_groupId/_articleId" */))
+const _d7ca046e = () => interopDefault(import('..\\pages\\nsforum\\_sportType\\_articleId.vue' /* webpackChunkName: "pages/nsforum/_sportType/_articleId" */))
+const _81081280 = () => interopDefault(import('..\\pages\\nsnews\\_league\\_shorturl.vue' /* webpackChunkName: "pages/nsnews/_league/_shorturl" */))
+const _522d40c4 = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages/index" */))
 
-// TODO: remove in Nuxt 3
 const emptyFn = () => {}
-const originalPush = Router.prototype.push
-Router.prototype.push = function push (location, onComplete = emptyFn, onAbort) {
-  return originalPush.call(this, location, onComplete, onAbort)
-}
 
 Vue.use(Router)
 
 export const routerOptions = {
   mode: 'history',
-  base: decodeURI('/'),
+  base: '/',
   linkActiveClass: 'nuxt-link-active',
   linkExactActiveClass: 'nuxt-link-exact-active',
   scrollBehavior,
 
   routes: [{
     path: "/about",
-    component: _5c1fd3d0,
+    component: _919cf64e,
     name: "about"
   }, {
     path: "/agreement",
-    component: _f82766d6,
+    component: _0d331a54,
     name: "agreement"
   }, {
     path: "/company",
-    component: _0ffb3370,
+    component: _dab9ae6e,
     name: "company"
   }, {
     path: "/companyProfile",
-    component: _b658a41e,
+    component: _5aa76f60,
     name: "companyProfile"
   }, {
     path: "/complaint",
-    component: _3819beb6,
+    component: _a4d83612,
     name: "complaint"
   }, {
     path: "/download",
-    component: _106ea066,
+    component: _9d7f8528,
     name: "download"
   }, {
     path: "/kol",
-    component: _7ebf1d53,
+    component: _0b5f4854,
     name: "kol"
   }, {
     path: "/myqq",
-    component: _45fce491,
+    component: _4d6219b0,
     name: "myqq"
   }, {
     path: "/personalInformationService",
-    component: _086bffce,
+    component: _f265f8a6,
     name: "personalInformationService"
   }, {
     path: "/profile",
-    component: _1944cc8e,
+    component: _471d66ed,
     name: "profile"
   }, {
     path: "/wechat",
-    component: _7c3e3aab,
+    component: _3f2aa40a,
     name: "wechat"
   }, {
     path: "/bbs/detail/:articleId?",
-    component: _1c5fed01,
+    component: _5254e4fc,
     name: "bbs-detail-articleId"
   }, {
     path: "/bbs/list/:sportType?",
-    component: _605e366b,
+    component: _7114032c,
     name: "bbs-list-sportType"
   }, {
     path: "/sportNews/detail/:shorturl?",
-    component: _09eb0242,
+    component: _653a06fe,
     name: "sportNews-detail-shorturl"
   }, {
     path: "/sportNews/list/:league?",
-    component: _53d4c6ee,
+    component: _2fd992e6,
     name: "sportNews-list-league"
   }, {
-    path: "/nscolumn/:columnId?",
-    component: _5e4552fc,
+    path: "/nscolumn/:columnId",
+    component: _4f3e5a61,
     name: "nscolumn-columnId"
   }, {
-    path: "/nsforum/:groupId?",
-    component: _a2e03100,
+    path: "/nsforum/:groupId",
+    component: _42ce571f,
     name: "nsforum-groupId"
   }, {
-    path: "/nsforum/:sportType?",
-    component: _752d722c,
+    path: "/nsforum/:sportType",
+    component: _18e313ea,
     name: "nsforum-sportType"
   }, {
-    path: "/nsnews/:league?",
-    component: _5e8b9e61,
+    path: "/nsnews/:league",
+    component: _648f69c0,
     name: "nsnews-league"
   }, {
     path: "/profile/:activeName",
-    component: _aa934be8,
+    component: _37a3712b,
     name: "profile-activeName"
   }, {
     path: "/nsforum/:groupId?/:articleId",
-    component: _2cff2d74,
+    component: _08c0a935,
     name: "nsforum-groupId-articleId"
   }, {
     path: "/nsforum/:sportType?/:articleId",
-    component: _ba6d2370,
+    component: _d7ca046e,
     name: "nsforum-sportType-articleId"
   }, {
     path: "/nsnews/:league?/:shorturl",
-    component: _411af2e1,
+    component: _81081280,
     name: "nsnews-league-shorturl"
   }, {
     path: "/",
-    component: _1cb01e46,
+    component: _522d40c4,
     name: "index"
   }],
 
   fallback: false
 }
 
-export function createRouter () {
-  return new Router(routerOptions)
+export function createRouter (ssrContext, config) {
+  const base = (config.app && config.app.basePath) || routerOptions.base
+  const router = new Router({ ...routerOptions, base  })
+
+  // TODO: remove in Nuxt 3
+  const originalPush = router.push
+  router.push = function push (location, onComplete = emptyFn, onAbort) {
+    return originalPush.call(this, location, onComplete, onAbort)
+  }
+
+  const resolve = router.resolve.bind(router)
+  router.resolve = (to, current, append) => {
+    if (typeof to === 'string') {
+      to = normalizeURL(to)
+    }
+    return resolve(to, current, append)
+  }
+
+  return router
 }
