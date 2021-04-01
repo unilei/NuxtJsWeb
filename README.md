@@ -1,6 +1,7 @@
 # 全民体育PC版官网
 
 > 对seo友好的框架nuxt.js 
+> http://sport.laycode.cn
 
 ## 网站运行命令
 
