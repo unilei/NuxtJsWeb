@@ -12,10 +12,7 @@ import { setContext, getLocation, getRouteData, normalizeError } from './utils'
 
 /* Plugins */
 
-import nuxt_plugin_workbox_4c1b0900 from 'nuxt_plugin_workbox_4c1b0900' // Source: .\\workbox.js (mode: 'client')
-import nuxt_plugin_metaplugin_5869f000 from 'nuxt_plugin_metaplugin_5869f000' // Source: .\\pwa\\meta.plugin.js (mode: 'all')
-import nuxt_plugin_iconplugin_5d119574 from 'nuxt_plugin_iconplugin_5d119574' // Source: .\\pwa\\icon.plugin.js (mode: 'all')
-import nuxt_plugin_axios_960f6138 from 'nuxt_plugin_axios_960f6138' // Source: .\\axios.js (mode: 'all')
+import nuxt_plugin_axios_14ab02ca from 'nuxt_plugin_axios_14ab02ca' // Source: .\\axios.js (mode: 'all')
 import nuxt_plugin_elementui_d905880e from 'nuxt_plugin_elementui_d905880e' // Source: ..\\plugins\\element-ui (mode: 'all')
 import nuxt_plugin_filter_2aab3a6c from 'nuxt_plugin_filter_2aab3a6c' // Source: ..\\plugins\\filter (mode: 'client')
 import nuxt_plugin_loading_71bc50c8 from 'nuxt_plugin_loading_71bc50c8' // Source: ..\\plugins\\loading (mode: 'client')
@@ -47,7 +44,11 @@ Vue.component(Nuxt.name, Nuxt)
 
 Object.defineProperty(Vue.prototype, '$nuxt', {
   get() {
-    return this.$root.$options.$nuxt
+    const globalNuxt = this.$root.$options.$nuxt
+    if (process.client && !globalNuxt && typeof window !== 'undefined') {
+      return window.$nuxt
+    }
+    return globalNuxt
   },
   configurable: true
 })
@@ -178,20 +179,8 @@ async function createApp(ssrContext, config = {}) {
   }
   // Plugin execution
 
-  if (process.client && typeof nuxt_plugin_workbox_4c1b0900 === 'function') {
-    await nuxt_plugin_workbox_4c1b0900(app.context, inject)
-  }
-
-  if (typeof nuxt_plugin_metaplugin_5869f000 === 'function') {
-    await nuxt_plugin_metaplugin_5869f000(app.context, inject)
-  }
-
-  if (typeof nuxt_plugin_iconplugin_5d119574 === 'function') {
-    await nuxt_plugin_iconplugin_5d119574(app.context, inject)
-  }
-
-  if (typeof nuxt_plugin_axios_960f6138 === 'function') {
-    await nuxt_plugin_axios_960f6138(app.context, inject)
+  if (typeof nuxt_plugin_axios_14ab02ca === 'function') {
+    await nuxt_plugin_axios_14ab02ca(app.context, inject)
   }
 
   if (typeof nuxt_plugin_elementui_d905880e === 'function') {
@@ -213,26 +202,31 @@ async function createApp(ssrContext, config = {}) {
     }
   }
 
-  // If server-side, wait for async component to be resolved first
-  if (process.server && ssrContext && ssrContext.url) {
-    await new Promise((resolve, reject) => {
-      router.push(ssrContext.url, resolve, (err) => {
-        // https://github.com/vuejs/vue-router/blob/v3.4.3/src/util/errors.js
-        if (!err._isRouter) return reject(err)
-        if (err.type !== 2 /* NavigationFailureType.redirected */) return resolve()
+  // Wait for async component to be resolved first
+  await new Promise((resolve, reject) => {
+    const { route } = router.resolve(app.context.route.fullPath)
+    // Ignore 404s rather than blindly replacing URL
+    if (!route.matched.length && process.client) {
+      return resolve()
+    }
+    router.replace(route, resolve, (err) => {
+      // https://github.com/vuejs/vue-router/blob/v3.4.3/src/util/errors.js
+      if (!err._isRouter) return reject(err)
+      if (err.type !== 2 /* NavigationFailureType.redirected */) return resolve()
 
-        // navigated to a different route in router guard
-        const unregister = router.afterEach(async (to, from) => {
+      // navigated to a different route in router guard
+      const unregister = router.afterEach(async (to, from) => {
+        if (process.server && ssrContext && ssrContext.url) {
           ssrContext.url = to.fullPath
-          app.context.route = await getRouteData(to)
-          app.context.params = to.params || {}
-          app.context.query = to.query || {}
-          unregister()
-          resolve()
-        })
+        }
+        app.context.route = await getRouteData(to)
+        app.context.params = to.params || {}
+        app.context.query = to.query || {}
+        unregister()
+        resolve()
       })
     })
-  }
+  })
 
   return {
     app,
